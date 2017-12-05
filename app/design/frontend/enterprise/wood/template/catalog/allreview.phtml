@@ -1,0 +1,21 @@
+<?php
+	/* Get Collection of Reviews */
+	$Collection=Mage::getModel('review/review')->getCollection()
+					->addStoreFilter(Mage::app()->getStore()->getId())
+					->addStatusFilter(Mage_Review_Model_Review::STATUS_APPROVED)
+					->addRateVotes()
+					->setDateOrder();
+
+	/* Display Newest First */
+    $_items = array_reverse( $Collection->getItems());
+	
+	/* Display Reviews */
+    foreach ($_items as $_review) {
+        $productId =  $_review->getentity_pk_value();
+        $_review->getTitle();
+        $_votes = $_review->getRatingVotes();
+        $_review->getDetail();
+        $this->formatDate($_review->getCreatedAt());
+        $this->__('[Posted %s]', $this->formatDate($_review->getCreatedAt()), 'long');
+    }
+?>

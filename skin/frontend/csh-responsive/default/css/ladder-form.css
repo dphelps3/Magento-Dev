@@ -1,0 +1,249 @@
+/* ladder-form.css version 1.0 -- created by davidP on 09/30/16 */
+
+	#ladder-fields legend{
+		background-image:url(https://cdn.cshardware.com/media/wysiwyg/Rolling_Library_Ladders_legend_background.jpg);
+		margin-bottom:5px;
+	}
+	#ladder-fields legend a{
+		display: block;
+		padding:15px;
+	}
+	#ladder-fields legend h3{
+		margin-bottom:0px;
+		font-family: "Titillium Web";
+		font-size: 24px;
+		font-weight: 900;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		color:#fff;
+
+	}
+	#ladder-fields .fiedset_content{
+		padding: 15px;
+		font-size:16px;
+	}
+	.nopadding{
+		margin:0px !important;
+		padding:0px !important;
+	}
+	.preview_img_block {
+		margin: 0 auto;
+		width:125px;
+		font-size: 16px;
+		text-align: center;
+	}
+	.preview_img {
+		width:125px;
+	}
+	.image_blank{
+		border:1px solid #D6D6D6;
+	}
+	.label_radio{
+	position:relative;
+	}
+	.label_radio > input{
+		visibility: hidden;
+		position: absolute;
+	}
+	.label_radio > input + img{
+		cursor:pointer;
+	}
+	.label_radio > input:checked + img{
+		border:2px solid #f00;
+	}
+	.label_radio > input + .glyphicon {
+	   display:none;
+	}
+	.label_radio > input:checked + .glyphicon {
+	   display:block;
+	   position: absolute;
+	   top: 37px;
+	   left: 40px;
+	   color:#fff;
+	   width:45px;
+	   height:45px;
+	   font-size:45px;
+	}
+	.label_radio > input:checked + .glyphicon.blank {
+		color:#5D5D5D;
+	}
+	.label_radio.label_size{
+		width:162px;
+		height:65px;
+		border:1px solid #D6D6D6;
+		padding-left:10px;
+		line-height:20px;
+		padding-top:12px;
+	}
+	.label_radio.label_size > input:checked + .glyphicon {
+	   top: 6px;
+	   left: auto !important;
+	   right: 5px !important;
+	   color:#5D5D5D;
+	}
+	table.table_inputs{
+		border:0px;
+		border-collapse:collapse;
+	}
+	table.table_inputs td{
+		padding:3px;
+		border:0px;
+	}
+	.table_inputs input[type=text]{
+		-moz-border-radius: 0px;
+		-webkit-border-radius: 0px;
+		border-radius: 0px;
+		border:1px solid #D6D6D6;
+		width:35px;
+		height:35px;
+		text-align:center;
+	}
+	.text_smaller{
+		font-size: 12px;
+	}
+	.text_red{
+		color: #BB2838;
+	}
+	.text_bold{
+		font-weight:bold;
+	}
+	ul.text_ul li{
+		list-style-type: square !important;
+	}
+	.row_border_bottom{
+		border-bottom:1px solid #D6D6D6;
+	}
+	#table_rungs_qty{
+		width:125px;
+		margin:0px auto;
+	}
+	@media (min-width: 992px){
+		.border_left_md{
+			border-left:1px solid #D6D6D6;
+			padding-left:20px;
+		}
+	}
+	@media (max-width: 991px){
+		.border_bottom_sm{
+			border-bottom:1px solid #D6D6D6;
+			margin-bottom:15px;
+		}
+	}
+	#order_ladder_table .order_caption{
+		padding-left:20px;
+		background-color:#B41B2D;
+		color:#fff;
+		font-size: 16px;
+		font-weight: 700;
+		text-transform: uppercase;
+
+	}
+	#order_ladder_table{
+		min-width:200px;
+		border:0px;
+		border-collapse:collapse;
+	}
+	#order_ladder_table th, #order_ladder_table td{
+		padding:3px;
+		border:0px;
+	}
+	#order_ladder_table td, .cart_warning{
+		font-size: 12px;
+	}
+	#order_ladder_table td.total_td,#order_ladder_table td.total_price_td{
+		font-size: 14px;
+	}
+	#order_ladder_table th.price_th, #order_ladder_table td.price_td, #order_ladder_table td.total_price_td{
+		text-align:right;
+	}
+	.btn-clear {
+		background-color: #989898;
+		border-color: #989898;
+		color: #ffffff;
+	}
+	div.progress-image {
+		display:none;
+		position: fixed;
+		z-index: 1001;
+		width:16px;
+		height:16px;
+		top: 50%;
+		left: 50%;
+		margin-top: -8px;
+		margin-left: -8px;
+	}
+	.panel-group .panel {
+		margin-top: 0px !important;
+	}
+	@media (min-width: 768px){
+		#cart_list {
+			position:fixed;
+			z-index: 1000;
+			top:0px;
+			margin-right:10px;
+			background-color:#fff;
+			max-width: 200px;
+		}
+	}
+	/* block going to cart and cart*/
+	#going_to_cart {
+		display:none;
+	}
+	@media (min-width: 768px){
+		#going_to_cart.going_visible {
+			display:none;
+		}
+		#main_row{
+			display: table;
+			width:100%;
+		}
+		#ladder-fields, #cart_div_parent{
+			float:none;
+			display: table-cell;
+			height:100%;
+		}
+		#cart_div_parent{
+			padding:0px;
+		}
+		#cart_list.top_border{
+			position:absolute;
+			top:0px;
+			bottom:auto;
+		}
+		#cart_list.bottom_border{
+			position:absolute;
+			top:auto;
+			bottom:0px;
+		}
+	}
+	@media (max-width: 767px){
+		#going_to_cart.going_visible {
+			display:block;
+			position: fixed;
+			z-index: 999;
+			width:103%;
+			bottom:0px;
+			padding: 12px;
+			margin-bottom:0px;
+			background-image:url(/media/wysiwyg/screw_red_background.jpg);
+			font-family: "Titillium Web";
+			font-size: 14px;
+			font-weight: 900;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+			color:#fff;
+		}
+	}
+	#cart_total_quantity{
+		line-height: 36px;
+	}
+	#going_to_cart .going_buttons{
+		text-align:right;
+	}
+	#going_back_button{
+		display:none;
+	}
+	#cart_div_footer{
+		width:100%;
+		height:1px;
+	}

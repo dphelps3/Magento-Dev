@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Designer</title>
+<meta charset="utf-8">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!--<script type="text/javascript" src="jquery-1.10.2.min.js"></script>-->
+<script type="text/javascript" src="three.min.js"></script>
+<script type="text/javascript" src="OBJLoader.js"></script>
+<script type="text/javascript" src="designer.js"></script>
+<script type="text/javascript" src="orbitcontrols.js"></script>
+<script type="text/javascript" src="TransformControls.js"></script>
+<script type="text/javascript" src="UVsUtils.js"></script>
+<script type="text/javascript" src="detector.js"></script>
+<script type="text/javascript">
+
+
+	
+	$(function() {
+		$("#rise").change(function() {
+			z.rise = document.getElementById('rise').value;
+			z.build();
+		});
+		$("#rise").keyup(function() {
+			z.rise = document.getElementById('rise').value;
+			z.build();
+		});
+	});
+
+</script>
+
+</head>
+
+<body style="height:100%">
+
+<div id="nav">
+</div>
+
+<div id="container" style="min-height:600px;width:100%;border:1px solid #aaa;"></div>
+
+
+
+
+<br>
+<div id="input" style="height:50px;width:100%;">
+	<span>
+	Rise: (in) <input type="number" value="48" id="rise"></input>
+	</span>
+</div>
+
+<a href="javascript:(function(){var%20script=document.createElement('script');script.type='text/javascript';script.src='https://github.com/zz85/zz85-bookmarklets/raw/master/js/ThreeInspector.js';document.body.appendChild(script);})()">Three.js Inspector</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?php
+	require_once 'app/Mage.php';
+	umask(0);
+	Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+	$userModel = Mage::getModel('admin/user');
+	$userModel->setUserId(0);
+    $resource = Mage::getSingleton('core/resource');
+    $readConnection = $resource->getConnection('core_read');
+    $query = "SELECT name,thumbnail FROM csmagcatalog_product_flat_1 WHERE sku LIKE '8.DOOR.%'";
+    
+    $results = $readConnection->fetchAll($query);
+	//echo var_dump($results);
+	
+	$c = 1;
+	echo '<table cellSpacing="0" cellPadding="0" border="0"><tr>';
+	foreach($results as $i) {
+		if ($c == 5) {
+			$c = 1;
+			echo '</tr><tr>';
+		}
+		echo '<td><label><input type="checkbox" name="'.$i['name'].'" value="'.$i['name'].'" style="position: relative;left: 25px;top: 25px;z-index: 10;">';
+		echo '<img align="left" src="./media/catalog/product/'.$i['thumbnail'].'" height="150" width="150" style="position: relative;left: 0;top: 0;z-index: 5;"></img>';
+		echo '</label></td>';
+		$c++;
+	}
+	if ($c == 2 || $c == 3 || $c == 4) {
+		echo '</tr>';
+	}
+	echo '</table>';
+ ?>

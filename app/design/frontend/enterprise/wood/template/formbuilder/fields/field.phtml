@@ -1,0 +1,8 @@
+<?php $value =Mage::registry('formbuilder')->getData('field');?>
+<?php $fieldvalue='';?>
+<?php if(isset($value) && !empty($value)):?>
+	<?php $id=$this->getId();?>
+	<?php $fieldvalue=$value[$id];?>
+<?php endif;?>
+
+<input type='text' name='<?php echo $this->getFieldName()?>' id='<?php echo $this->getFieldId()?>' class='<?php echo $this->getFieldClass()?>' style='<?php echo $this->getFieldStyle()?>' value="<?php echo $this->htmlEscape($fieldvalue);?>"/>

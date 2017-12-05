@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <cabinetcoupons_adminhtml_codes_index>
+	<reference name="content">
+	  <block type="cabinetcoupons/adminhtml_codes" name="codes" />
+	</reference>
+  </cabinetcoupons_adminhtml_codes_index>
+</layout>

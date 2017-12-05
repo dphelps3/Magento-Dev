@@ -1,0 +1,66 @@
+<div class="iwd-qv-modal fade" id="iwd-qv-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="iwd-qv-modal-dialog modal-dialog">
+        <div class="iwd-qv-modal-content">
+            <div class="iwd-qv-modal-header"><a class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></a></div>
+            <div class="iwd-qv-modal-body">
+                <div id="iwd-qv-wrapper"></div>
+                <div class="iwd-qv-ajax-loader">
+                    <div id="floatingCirclesG">
+                        <div class="f_circleG" id="frotateG1_01"></div>
+                        <div class="f_circleG" id="frotateG1_02"></div>
+                        <div class="f_circleG" id="frotateG1_03"></div>
+                        <div class="f_circleG" id="frotateG1_04"></div>
+                        <div class="f_circleG" id="frotateG1_05"></div>
+                        <div class="f_circleG" id="frotateG1_06"></div>
+                        <div class="f_circleG" id="frotateG1_07"></div>
+                        <div class="f_circleG" id="frotateG1_08"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="iwd-qv-additional-loader">
+    <div class="iwd-qv-additional-loader-wrap">
+    <div class="iwd-qv-modal-header"><a class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></a></div>
+        <div class="iwd-qv-additional-loader-wrap-wrap">
+            <div id="floatingCirclesG">
+                <div class="f_circleG" id="frotateG1_01"></div>
+                <div class="f_circleG" id="frotateG1_02"></div>
+                <div class="f_circleG" id="frotateG1_03"></div>
+                <div class="f_circleG" id="frotateG1_04"></div>
+                <div class="f_circleG" id="frotateG1_05"></div>
+                <div class="f_circleG" id="frotateG1_06"></div>
+                <div class="f_circleG" id="frotateG1_07"></div>
+                <div class="f_circleG" id="frotateG1_08"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //<![CDATA[
+    IWD.QuickView.config = $ji.parseJSON('<?php echo $this->getJsonConfig()?>');
+    IWD.QuickView.closePopupOnCheckout = <?php echo Mage::helper('core')->isModuleEnabled('IWD_OpcPro') ? 'true' : 'false'; ?>;
+
+    <?php $btnText = Mage::getStoreConfig('iwd_quickview/design/button_text'); ?>
+    <?php if($btnText): ?>
+       IWD.QuickView.button_html = '<span class="iwd-quick-view-button"><span class="text-button"><i class="fa fa-search"></i>&nbsp;<?php echo $btnText; ?></span></span>';
+    <?php endif; ?>
+    IWD.QuickView.mode = '<?php echo Mage::getStoreConfig('iwd_quickview/general/mode'); ?>';
+
+    $ji("#iwd-qv-additional-loader .close").on('click', function(){
+        $ji('#iwd-qv-additional-loader').hide();
+        IWD.QuickView.Decorator.showPopup = false;
+    });
+    //]]>
+</script>
+
+<style>
+    @-moz-keyframes f_fadeG{0%{background-color:<?php echo $this->getBackground()?>}100%{background-color:<?php echo $this->getForeground()?>}}
+    @-webkit-keyframes f_fadeG{0%{background-color:<?php echo $this->getBackground()?>}100%{background-color:<?php echo $this->getForeground()?>}}
+    @-ms-keyframes f_fadeG{0%{background-color:<?php echo $this->getBackground()?>}100%{background-color:<?php echo $this->getForeground()?>}}
+    @-o-keyframes f_fadeG{0%{background-color:<?php echo $this->getBackground()?>}100%{background-color:<?php echo $this->getForeground()?>}}
+    @keyframes f_fadeG{0%{background-color:<?php echo $this->getBackground()?>}100%{background-color:<?php echo $this->getForeground()?>}}
+</style>
+<div class="iwd-qv-global-backdrop"></div>

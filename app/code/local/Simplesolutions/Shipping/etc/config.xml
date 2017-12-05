@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <Simplesolutions_Shipping>
+            <version>0.1.0</version>
+        </Simplesolutions_Shipping>
+    </modules>
+    <global>
+        <models>
+            <simplesolutions_shipping>
+                <class>Simplesolutions_Shipping_Model</class>
+            </simplesolutions_shipping>
+        </models>
+    </global>
+    <default>
+        <carriers>
+            <simplesolutions_customrate>
+                <active>1</active>
+                <model>simplesolutions_shipping/carrier_customrate</model>
+                <title>Custom Service Hardware Shipping</title>
+                <name>Default Rate</name>
+            </simplesolutions_customrate>
+        </carriers>
+    </default>
+</config>

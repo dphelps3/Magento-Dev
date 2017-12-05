@@ -1,0 +1,75 @@
+<?php $result = Mage::registry('result_formbuilder');?>
+<?php $resultviewId = $result->getId();?>
+<?php $resultModel = Mage::getModel('formbuilder/formbuilderresultsvalues')->getCollection()->addFieldToFilter('result_id',$resultviewId);?>
+<div class="result-view">
+<?php foreach($resultModel as $_result):?>
+	<?php $fieldModel = Mage::getModel('formbuilder/formfields')->load($_result->getFieldId());?>
+	<div class="list-view <?php echo $fieldModel->getSku();?>">
+		<?php if($fieldModel->getType() == 'date'):?>
+			<div class="label">
+				<?php echo $fieldModel->getTitle();?> 
+			</div>
+			<div class="value">
+				<?php $value = Mage::helper('core')->jsonDecode($_result->getValue());?>
+				<?php $value = $value['date'];?>
+				<?php echo $value;?>
+			</div>
+		<?php elseif($fieldModel->getType() == 'date_time'):?>
+			<div class="label">
+				<?php echo $fieldModel->getTitle();?> 
+			</div>
+			<div class="value">
+				<?php $value = Mage::helper('core')->jsonDecode($_result->getValue());?>
+				<?php $explode =$value['date'].' '.$value['hour'].':'.$value['minute'].' '.$value['day_part'];?>
+				<?php echo $explode;?>
+			</div>
+		<?php elseif($fieldModel->getType() == 'time'):?>
+			<div class="label">
+				<?php echo $fieldModel->getTitle();?> 
+			</div>
+			<div class="value">
+				<?php $value = Mage::helper('core')->jsonDecode($_result->getValue());?>
+				<?php $explode =$value['hour'].':'.$value['minute'].' '.$value['day_part'];?>
+				<?php echo $explode;?>
+			</div>
+		<?php elseif($fieldModel->getType() == 'checkbox' || $fieldModel->getType() == 'multiple' || $fieldModel->getType() == 'radio'):?>
+			<div class="label">
+				<?php echo $fieldModel->getTitle();?> 
+			</div>
+			<div class="value">
+				<?php $value = Mage::helper('core')->jsonDecode($_result->getValue());?>
+				<?php $explode =implode(',',$value);?>
+				<?php echo $explode;?>
+			</div>
+		<?php elseif($fieldModel->getType() == 'file'):?>
+			<div class="label">
+				<?php echo $fieldModel->getTitle();?> 
+			</div>
+			<div class="value">
+				<?php $url = $_result->getValue();?>
+					<?php $fullUrl =explode('=>',$url);
+					$url =Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'formbuilder'.$fullUrl[1];?>
+					<?php $html="
+					<a target='_black' href=".$url."><img src=".$url." height='100px' height='100px'/></a>";?>
+					<?php echo $html;?>
+			</div>
+		<?php else:?>
+			<div class="label">
+				<?php echo $fieldModel->getTitle();?> 
+			</div>
+			<div class="value">
+				<?php echo $_result->getValue();?>
+			</div>
+		<?php endif;?>
+	</div>
+<?php endforeach;?>
+</div>
+<p class="back-link">
+<a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><small>&#60;&#60;&nbsp;</small><?php echo $this->__('Back');?></a>
+</p>
+<style>
+	.result-view .list-view {float:left;clear:both;width:100%; font-size:13px;}	
+	.result-view .label { font-weight:bold;float:left;width:30%; }
+	.result-view .value { float:left; margin-left:20px;}
+	.back-link { margin-top:20px;}
+</style>

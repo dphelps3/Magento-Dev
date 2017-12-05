@@ -1,0 +1,44 @@
+<?php if($this->canShowBlock()): ?>
+<?php $layer = themeOptions('layer'); ?>
+<div class="block block-layered-nav">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Shopping Options') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <?php echo $this->getStateHtml() ?>
+        <?php if($this->canShowOptions()): ?>
+<script type="text/javascript">
+/* <![CDATA[ */
+jQuery(document).ready(function(){
+jQuery("dl#narrow-by-list> dd div.filter_div .find2").hide();
+jQuery("dl#narrow-by-list> dd .more_button").click(function(){
+	jQuery(this).prev(".filter_div").children(".find2").slideToggle('fast');
+	jQuery(this).addClass('less_button');
+	if(jQuery(this).text()== "More") {
+		jQuery(this).text("Less");
+	} else {
+		jQuery(this).text("More");
+		jQuery(this).removeClass('less_button');
+	}
+});
+});
+/* ]]> */
+</script>
+            <dl id="narrow-by-list">
+                <?php $_filters = $this->getFilters() ?>
+				<?php $filter_counter = 0; ?>
+                <?php $i=0; foreach ($_filters as $_filter): $i++; ?>
+				<?php if($_filter->getName() == "Category") {
+					// dont show the categories, they are already being shown
+				} else { ?>
+					<?php if($_filter->getItemsCount()): ?>
+						<dt><?php echo $this->__($_filter->getName()) ?></a></dt>
+						<dd><?php echo $_filter->getHtml() ?></dd>
+					<?php endif; ?>
+				<?php } ?>
+                <?php endforeach; ?>
+            </dl>
+        <?php endif; ?>
+    </div>
+</div>
+<?php endif; ?>

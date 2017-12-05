@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Simplesolutions_CabinetCoupons>
+      <version>0.1.0</version>
+    </Simplesolutions_CabinetCoupons>
+  </modules>
+  <global>
+    <helpers>
+      <cabinetcoupons>
+        <class>Simplesolutions_CabinetCoupons_Helper</class>
+      </cabinetcoupons>
+    </helpers>
+	<blocks>
+	  <cabinetcoupons>
+		<class>Simplesolutions_CabinetCoupons_Block</class>
+	  </cabinetcoupons>
+	</blocks>
+	<models>
+	  <cabinetcoupons>
+		<class>Simplesolutions_CabinetCoupons_Model</class>
+		<resourceModel>cabinetcoupons_mysql4</resourceModel>
+	  </cabinetcoupons>
+	  <cabinetcoupons_mysql4>
+		<class>Simplesolutions_CabinetCoupons_Model_Mysql4</class>
+		<entities>		  
+			  <codes>
+				<table>cabinet_coupons</table>
+			  </codes>
+		</entities>
+	  </cabinetcoupons_mysql4>
+	</models>
+	<resources>
+	  <cabinetcoupons_setup>
+		<setup>
+		  <module>Simplesolutions_CabinetCoupons</module>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </cabinetcoupons_setup>
+	  <cabinetcoupons_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </cabinetcoupons_write>
+	  <cabinetcoupons_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </cabinetcoupons_read>
+	</resources>
+	<events>
+	  <salesrule_validator_process> <!-- identifier of the event we want to catch -->
+        <observers>
+          <cabinetcoupon> <!-- identifier of the event handler -->
+            <type>model</type> <!-- class method call type; valid are model, object and singleton -->
+            <class>cabinetcoupons/observer</class> <!-- observers class alias -->
+            <method>CheckCoupon</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </cabinetcoupon>
+        </observers>
+      </salesrule_validator_process>
+    </events>
+  </global>
+  <admin>
+	<routers>
+	  <cabinetcoupons>
+	    <use>admin</use>
+		<args>
+		  <module>Simplesolutions_CabinetCoupons</module>
+		  <frontName>cabinetcoupons</frontName>
+		</args>
+	  </cabinetcoupons>
+	</routers>
+  </admin>
+  <adminhtml>
+	<menu>
+	  <cabinetcoupons module="cabinetcoupons">
+		<title>Cabinet Coupons</title>
+		<sort_order>100</sort_order>
+		<children>
+		  <codes module="cabinetcoupons">
+		    <title>Manage Codes</title>
+			<sort_order>10</sort_order>
+			<action>cabinetcoupons/adminhtml_codes</action>
+		  </codes>
+		</children>
+	  </cabinetcoupons>
+	</menu>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+		  <children>
+			<cabinetcoupons translate="title" module="cabinetcoupons">
+			  <title>Cabinet Coupons</title>
+			  <sort_order>1000</sort_order>
+			  <children>
+		  <codes translate="title">
+			<title>Manage Codes</title>
+			<sort_order>10</sort_order>
+		  </codes>
+			  </children>
+			</cabinetcoupons>
+		  </children>
+		</admin>
+	  </resources>
+	</acl>
+	<layout>
+	  <updates>
+		<cabinetcoupons>
+		  <file>cabinetcoupons.xml</file>
+		</cabinetcoupons>
+	  </updates>
+	</layout>
+  </adminhtml>
+</config> 

@@ -1,0 +1,90 @@
+<?php $item = $this->getItem();
+      $itemb_align = Mage::helper('megamenu')->positionSubAuto($item->getSubmenuAlign());
+?>
+<?php if($item->getMegamenuType() == Magestore_Megamenu_Model_Megamenu::TOP_MENU):?>
+<div class="ms-submenu col-xs-12 <?php echo $itemb_align; ?>" id="submenu-<?php echo $item->getId(); ?>">
+    <?php if($item->getHeader()): ?>
+        <div class="ms-header"><?php echo $item->getHeader(); ?></div>
+    <?php endif;?>
+    <div class="ms-content">
+        <div class="ms-maincontent" <?php if($item->getFeaturedType() != Magestore_Megamenu_Model_Megamenu::FEATURED_NONE):?>style="float:left;width:<?php echo 100-$item->getFeaturedWidth(); ?>%;<?php if($item->getFeaturedWidth()==100): ?>display:none;<?php endif; ?>"<?php endif;?>>
+            <?php include($item->getTemplateFilename()); ?>
+        </div>
+        <?php if($item->getFeaturedType() != Magestore_Megamenu_Model_Megamenu::FEATURED_NONE && $item->getMenuType() != Magestore_Megamenu_Model_Megamenu::CATEGORY_LEVEL ): ?>
+            <div class="ms-featured" style="float:right;width:<?php echo $item->getFeaturedWidth(); ?>%;<?php if($item->getFeaturedWidth()==0): ?>display:none;<?php endif; ?>">
+                <?php include('featured/featured.phtml') ;?>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php if($item->getFooter()): ?>
+        <div class="ms-footer"><?php echo $item->getFooter(); ?></div>
+    <?php endif;?>
+</div>
+<div class="mb-submenu blind" id="m_submenu-<?php echo $item->getId(); ?>">
+    <a class="ms-label mb-return col-xs-12 text-center"><span class="glyphicon glyphicon-chevron-left">&nbsp;</span><?php echo $item->getNameMenu() ?></a>
+    <div class="mb-submain col-xs-12">
+        <?php if($item->getHeader()): ?>
+            <div class="mb-header col-xs-12"><?php echo $item->getHeader(); ?></div>
+            <div class="col-sm-12 form-group"></div>
+        <?php endif;?>
+        <div class="mb-content form-group">
+            <div class="mb-maincontent <?php if($item->getMenuType() != Magestore_Megamenu_Model_Megamenu::CATEGORY_LEVEL):?> col-sm-<?php echo 12-floor(12*$item->getFeaturedWidth()/100) ?><?php endif;?> col-xs-12"<?php if($item->getFeaturedWidth()== 100): ?>style="display:none;"<?php endif; ?>>
+                <?php include($item->getTemplateFilenameforMobile()); ?>
+            </div>
+            <?php if($item->getFeaturedType() != Magestore_Megamenu_Model_Megamenu::FEATURED_NONE): ?>
+                <div class="hidden-lg hidden-md hidden-sm col-xs-12 form-group"></div>
+                <div class="mb-featured col-sm-<?php echo floor(12*$item->getFeaturedWidth()/100) ?> col-xs-12"<?php if($item->getFeaturedWidth()== 0): ?> style="display:none;"<?php endif; ?>>
+                    <?php include('featured/featured.phtml') ;?>
+                </div>
+            <?php endif; ?>
+        </div>
+        <?php if($item->getFooter()): ?>
+            <div class="col-sm-12 form-group"></div>
+            <div class="mb-footer col-xs-12"><?php echo $item->getFooter(); ?></div>
+        <?php endif;?>
+    </div>
+</div>
+<?php else:?>
+    <div class="msl-submenu col-xs-12 <?php echo Mage::helper('megamenu')->positionLeftSubAuto($item->getSubmenuAlign()); ?>" id="submenu-<?php echo $item->getId(); ?>">
+        <?php if($item->getHeader()): ?>
+            <div class="ms-header"><?php echo $item->getHeader(); ?></div>
+        <?php endif;?>
+        <div class="ms-content">
+            <div class="ms-maincontent" <?php if($item->getFeaturedType() != Magestore_Megamenu_Model_Megamenu::FEATURED_NONE):?>style="float:left;width:<?php echo 100-$item->getFeaturedWidth(); ?>%;<?php if($item->getFeaturedWidth()==100): ?>display:none;<?php endif; ?>"<?php endif;?>>
+                <?php include($item->getTemplateFilename()); ?>
+            </div>
+            <?php if($item->getFeaturedType() != Magestore_Megamenu_Model_Megamenu::FEATURED_NONE): ?>
+                <div class="ms-featured" style="float:right;width:<?php echo $item->getFeaturedWidth(); ?>%;<?php if($item->getFeaturedWidth()==0): ?>display:none;<?php endif; ?>">
+                    <?php include('featured/featured.phtml') ;?>
+                </div>
+            <?php endif; ?>
+        </div>
+        <?php if($item->getFooter()): ?>
+            <div class="ms-footer"><?php echo $item->getFooter(); ?></div>
+        <?php endif;?>
+    </div>
+    <div class="lmb-submenu blind" id="m_submenu-<?php echo $item->getId(); ?>">
+        <a class="msl-label mb-return col-xs-12 text-center"><span class="glyphicon glyphicon-chevron-left">&nbsp;</span><?php echo $item->getNameMenu() ?></a>
+        <div class="mb-submain col-xs-12">
+            <?php if($item->getHeader()): ?>
+                <div class="mb-header col-xs-12"><?php echo $item->getHeader(); ?></div>
+                <div class="col-sm-12 form-group"></div>
+            <?php endif;?>
+            <div class="mb-content form-group">
+                <div class="mb-maincontent col-xs-12"<?php if($item->getFeaturedWidth()== 100): ?>style="display:none;"<?php endif; ?>>
+                    <?php include($item->getTemplateFilenameforMobile()); ?>
+                </div>
+                <?php if($item->getFeaturedType() != Magestore_Megamenu_Model_Megamenu::FEATURED_NONE): ?>
+                    <div class="col-sm-12 form-group"></div>
+                    <div class="mb-featured col-xs-12"<?php if($item->getFeaturedWidth()== 0): ?> style="display:none;"<?php endif; ?>>
+                        <?php include('featured/featured.phtml') ;?>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <?php if($item->getFooter()): ?>
+                <div class="col-sm-12 form-group"></div>
+                <div class="mb-footer col-xs-12"><?php echo $item->getFooter(); ?></div>
+            <?php endif;?>
+        </div>
+    </div>
+<?php endif; ?>

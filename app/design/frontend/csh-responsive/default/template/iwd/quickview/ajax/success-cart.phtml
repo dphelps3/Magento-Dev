@@ -1,0 +1,58 @@
+<?php   $cartBlock = Mage::app()->getLayout()->createBlock('checkout/cart_sidebar');
+        $cartBlock->setTemplate('trivera/checkout/cart/sidebar.phtml');
+        $productsQty = $cartBlock->getSummaryCount();
+        if(Mage::getStoreConfig(IWD_QuickView_Helper_Settings::AAC_SHOW_DROPDOWN)):
+            $cartHtml = $cartBlock->toHtml();
+        endif;
+        
+        $message =  $this->getMessagesBlock()->toHtml() ?>
+<?php //if (strlen($message)>10):
+?>
+<!--<div id="messages_product_view">--><?php //echo $message?><!--</div>-->
+<?php //else:?>
+<?php
+	$product = $this->getData('product');
+	$update = $this->getData('updateProduct');
+	if (!$update){
+		$message = Mage::helper('checkout')->__('%s was added to your shopping cart.', Mage::helper('core')->htmlEscape($product->getName()));
+	}else{
+		$message = Mage::helper('checkout')->__('Item was updated in your shopping cart.');
+	}
+?>
+<div class="row iwd-qv-messages" style="display:block">
+<!--    <i class="fa fa-2x fa-exclamation-circle"></i>-->
+    <p class="iwd-qv-message-success"><a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" class="col-xs-3"><img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(200); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" class="img-thumbnail" /></a><?php echo $message ?></p>
+</div>
+<?php //endif;?>
+<div class="clearfix visible-xs"></div>
+<div class="row es-action">
+	<a class="iwd-qv-button es-btn-checkout" href="<?php echo Mage::helper('checkout/url')->getCheckoutUrl()?>"><?php echo $this->__('Checkout')?></a>
+	<a class="iwd-qv-button right close-ajax-dialog" data-dismiss="modal"><?php echo $this->__('Continue Shopping')?></a>
+</div>
+<div class="cart_after_adding" style="display:none;"><?php echo $cartHtml; ?></div>
+<script>
+    <?php
+    // make popup fixed - when product has long desc., confirmation popup is located in the top, and user can't see it - so we'll make it pos. fixed
+    ?>
+    jQueryIWD('.iwd-qv-modal-dialog').addClass('iwd-success-cart');
+    
+    
+    jQuery('body .navmenu-fixed-right').html(jQuery('.cart_after_adding').html());
+    jQuery('.cart_after_adding').remove(); 
+    <?php if(Mage::getStoreConfig(IWD_QuickView_Helper_Settings::AAC_SHOW_DROPDOWN)): ?>
+    jQuery('div.page.container').css('position', 'relative');
+    if(jQuery('div.page.container .navmenu-fixed-right').length > 0){
+        jQuery('div.page.container .navmenu-fixed-right').remove();
+    }       
+    jQuery('body .navmenu-fixed-right').clone(true).appendTo('div.page.container');
+    jQuery('div.page.container .navmenu-fixed-right').css({'position':'fixed','top':'0px','right':'0px','zIndex':'1000'});
+    jQuery('<span class="glyphicon glyphicon-remove close-cart"></span>').prependTo('div.page.container .navmenu-fixed-right').css({'position':'absolute','top':'0px','right':'0px','width':'25px','height':'25px','margin-right':'5px','margin-top':'5px','zIndex':'1001','cursor':'pointer'});
+    jQuery('div.page.container .navmenu-fixed-right span.close-cart').on('click',function(){
+        jQuery('div.page.container .navmenu-fixed-right').remove();
+    });
+    <?php endif; ?>
+    <?php if(!Mage::app()->getStore()->getConfig('checkout/sidebar/display')): ?>
+        jQuery('body .navmenu-fixed-right').not('div.page.container .navmenu-fixed-right').empty();
+    <?php endif; ?>
+    jQuery('button.checkout-cart span.badge').text('[<?php echo $productsQty; ?>]');
+</script>

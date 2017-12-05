@@ -1,0 +1,10 @@
+<input type='file' name='file_<?php echo $this->getId()?>' id='<?php echo $this->getFieldId()?>' class='<?php echo $this->getFieldClass()?>' style='<?php echo $this->getFieldStyle()?>' />
+ <?php if ($this->getField()->getFileExtension()): ?>
+<p class="no-margin"><?php echo Mage::helper('formbuilder')->__('Allowed file extensions to upload')?>: <strong><?php echo $this->getField()->getFileExtension() ?></strong></p>
+<?php endif; ?>
+<?php if ($this->getField()->getImageSizeX() > 0): ?>
+<p class="no-margin"><?php echo Mage::helper('formbuilder')->__('Maximum image width')?>: <strong><?php echo $this->getField()->getImageSizeX() ?> <?php echo Mage::helper('formbuilder')->__('px.')?></strong></p>
+<?php endif; ?>
+<?php if ($this->getField()->getImageSizeY() > 0): ?>
+<p class="no-margin"><?php echo Mage::helper('formbuilder')->__('Maximum image height')?>: <strong><?php echo $this->getField()->getImageSizeY() ?> <?php echo Mage::helper('formbuilder')->__('px.')?></strong></p>
+<?php endif; ?>

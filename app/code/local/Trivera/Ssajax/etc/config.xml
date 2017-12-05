@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Trivera_Ssajax>
+			<version>1.0.0</version>
+		</Trivera_Ssajax>
+	</modules>
+	<frontend>
+		<routers>
+            <ssajax>
+                <args>
+                    <modules>
+                        <Trivera_Ssajax before="Simplesolutions_Ssajax">Trivera_Ssajax</Trivera_Ssajax>
+                    </modules>
+                </args>
+            </ssajax>
+		</routers>		
+	</frontend>
+</config>

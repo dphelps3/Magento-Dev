@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<NextBits_FormBuilder>
+			<version>1.2.0</version>
+		</NextBits_FormBuilder>
+	</modules>
+	<admin>
+		<routers>
+			<formbuilder>
+				<use>admin</use>
+				<args>
+					<module>NextBits_FormBuilder</module>
+					<frontName>formbuilder</frontName>
+				</args>
+			</formbuilder>
+		</routers>
+	</admin>
+	<adminhtml>
+		<menu>
+			<formbuilder module="formbuilder">
+				<title>Form Builder</title>
+				<sort_order>77</sort_order>
+				<children>
+					<items module="formbuilder">
+						<title>Manage Forms</title>
+						<sort_order>0</sort_order>
+						<action>formbuilder/adminhtml_formbuilder</action>
+					</items>
+				</children>
+			</formbuilder>
+		</menu>
+		<layout>
+			<updates>
+				<formbuilder>
+					<file>formbuilder.xml</file>
+				</formbuilder>
+			</updates>
+		</layout>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<formbuilder module="formbuilder">
+							<title>Form Builder</title>
+							<sort_order>77</sort_order>
+							<children>
+								<items module="formbuilder">
+									<title>Manage Forms</title>
+									<sort_order>0</sort_order>
+									<action>formbuilder/adminhtml_formbuilder</action>
+								</items>
+							</children>
+						</formbuilder>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>
+	<frontend>
+		<routers>
+			<formbuilder>
+				<use>standard</use>
+				<args>
+					<module>NextBits_FormBuilder</module>
+					<frontName>formbuilder</frontName>
+				</args>
+			</formbuilder>
+		</routers>
+		<layout>
+			<updates>
+				<formbuilder>
+					<file>formbuilder.xml</file>
+				</formbuilder>
+			</updates>
+		</layout>
+		<events>
+			<controller_action_layout_generate_blocks_after>
+					<observers>
+						<formbuilder_controller_action_layout_generate_blocks_after>
+							<type>singleton</type>
+							<class>NextBits_FormBuilder_Model_Observer</class>
+							<method>addAssets</method>
+						</formbuilder_controller_action_layout_generate_blocks_after>
+					</observers>
+			</controller_action_layout_generate_blocks_after>
+		</events>
+	</frontend>
+	<global>
+		<blocks>
+			<formbuilder>
+				<class>NextBits_FormBuilder_Block</class>
+			</formbuilder>
+			<!-- <adminhtml>
+                <rewrite>
+                    <page_menu>NextBits_FormBuilder_Block_Page_Menu</page_menu>
+                </rewrite>
+            </adminhtml> -->
+		</blocks>
+		<helpers>
+			<formbuilder>
+				<class>NextBits_FormBuilder_Helper</class>
+			</formbuilder>
+		</helpers>
+		<models>
+			<formbuilder>
+				<class>NextBits_FormBuilder_Model</class>
+				<resourceModel>formbuilder_mysql4</resourceModel>
+			</formbuilder>
+			<formbuilder_mysql4>
+				<class>NextBits_FormBuilder_Model_Mysql4</class>
+				<entities>
+					<formbuilder>
+						<table>formbuilder</table>
+					</formbuilder>
+					<formfieldset>
+						<table>formbuilder_fieldset</table>
+					</formfieldset>
+					<formfields>
+						<table>formbuilder_fields</table>
+					</formfields>
+					<formbuilderoption>
+						<table>formbuilder_fields_option</table>
+					</formbuilderoption>
+					<formbuilderresult>
+						<table>formbuilder_result</table>
+					</formbuilderresult>
+					<formbuilderresultsvalues>
+						<table>formbuilder_results_values</table>
+					</formbuilderresultsvalues>
+				</entities>
+			</formbuilder_mysql4>
+		</models>
+		<resources>
+            <formbuilder_setup>
+                <setup>
+                    <module>NextBits_FormBuilder</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </formbuilder_setup>
+            <formbuilder_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </formbuilder_write>
+            <formbuilder_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </formbuilder_read>
+        </resources>
+		<template>
+			<email>
+				<forms_results translate="label" module="formbuilder">
+					<label>From Results</label>
+					<file>forms_results.html</file>
+					<type>html</type>
+				</forms_results>
+				<results_customer translate="label" module="formbuilder">
+					<label>From Results</label>
+					<file>results_customer.html</file>
+					<type>html</type>
+				</results_customer>
+			</email>
+		</template>
+		<events>
+			<core_block_abstract_to_html_before>
+				<observers>
+					<formbuilder_core_block_abstract_to_html_before>
+						<type>singleton</type>
+						<class>NextBits_FormBuilder_Model_Observer</class>
+						<method>addMenu</method>
+					</formbuilder_core_block_abstract_to_html_before>
+				</observers>				
+			</core_block_abstract_to_html_before>			
+		</events>
+		<nextbits>
+            <formbuilder>
+                <options>
+                    <custom>
+                        <groups>
+                            <text translate="label" module="adminhtml">
+                                <label>Text</label>
+                                <render>formbuilder/adminhtml_formbuilder_edit_tab_options_type_text</render>
+                                <types>
+                                    <field translate="label" module="adminhtml">
+                                        <label>Field</label>
+                                    </field>
+                                    <area translate="label" module="adminhtml">
+                                        <label>Area</label>
+                                    </area>
+                                </types>
+                            </text>
+                            <file translate="label" module="adminhtml">
+                                <label>File</label>
+                                <render>formbuilder/adminhtml_formbuilder_edit_tab_options_type_file</render>
+                                <types>
+                                    <file translate="label" module="adminhtml">
+                                        <label>File</label>
+                                    </file>
+                                </types>
+                            </file>
+                            <select translate="label" module="adminhtml">
+                                <label>Select</label>
+                                <render>formbuilder/adminhtml_formbuilder_edit_tab_options_type_select</render>
+                                <types>
+                                    <drop_down translate="label" module="adminhtml">
+                                        <label>Drop-down</label>
+                                    </drop_down>
+                                    <radio translate="label" module="adminhtml">
+                                        <label>Radio Buttons</label>
+                                    </radio>
+                                    <checkbox translate="label" module="adminhtml">
+                                        <label>Checkbox</label>
+                                    </checkbox>
+                                    <multiple translate="label" module="adminhtml">
+                                        <label>Multiple Select</label>
+                                    </multiple>
+                                </types>
+                            </select>
+                            <date translate="label" module="adminhtml">
+                                <label>Date</label>
+                                <render>formbuilder/adminhtml_formbuilder_edit_tab_options_type_date</render>
+                                <types>
+                                    <date translate="label" module="adminhtml">
+                                        <label>Date</label>
+                                    </date>
+                                    <date_time translate="label" module="adminhtml">
+                                        <label>Date &amp; Time</label>
+                                    </date_time>
+                                    <time translate="label" module="adminhtml">
+                                        <label>Time</label>
+                                    </time>
+                                </types>
+                            </date>
+							<html translate="label" module="formbuilder">
+                                <label>Html</label>
+                                <render>formbuilder/adminhtml_formbuilder_edit_tab_options_type_html</render>
+                                <types>
+                                    <html translate="label" module="formbuilder">
+                                        <label>Simple HTML</label>
+                                    </html>
+                                </types>
+                            </html>
+                        </groups>
+                    </custom>
+                </options>
+			</formbuilder>
+		</nextbits>
+	</global>
+	<default>
+		<customer>
+			<captcha>
+				 <always_for>
+                    <formbuilder>1</formbuilder>
+                </always_for>
+			</captcha>
+		</customer>
+	</default>
+
+</config>

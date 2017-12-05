@@ -1,0 +1,78 @@
+<?php $_helper = Mage::helper('catalog/category') ?>
+<?php $_categories = Mage::getModel('catalog/category') ->getCollection(); ?>
+<?php $currentCategory = Mage::registry('current_category') ?>
+<?php $_count = 0; ?>
+<h2><?php echo $this->__('Browse Products') ?> </h2>
+<?php if (count($_categories) > 0): ?>
+<div class="subcat-listing">
+    <ul class="subcat-products">
+        
+		<?php foreach($_categories as $_category): ?>
+			
+									
+			<?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+			<?php if($_category->getIsActive()): ?>
+			<?php $_subcategories = $_category->getChildrenCategories() ?>
+            <?php if (count($_subcategories) > 0): ?>
+			<?php if ($_category->getName() != 'Default'): ?>
+            <li style="display:inline-block;list-style-type:none;width:19%;vertical-align:top">
+				
+				<a href="<?php echo $_helper->getCategoryUrl($_category) ?>">
+                    <h4><?php echo $_category->getName(); ?></h4>
+                </a>
+					
+                    <ul>
+                        <?php foreach($_subcategories as $_subcategory): ?>
+                            <li >
+							<?php $_subcategory = Mage::getModel('catalog/category')->load($_subcategory->getId()); ?>
+							
+                                <a href="<?php echo $_helper->getCategoryUrl($_subcategory) ?>" title="<?php echo $_subcategory->getData('description'); ?>">
+                                    <?php echo $_subcategory->getName() ?>
+							    </a>
+							</li>
+							
+							<?php /*
+							<li>
+							
+								<a href="<?php echo $_helper->getCategoryUrl($_subcategory) ?>">
+									<?php $_imageUrl = Mage::getBaseUrl('media') . 'catalog/category/' .  $_subcategory->getData('thumbnail'); ?>
+									<img src="<?php echo $_imageUrl; ?>" width="150" height="150" />
+								</a>
+														
+							<?php //echo $_category->getDescription() ?></</p>
+							
+                            </li>
+							<p></p>
+							*/ ?>
+                        <?php endforeach; ?>
+                    </ul>
+					
+                
+				
+				<?php if ($_category->getName() == 'Wood Carvings'): 
+					break;
+					endif;
+				?>
+				
+				
+            </li>
+			
+			<?php endif; ?>
+						
+			<?php $_count++;
+			if ($_count > 4):	?>
+				<?php $_count = 0;	?>
+				<p></p>
+			<?php endif; ?>
+			
+			<?php endif; ?>
+			<?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<?php else: ?>
+	<p> The array is empty </p>
+<?php endif; ?>
+
+
+   

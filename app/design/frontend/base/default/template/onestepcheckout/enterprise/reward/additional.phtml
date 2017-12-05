@@ -1,0 +1,50 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     enterprise_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+
+/* @var $this Enterprise_Reward_Block_Checkout_Payment_Additional */
+?>
+<?php if ($this->getCanUseRewardPoints()): ?>
+    <div class="checkout-reward checkout-onepage-payment-additional-reward" id="reward_placer">
+        <input type="checkbox" name="payment[use_reward_points]" value="<?php echo ($this->useRewardPoints() ? '1' : '0') ?>" id="use_reward_points"<?php echo $this->useRewardPoints()?' checked="checked"':'' ?> class="checkbox" />
+        <label for="use_reward_points">
+            <strong>
+                <?php echo Mage::helper('enterprise_reward')->__('Use my reward points, %s available', Mage::helper('enterprise_reward')->formatReward($this->getPointsBalance(), $this->getCurrencyAmount())); ?>
+            </strong>
+        </label>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+    switchRewardPointsCheckboxOSC = function(){
+        if ($('use_reward_points').checked)
+                $('use_reward_points').value = 1;
+            else
+                $('use_reward_points').value = 0;
+            save_shipping_method(shipping_method_url, 1, 1);
+    }
+    Event.observe($('use_reward_points'), 'click', switchRewardPointsCheckboxOSC);
+//]]>
+</script>
+<?php endif; ?>

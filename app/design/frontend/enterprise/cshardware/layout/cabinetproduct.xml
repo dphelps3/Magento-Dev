@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout>
+<PRODUCT_TYPE_cabinet>
+    <label>Catalog Product View (Cabinet)</label>
+    <reference name="product.info">
+        <block type="cabinetproduct/product_view_type_cabinet" name="product.info.cabinet" as="product_type_data" template="catalog/product/view/type/cabinet.phtml">
+            <block type="core/text_list" name="product.info.cabinet.extra" as="product_type_data_extra" translate="label">
+                <label>Product Extra Info</label>
+            </block>
+        </block>
+    </reference>
+    <reference name="product.info">
+        <action method="setTemplate"><template>catalog/product/cabinetview.phtml</template></action>
+    </reference>
+</PRODUCT_TYPE_cabinet>
+</layout>

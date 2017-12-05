@@ -1,0 +1,3 @@
+Replaces default Adminhtml Category Save functionality to additional code
+
+CSH_CategoryFix_Adminhtml_Catalog_CategoryController::saveAction()

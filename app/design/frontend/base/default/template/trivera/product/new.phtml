@@ -1,0 +1,82 @@
+<?php
+/**
+ * Trivera new product of category
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       design
+ * @package        base_default
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */ 
+?>
+<?php
+/**
+ * New category product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+<?php
+    $productQty = 5;
+    $storeId = Mage::app()->getStore()->getId();  
+    $todayDate  = Mage::app()->getLocale()->date()->toString(Varien_Date::DATETIME_INTERNAL_FORMAT);
+    $attributesToSelect = array('name', 'small_image','price'); 
+    $products = Mage::getResourceModel('catalog/product_collection')            ->setStoreId($storeId)
+            ->addStoreFilter($storeId)
+            ->addCategoryFilter(Mage::getModel('catalog/category')->load($this->getData('category_id')))
+            ->addAttributeToSelect($attributesToSelect)
+            //->addAttributeToFilter('news_from_date', array('date' => true, 'to' => $todayDate))
+            //->addAttributeToFilter('news_to_date', array('or'=> array(
+            //    0 => array('date' => true, 'from' => $todayDate),
+            //    1 => array('is' => new Zend_Db_Expr('null')))
+            //    ), 'left')
+            //->addAttributeToSort('news_from_date', 'desc')
+            ->addAttributeToSort("created_at","DESC")
+            ->setPageSize($productQty);
+
+    Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($products);
+    Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($products);
+
+    $_productCollection=$products;   
+    $_helper = $this->helper('catalog/output');
+?>
+<h2 class="sectionHead">
+    <span><?php echo $this->__('RECENTLY ADDED') ?></span>
+</h2>
+<?php if(!$_productCollection->count()): ?>
+    <p class="note-msg"><?php echo $this->__('There are no new products in this category.') ?></p>
+<?php else: ?>
+    <?php // Begin block products ?>
+    <?php $_iterator = 0; ?>
+    <ul class="products-grid row first odd resently-added">        
+    <?php foreach ($_productCollection as $_product): ?>        
+        <?php if( ($_iterator == $productQty) or ($_iterator == sizeof($_productCollection))) : 
+            break;
+        endif; ?>
+        <li class="col-xs-6 col-md-15" style="text-align:center;">            
+            <?php // Product Image ?>
+            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="img-thumbnail" /></a>
+                    <?php // Product name ?>
+                    <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                    <h2 class="product-name" style="min-height:90px;"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h2>
+                    <?php // Product price ?>
+                    <?php echo $this->getPriceHtml($_product, true) ?>
+                    <?php // Product buy button ?>
+                    <div class="actions">
+                    <?php if($_product->isSaleable()): ?>
+                        <a class="add-to-cart-quick" href="<?php echo $_product->getProductUrl() ?>" ><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-primary" ><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></a>                         
+                    <?php else: ?>
+                        <button type="button" class="button out-of-stock" onclick="return false"><span><span><?php echo $this->__('Out of stock') ?></span></span></button>                        
+                    <?php endif; ?>
+                    </div>
+        </li>
+        <?php $_iterator++; ?>
+    <?php endforeach; ?>        
+    </ul>
+<?php endif; ?>

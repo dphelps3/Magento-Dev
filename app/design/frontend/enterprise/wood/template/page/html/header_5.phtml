@@ -1,0 +1,66 @@
+<!--<div class="save5banner" style="position:fixed;position:absolute;left:0px;top:0px;right:0px;height:64px;z-index:100000;">
+<center style="z-indez:100001;color:#FFFFFF;font-size:250%;font-family:Impact, Charcoal, sans-serif;text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">5% off first-time web orders. Use coupon code <a 
+style="color:#FFFFFF;" href="/checkout/cart/couponPost?coupon_code=FIVEOFF">FIVEOFF</a> at checkout today to secure your savings.
+</center>
+<small style="color:#FFFFFF;position:fixed;position:absolute;right:0px;">*Cannot be combined with other offers</small>
+</div>-->
+<div id="top"></div>
+<br><br><br>
+<div class="header-container">
+    <div class="header">
+        <div class="header-left">
+            <?php echo $this->getChildHtml('store_language') ?>         
+            <?php if ($this->getIsHomePage()):?>
+            <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+            <?php else:?>
+            <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+            <?php endif?>
+        </div>
+        <div class="header-center">
+            <span class="welcome-msg"><?php echo $this->getWelcome() ?></span>
+            <?php echo $this->getChildHtml('topBar') ?>   
+        </div>        
+        <div class="header-right">
+	  <img style="float: right; margin-bottom: 10px;" src = "/media/wysiwyg/wood/telephone.png" />
+            <div class="minicart">
+                <?php echo $this->getChildHtml('top_cart') ?>
+            </div>  
+            <?php echo $this->getChildHtml('currency') ?>  
+            <div class="clear"></div>   
+            <?php echo $this->getChildHtml('topLinks') ?>  
+		
+			<?php $email = Mage::getSingleton('customer/session')->getCustomer()->getEmail();?>
+			<?php $on = Mage::helper('monkey')->subscribedToList($email,'c1dc51008f'); ?>
+			<?php if($on == false): ?> 
+			
+			<div style="float: right; margin-bottom: 0px;">
+			<div class="clear"></div>
+			<div id="mc_embed_signup">
+			<form action="http://cshardware.us5.list-manage1.com/subscribe/post?u=d701161ada6d19621a09bdfc1&amp;id=c1dc51008f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+				<div class="form-subscribe">
+					<div class="form-subscribe-header"><h4><?php echo $this->__('Sign up for exclusive benefits and savings') ?></h4></div>
+						<div class="input-box">
+						   <input type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="email address" class="input-text required-entry validate-email" />
+							  
+							<button type="submit" id="mc-embedded-subscribe" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>  
+						</div>  
+					</div>
+			</form>
+			</div>
+						
+			</div>
+
+			<div class="clear"></div>
+			<?php endif; ?>
+			
+        </div>      
+    </div>
+	
+			
+	
+	
+    <?php echo $this->getChildHtml('topMenu') ?>
+    <?php echo $this->getChildHtml('topBread') ?>
+    <?php echo $this->getChildHtml('topContainer'); ?>
+
+</div>

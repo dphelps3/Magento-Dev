@@ -1,0 +1,15 @@
+<input type='text' name='<?php echo $this->getFieldName()?>' id='<?php echo $this->getFieldId()?>' class='<?php echo $this->getFieldClass()?>' style='<?php echo $this->getFieldStyle()?>' value="<?php echo htmlspecialchars($this->getFieldValue())?>"/>
+<img id="<?php echo $this->getFieldName()?>_trig" class="v-middle" title="<?php echo $this->__('Select Date');?> alt="<?php echo $this->__('Select Date')?> src="<?php echo $this->getSkinUrl('images/calendar.gif');?>" />
+<script type="text/javascript">
+//<![CDATA[
+var calendarSetupObject = {
+inputField : "<?php echo $this->getFieldName()?>",
+ifFormat : "%m/%e/%Y",
+showsTime : "false",
+button : "<?php echo $this->getFieldName()?>_trig",
+align : "Bl",
+singleClick : true
+}
+Calendar.setup(calendarSetupObject);
+//]]>
+</script>

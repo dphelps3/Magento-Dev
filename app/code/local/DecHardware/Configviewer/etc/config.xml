@@ -1,0 +1,20 @@
+<config>
+    <modules>
+        <DecHardware_Configviewer>
+            <version>0.1.0</version>
+        </DecHardware_Configviewer>
+    </modules>
+    <global>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <DecHardware_configviewer_model_observer>
+                        <type>singleton</type>
+                        <class>DecHardware_Configviewer_Model_Observer</class>
+                        <method>checkForConfigRequest</method>
+                    </DecHardware_configviewer_model_observer>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+    </global>
+</config>

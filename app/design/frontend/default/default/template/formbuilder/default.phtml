@@ -1,0 +1,81 @@
+<style>
+.form-maker ul { list-style: none !important;}
+</style>
+<?php if($this->getForm()->getIsActive() == NextBits_FormBuilder_Model_Formbuilder::STATUS_DISABLED):?>
+	<p><?php echo $this->__('Form is not active or not available.');?>
+<?php else:?>
+<?php $formId =$this->getForm()->getId();?>
+<?php if(!empty($formId)):?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="page-title">
+	<h1><?php echo $this->getForm()->getName();?></h1>
+</div>
+<div id="form_<?php echo $this->getForm()->getId()?>_form">
+<?php if($this->getForm()->getDescription()):?>
+<div class="std">
+	<?php echo $this->getForm()->getDescription();?>
+</div>
+<?php endif;?>
+
+<form class="form-maker" action="<?php echo $this->getFormAction()?>" method="post" name="form_<?php echo $this->getForm()->getId()?>" id="form_<?php echo $this->getForm()->getId()?>" enctype="<?php echo $this->getEnctype()?>" class="form-<?php echo $this->getForm()->getCode()?>">
+	<input type="hidden" name="form_id" value="<?php echo $this->getForm()->getId()?>"/>
+	<input type="hidden" name="capcha" value="<?php echo $this->getForm()->getCapcha()?>"/>
+	<?php $count =count(Mage::registry('fields_to_fieldsets'));?>
+	<?php $i=1;?>
+	<?php foreach (Mage::registry('fields_to_fieldsets') as $fieldset_id => $fieldset) :?> 
+		<div class="fieldset fieldset-<?php echo $fieldset_id?>">
+		<?php if(!empty($fieldset['name'])):?>
+			<h2 class="legend"><?php echo $fieldset['name']?></h2>
+			<ul class="form-list">
+			<?php foreach($fieldset['fields'] as $field):?>
+				<li class="fields fields-<?php echo $field->getClass()?>">
+				<?php if($field->getType()!='html'):?>
+				<div class="field form-field-<?php echo $field->getClass()?>">
+				<label for="field_<?php echo $field->getId()?>" <?php if($field->getIsRequire()):?>class="required"<?php endif;?> class="label-<?php echo $field->getClass()?>">
+					<?php if($field->getIsRequire()): ?> 
+							<em>*</em>
+						<?php endif;?>
+						<?php echo $field->getTitle()?>
+				</label>
+				</div>
+				<?php endif;?>
+				<div class="input-box input-box-<?php echo $field->getClass()?>" <?php if($field->getType()=='date_time' || $field->getType()=='date'):?> style="width:100%;" <?php endif;?>>
+					<?php echo $field->toHtml();?>
+				</div>
+				</li>
+			<?php endforeach;?>
+				<?php if($count ==1 || $count ==$i):?>
+					<?php if($this->getForm()->getCapcha() ==1):?>
+						<?php echo $this->getLayout()->createBlock('formbuilder/capcha')->setFormId('formbuilder')->toHtml(); ?> 
+					<?php endif;?>
+				<?php endif;?>
+				<?php $i++;?>
+			</ul>
+		<?php endif;?>
+		</div>
+	<?php endforeach;?>
+	<?php /*if($count !=1):?>
+		<?php if($this->getForm()->getCapcha() ==1):?>
+			<ul class="form-list">
+			<?php echo $this->getLayout()->createBlock('formbuilder/capcha')->setFormId('formbuilder')->toHtml(); ?>
+			</ul>			
+		<?php endif;?>
+	<?php endif;*/?>
+	<div class="buttons-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+    </div>
+</form>
+</div>
+<?php echo $this->getLayout()->createBlock('core/html_calendar')->setTemplate('page/js/calendar.phtml')->toHtml();?>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('form_<?php echo $this->getForm()->getId()?>', false);
+//]]>
+</script>
+
+<style>
+	<?php echo $this->getForm()->getCss();?>
+</style>
+<?php endif;?>
+<?php endif;?>

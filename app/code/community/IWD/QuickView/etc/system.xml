@@ -1,0 +1,669 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<iwdall>
+			<label>IWD Extensions</label>
+			<sort_order>210</sort_order>
+			<class>iwd-block</class>
+		</iwdall>
+	</tabs>
+	<sections>
+		<iwd_quickview translate="label" module="iwd_quickview">
+			<label>Quick View</label>
+			<tab>iwdall</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>227</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<global translate="label">
+					<label>Global</label>
+					<sort_order>5</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<expanded>1</expanded>
+					<fields>
+						<info>
+							<label>Version</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<frontend_model>iwd_quickview/system_config_form_fieldset_extensions
+							</frontend_model>
+						</info>
+                        <user_guide>
+                            <label>Documentation</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <frontend_model>iwd_quickview/system_config_form_fieldset_documentations
+                            </frontend_model>
+                        </user_guide>
+					</fields>
+				</global>
+
+                <general translate="label">
+                    <label>General</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <enable>
+                            <label>Enable Module?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </enable>
+                        <mode>
+                            <label>Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>iwd_quickview/system_config_mode</source_model>
+                            <isrequired>true</isrequired>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mode>
+                    </fields>
+                </general>
+                <qv translate="label">
+                    <label>Quick View options</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <selector>
+                            <label>Product Box</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                            <comment><![CDATA[CSS selector for product box<br/>Ex: .widget-products .product-image, .category-products .product-image]]></comment>
+                        </selector>
+                        <addtocart_after>
+                            <label>Add To Cart After</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>iwd_quickview/system_config_addtocartafter</source_model>
+                            <isrequired>true</isrequired>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </addtocart_after>
+                        <show_dropdown>
+                            <label>Show Top Cart After product added</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <isrequired>true</isrequired>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_dropdown>
+                    </fields>
+                </qv>
+                <aac translate="label">
+                    <label>Add To Cart options</label>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <selector>
+                            <label>Add to cart additional elements</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Separate by ",", e.g. .add-to-cart, #add-button. <br/>Elements with this class or id should have link to a product.]]></comment>
+                        </selector>
+                        <addtocart_after>
+                            <label>Add To Cart After</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>iwd_quickview/system_config_addtocartafter</source_model>
+                            <isrequired>true</isrequired>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </addtocart_after>
+                        <show_dropdown>
+                            <label>Show Top Cart After product added</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <isrequired>true</isrequired>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_dropdown>
+                    </fields>
+                </aac>
+
+                <design>
+                    <label>QuickView Design</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>0</expanded>
+                    <fields>
+                        <button_text>
+                            <label>Quick View button text</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>8</sort_order>
+                        </button_text>
+                        <popup_width>
+                            <label>Popup width</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>9</sort_order>
+                            <comment><![CDATA[Minimum allowed width is 320px]]></comment>
+                        </popup_width>
+                        <product_name type="group" translate="label">
+                            <label>Product Name</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>10</sort_order>
+                            <fields>
+                                <enable translate="label comment">
+                                    <label>Enable</label>
+                                    <config_path>iwd_quickview/design_product_name/enable</config_path>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </enable>
+                                <color>
+                                    <label>Color</label>
+                                    <config_path>iwd_quickview/design_product_name/color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                    <comment>e.g. .FFFFFF</comment>
+                                </color>
+                            </fields>
+                        </product_name>
+                        <short_description type="group" translate="label">
+                            <label>Short Description</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>20</sort_order>
+                            <fields>
+                                <enable translate="label comment">
+                                    <label>Enable</label>
+                                    <config_path>iwd_quickview/design_short_description/enable</config_path>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </enable>
+                                <color>
+                                    <label>Color</label>
+                                    <config_path>iwd_quickview/design_short_description/color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                    <comment>e.g. .#FFFFFF</comment>
+                                </color>
+                            </fields>
+                        </short_description>
+                        <add_to_cart type="group" translate="label">
+                            <label>Add to Cart Button</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>20</sort_order>
+                            <fields>
+                                <enable translate="label comment">
+                                    <label>Enable</label>
+                                    <config_path>iwd_quickview/design_add_to_cart/enable</config_path>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </enable>
+                                <color>
+                                    <label>Color</label>
+                                    <config_path>iwd_quickview/design_add_to_cart/color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </color>
+                                <hover_color>
+                                    <label>Hover Color</label>
+                                    <config_path>iwd_quickview/design_add_to_cart/hover_color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>30</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </hover_color>
+                                <text_color>
+                                    <label>Text Color</label>
+                                    <config_path>iwd_quickview/design_add_to_cart/text_color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>40</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </text_color>
+                                <text_hover_color>
+                                    <label>Text Hover Color</label>
+                                    <config_path>iwd_quickview/design_add_to_cart/text_hover_color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>50</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </text_hover_color>
+                            </fields>
+                        </add_to_cart>
+                        <qty type="group" translate="label">
+                            <label>QTY Selector</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>20</sort_order>
+                            <fields>
+                                <enable translate="label comment">
+                                    <label>Enable</label>
+                                    <config_path>iwd_quickview/design_qty/enable</config_path>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </enable>
+                                <color>
+                                    <label>Color</label>
+                                    <config_path>iwd_quickview/design_qty/color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </color>
+                            </fields>
+                        </qty>
+                        <price type="group" translate="label">
+                            <label>Price</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>20</sort_order>
+                            <fields>
+                                <enable translate="label comment">
+                                    <label>Enable</label>
+                                    <config_path>iwd_quickview/design_price/enable</config_path>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </enable>
+                                <color>
+                                    <label>Color</label>
+                                    <config_path>iwd_quickview/design_price/color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </color>
+                            </fields>
+                        </price>
+                        <product_link type="group" translate="label">
+                            <label>Product Link</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>20</sort_order>
+                            <fields>
+                                <enable translate="label comment">
+                                    <label>Enable</label>
+                                    <config_path>iwd_quickview/design_product_link/enable</config_path>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </enable>
+                                <color>
+                                    <label>Color</label>
+                                    <config_path>iwd_quickview/design_product_link/color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </color>
+                                <hover_color>
+                                    <label>Hover Color</label>
+                                    <config_path>iwd_quickview/design_product_link/hover_color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>30</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </hover_color>
+                            </fields>
+                        </product_link>
+                        <media_block type="group" translate="label">
+                            <label>Product Media Block</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>20</sort_order>
+                            <fields>
+                                <enable translate="label comment">
+                                    <label>Enable</label>
+                                    <config_path>iwd_quickview/design_media_block/enable</config_path>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </enable>
+                                <zoom type="group" translate="label">
+                                    <label>Zoom Settings</label>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <sort_order>20</sort_order>
+                                    <fields>
+                                        <enable translate="label comment">
+                                            <label>Enable</label>
+                                            <config_path>iwd_quickview/design_media_block_zoom/enable</config_path>
+                                            <frontend_type>select</frontend_type>
+                                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                                            <sort_order>10</sort_order>
+                                            <show_in_default>1</show_in_default>
+                                            <show_in_website>1</show_in_website>
+                                            <show_in_store>1</show_in_store>
+                                        </enable>
+                                    </fields>
+                                </zoom>
+                                <thumbnails type="group" translate="label">
+                                    <label>Thumbnails Settings</label>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <sort_order>20</sort_order>
+                                    <fields>
+                                        <enable translate="label comment">
+                                            <label>Enable</label>
+                                            <config_path>iwd_quickview/design_media_block_thumbnails/enable</config_path>
+                                            <frontend_type>select</frontend_type>
+                                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                                            <sort_order>10</sort_order>
+                                            <show_in_default>1</show_in_default>
+                                            <show_in_website>1</show_in_website>
+                                            <show_in_store>1</show_in_store>
+                                        </enable>
+                                    </fields>
+                                </thumbnails>
+                              </fields>
+                        </media_block>
+                    </fields>
+                </design>
+                <aac_design>
+                    <label>Ajax Add To Cart Design</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>0</expanded>
+                    <fields>
+                        <popup_width>
+                            <label>Popup width</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>9</sort_order>
+                            <comment><![CDATA[Minimum allowed width is 320px]]></comment>
+                        </popup_width>
+                        <aac_product_name type="group" translate="label">
+                            <label>Product Name</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>10</sort_order>
+                            <fields>
+                                <enable translate="label comment">
+                                    <label>Enable</label>
+                                    <config_path>iwd_quickview/aac_design_product_name/enable</config_path>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </enable>
+                                <color>
+                                    <label>Color</label>
+                                    <config_path>iwd_quickview/aac_design_product_name/color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                    <comment>e.g. .FFFFFF</comment>
+                                </color>
+                            </fields>
+                        </aac_product_name>
+                        <aac_add_to_cart type="group" translate="label">
+                            <label>Add to Cart Button</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>20</sort_order>
+                            <fields>
+                                <!--<enable translate="label comment">-->
+                                    <!--<label>Enable</label>-->
+                                    <!--<config_path>iwd_quickview/aac_design_add_to_cart/enable</config_path>-->
+                                    <!--<frontend_type>select</frontend_type>-->
+                                    <!--<source_model>adminhtml/system_config_source_yesno</source_model>-->
+                                    <!--<sort_order>10</sort_order>-->
+                                    <!--<show_in_default>1</show_in_default>-->
+                                    <!--<show_in_website>1</show_in_website>-->
+                                    <!--<show_in_store>1</show_in_store>-->
+                                <!--</enable>-->
+                                <color>
+                                    <label>Color</label>
+                                    <config_path>iwd_quickview/aac_design_add_to_cart/color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </color>
+                                <hover_color>
+                                    <label>Hover Color</label>
+                                    <config_path>iwd_quickview/aac_design_add_to_cart/hover_color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>30</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </hover_color>
+                                <text_color>
+                                    <label>Text Color</label>
+                                    <config_path>iwd_quickview/aac_design_add_to_cart/text_color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>40</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </text_color>
+                                <text_hover_color>
+                                    <label>Text Hover Color</label>
+                                    <config_path>iwd_quickview/aac_design_add_to_cart/text_hover_color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>50</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </text_hover_color>
+                            </fields>
+                        </aac_add_to_cart>
+                        <aac_qty type="group" translate="label">
+                            <label>QTY Selector</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>20</sort_order>
+                            <fields>
+                                <enable translate="label comment">
+                                    <label>Enable</label>
+                                    <config_path>iwd_quickview/aac_design_qty/enable</config_path>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </enable>
+                                <color>
+                                    <label>Color</label>
+                                    <config_path>iwd_quickview/aac_design_qty/color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </color>
+                            </fields>
+                        </aac_qty>
+                        <aac_price type="group" translate="label">
+                            <label>Price</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>20</sort_order>
+                            <fields>
+                                <enable translate="label comment">
+                                    <label>Enable</label>
+                                    <config_path>iwd_quickview/aac_design_price/enable</config_path>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </enable>
+                                <color>
+                                    <label>Color</label>
+                                    <config_path>iwd_quickview/aac_design_price/color</config_path>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <frontend_class>qv-design-colpick</frontend_class>
+                                </color>
+                            </fields>
+                        </aac_price>
+                    </fields>
+                </aac_design>
+                <slider translate="label">
+                    <label>Slider Options</label>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable thumbnails OWL slider</label>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </enable>
+                        <!--<items>-->
+                            <!--<sort_order>2</sort_order>-->
+                            <!--<label>Items per page (default)</label>-->
+                            <!--<show_in_default>1</show_in_default>-->
+                            <!--<show_in_website>1</show_in_website>-->
+                            <!--<show_in_store>1</show_in_store>-->
+                        <!--</items>-->
+                        <items_1199>
+                            <label>Items per page (if width &gt;= 1200)</label>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </items_1199>
+                        <items_767>
+                            <label>Items per page (if width &gt;= 768)</label>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </items_767>
+                        <items_479>
+                            <label>Items per page (if width &gt;= 480)</label>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </items_479>
+                    </fields>
+                </slider>
+			</groups>
+		</iwd_quickview>
+	</sections>
+</config>

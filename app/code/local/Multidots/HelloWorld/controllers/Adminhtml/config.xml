@@ -1,0 +1,22 @@
+<global>
+  <helpers>
+    <helloworld>
+      <class>Multidots_HelloWorld_Helper</class>
+    </helloworld>
+  </helpers>
+</global>
+<adminhtml>
+ <menu>
+   <helloworld module="helloworld">
+     <title>HelloWorld</title>
+     <sort_order>100</sort_order>
+    <children>
+      <helloworld module="helloworld">
+        <title>Hello World</title>
+        <sort_order>0</sort_order>
+        <action>admin_helloworld/adminhtml_index</action>
+      </helloworld>
+    </children>
+   </helloworld>
+ </menu>
+</adminhtml>

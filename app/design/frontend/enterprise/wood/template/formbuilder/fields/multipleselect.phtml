@@ -1,0 +1,19 @@
+<?php $value =Mage::registry('formbuilder')->getData('field');?>
+<?php $fieldvalue='';?>
+<?php if(isset($value) && !empty($value)):?>
+	<?php $id=$this->getId();?>
+	<?php $fieldvalue=$value[$id];?>
+<?php endif;?>
+
+<?php $j=0;?>
+<select name='<?php echo $this->getFieldName()?>[]' id='<?php echo $this->getFieldId()?>' class='<?php echo $this->getFieldClass()?>' style='<?php echo $this->getFieldStyle()?>' multiple="multiple">
+<?php  foreach($this->getFieldOptions() as $option):?>
+<?php $checked = false;
+	 if($option["checked"]){
+		$checked = 'selected';
+	}
+?>
+<option value="<?php echo htmlspecialchars($option["label"])?>" <?php if(isset($fieldvalue) && !empty($fieldvalue)):?><?php if(in_array(htmlspecialchars($option["label"]),$fieldvalue)):?> selected="selected" <?php endif;?><?php else:?><?php echo $checked?><?php endif;?>><?php echo $option['label']?></option>
+<?php $j++;?>
+<?php endforeach;?>
+</select>

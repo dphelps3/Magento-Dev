@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <config>
+
+      <modules>
+
+          <Bull_LogProductUpdate>
+
+              <active>true</active>
+
+              <codePool>local</codePool>
+
+            </Bull_LogProductUpdate>
+
+        </modules>
+
+    </config>

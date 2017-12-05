@@ -1,0 +1,147 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Grouped product data template
+ *
+ * @see Mage_Catalog_Block_Product_View_Media
+ * @see Mage_Catalog_Block_Product_View_Type_Grouped
+ */
+?>
+<?php $this->setPreconfiguredValue(); ?>
+<?php $_product = $this->getProduct(); ?>
+<?php $_associatedProducts = $this->getAssociatedProducts(); ?>
+<?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
+<?php if ($this->displayProductStockStatus()): ?>
+    <?php if ($_product->isAvailable() && $_hasAssociatedProducts): ?>
+        <p class="availability in-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('In stock') ?></span></p>
+    <?php else: ?>
+        <p class="availability rrr out-of-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('Out of stock') ?></span></p>
+    <?php endif; ?>
+<?php endif; ?>
+<?php echo $this->getChildHtml('product_type_data_extra') ?>
+<div class="grouped-items-table-wrapper">
+    <table class="data-table grouped-items-table" id="super-product-table">
+        <col />
+        <col />
+        <col width="1" />
+        <thead>
+        <tr>
+            <th><?php echo $this->__('Product Name') ?></th>
+            <?php if ($this->getCanShowProductPrice($_product)): ?>
+                <th class="a-right"><?php echo $this->__('Price') ?></th>
+            <?php endif; ?>
+            <?php if ($_product->isSaleable()): ?>
+                <th class="a-center"><?php echo $this->__('Qty') ?></th>
+            <?php endif; ?>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if ($_hasAssociatedProducts): ?>
+            <?php foreach ($_associatedProducts as $_item): ?>
+                <?php $_finalPriceInclTax = $this->helper('tax')->getPrice($_item, $_item->getFinalPrice(), true) ?>
+                <tr>
+                    <td><?php echo $this->escapeHtml($_item->getName()) ?></td>
+                    <?php if ($this->getCanShowProductPrice($_product)): ?>
+                        <td class="a-right">
+                            <?php if ($this->getCanShowProductPrice($_item)): ?>
+                                <?php echo $this->getPriceHtml($_item, true) ?>
+                                <?php echo $this->getTierPriceHtml($_item) ?>
+                            <?php endif; ?>
+                        </td>
+                    <?php endif; ?>
+                    <?php if ($_product->isSaleable()): ?>
+                        <td class="a-center">
+                            <?php if ($_item->isSaleable()) : ?>
+                                <input type="text" name="super_group[<?php echo $_item->getId() ?>]" maxlength="12" value="<?php echo $_item->getQty()*1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+                            <?php else: ?>
+                                <!-- IF OUT-OF-STOCK IS ENABLED -->
+                                <?php if(!Mage::helper('core')->isModuleEnabled('IWD_StockNotification')):?>
+                                    <p class="availability qqqq out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                <?php else:?>
+                                    <p class="availability www out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                    <h5><a href="" class="iwd-qv-btn-notify" data-id="block-<?php echo $_item->getId()?>"><?php echo $this->__('Notify me')?></a></h5>
+                                    <div class="container-modal">
+                                        <div id="iwd-qv-modal-notify-block-<?php echo $_item->getId()?>" class="iwd-qv-modal-notify">
+                                            <div class="stock-notification iwd-qv-stock-notification">
+<!--                                                <a href="" class="iwd-qv-close-notification">&times;</a>-->
+                                                <i class="iwd-qv-close-notification fa fa-times"></i>
+                                                <h5><?php echo Mage::getStoreConfig('stocknotification/default/message')?></h5>
+                                                <div class="stock-notification-header">
+                                                    <div class="input-box">
+                                                        <div class="email_notification_wrapper" id="iwd-qv-wrapper-input-outstock"><input type="text" placeholder="<?php echo $this->__('Email')?>" class="input-text" id="email_notification" name="email_notification" /></div>
+                                                        <input type="hidden" name="product_id" value="<?php echo $_item->getId()?>" />
+                                                        <input type="hidden" name="parent_id"  value="<?php echo $_product->getId()?>" />
+                                                        <button class="button iwd-qv-request-notice" id="iwd-qv-button" type="button"><span><span><?php echo $this->__('Notify Me')?></span></span></button>
+                                                    </div>
+                                                </div>
+                                                <div class="stock-notification-message iwd-qv-stock-notification-message"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif;?>
+                                <!-- END IF OUT-OF-STOCK IS ENABLED -->
+                            <?php endif; ?>
+                        </td>
+                    <?php endif; ?>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="<?php if ($_product->isSaleable()): ?>4<?php else : ?>3<?php endif; ?>"><?php echo $this->__('No options of this product are available.') ?></td>
+            </tr>
+        <?php endif; ?>
+        </tbody>
+    </table>
+</div>
+<!-- IF OUT-OF-STOCK IS ENABLED -->
+<?php if(Mage::helper('core')->isModuleEnabled('IWD_StockNotification')):?>
+    <?php if ($_product->isAvailable() && $_hasAssociatedProducts): ?>
+    <?php else: ?>
+        <?php if (!$_product->isSaleable()): ?>
+            <div class="stock-notification">
+                <div class="stock-notification-header">
+                    <h5><?php echo Mage::getStoreConfig('stocknotification/default/message')?></h5>
+
+                    <div class="input-box">
+                        <div class="email_notification_wrapper"><input type="text" placeholder="<?php echo $this->__('Email')?>" class="input-text" id="email_notification" name="email_notification" /></div>
+                        <input type="hidden" name="product_id" id="product_id" value="<?php echo $this->getProduct()->getId()?>" />
+                        <button class="button request-notice"type="button"><span><span><?php echo $this->__('Notify Me')?></span></span></button>
+                    </div>
+                </div>
+                <div class="stock-notification-message"></div>
+            </div>
+        <?php endif;?>
+    <?php endif; ?>
+    <script type="text/javascript">
+        //<![CDATA[
+        $ji('.iwd-qv-modal-notify').hide();//hide all
+        IWD.StockNotification.requestUrl = '<?php echo Mage::helper('stocknotification')->getRequestJsonUrl();?>';
+        //]]>
+    </script>
+<?php endif; ?>
+<!-- END IF OUT-OF-STOCK IS ENABLED -->
+<script type="text/javascript">decorateTable('super-product-table')</script>

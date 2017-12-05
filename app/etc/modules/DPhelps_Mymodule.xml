@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!-- D.Phelps Practice Module -->
+
+<config>
+    <modules>
+        <DPhelps_Mymodule>
+            <active>true</active>
+            <codePool>local</codePool>
+        </DPhelps_Mymodule>
+    </modules>
+</config> 

@@ -1,0 +1,14 @@
+<?php
+
+	$product = Mage::getModel('catalog/product');
+ 
+	$productCollection = $product->getCollection()
+                ->addAttributeToSelect('*')
+                ->addAttributeToFilter('sku', 'CAB.".*')
+                ->load();
+				
+	foreach ($productCollection as $_product) {
+		echo $_product->getDescription();
+	}
+ 
+ ?>

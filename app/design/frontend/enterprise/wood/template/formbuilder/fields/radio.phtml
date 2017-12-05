@@ -1,0 +1,62 @@
+<?php $value =Mage::registry('formbuilder')->getData('field');?>
+<?php $fieldvalue='';?>
+<?php if(isset($value) && !empty($value)):?>
+	<?php $id=$this->getId();?>
+	<?php $fieldvalue=$value[$id];?>
+	
+<?php endif;?>
+
+<ul style='padding:10px'>
+<?php
+$validate='';
+$options = $this->getFieldOptions();
+$j=0;
+foreach($this->getFieldOptions() as $i=>$option):?>
+	<?php $checked = false;
+		if($option["checked"]){
+		$checked = 'checked';
+		}
+	?>
+<?php $j++;?>
+<?php  if($this->getField()->getIsRequire() && $j==(count($options))):?>
+		<?php $validate = "validate-one-required-by-name";?>
+<?php endif;?>
+<?php 
+	$thumbClass = $this->getFieldClass();
+	$thumbClass = str_replace("radio ","",$thumbClass);
+	$thumbRadio = false;
+	if(strpos($thumbClass, "form_ul_thumbs") !== false) {
+		$thumbRadio = true;
+	}	
+	$thumbClass = str_replace("form_ul_thumbs ","",$thumbClass);
+	
+?>
+<li class='control'>
+	<?php
+		if($thumbRadio) {
+	?>
+		<div class="subcat_item_pad">
+			<div class="subcat_thumb">
+				<a href="/media/customwood/<?php if($thumbClass == 'wood') { echo "cd-".strtolower($option["label"]); } else {echo $option["label"].$thumbClass; } ?>_l.jpg" id="fancybox">
+					<img src="/media/customwood/<?php if($thumbClass == 'wood') { echo "cd-".strtolower($option["label"]); } else { echo $option["label"].$thumbClass; } ?>_t.jpg" alt="">
+				</a>
+			</div>
+			<div class="subcat_nm">
+				<input type='radio' name='<?php echo $this->getFieldName()?>[]' id='<?php echo $this->getFieldId().'['.$i.']'?>' value="<?php echo htmlspecialchars($option["label"])?>" class='<?php echo $this->getFieldClass()?> <?php echo $validate;?>' <?php if(isset($fieldvalue) && !empty($fieldvalue)):?><?php if(htmlspecialchars($option["label"]) ==$fieldvalue[0] ):?> checked="checked" <?php endif;?><?php else:?><?php echo $checked?><?php endif;?>/>
+				<label for='<?php echo $this->getFieldId().'['.$i.']'?>'><?php echo $option['label']?></label>
+			</div>
+		
+		</div>
+	<?php 
+		} else {
+	?>
+			<input style='float:left' type='radio' name='<?php echo $this->getFieldName()?>[]' id='<?php echo $this->getFieldId().'['.$i.']'?>' value="<?php echo htmlspecialchars($option["label"])?>" class='<?php echo $this->getFieldClass()?> <?php echo $validate;?>' <?php if(isset($fieldvalue) && !empty($fieldvalue)):?><?php if(htmlspecialchars($option["label"]) ==$fieldvalue[0] ):?> checked="checked" <?php endif;?><?php else:?><?php echo $checked?><?php endif;?>/>
+			<label for='<?php echo $this->getFieldId().'['.$i.']'?>'><?php echo $option['label']?></label>
+	<?php 
+		} 
+	?>
+	
+</li>
+
+<?php endforeach;?>
+</ul>

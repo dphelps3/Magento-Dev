@@ -1,0 +1,230 @@
+<style>
+.form-maker ul { list-style: none !important;}
+.addRowContainer {
+	margin-left: 5px;
+}
+.addRowContainer span {
+	position: relative;
+	top: 5px;
+	left: 2px;
+}
+</style>
+<link href="/skin/frontend/enterprise/wood/css/form_builder_styles.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	jQuery.noConflict();
+	function instructions_1() {
+		var text = '';
+		var current_row = 1;
+		jQuery('.fieldset-19 .quantitiesTable input').each(function(index, value) {
+			if(jQuery(value).val() != '') {
+				text += jQuery(value).val() + '\t';
+			}
+			if(current_row%4 == 0) {
+				text += '\n';
+			}
+			current_row++;
+		});
+		jQuery('.fieldset-19 .instructions_field').val(text);
+	}
+	
+	jQuery(document).ready(function() {
+		jQuery(".subcat_thumb a").fancybox();
+		jQuery("#form_5_form .mainLabel").click(function() {
+			jQuery(this).toggleClass("formExpanded");
+			jQuery(this).parent().next().slideToggle();
+		});
+		/*jQuery("#form_5_form .label-mullion-opening-door").click(function() {
+			jQuery(this).toggleClass("formExpanded");
+			jQuery(this).parent().next().slideToggle();
+		});
+		jQuery("#form_5_form .label-mullion-opening-door-front").click(function() {
+			jQuery(this).toggleClass("formExpanded");
+			jQuery(this).parent().next().slideToggle();
+		});
+		jQuery("#field[134][138]").click(function() {
+			if(jQuery(".fields-mullion-opening-door").hasClass("closed-mullion")) {
+				jQuery(".fields-mullion-opening-door").slideToggle();
+				jQuery(".fields-mullion-opening-door").toggleClass("closed-mullion");
+			}
+		});
+		jQuery("input[name='field[134][]").change(function() {
+			console.log(jQuery(this).attr('id'));
+			if(jQuery(this).attr('id') != "field[134][138]" && jQuery(".fields-mullion-opening-door").css("display") == "list-item") {
+				jQuery(".fields-mullion-opening-door").slideToggle();
+				jQuery(".fields-mullion-opening-door").toggleClass("closed-mullion");
+			}
+		});
+		jQuery("#Mullions-front").click(function() {
+			if(jQuery(".fields-mullion-opening-door-front").hasClass("closed-mullion-front")) {
+				jQuery(".fields-mullion-opening-door-front").slideToggle();
+				jQuery(".fields-mullion-opening-door-front").toggleClass("closed-mullion-front");
+			}
+		});
+		jQuery("input[name='door_front_panel_raise']").change(function() {
+			console.log(jQuery(this).attr('id'));
+			if(jQuery(this).attr('id') != "Mullions-front" && jQuery(".fields-mullion-opening-door-front").css("display") == "list-item") {
+				jQuery(".fields-mullion-opening-door-front").slideToggle();
+				jQuery(".fields-mullion-opening-door-front").toggleClass("closed-mullion-front");
+			}
+		});*/
+		jQuery(".form-accordion").accordion({
+			active: 0,
+			header: "h2",
+			autoHeight: false
+		});
+		jQuery('.fieldset-19 .quantitiesTable input').focusout(function() {
+			instructions_1();
+		});
+		
+		// Add instruction row
+		jQuery('.addRowContainer img, .addRowContainer span').click(function() {
+			var new_row = jQuery(this).parent().prev('table').find('tr').index() + 1;
+			var html = '<tr><td><label>Line '+new_row+'</label></td><td><input name="quantity-1" value=""></td><td><input name="width-1" value=""></td><td><input name="height-1" value=""></td><td><input name="instructions-1"></td></tr>';
+			jQuery(this).parent().prev('table').append(html);
+		});
+	});
+	
+
+	
+</script>
+<?php if($this->getForm()->getIsActive() == NextBits_FormBuilder_Model_Formbuilder::STATUS_DISABLED):?>
+	<p><?php echo $this->__('Form is not active or not available.');?>
+<?php else:?>
+<?php $formId =$this->getForm()->getId();?>
+<?php if(!empty($formId)):?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="page-title">
+	<h1><?php echo $this->getForm()->getName();?></h1>
+</div>
+<div id="form_<?php echo $this->getForm()->getId()?>_form">
+<?php if($this->getForm()->getDescription()):?>
+<div class="std">
+	<?php echo $this->getForm()->getDescription();?>
+</div>
+<?php endif;?>
+
+<form class="form-maker" action="<?php echo $this->getFormAction()?>" method="post" name="form_<?php echo $this->getForm()->getId()?>" id="form_<?php echo $this->getForm()->getId()?>" enctype="<?php echo $this->getEnctype()?>" class="form-<?php echo $this->getForm()->getCode()?>">
+	<input type="hidden" name="form_id" value="<?php echo $this->getForm()->getId()?>"/>
+	<input type="hidden" name="capcha" value="<?php echo $this->getForm()->getCapcha()?>"/>
+	<div class="form-accordion">
+	<?php $count =count(Mage::registry('fields_to_fieldsets'));?>
+	<?php $i=1;?>
+	<?php foreach (Mage::registry('fields_to_fieldsets') as $fieldset_id => $fieldset) :?> 
+		<h2 class="legend"><?php echo $fieldset['name']?></h2>
+		<div class="fieldset fieldset-<?php echo $fieldset_id?>">
+		<?php if(!empty($fieldset['name'])):?>
+			
+			<ul class="form-list">
+			<?php foreach($fieldset['fields'] as $field):?>
+			<?php
+				$getClass = $field->getClass();
+				$getLine = explode("_",$getClass);
+				// Find out if we are in the quantities
+				if(in_array("line", $getLine)) {
+					// If line 1 -- create the li wrapper and the table
+					$fieldTitle = $field->getTitle();
+					if(strstr($fieldTitle, "Quantity")) {
+						if(in_array("1", $getLine)) { ?>
+							<div class="field">
+								<label class="mainLabel">Quantities</label>
+							</div>
+							<div class="formQuantity">
+							<p>Enter Quantity , Width, Height and Instructions for your doors to the nearest 1/16th of an Inch.</p>
+							<table class="quantitiesTable">
+								<tr>
+									<th></th>
+									<th>Quantity</th>
+									<th>Width</th>
+									<th>Height</th>
+									<th>Instructions</th>
+								</tr>
+								<tr>
+									<th>Line <?php echo $getLine[1]; ?></th>
+									<td>
+										<?php echo $field->toHtml();?>
+									</td>
+				  <?php } else { ?>
+						</tr>
+						<tr>
+							<th>Line <?php echo $getLine[1]; ?></th>
+							<td>
+								<?php echo $field->toHtml();?>
+							</td>
+				  <?php } ?>
+					<?php
+					} else if(in_array("8", $getLine) && strstr($fieldTitle, "Instructions") ) {
+					?>
+						<td>
+							<?php echo $field->toHtml();?>
+						</td>
+						</tr>
+						</table>
+					 </div>
+					<?php
+					} else {
+					?>
+						<td>
+							<?php echo $field->toHtml();?>
+						</td>
+					<?php
+					}
+				} else { 
+			?>
+			
+			
+				<li class="fields fields-<?php echo $field->getClass()?>">
+				<?php if($field->getType()!='html'):?>
+				<div class="field form-field-<?php echo $field->getClass()?>">
+				<label for="field_<?php echo $field->getId()?>" <?php if($field->getIsRequire()):?>class="required mainLabel"<?php endif;?> class="mainLabel label-<?php echo $field->getClass()?>">
+					<?php if($field->getIsRequire()): ?> 
+							<em>*</em>
+						<?php endif;?>
+						<?php echo $field->getTitle()?>
+				</label>
+				</div>
+				<?php endif;?>
+				<div class="input-box input-box-<?php echo $field->getClass()?>" <?php if($field->getType()=='date_time' || $field->getType()=='date'):?> style="width:100%;" <?php endif;?>>
+					<?php echo $field->toHtml();?>
+				</div>
+				</li>
+			<?php } ?>
+			<?php endforeach;?>
+				<?php if($count ==1 || $count ==$i):?>
+					<?php if($this->getForm()->getCapcha() ==1):?>
+						<?php echo $this->getLayout()->createBlock('formbuilder/capcha')->setFormId('formbuilder')->toHtml(); ?> 
+					<?php endif;?>
+				<?php endif;?>
+				<?php $i++;?>
+			</ul>
+		<?php endif;?>
+			<div class="form-builder-clear"></div>
+		</div>
+	<?php endforeach;?>
+	<?php /*if($count !=1):?>
+		<?php if($this->getForm()->getCapcha() ==1):?>
+			<ul class="form-list">
+			<?php echo $this->getLayout()->createBlock('formbuilder/capcha')->setFormId('formbuilder')->toHtml(); ?>
+			</ul>			
+		<?php endif;?>
+	<?php endif;*/?>
+	</div>
+	<div class="buttons-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+    </div>
+	<input type="text" name="hideit"  id="hideit" value="" style="display:none !important;" />
+</form>
+</div>
+<?php echo $this->getLayout()->createBlock('core/html_calendar')->setTemplate('page/js/calendar.phtml')->toHtml();?>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('form_<?php echo $this->getForm()->getId()?>', false);
+//]]>
+</script>
+
+<style>
+	<?php echo $this->getForm()->getCss();?>
+</style>
+<?php endif;?>
+<?php endif;?>

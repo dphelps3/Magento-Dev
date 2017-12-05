@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Trivera_Seotext extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Trivera
+ * @package        Trivera_Seotext
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <Trivera_Seotext>
+            <version>1.0.0</version>
+        </Trivera_Seotext>
+    </modules>
+    <global>
+        <resources>
+            <trivera_seotext_setup>
+                <setup>
+                    <module>Trivera_Seotext</module>
+                    <class>Trivera_Seotext_Model_Resource_Setup</class>
+                </setup>
+            </trivera_seotext_setup>
+        </resources>
+        <models>
+            <trivera_seotext>
+                <class>Trivera_Seotext_Model</class>
+                <resourceModel>trivera_seotext_resource</resourceModel>
+            </trivera_seotext>
+            <trivera_seotext_resource>
+                <class>Trivera_Seotext_Model_Resource</class>
+            </trivera_seotext_resource>
+        </models>        
+    </global>
+</config>

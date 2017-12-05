@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <DPhelps_Mymodule>
+            <version>0.1.0</version>    <!-- Version number of your module -->
+        </DPhelps_Mymodule>
+    </modules>
+    <frontend>
+        <routers>
+            <mymodule>
+                <use>standard</use>
+                <args>
+                    <module>DPhelps_Mymodule</module>
+                    <frontName>mymodule</frontName>
+                </args>
+            </mymodule>
+        </routers>
+        <layout>
+            <updates>
+                <mymodule>
+                    <file>mymodule.xml</file> <!-- Our layout file name-->
+                </mymodule>
+            </updates>
+         </layout>
+    </frontend>
+    <global>
+        <blocks>
+            <mymodule>
+                <class>DPhelps_Mymodule_Block</class>
+            </mymodule>
+        </blocks>
+    </global>
+</config>

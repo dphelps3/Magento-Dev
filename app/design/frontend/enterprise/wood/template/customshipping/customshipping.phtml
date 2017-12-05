@@ -1,0 +1,45 @@
+<?php 
+	$_code=$this->getMethodCode();
+	$carrier = $this->getMethodInstance();
+	$customshippingData = $this->getQuote()->getCustomshippingData();
+	$_rate = $this->getRate();
+	if(!isset($customshippingData['residential']))
+	{
+		$customshippingData['residential'] = -1;
+	}
+	if(!isset($customshippingData['liftgate']))
+	{
+		$customshippingData['liftgate'] = '';
+	}
+	//Mage::log('The new form fields are being shown here');
+?>
+<ul class="form-list" id="shipping_form_<?php echo $_rate->getCode() ?>" style="display:none;">
+    <li>
+        <label for="<?php echo $_code ?>_store" class="required"><em>*</em><?php echo $this->__('Is this a residential shipment?') ?></label>
+        <span class="input-box">
+            <select class="required-entry" name="shipping_customshipping[residential]">
+            	<option value='' <?php if($customshippingData['residential'] == ''){ echo "selected=selected";} ?>><?php echo $this->__('Please Choose..');?></option>
+            	<option value='Yes' <?php if($customshippingData['residential'] == 'Yes'){ echo "selected=selected";} ?>><?php echo $this->__('Yes');?></option>
+            	<option value='No' <?php if($customshippingData['residential'] == 'No'){ echo "selected=selected";} ?>><?php echo $this->__('No');?></option>
+            </select>
+        </span>
+		<br />
+        <label for="<?php echo $_code ?>_store" class="required"><em>*</em><?php echo $this->__("Do you require appointment delivery?") ?></label>
+        <span class="input-box">
+        	<select class="required-entry" name="shipping_customshipping[appointment]">
+            	<option value='' <?php if($customshippingData['appointment'] == ''){ echo "selected=selected";} ?>><?php echo $this->__('Please Choose..');?></option>
+            	<option value='Yes' <?php if($customshippingData['appointment'] == 'Yes'){ echo "selected=selected";} ?>><?php echo $this->__('Yes');?></option>
+            	<option value='No' <?php if($customshippingData['appointment'] == 'No'){ echo "selected=selected";} ?>><?php echo $this->__('No');?></option>
+            </select>
+        </span>
+		<br />
+        <label for="<?php echo $_code ?>_store" class="required"><em>*</em><?php echo $this->__("Do you need liftgate assistance?") ?></label>
+        <span class="input-box">
+        	<select class="required-entry" name="shipping_customshipping[liftgate]">
+            	<option value='' <?php if($customshippingData['liftgate'] == ''){ echo "selected=selected";} ?>><?php echo $this->__('Please Choose..');?></option>
+            	<option value='Yes' <?php if($customshippingData['liftgate'] == 'Yes'){ echo "selected=selected";} ?>><?php echo $this->__('Yes');?></option>
+            	<option value='No' <?php if($customshippingData['liftgate'] == 'No'){ echo "selected=selected";} ?>><?php echo $this->__('No');?></option>
+            </select>
+        </span>
+    </li>
+</ul>

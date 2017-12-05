@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addJs">
+                <script>ms/megamenu/megamenu.min.js</script>
+            </action>
+        </reference>
+        <reference name="top.menu">
+            <action method="unsetChild" ifconfig="megamenu/general/enable"><name>catalog.topnav</name></action>
+            <block type="megamenu/megamenu" name="ms_megamenu">
+                <action method="setTemplate" ifconfig="megamenu/general/enable">
+                    <template>ms/megamenu/topmenu.phtml</template>
+                </action>
+            </block>
+        </reference>
+        <!--reference name="left">
+            <block type="megamenu/megamenu" template="ms/megamenu/leftmenu.phtml" before="-"/>
+        </reference-->
+    </default>
+    <megamenu_index_preview>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>ms/megamenu/preview.phtml</template>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>megamenu/css/megamenulibrary.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>megamenu/css/megamenu.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>megamenu/css/config/default.css</stylesheet>
+            </action>
+            <action method="addJs">
+                <script>ms/megamenu/jquery-1.11.2.min.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="megamenu/megamenu" name="ms_topmenu" template="ms/megamenu/topmenu.phtml"/>
+        </reference>
+    </megamenu_index_preview>
+</layout>

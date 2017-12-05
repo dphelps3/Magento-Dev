@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Simplesolutions_Cabinetshipping>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Simplesolutions_Cabinetshipping>
+    </modules>
+</config>

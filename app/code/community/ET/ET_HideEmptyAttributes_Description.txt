@@ -1,0 +1,56 @@
+==== Description / Для чего этот модуль? ====
+
+ET Hide Empty Attributes
+
+EN:
+Extension ET Hide Empty Attributes lets you hide product attributes, which has no values.
+For such attributes Magento itself displays N/A or No depending on attribute type (dropdown or text). So this extension
+* hides such attributes on product page
+* shows as dashes on product compare page (you can change dash to other character in extension settings)
+
+RU:
+Модуль ET Hide Empty Attributes позволяет скрывать у товара атрибуты, у которых нет значений.
+Magento для подобных атрибутов выводит Н/Д или Нет, в зависимости от типа данных (выпадающий список или текст). Этот модуль
+* скрывает такие атрибуты в просмотре товара
+* ставит таким атрибутам прочерки на странице сравнения товаров (в настройках модуля можно указать другой символ)
+
+
+
+
+====Features / Особенности модуля====
+
+* Open source code (no encryption and obfuscation)
+* Code follows Magento development standards
+* Extension is available on 2 languages (ru_RU, en_US) and you can easy add your own
+* All extension settings are available on admin panel
+
+* Открытый исходный код
+* Код написан придерживаясь принятых стандартов в разработке для Магенто
+* Доступен на 2-ух языках (ru_RU, en_US) и легко добавляются новые переводы
+* Все настройки модуля доступны в панели администрирования
+
+====Version Compatibility / Совместимость версий====
+1.5.x (tested in 1.5.0.1. 1.5.1.0)
+1.6.x (tested in 1.6.2.0)
+1.7.x (tested in 1.7.0.2)
+
+====Module tags====
+
+
+====Установка/Installation====
+
+* Disable Compiler, if it is enabled (System -> Tools -> Compilation)
+* Disable cache, if it is enabled (System -> Cache Management)
+* Install the extension (just unpack archive to magento root folder)
+* Log off admin panel (Log Out)
+* Log into admin panel (enter your login and password)
+* Set filter display parameters (System -> Configuration -> Hide Empty Attributes)
+* Run compilation process and enable cache if needed
+
+* Отключите компиляцию, если включена (Система -> Инструменты -> Компиляция)
+* Отключите кэш, если включён (Система -> Управление кэшем)
+* Установите модуль (распакуйте архив в корневую папку с Магенто)
+* Выйдите из панели администрирования (Выйти)
+* Войдите в панель администрирования (введите логин/пароль)
+* Настройте параметры отображения фильтра (Система -> Конфигурация -> Hide Empty Attributes)
+* Если необходимо запустите процесс компиляции и включите кэш

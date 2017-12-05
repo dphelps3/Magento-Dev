@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout>
+    <PRODUCT_TYPE_hardware>
+        <label>Catalog Product View (Dec. Hardware)</label>
+        <reference name="product.info">
+            <block type="dechardwareproduct/product_view_type_hardware" name="product.info.hardware" as="product_type_data" template="catalog/product/view/type/hardware.phtml">
+                <block type="core/text_list" name="product.info.hardware.extra" as="product_type_data_extra" translate="label">
+                    <label>Product Extra Info</label>
+                </block>
+            </block>
+        </reference>
+		<reference name="product.info">
+			<action method="setTemplate"><template>catalog/product/hardwareview.phtml</template></action>
+		</reference>
+  </PRODUCT_TYPE_hardware>
+</layout>

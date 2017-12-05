@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2008-2012 Amasty (http://www.amasty.com)
+* @package Amasty_Feed
+*/
+-->
+<layout version="0.1.0">
+    <amfeed_adminhtml_profile_index>
+    	<reference name="head">
+            <action method="addItem">
+                    <type>skin_css</type> 
+                    <name>amasty/amfeed/main.css</name> 
+            </action>
+            <action method="addItem">
+                <type>skin_css</type> 
+                <name>amasty/amfeed/filter.css</name> 
+            </action>
+            <action method="addJs">
+                    <name>amasty/amfeed/amfeed.js</name> 
+            </action>
+        <action method="addJs">
+                <name>amasty/amfeed/filter.js</name> 
+            </action>
+        </reference>    
+        <reference name="content">            
+            <block type="amfeed/adminhtml_popup" template="amfeed/feed/popup.phtml" name="amfeed_overlay" />
+        </reference>
+    </amfeed_adminhtml_profile_index>
+    <amfeed_adminhtml_profile_new>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type> 
+                <name>amasty/amfeed/main.css</name> 
+            </action>
+            <action method="addItem">
+                <type>skin_css</type> 
+                <name>amasty/amfeed/filter.css</name> 
+            </action>
+            <action method="addJs">
+                <name>amasty/amfeed/amfeed.js</name> 
+            </action>
+            
+<action method="addJs">
+                <name>amasty/amfeed/filter.js</name> 
+            </action>
+            
+        </reference>    
+        <reference name="content">            
+            <block type="amfeed/adminhtml_popup" template="amfeed/feed/popup.phtml" name="amfeed_overlay" />
+        </reference>
+    </amfeed_adminhtml_profile_new>
+    <amfeed_adminhtml_profile_edit>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type> 
+                <name>amasty/amfeed/main.css</name> 
+            </action>
+            <action method="addItem">
+                <type>skin_css</type> 
+                <name>amasty/amfeed/filter.css</name> 
+            </action>
+            <action method="addJs">
+                <name>amasty/amfeed/amfeed.js</name> 
+            </action>
+            
+<action method="addJs">
+                <name>amasty/amfeed/filter.js</name> 
+            </action>
+            
+        </reference>    
+        <reference name="content">            
+            <block type="amfeed/adminhtml_popup" template="amfeed/feed/popup.phtml" name="amfeed_overlay" />
+        </reference>
+    </amfeed_adminhtml_profile_edit>
+    <amfeed_adminhtml_field_new>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type> 
+                <name>amasty/amfeed/filter.css</name> 
+            </action>
+            <action method="addJs">
+                <name>amasty/amfeed/filter.js</name> 
+            </action>
+        </reference>
+    </amfeed_adminhtml_field_new>
+    <amfeed_adminhtml_field_edit>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type> 
+                <name>amasty/amfeed/filter.css</name> 
+            </action>
+            <action method="addJs">
+                <name>amasty/amfeed/filter.js</name> 
+            </action>
+        </reference>
+    </amfeed_adminhtml_field_edit>
+    
+    
+</layout>

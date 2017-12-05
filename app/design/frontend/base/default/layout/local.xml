@@ -1,0 +1,8 @@
+<layout version="0.1.0">
+    <default>
+        <reference name="root">
+            <block type="page/html" name="root" output="toHtml"
+              template="simple_page.phtml" />
+        </reference>
+    </default>
+</layout>

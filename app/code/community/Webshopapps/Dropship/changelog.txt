@@ -1,0 +1,69 @@
+5.19    - Added support for Insurance extension (only with merged rates, no ship separate support as yet)
+5.16	- Fixed issue with gift message support on 1.5
+5.15	- Added support for Shipping Override using main branch
+5.14	- Put in eventPrefix so can see when warehouse deleted, updated logging
+5.13 	- Improved support for extension validation
+5.12	- Added support for configurable user details, requires usa shipping
+6.0.1	- Includes latest common/logger
+6.1	- Includes wsacommon fix to resolve invalid call to downloadable shipping problem
+6.2 	- Qualified on 1.6 magento. 
+	Removed separate/oversized references from product attributes/switches - now in dimensional shipping
+6.3 	- Put a change in to prevent order going into processing state when email sent automatically
+	  Updated phtml files to support 1.6
+6.4	- Updated shipment.phtml files inline with Magento 1.6 
+6.5 	- Added in suport for multi-origins on UPS (currently without combine ability)
+	  Added in warehouse_shipping_html in sales_order so that can pick up in email templates
+6.6     - Added support for multiple shipment origins for UPS in Dropship
+6.7     - Added support for freight rate
+6.8     - Added support for EE SalesArchive tables to circumvent issue in magento code around syncTables
+6.9	- qualified for magento 1.6.1
+6.10	- Fixed flat catalog for multiple warehouses
+6.11	- Attribute named incorrectly when using DB compatible mode on 1.6 or greater.
+6.12 	- Latest install/Update script is now idompotent. Added Default Warehouse capability
+6.13	- Fixes issue with shipment status and creation. 
+6.14    - Fixed issue with shipment status and creation
+6.15    - Fixed issue with shipping methods not being allowed with gift messages switched on for split checkout
+6.16	- Moved away from the flat catalogue. 
+6.17    - Added in another check to miss out order options
+6.18	- Added EE1.11 compatible js file.
+7.0	- Refactored code to remove opcheckout.js move, adminhtml files now separate from main adminhtml.
+7.1 	- Fixed issue with bundle products set to ship separately when using parent. Now splits correctly on checkout.
+7.2 	- Fixed issue with displaying shipping methods when DropShip is disabled. Fixed issue of displaying warehouse in orders when DropShip is disabled.
+7.3     - Fixed issue with gift options set to yes under certain circumstances allowing checkout
+7.4	- Added new feature allowing the dispatch notifications to warehouses to be sent post order or post invoice
+7.5	- Added in support for choosing auto create shipments per warehouse. Improve bundle display on admin docs.
+7.8 	- Tidied up freight limiting logic to work with multiple carriers simultaneously
+7.9 	- Tidied checkout output when bundle items are present
+7.10	- Added in support for Handling Matrix
+7.11	- Fixed issue with auto creating shipments
+7.12 	- Tidied up phtml logic
+7.13 	- Improved default warehouse logic and tidied up theme files.
+7.14    - Added fix to stop extension from attempting to calculate rate when a virtual item is in the cart.
+7.15	- Added warehouse switch for sites integrated with MetaPack and field to assign warehouse code
+7.16    - Refactored to pull freight logic into wsafreightcommon
+7.17 	- Refactored the per store enabled checks to ensure when set to disabled in store view no logic is called
+7.18    - Sorted indentation and added check to get config data from freightcommon if freight extension is not found
+7.19 	- Fixed an issue with display of rates in the admin panel view order area
+7.20	- added switch to change unit of weight to display against each item ordered when dropship is configured to always show warehouse item breakdown
+8.0	- Changed to work with latest ant scripts and automatically create combined freight version
+8.1 	- Added support so that default warehouse is set on sales_flat_quote_item.
+	  Fixed email template to set items when using default warehouse. Will also now set delivery type when 1 warehouse instead of using merged text.
+8.2 	- Updated Google Maps API to V3. V2 had bugs and is being deprecated in 2013
+8.3     - Resolved issue around displaying of warehouse value for bundle products in admin views. Also added CSS classes to OnePageCheckout. 
+9.0	- Refactored adminhtml and block logic to remove rewrites and as much impact on phtml files as possible. Should protect us against version changes..
+9.2	- Added ability to add shipping override extra info to the quote object. Refactored checkout code to improve the display of products, including bundled items. 
+	  Fixed issue with bundled product not splitting into mult-warehouses when useParent set to No.
+10.0    - Moved to community branch. Added support for Address Type extn without needing separate branch
+10.1	- Added support for specifying carrier information on warehouse level for USPS and Fedex when using with Dimensional Shipping
+10.2 	- DROP-9 - Fixed combined shipping rule logic
+10.3    - DROP-17 - Updated to have a new switch so that shipping price calculations for Dropship can be switched off
+10.4	- Updated to include latest Common library files
+10.5    - DROP-21 - Refactored use cart price in calculations logic so that it also uses cart weight
+10.6 	- DROP-23 - Added price limit logic. Will use the default warehouse when price_limit is greater than product total
+10.7    - DROP-24 - Added free shipping text feature
+10.8	- DROP-23 - Improved price_limit logic
+10.9 	- DROP-27 - Reverted "use cart weight" feature
+10.10	- DROP-28 - Added alphabetical sorting of warehouse attributes values
+10.11	- DROP-26 - Fixed allowed methods so if carrier not found no error is thrown 
+10.13 - Re-tagged for Nearest Warehouse
+10.14 - DROP-20 Re-opened. Wasn't catering for 3 carrier merging where 2 carriers are the same.

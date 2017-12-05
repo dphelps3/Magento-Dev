@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    
+    <modules>
+        <Multidots_HelloWorld>
+            <version>0.1.0</version>
+        </Multidots_HelloWorld>
+    </modules>
+
+    <frontend>
+        <routers>
+            <helloworld>
+                <use>standard</use>
+                <args>
+                    <module>Multidots_HelloWorld</module>
+                    <frontName>helloworld</frontName>
+                </args>
+            </helloworld>
+        </routers>
+    </frontend>
+
+    <admin>
+        <routers>
+            <helloworld>
+                <use>admin</use>
+                <args>
+                    <module>Multidots_HelloWorld</module>
+                    <frontName>admin_helloworld</frontName>
+                </args>
+            </helloworld>
+        </routers>
+    </admin>
+
+</config>

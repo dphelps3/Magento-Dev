@@ -1,0 +1,16 @@
+<?php
+$layer = Mage::getSingleton('catalog/layer');
+$_category   = $layer->getCurrentCategory();
+$_categories = $_category->getCollection()
+->addAttributeToSelect(array('url_key','name','image','all_children','is_anchor','description'))
+->addAttributeToFilter('is_active', 1)
+->addIdFilter($_category->getChildren())
+->setOrder('position', 'ASC')
+->joinUrlRewrite();
+?>
+<?php foreach ($_categories as $_category): ?>
+<?php if($_category->getIsActive()):
+?><img src="<?php echo $this->htmlEscape($_category->getImageUrl()) ?>" alt="<?php echo $this->htmlEscape($_category->getName()) ?>" />
+<a href="<?php echo $_category->getURL() ?>" title="<?php echo $this->htmlEscape($_category->getName()) ?>"><?php echo $this->htmlEscape($_category->getName()) ?></a>
+<?php endif; ?>
+<?php endforeach; ?>

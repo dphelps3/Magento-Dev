@@ -1,0 +1,32 @@
+<form id="co-csh2-form" action="">
+<fieldset>
+	<div id="checkout-csh2-load"></div>
+    <ul class="form-list">
+    <li id="csh2-form">
+        <fieldset>
+            <ul>
+                <li class="wide">
+                    <label for="csh2:comments"><?php echo $this->__('Would you like to add any comments?') ?></label>
+                    <div class="input-box">
+                        <textarea name='csh2[comments]' class="textarea-text" id="csh2:comments"><?php echo $this->getQuote()->getCshcomments2()?></textarea>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+     </li>
+    </ul>
+    <div class="buttons-set form-group a-right" id="csh2-buttons-container" >
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="button" title="<?php echo $this->__('Continue') ?>" class="btn btn-success btn-lg" onclick="csh2.save()"><span><span><?php echo $this->__('Continue') ?></span></span></button>        
+        <span class="please-wait" id="csh2-please-wait" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading next step...') ?>" title="<?php echo $this->__('Loading next step...') ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
+        </span>
+    </div>
+</fieldset>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var csh2 = new CshMethod2('co-csh2-form','<?php echo $this->getUrl('custom/onepage/saveCsh2', array('_secure'=>true)) ?>');
+    var cshForm2 = new VarienForm('co-csh2-form');
+//]]>
+</script>

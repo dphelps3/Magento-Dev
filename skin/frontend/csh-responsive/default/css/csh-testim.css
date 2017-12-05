@@ -1,0 +1,253 @@
+@charset "utf-8";
+.linkVidModal{
+    display:block;
+    position:relative;
+    margin-bottom:10px;
+}
+.playImg{
+    width:20%; 
+    position: absolute; 
+    left: 40%; 
+    top: 40%; 
+    z-index: 1;
+}
+.doorImg{
+    width:100%;
+}
+.pillsEven {
+	display: block;
+	float: top;
+	background-color: #EBEBEB;
+	border-radius: 1px;
+	color: #5E5E5E;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 16px;
+	vertical-align: top;
+	line-height: 1.429;
+	transition-duration: 0.2s;
+	position: relative;
+}
+
+.pillsEven:hover {
+	background-color: #E0E0E0;
+	transition-duration: 0.2s;
+}
+
+.photoPill {
+	display: block;
+	background-color: #EDEDED;
+	margin-top: 5px;
+	margin-left: 7px;
+	margin-right: 7px;
+	margin-bottom: 0px;
+	border-radius: 1px;
+	color: #5E5E5E;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 16px;
+	vertical-align: top;
+	line-height: 1.429;
+}
+
+.redLine {
+	display:block;
+	background-color: #c72123;
+	opacity: 0.6;
+	height: 3px;
+	margin-top: 0px;
+	margin-left: 7px;
+	margin-right: 7px;
+	margin-bottom: 18px;
+}
+
+.redLine2 {
+	display:block;
+	background-color: #c72123;
+	opacity: 0.6;
+	height: 3px;
+	margin-top: 0px;
+	margin-left: 7px;
+	margin-right: 7px;
+}
+
+.pillsEven .footer {
+	color: #666;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px;
+	margin-bottom: 0px;
+    min-height:0px;
+	width: 100%;
+	float:left;
+	position: relative;
+    cursor:pointer;
+}
+
+.pillsSub {
+	float: left;
+	background-color: #c72123;
+	width: 918px;
+	padding: 20px;
+	margin-top: 65px;
+	margin-bottom: 40px;
+	color: #FFF;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	position: relative;
+}
+
+.headline {
+	display:block;
+    font-size:16px;
+	font-weight:normal;
+	line-height: 1.429;
+	position: relative;
+	-webkit-transition: opacity 400ms linear;
+	transition: opacity 400ms linear;    
+}
+
+.pillsEven .headline {
+    cursor:pointer;
+}
+
+.headline.faded {
+	opacity: .5;
+}
+
+.paragraph {
+	padding-top: 15px;
+	color: #333;
+	display:none;
+	position: relative;
+}
+
+.testimonialHeader {
+	text-align: center;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:42px;
+	color: #FFF;
+	font-weight:bold;
+	margin-bottom: 5px;
+}
+
+.subHeader {
+	text-align: center;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:18px;
+	color: #FFF;
+	font-weight:bold;
+}
+
+#redColor {
+	margin: 0px;
+	padding: 20px;
+	background-color: #c72123;
+	margin-bottom: 20px;
+}
+
+.rm {
+	display:block;
+    text-align:right;
+    text-decoration: underline;
+	vertical-align:bottom;
+	font-size: 12px;
+	font-weight: bold;
+	color: #c72123;
+}
+
+.personName {
+	display:block;
+    text-align:left;
+    font-size: 16px;
+}
+
+.cshHyperlink {
+	color: #c72123;
+	text-decoration: underline;
+}
+
+.cshHyperlink:hover {
+	color: #000000;
+}
+
+/*for modal */
+h5 { font-family: Helvetica; font-size: 18px; color: #dd2727; text-align: left; }
+/*h6 { font-family: Helvetica; font-size: 16px; font-weight: normal; color: #666; text-align: left; margin-top: 3px; margin-bottom: 0; margin-left: 8px; margin-right: 0px; }*/
+h7 { font-family: Helvetica; font-size: 12px; font-weight: bold; color: #dd2727; text-align: left; }
+
+
+/* for modal windows */
+#vidModal.modal a.close-modal[class*="icon-"] {
+    top: -10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    text-indent: 0;
+    background: #900;
+    border: 2px solid #fff;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -o-border-radius: 26px;
+    -ms-border-radius: 26px;
+    -moz-box-shadow:    1px 1px 5px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    box-shadow:         1px 1px 5px rgba(0,0,0,0.5);
+  }
+
+
+#vidModal.modal {
+  display: none;
+  width: 70%;
+  height: 40%;
+  background: #fff;
+  padding: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+  -o-box-shadow: 0 0 10px #000;
+  -ms-box-shadow: 0 0 10px #000;
+  box-shadow: 0 0 10px #000;
+  overflow:visible;
+}
+
+#vidModal.modal a.close-modal {
+  position: absolute;
+  top: -12.5px;
+  right: -12.5px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  text-indent: -9999px;
+  background: url(https://cdn.cshardware.com/media/wysiwyg/closeimage5.png) no-repeat 0 0;
+}
+
+#vidModal.modal-spinner {
+  display: none;
+  width: 64px;
+  height: 64px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-right: -32px;
+  margin-top: -32px;
+  /* background: url(https://cdn.cshardware.com/media/wysiwyg/spinner.gif) #111 no-repeat center center; */
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  border-radius: 8px;
+}
+
+/* Modal table */
+.modalTable td { padding: none; }
+
+.featherlight-next span, .featherlight-previous span{
+    color:#ddd;
+}
+

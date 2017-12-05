@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <DecHardware_Configviewer>
+            <active>true</active>
+            <codePool>local</codePool>
+        </DecHardware_Configviewer>
+    </modules>
+</config>

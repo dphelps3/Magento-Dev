@@ -1,0 +1,17 @@
+
+<script type="text/javascript">
+
+OptionTemplateDate = '<table class="border" cellpadding="0" cellspacing="0">'+
+        '<tr class="headings">'+
+            '<th class="type-last last"><?php echo Mage::helper('formbuilder')->__('Class') ?> </th>'+
+        '</tr>'+
+        '<tr>'+
+			'<td class="type-last last"><input type="text" style="width:90% !important;" class="input-text" name="product[options][{{fieldset}}][{{option_id}}][class]" value="{{class}}"></td>'+
+        '</tr>'+
+    '</table>';
+
+if ($('option_panel_type_date')) {
+    $('option_panel_type_date').remove();
+}
+
+</script>

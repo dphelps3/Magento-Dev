@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Aitoc_Aiteasyconf>
+            <active>false</active>
+            <codePool>local</codePool>
+            <self_name>Configurable Products Pro</self_name>
+            <priority>1000</priority>
+        </Aitoc_Aiteasyconf>
+    </modules>
+</config>

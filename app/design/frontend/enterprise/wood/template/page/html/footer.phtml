@@ -1,0 +1,94 @@
+<!--4Cite footer tracking code  -->
+ <script type="text/javascript">
+         window.tracker = window._svt._getTracker('1660_03709');
+         window.tracker._trackPageView();
+        </script>
+<div class="footer-container">
+	<div id="footer_border"></div>
+    <div class="aditional-footer">
+        <?php echo $this->getChildHtml('bottomContainer') ?>
+        <div class="f-right">
+            <div class="footer-right">
+                <div class="right-conteiner">
+                    <?php echo $this->getChildHtml('newsletter') ?>
+                    <div class="clear"></div>
+                </div>
+				<div id="customer_service_phone" class="right-conteiner">
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_customer_service')->toHtml(); ?>
+				</div>
+                <div class="right-conteiner">
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_time')->toHtml(); ?>
+                    <?php if(themeOptions('topbtn')): ?>                    
+                        <div id="message"><a href="#top" id="top-link"><?php echo $this->__('Back to top') ?></a></div> 
+                    <?php endif; ?>
+                    <div style="clear: both;"></div>
+                </div>                
+            </div>
+        </div>
+        
+        <div class="f-left footer-left">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_shipping')->toHtml(); ?>
+			<div class="redesign-footer-social-container">
+				<div class="redesign-footer-social">
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('follow_us')->toHtml(); ?>
+					<div class="clear"></div>
+				</div>
+			</div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>  
+</div>  
+    <div class="footer">
+        <?php echo $this->getChildHtml('bottomContainer') ?>
+        <div class="f-left">
+            <?php echo $this->getChildHtml('footer_links') ?><br />
+            <?php echo $this->getCopyright() ?>&nbsp;&nbsp;
+            <?php echo $this->getChildHtml('cms_footer_links') ?>
+        </div>
+        <div class="f-right">
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('verifi')->toHtml(); ?>
+			<!-- Begin DigiCert site seal HTML and JavaScript -->
+			<div class='digicert' id="DigiCertClickID_nG9br9hS" data-language="en_US">
+				<a href="http://www.digicert.com/ev-ssl-certification.htm">EV SSL</a>
+			</div>
+			<script type="text/javascript">
+				var __dcid = __dcid || [];__dcid.push(["DigiCertClickID_nG9br9hS", "11", "s", "black", "nG9br9hS"]);(function(){var cid=document.createElement("script");cid.async=true;cid.src="//seal.digicert.com/seals/cascade/seal.min.js";var s = document.getElementsByTagName("script");var ls = s[(s.length - 1)];ls.parentNode.insertBefore(cid, ls.nextSibling);}());
+			</script>
+			
+			<!-- End DigiCert site seal HTML and JavaScript -->
+        </div>
+	</div>
+	
+	<div class="footer">
+	 <div class="f-left">
+		</div>
+		<!-- Paypal logo
+		
+		<div class="f-right">
+			<table border="0" cellpadding="10" cellspacing="0" align="right"><tr><td align="right"></td></tr><tr><td align="right"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_now_accepting_pp_2line_w.png" border="0" alt="Now accepting PayPal"></a><div style="text-align:center"><a href="https://www.paypal.com/webapps/mpp/how-paypal-works"><font size="2" face="Arial" color="#0079CD">How PayPal Works</font></a></div></td></tr></table>
+        </div>
+		-->
+	</div>
+	
+	<!--
+
+
+<?php
+	$datetime1 = date_create('2013-08-30');
+	$datetime2 = date_create('2013-09-03');
+	$datenow = new DateTime("now");
+?>
+<?php if ($datenow >= $datetime1 && $datenow < $datetime2): ?>
+<div style="background-color: #fec; border-radius: 15px; padding: 10px; margin-bottom: 10px; background-image: url('/csh_truck.png'); background-repeat: no-repeat; background-position: right; position: fixed; bottom: 0; z-index:27530; margin: 0;opacity: 0.9"><img src="/free.png" style="float: left;">
+<h3>
+Free Shipping is back at CSH for 4 days only
+</h3>
+<p>
+<strong>Use coupon code FREESHIP at checkout for free shipping on orders <em>over</em> $25.00*</strong>
+</p>
+<p>
+* Hurry, <strong>90 hours only</strong>. This expires Monday at Midnight. Minimum Order of $25.  <strong>Standard UPS Ground shipments only. Does not include cabinet or freight orders.</strong> Does not apply to orders outside the 48 contiguous states. Applies to web orders only. Not combinable with any other discounts.*
+</p>
+</div>
+<?php endif; ?>
+-->

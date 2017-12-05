@@ -1,0 +1,65 @@
+<?php
+$_product = $this->getProduct();
+$_helper = $this->helper('catalog/output');
+$zoomEnabled = Mage::getStoreConfig('iwd_quickview/design_media_block_zoom/enable');
+$thumbEnabled = Mage::getStoreConfig('iwd_quickview/design_media_block_thumbnails/enable');
+?>
+<div class="product-image product-image-zoom">
+    <?php if(Mage::helper('core')->isModuleEnabled('IWD_ProductLabel')):?>
+        <?php echo Mage::helper('productlabel')->showLabel($_product,'product');?>
+    <?php endif; ?>
+    <div class="product-image-gallery-qv">
+        <img id="image-main"
+             class="iwd-qv-gallery-image visible"
+             src="<?php echo $this->helper('catalog/image')->init($_product, 'image') ?>"
+             alt="<?php echo $this->escapeHtml($this->getImageLabel()) ?>"
+             title="<?php echo $this->escapeHtml($this->getImageLabel()); ?>" />
+
+        <?php $i=0; foreach ($this->getGalleryImages() as $_image): ?>
+            <?php if ($this->isGalleryImageVisible($_image)): ?>
+                <img id="image-<?php echo $i; ?>"
+                     class="iwd-qv-gallery-image"
+                     src="<?php echo $this->getGalleryImageUrl($_image); ?>"
+                     data-zoom-image="<?php echo  $this->getGalleryImageUrl($_image); ?>"
+                    />
+            <?php endif; ?>
+            <?php $i++; endforeach; ?>
+    </div>
+</div>
+
+<?php if (count($this->getGalleryImages()) > 0 && $thumbEnabled ): ?>
+    <div class="more-views">
+        <ul class="product-image-thumbs">
+            <?php $i=0; foreach ($this->getGalleryImages() as $_image): ?>
+                <?php if ($this->isGalleryImageVisible($_image)): ?>
+                    <li>
+                        <a class="thumb-link" href="#" title="<?php echo $this->escapeHtml($_image->getLabel()) ?>" data-image-index="<?php echo $i; ?>">
+                            <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(75); ?>"
+                                 width="75" height="75" alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" />
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php $i++; endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+<?php echo $this->getChildHtml('after'); ?>
+
+<script type="text/javascript">
+    //<![CDATA[
+    <?php if(Mage::helper('iwd_quickview')->isStandardColorSwatch()): ?>
+        if(typeof(jQueryIWD) == "undefined"){if(typeof(jQuery) != "undefined") {jQueryIWD = jQuery;}} $ji = jQueryIWD;
+        $ji(document).on('product-media-loaded', function() {
+            ConfigurableMediaImagesQV.init('<?php echo $this->getImageType(); ?>');
+            <?php foreach ($this->getProductImageFallbacks() as $imageFallback): ?>
+                <?php $image_fallback = str_replace('\""','"', $imageFallback['image_fallback']); ?>
+                ConfigurableMediaImagesQV.setImageFallback(<?php echo $imageFallback['product']->getId(); ?>, $ji.parseJSON('<?php echo $image_fallback; ?>'));
+            <?php endforeach; ?>
+            $ji(document).trigger('configurable-media-images-init', ConfigurableMediaImagesQV);
+        });
+    <?php endif; ?>
+    ProductMediaManagerQV.useZoom = <?php echo Mage::getStoreConfig('iwd_quickview/design_media_block_zoom/enable')?>;
+    ProductMediaManagerQV.init();
+    //]]>
+</script>

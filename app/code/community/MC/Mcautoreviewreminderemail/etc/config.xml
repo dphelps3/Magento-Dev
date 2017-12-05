@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<!--
+/*
+ * @category    Community
+ * @package     MC_Mcautoreviewreminderemail
+ * @Document    config.xml
+ * @Created on  April 11, 2012, 7:05 PM
+ * @copyright   Copyright (c) 2012 Magento Complete
+ */
+-->
+<config>
+    <modules>
+        <MC_Mcautoreviewreminderemail>
+            <version>1.0.5.2</version>
+        </MC_Mcautoreviewreminderemail>
+    </modules>
+    <global>
+        <blocks>
+            <mcautoreviewreminderemail>
+                <class>MC_Mcautoreviewreminderemail_Block</class>
+            </mcautoreviewreminderemail>
+        </blocks>
+        <models>
+            <mcautoreviewreminderemail>
+                <class>MC_Mcautoreviewreminderemail_Model</class>
+            </mcautoreviewreminderemail>
+        </models>
+        <helpers>
+            <mcautoreviewreminderemail>
+                <class>MC_Mcautoreviewreminderemail_Helper</class>
+            </mcautoreviewreminderemail>
+        </helpers>
+        <resources>
+            <mcautoreviewreminderemail_setup>
+                <setup>
+                    <module>MC_Mcautoreviewreminderemail</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mcautoreviewreminderemail_setup>
+            <mcautoreviewreminderemail_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mcautoreviewreminderemail_write>
+            <mcautoreviewreminderemail_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mcautoreviewreminderemail_read>
+        </resources>
+    </global>
+    <adminhtml>
+      <acl>
+            <resources>
+                 <admin>
+                    <children>
+                        <system>
+                             <children>
+                                <config>
+                                    <children>
+                                        <mcautoreviewreminderemail_section translate="title" module="mcautoreviewreminderemail">
+                                            <title>Auto Review Reminder Email</title>
+                                            <sort_order>110</sort_order>
+                                        </mcautoreviewreminderemail_section>
+                                        </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    <crontab>
+        <jobs>
+            <mcautoreviewreminderemail_mail_send>
+                <schedule><cron_expr>* * * * *</cron_expr></schedule>
+                <run><model>mcautoreviewreminderemail/mcautoreviewreminderemail::sendReviewLinkEmail</model></run>
+            </mcautoreviewreminderemail_mail_send>
+        </jobs>
+    </crontab>
+</config>

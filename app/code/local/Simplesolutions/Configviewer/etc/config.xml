@@ -1,0 +1,20 @@
+<config>
+    <modules>
+        <Simplesolutions_Configviewer>
+            <version>0.1.0</version>
+        </Simplesolutions_Configviewer>
+    </modules>
+    <global>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <Simplesolutions_configviewer_model_observer>
+                        <type>singleton</type>
+                        <class>Simplesolutions_Configviewer_Model_Observer</class>
+                        <method>checkForConfigRequest</method>
+                    </Simplesolutions_configviewer_model_observer>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+    </global>
+</config>

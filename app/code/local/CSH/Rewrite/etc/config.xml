@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sitesquad - Refactoring modifications to core Magento files
+ *
+ * =============================================================================
+ * NOTE: See README.txt for more information about this extension
+ * =============================================================================
+ *
+ * @category   CSH
+ * @package    CSH_Rewrite
+ * @copyright  Copyright (c) 2015 Sitesquad. (http://www.sitesquad.net)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Phil Mobley <phil.mobley@sitesquad.net>
+ */
+-->
+<config>
+    <modules>
+        <CSH_Rewrite>
+            <version>0.1.0</version>
+        </CSH_Rewrite>
+    </modules>
+    <global>
+        <blocks>
+            <cshrewrite>
+                <class>CSH_Rewrite_Block</class>
+            </cshrewrite>
+            <catalog>
+                <rewrite>
+                    <leftnavigation>CSH_Rewrite_Block_Catalog_Leftnavigation</leftnavigation>
+                    <navigation>CSH_Rewrite_Block_Catalog_Navigation</navigation>
+                    <product_new>CSH_Rewrite_Block_Catalog_Product_New</product_new>
+                    <product_special>CSH_Rewrite_Block_Catalog_Product_Special</product_special>
+                </rewrite>
+            </catalog>
+            <cms>
+                <rewrite>
+					<block>CSH_Rewrite_Block_Cms_Block</block>
+                    <eblock>CSH_Rewrite_Block_Cms_Eblock</eblock>
+                </rewrite>
+            </cms>
+            <checkout>
+                <rewrite>
+                    <cart_header>CSH_Rewrite_Block_Checkout_Cart_Header</cart_header>
+                    <onepage_deliveryinstructions>CSH_Rewrite_Block_Checkout_Onepage_Deliveryinstructions</onepage_deliveryinstructions>
+                </rewrite>
+            </checkout>
+            <googleanalytics>
+                <rewrite>
+                    <ga>CSH_Rewrite_Block_Googleanalytics_Ga</ga>
+                </rewrite>
+            </googleanalytics>
+        </blocks>
+        <helpers>
+            <cshrewrite>
+                <class>CSH_Rewrite_Helper</class>
+            </cshrewrite>
+        </helpers>
+        <models>
+            <cshrewrite>
+                <class>CSH_Rewrite_Model</class>
+            </cshrewrite>
+            <eav>
+                <rewrite>
+                    <entity_increment_order>CSH_Rewrite_Model_Eav_Entity_Increment_Order</entity_increment_order>
+                </rewrite>
+            </eav>
+        </models>
+        <resources>
+            <cshrewrite_setup>
+                <setup>
+                    <module>CSH_Rewrite</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </cshrewrite_setup>
+        </resources>
+    </global>
+    <!-- 
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <CSH_Rewrite before="Mage_Adminhtml">CSH_Rewrite_Adminhtml</CSH_Rewrite>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <cshrewrite>
+                    <file>sitesquad/cshrewrite.xml</file>
+                </cshrewrite>
+            </updates>
+        </layout>
+    </adminhtml>
+     -->
+</config>

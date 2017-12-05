@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- The root node for Magento module configuration -->
+
+<config>
+
+    <modules>
+
+        <Bull_LogProductUpdate>
+
+            <version>0.0.1</version>
+
+        </Bull_LogProductUpdate>
+
+    </modules>
+
+    <!-- Configure our module's global scope -->
+    <global>
+
+      <models>
+
+        <!-- Unique identifier in the model's node -->
+        <Bull_logproductupdate>
+
+          <class>Bull_LogProductUpdate_Model</class>
+
+        </Bull_logproductupdate>
+
+      </models>
+
+      <events>
+
+        <catalog_product_save_after>
+
+          <observers>
+
+            <Bull_logproductupdate>
+
+              <class>Bull_logproductupdate/observer</class>
+
+              <method>logUpdate</method>
+
+              <type>singleton</type>
+
+            </Bull_logproductupdate>
+
+          </observers>
+
+        </catalog_product_save_after>
+
+      </events>
+
+    </global>
+
+</config>

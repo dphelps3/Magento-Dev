@@ -1,0 +1,32 @@
+<?php $value =Mage::registry('formbuilder')->getData('field');?>
+<?php $fieldvalue='';?>
+<?php if(isset($value) && !empty($value)):?>
+	<?php $id=$this->getId();?>
+	<?php $fieldvalue=$value[$id];?>
+	
+<?php endif;?>
+
+
+<ul style='padding:10px'>
+<?php
+$validate='';
+$options = $this->getFieldOptions();
+$j=0;
+foreach($this->getFieldOptions() as $i=>$option):?>
+	<?php $checked = false;
+		if($option["checked"]){
+		$checked = 'checked';
+		}
+	?>
+<?php $j++;?>
+<?php  if($this->getField()->getIsRequire() && $j==(count($options))):?>
+		<?php $validate = "validate-one-required-by-name";?>
+<?php endif;?>
+
+<li class='control'>
+	<input style='float:left' type='radio' name='<?php echo $this->getFieldName()?>[]' id='<?php echo $this->getFieldId().'['.$i.']'?>' value="<?php echo htmlspecialchars($option["label"])?>" class='<?php echo $this->getFieldClass()?> <?php echo $validate;?>' <?php if(isset($fieldvalue) && !empty($fieldvalue)):?><?php if(htmlspecialchars($option["label"]) ==$fieldvalue[0] ):?> checked="checked" <?php endif;?><?php else:?><?php echo $checked?><?php endif;?>/>
+	<label for='<?php echo $this->getFieldId().'['.$i.']'?>'><?php echo $option['label']?></label>
+</li>
+
+<?php endforeach;?>
+</ul>

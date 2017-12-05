@@ -1,0 +1,7 @@
+<?php $_product = $this->getProduct() ?>
+<?php echo $this->getChildHtml('iwd-qv-samples') ?>
+<?php
+if(Mage::helper('core')->isModuleEnabled('IWD_StockNotification')) {
+    echo ($this->getLayout()->createBlock('stocknotification/default')->setTemplate('stocknotification/default.phtml')->toHtml());
+}
+?>

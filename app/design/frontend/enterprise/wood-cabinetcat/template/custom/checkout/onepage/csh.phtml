@@ -1,0 +1,55 @@
+<form id="co-csh-form" action="">
+<fieldset>
+    <ul class="form-list">
+    <li id="csh-form">
+        <fieldset>
+            <ul>
+                <li class="wide">
+                    <label for="csh:like" class="required"><em>*</em><?php echo $this->__('Is this a residential shipment?') ?></label>
+                    <div class="input-box" id="csh_like">
+                        <select class="required-entry" name="csh[like]" id="csh:like" onchange="liftgate(this);">
+                        	<option value=''><?php echo $this->__('Please Choose..');?></option>
+                        	<option value='1' <?php if($this->getQuote()->getCshLike() == 1){echo 'selected="selected"';} ?>><?php echo $this->__('Yes');?></option>
+                        	<option value='2' <?php if($this->getQuote()->getCshLike() == 2){echo 'selected="selected"';} ?>><?php echo $this->__('No');?></option>
+                        </select>
+                    </div>
+                </li>
+				<li class="wide">
+					<div id="liftgatediv" style="display:none;">
+						<label for="csh:liftgate" class="liftgate"><?php echo $this->__('Do you require liftgate assistance?') ?></label>
+						<div class="input-box">
+							<select class="required-entry" name="csh[liftgate]" id="csh:liftgate">
+								<option value=''><?php echo $this->__('Please Choose..');?></option>
+								<option value='1' <?php if($this->getQuote()->getCshLiftgate() == 1){echo 'selected="selected"';} ?>><?php echo $this->__('Yes');?></option>
+								<option value='2' <?php if($this->getQuote()->getCshLiftgate() == 2){echo 'selected="selected"';} ?>><?php echo $this->__('No');?></option>
+							</select>
+						</div>
+					</div>
+				</li>
+            </ul>
+        </fieldset>
+     </li>
+    </ul>
+    <div class="buttons-set" id="csh-buttons-container">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="button" title="<?php echo $this->__('Continue') ?>" class="button" onclick="csh.save()"><span><span><?php echo $this->__('Continue') ?></span></span></button>
+        <span class="please-wait" id="csh-please-wait" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading next step...') ?>" title="<?php echo $this->__('Loading next step...') ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
+        </span>
+    </div>
+</fieldset>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var csh = new CshMethod('co-csh-form','<?php echo $this->getUrl('custom/onepage/saveCsh') ?>');
+    var cshForm = new VarienForm('co-csh-form');
+//]]>
+
+function liftgate(a) {
+	if(jQuery(a).val() == '2') {
+		jQuery('#liftgatediv').css("display","block");
+	} else {
+		jQuery('#liftgatediv').css("display","none");
+	}
+}
+</script>

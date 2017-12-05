@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <CSH_Holepunch>
+      <version>0.1.0</version>
+    </CSH_Holepunch>
+  </modules>
+  <global>
+    <helpers>
+      <holepunch>
+        <class>CSH_Holepunch_Helper</class>
+      </holepunch>
+    </helpers>
+  </global>
+</config> 

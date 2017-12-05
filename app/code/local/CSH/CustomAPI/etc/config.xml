@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <CSH_CustomAPI>
+      <version>1.0.0</version>
+    </CSH_CustomAPI>
+  </modules>
+  <global>
+    <helpers>
+      <customapi>
+        <class>CSH_CustomAPI_Helper</class>
+      </customapi>
+    </helpers>
+	<models>
+	  <customapi>
+		<class>CSH_CustomAPI_Model</class>
+		<resourceModel>customapi_mysql4</resourceModel>
+	  </customapi>
+			<sales>
+				<rewrite>
+					<order_api>CSH_CustomAPI_Model_Sales_Order_Api</order_api>
+				</rewrite>
+			</sales>
+	</models>
+  </global>
+</config> 

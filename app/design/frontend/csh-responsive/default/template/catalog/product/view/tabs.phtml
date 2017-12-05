@@ -1,0 +1,86 @@
+<?php
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ */
+?>
+<style type="text/css">
+    ul.nav.nav-tabs li{
+        margin-top:3px;
+    }
+    ul.nav.nav-tabs li a{
+        background-image:url(/media/wysiwyg/Rolling_Library_Ladders_legend_background.jpg);
+        color:#fff;
+        font-size:16px;
+        font-weight:700;
+    }
+    ul.nav.nav-tabs li.active a{
+        
+        background-image:none;
+        color:#444;
+    }
+</style>
+<?php 
+$tab = 0;
+$last = '';
+if ($tab != $this->getChildHtml('product_custom_tab')): $last = 'last'; endif; ?>
+
+<ul class="nav nav-tabs" >
+    <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+        <?php if($this->getChildHtml($_tab['alias'])): ?>
+            <li id="product_tabs_<?php echo str_replace('.','_',$_tab['alias']); ?>" class="<?php echo !$_index?' active first':(($_index==count($this->getTabs())-1)? $last :'')?>"><a href="#product_tabs_<?php echo str_replace('.','_',$_tab['alias']); ?>_contents" data-toggle="tab"><?php echo $_tab['title']?></a></li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    <?php if ($tab = $this->getChildHtml('product_custom_tab')): ?>
+        <?php $tabTitle = Mage::getModel('cms/block')->setStoreId(Mage::app()->getStore()->getId())->load('product_custom_tab')->getTitle(); ?>
+        <li id="product_tabs_custom" class="last"><div class="tab-left"></div><a href="#"><?php echo $tabTitle; ?></a><div class="tab-right"></div></li>
+	<?php endif; ?>      
+    
+</ul>
+<div class="tab-content">
+<?php foreach ($this->getTabs() as $_index => $_tab): ?>
+    <?php if($this->getChildHtml($_tab['alias'])): ?>
+        <div class="<?php echo !$_index?' active first':(($_index==count($this->getTabs())-1)? $last :'')?> product-tabs-content tab-pane" id="product_tabs_<?php echo str_replace('.','_',$_tab['alias']); ?>_contents"><?php echo $this->getChildHtml($_tab['alias']) ?></div>
+    <?php endif; ?>
+<?php endforeach; ?>
+<?php if ($tab = $this->getChildHtml('product_custom_tab')): ?>
+    <div class="product-tabs-content tab-pane" id="product_tabs_custom_contents"><?php echo $tab ?></div>
+<?php endif; ?>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+/*
+Varien.Tabs = Class.create();
+Varien.Tabs.prototype = {
+  initialize: function(selector) {
+    var self=this;
+    $$(selector+' a').each(this.initTab.bind(this));
+  },
+
+  initTab: function(el) {
+      el.href = 'javascript:void(0)';
+      if ($(el.parentNode).hasClassName('active')) {
+        this.showContent(el);
+      }
+      el.observe('click', this.showContent.bind(this, el));
+  },
+
+  showContent: function(a) {
+    var li = $(a.parentNode), ul = $(li.parentNode);
+    ul.select('li', 'ol').each(function(el){
+      var contents = $(el.id+'_contents');
+      if (el==li) {
+        el.addClassName('active');
+        contents.show();
+      } else {
+        el.removeClassName('active');
+        contents.hide();
+      }
+    });
+  }
+}
+new Varien.Tabs('.product-tabs');
+*/
+//]]>
+</script>

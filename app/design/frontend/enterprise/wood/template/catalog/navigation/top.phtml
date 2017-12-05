@@ -1,0 +1,423 @@
+<?php
+/**
+ * $this->renderCategoriesMenuHtml() supports optional arguments:
+ * int Level number for list item class to start from
+ * string Extra class of outermost list items
+ * string If specified wraps children list in div with this class
+ */
+?>
+<?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
+<?php if (!Mage::app()->getStore()->isCurrentlySecure()): ?>
+	<?php $media = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>
+<?php else: ?>
+	<?php $media = '/media/'; ?>
+<?php endif; ?>
+<div class="nav-container">
+    <div class="right-bg">
+        <ul id="nav">
+            <li class="level0 first homelink"><a href="<?php echo $this->getBaseUrl(); ?>"><span><?php echo $this->__('Home') ?></span></a></li>
+            <?php if($_menu): ?>
+                <?php echo $_menu ?>
+            <?php endif ?>
+            <?php /*$additionalLink = themeOptions('additionalLink'); */ ?>
+            <?php /*$additionalLinkUrl = themeOptions('additionalLinkUrl'); */ ?>
+			<?php $additionalLink = 'RTA Cabinets';  ?>
+            <?php $additionalLinkUrl = 'http://www.cshardware.com/kitchen-and-bath/cabinets/kitchen-cabinets.html' ?>
+
+           <li class="level0 block_li parent">
+                    <a class="level-top" href="#"><span>Kitchen & Bath</span></a>
+                    <div class="nav_block" style="z-index: 10002"><ul class="blocklist">
+<li><a href="/kitchen-and-bath/cabinets.html"> <h3>Cabinets</h3></a>
+<ul class="level1">
+<li> <a href="/cabinet-promotions"> <span style="font-weight: bold;">Promotions!</span> </a> </li>
+<li> <a href="/kitchen-and-bath/cabinets/kitchen-cabinets.html"> <span>Kitchen Cabinets</span> </a> </li>
+<li> <a href="/kitchen-and-bath/cabinets/vanity-cabinets.html"> <span>Vanity Cabinets</span> </a> </li>
+<!-- 
+removed per J.Vickery request - 05-07-2015
+<li> <a href="/kitchen-and-bath/cabinets/vanity-tops.html"> <span>Vanity Tops</span> </a> </li>
+-->
+<li> <a href="/doors-and-drawers"> <span>Custom Doors and Drawers</span> </a> </li>
+<li style="margin-bottom:20px"> <a href="/kitchen-and-bath/backsplashes.html"><span>Decorative Backsplashes</span></a></li>
+</ul>
+
+</li>
+
+<li class="level1"> 
+<a href="/kitchen-and-bath/kitchen-accessories.html"> <h3>Kitchen Accessories </h3> </a>
+<ul class="level1 shown-sub">
+<li> <a href="/kitchen-and-bath/kitchen-accessories/faucets.html"> <span>Faucets</span> </a> </li>
+<li> <a href="/kitchen-and-bath/kitchen-accessories/sink-front-trays.html"> <span>Sink Front Trays</span> </a> </li>
+<li> <a href="/kitchen-and-bath/slides-and-drawers/rolling-shelves.html"> <span>Rolling Shelves</span> </a> </li>
+<li> <a href="/kitchen-and-bath/kitchen-accessories/drawer-inserts.html"> <span>Drawer Inserts</span> </a> </li>
+<li> <a href="/kitchen-and-bath/kitchen-accessories/ironing-centers.html"> <span>Ironing Centers</span> </a> </li>
+<li> <a href="/kitchen-and-bath/kitchen-accessories/lazy-susans.html"> <span>Lazy Susans</span> </a> </li>
+<li> <a href="/kitchen-and-bath/kitchen-accessories/range-hoods-and-vents.html"> <span> Range Hoods & Vents</span> </a> </li>
+<li> <a href="/kitchen-and-bath/kitchen-accessories/pull-outs.html"> <span>Storage Pull Outs</span> </a> </li>
+<li> <a href="/kitchen-and-bath/kitchen-accessories/on-door-storage.html"> <span>On-Door Storage</span> </a> </li>
+<li> <a href="/kitchen-and-bath/kitchen-accessories/specialty-storage.html"> <span> Specialty Storage</span> </a> </li>
+<li> <a href="/kitchen-and-bath/kitchen-accessories/waste-and-hamper-pull-outs.html"> <span>Waste & Hampers</span> </a> </li>
+<li> <a href="/kitchen-and-bath/kitchen-accessories/cutting-boards.html"> <span>Cutting Boards</span> </a> </li>
+</ul>
+</li>
+
+
+<li class="level1"> 
+<a href="/kitchen-and-bath/hinges-and-doors.html"> <h3>Hinges &amp; Doors</h3> </a>
+<ul class="level1 shown-sub">
+<li> <a href="/blum-aventos"> <span>Blum AVENTOS</span> </a> </li>
+<li> <a href="/kitchen-and-bath/hinges-and-doors/concealed-hinges.html"> <span>Concealed Hinges</span> </a> </li>
+<li> <a href="/kitchen-and-bath/hinges-and-doors/decorative-hinges.html"> <span>Decorative Hinges</span> </a> </li>
+<li> <a href="/kitchen-and-bath/hinges-and-doors/soss-hinges.html"> <span>Soss Hinges</span> </a> </li>
+<li> <a href="/kitchen-and-bath/hinges-and-doors/youngdale-hinges.html"> <span>Youngdale Hinges</span> </a> </li>
+<li> <a href="/kitchen-and-bath/hinges-and-doors/hinge-components.html"> <span>Hinge Components</span> </a> </li>
+<li> <a href="/kitchen-and-bath/hinges-and-doors/door-parts-and-accessories.html"> <span>Door Parts & Accessories</span> </a> </li>
+<li> <a href="/kitchen-and-bath/hinges-and-doors/spring-hinges.html"> <span>Spring Hinges</span> </a> </li>
+<li> <a href="/kitchen-and-bath/hinges-and-doors/steel-stainless-steel-hinges.html"> <span>Steel & Stainless Steel Hinges</span> </a> </li>
+<li> <a href="/kitchen-and-bath/hinges-and-doors/solid-brass-hinges-finials.html"> <span>Solid Brass Hinges & Finials</span> </a> </li>
+</ul>
+</li>
+
+
+
+<li class="level1"> 
+<a href="/drawer-slides"> <h3>Drawer Slides</h3> </a>
+<ul class="level1 shown-sub">
+<li> <a href="/kitchen-and-bath/slides-and-drawers/ball-bearing.html"> <span>Ball Bearing</span> </a> </li>
+<li> <a href="/kitchen-and-bath/slides-and-drawers/european-epoxy.html"> <span>European Epoxy</span> </a> </li>
+<li> <a href="/kitchen-and-bath/slides-and-drawers/slide-accessories.html"> <span>Slide Accessories</span> </a> </li>
+<li> <a href="/kitchen-and-bath/slides-and-drawers/drawer-parts-and-accessories.html"> <span>Drawer Parts &amp; Accessories</span> </a> </li>
+</ul>
+</li>
+<li class="level1"> 
+<a href="/decorative-hardware"><h3 >Decorative Hardware</h3></a>
+<ul class="level1 shown-sub">
+<li><a href="/kitchen-and-bath/decorative-hardware.html?type=41"><span>Knobs</span></a></li>
+<li><a href="/kitchen-and-bath/decorative-hardware.html?type=42"><span>Pulls</span></a></li>
+<li><a href="/kitchen-and-bath/decorative-hardware.html?type=44"><span>Backplates</span></a></li>
+<li><a href="/kitchen-and-bath/decorative-hardware.html?type=45"><span>Hooks</span></a></li>
+<li><a href="/kitchen-and-bath/decorative-hardware.html?type=Towel+Bar"><span>Towel Bars</span></a></li>
+<li><a href="/kitchen-and-bath/decorative-hardware.html?type=Towel+Ring"><span>Towel Rings</span></a></li>
+<li><a href="/kitchen-and-bath/decorative-hardware.html?type=Toilet+Paper+Holder"><span>Toilet Paper Holders</span></a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+<div class="nav_block1_footer">
+<img  src="<?php echo $media; ?>wysiwyg/redesign/rta_cabinet.png" alt="RTA Cabinets, Made in America" />
+<div class="bg_strip">RTA Cabinets Unlimited has been working to offer you the best value in cabinets since 2005.  Easy to assemble cabinets available in more than 30 styles that are stocked and ready to ship.  Cabinets are constructed of plywood and solid wood. Features soft-close undermount drawer slides and dovetailed drawer boxes at no additional charge.</div></div></div>
+                </li>
+    		 
+
+                                        	<li class="level0 block_li parent">
+                    <a class="level-top" href="#"><span>Rolling Ladders & Doors</span></a>
+                    <div class="nav_block" style="z-index: 10002"><ul class="blocklist">
+<li style="margin: 0 10px 0 0; width:280px; "><a href="/rolling-ladders-doors/rolling-door.html"> <h3 style="margin-bottom:5px;">Rolling Door Hardware</h3>
+<img style="margin-top:5px"  src="/media/wysiwyg/redesign/nav_rlgdoor.jpg" alt="Browse Rolling Barn Door Hardware Kits" />
+
+</a>
+<ul>
+    <li><a href="/rolling-barn-door-hardware">Round Rail Easy Order Form</a></li>
+    <li><a href="/flat-rail-door-hardware">Flat Rail Easy Order Form</a></li>
+</ul>
+</li>
+
+<li style="margin: 0 10px 0 0; width:280px; "><a href="/rolling-ladders-doors/rolling-door/barn-door.html"> <h3 style="margin-bottom:5px;">Pre-Assembled Barn Doors</h3>
+<img style="margin-top:5px"  src="/media/wysiwyg/redesign/pa-barn-doors.jpg" alt="Purchase a Pre-Assembled Barn Door" />
+
+</a>
+<ul>
+    <li><a href="/rolling-barn-door-hardware">Round Rail Easy Order Form</a></li>
+    <li><a href="/flat-rail-door-hardware">Flat Rail Easy Order Form</a></li>
+</ul>
+</li>
+
+<li style="margin: 0 10px 0 0; width:280px; "><a href="/rolling-library-ladder"> <h3 style="margin-bottom:5px;">Rolling Library Ladder</h3> 
+
+<img style="margin-top:5px" src="/media/wysiwyg/redesign/nav_rlgladder.jpg" alt="Browse Rolling Library Ladder Kits" />
+
+</a>
+<ul>
+<li><a href="/rolling-library-ladder">Easy Order Form</a></li>
+<li><a href="/rolling-ladders-doors/rolling-library-ladder.html">Browse Rolling Ladder Components</a></li>
+</ul>
+</li>
+
+</ul>
+<div class="clear"></div>
+<div class="nav_block1_footer nav_block2">
+<img src="/media/wysiwyg/redesign/qg_logo.png" alt="Quiet Glide, Made in the USA" /><div class="bg_strip">The classic look of a wooden rolling library ladder has never gone out of style. Quiet Glide has brought these ladders within reach for many for their libraries, pantries, walk-in closets, retail stores, wine cellars, and kitchens.  Custom Service Hardware takes pride in the Quiet Glide as the best example of hearing and responding to the needs of our customers. CSH has improved the function, affordability, and availability of rolling ladders in the industry.</div>
+
+</div>
+</div>
+                </li>
+    		 
+
+                                        	<li class="level0 block_li parent">
+                    <a class="level-top" href="#"><span>Invisidoor</span></a>
+                    <div class="nav_block" style="z-index: 10002"><ul class="blocklist">
+                    	<li style="margin: 0 10px 0 0; width:180px; "><a href="/hidden-door/bi-fold-hidden-door.html"><h3>Bi-Fold Bookcase</h3>
+<img style="margin-left: 10px;" src="https://cdn.cshardware.com/media/wysiwyg/bifold-id-main3.jpg" alt="Bi-Fold Bookcase Door" />
+</a></li>
+
+<li style="margin: 0 10px 0 0; width:180px; "><a href="/hidden-door/invisidoor.html"><h3>Pivot Bookcase</h3>
+<img style="margin-left: 17px;" src="https://cdn.cshardware.com/media/wysiwyg/pivot-id-main3.jpg" alt="Pivot Bookcase Door" />
+</a></li>
+
+<li style="margin: 0 10px 0 0; width:180px; clear:right;"><a href="/hidden-door/rta-invisidoor.html"><h3>RTA Pivot Bookcase</h3>
+<img style="margin-left: 17px;" src="https://cdn.cshardware.com/media/wysiwyg/rta-id-main3.jpg" alt="RTA Pivot Bookcase Door" />
+</a></li>
+</ul>
+
+<div style="float: left; clear: both; margin-left: 18px;margin-top:5px;">Bookcases available as complete door kits or hardware only.</div>
+
+
+<div style="float: left; clear: both; margin-top: 15px; margin-left: 15px; margin-bottom:-25px;"><a href="https://www.houzz.com/pro/cshardware/cs-hardware" target="_blank"><img src="https://cdn.cshardware.com/media/wysiwyg/CSH_Invisidoor_TopNav_Flyout_Houzz.png" /></a><img src="https://cdn.cshardware.com/media/wysiwyg/CSH_Invisidoor_TopNav_Flyout_America.png" /></div>
+
+<div class="nav_block_right" style="width: 310px; background-color: #f3f3f1; clear: both; margin-top: -350px; margin-bottom: 11px; margin-right: 2px;">
+<div align="center" style="font-size: 18px; background-color: #f3f3f1;">
+<img style="margin-top: 5px;" src="https://cdn.cshardware.com/media/wysiwyg/CSH_Invisidoor_Logo.png" alt="InvisiDoor" title="InvisiDoor" /><p style="padding: 15px;">The <strong>InvisiDoor Hidden Bookcase Door kits</strong> and <strong>Hidden Storage kits</strong> add easy-to-install security features to your home.</p>
+<a style="margin-left: 57px;" href="/hidden-door.html"><img src="https://cdn.cshardware.com/media/wysiwyg/CSH_Invisidoor_ViewAll_Button.png" alt="View all InvisiDoor products" title="View all InvisiDoor products" /></a>
+</div></div>
+</div>
+                </li>
+    		 
+
+                                        	<li class="level0 block_li parent">
+                    <a class="level-top" href="#"><span>Hardware</span></a>
+                    <div class="nav_block" style="z-index: 10002"><ul id="nav_block4" class="blocklist">
+<li>
+<a href="/hardware-supplies"><h3>Hardware Supplies</h3></a>
+<ul class="level1">
+<li><a href="/hardware/hardware-supplies/abrasives.html">Abrasives</a></li>
+<li><a href="/hardware/hardware-supplies/bolts.html">Bolts</a></li>
+<li><a href="/hardware/hardware-supplies/connectors.html">Connectors</a></li>
+<li><a href="/hardware/hardware-supplies/glue.html">Glue</a></li>
+<li><a href="/hardware/hardware-supplies/nails-and-staples.html">Nails & Staples</a></li>
+<li><a href="/hardware/hardware-supplies/nuts-and-washers.html">Nuts & Washers</a></li>
+<li><a href="/hardware/hardware-supplies/panel-spacers.html">Panel Spacers</a></li>
+<li><a href="/hardware/hardware-supplies/screws.html">Screws</a></li>
+<li><a href="/hardware/hardware-supplies/tape.html">Tape</a></li>
+<li><a href="/hardware/hardware-supplies/wall-anchors-and-hangers.html">Wall Anchors</a></li>
+</ul>
+<!-- image URL to new Screw Finder page -->
+<a href="/screwfinder"><img src="/media/images/screwfinder.png"></a>
+</li>
+<li>
+<a href="/hardware/architectural-hardware.html"><h3>Architectural Hardware</h3></a>
+<ul class="level1">
+<li><a href="/hardware/architectural-hardware/adapter-plates-and-covers.html">Adapter Plates & Covers</a></li>
+<li><a href="/hardware/architectural-hardware/bolts-latches-and-guards.html">Bolts, Latches & Guards</a></li>
+<li><a href="/decorative-hardware">Decorative Hardware</a></li>
+<li><a href="/hardware/architectural-hardware/door-knobs-and-handles.html">Door Knobs & Handles</a></li>
+<li><a href="/hardware/architectural-hardware/door-knockers.html">Door Knockers</a></li>
+<li><a href="/hardware/architectural-hardware/door-reinforcers.html">Door Reinforcers</a></li>
+<li><a href="/hardware/architectural-hardware/drawer-cabinet-and-mailbox-locks.html">Drawer, Cabinet & Mailbox Locks</a></li>
+<li><a href="/hardware/architectural-hardware/magnetic-door-holders-and-stops.html">Magnetic Door Holders & Stops</a></li>
+<li><a href="/hardware/architectural-hardware/patio-and-window-locks.html">Patio & Windows Locks</a></li>
+<li><a href="/hardware/architectural-hardware/railing-systems.html">Railing Systems</a></li>
+<li><a href="/hardware/architectural-hardware/shutter-hardware.html">Shutter Hardware</a></li>
+<li><a href="/hardware/architectural-hardware/steel-radius-hinges.html">Steel Radius Hinges</a></li>
+<li><a href="/hardware/architectural-hardware/strike-plates-and-latch-guards.html">Strike Plates & Latch Guards</a></li>
+<li><a href="/hardware/architectural-hardware/switch-plates.html">Switch Plates</a></li>
+</ul>
+</li>
+<li><a href="/hardware/furniture-hardware.html"><h3>Furniture Hardware</h3></a>
+<ul class="level1">
+<li><a href="/hardware/furniture-hardware/bed-hardware.html">Bed Hardware</a></li>
+<li><a href="/hardware/furniture-hardware/lid-stays.html">Lid Stays</a></li>
+<li><a href="/hardware/furniture-hardware/brackets-and-shelf-supports.html">Brackets & Shelf Supports</a></li>
+<li><a href="/hardware/furniture-hardware/casters.html">Casters</a></li>
+<li><a href="/hardware/furniture-hardware/entertainment-center-flipper-door-hardware.html">Entertainment Center Flipper Door Hardware</a></li>
+<li><a href="/hardware/furniture-hardware/garage-storage-racks.html">Garage Storage Racks</a></li>
+<li><a href="/hardware/furniture-hardware/glass-mirror-and-panel-hardware.html">Glass, Mirror, and Panel Hardware</a></li>
+<li><a href="/hardware/furniture-hardware/grommets.html">Grommets</a></li>
+<li><a href="/hardware/furniture-hardware/leg-levelers-and-glides.html">Leg Levelers & Glides</a></li>
+<li><a href="/hardware/furniture-hardware/locks.html">Locks</a></li>
+<li><a href="/hardware/furniture-hardware/office-and-media-storage.html">Office & Media Storage</a></li>
+<li><a href="/hardware/furniture-hardware/special-application-hinges.html"><span>Special Application Hinges</span> </a> </li>
+<li><a href="/hardware/furniture-hardware/swivels.html">Swivels</a></li>
+<li><a href="/hardware/furniture-hardware/table-hardware.html">Table Hardware</a></li>
+<li><a href="/hardware/furniture-hardware/tv-lifts.html">TV Lifts</a></li>
+<li><a href="/hardware/furniture-hardware/wall-beds.html">Wall Beds</a></li>
+</ul>
+
+</li>
+<li><a href="/closet-hardware"><h3>Closet Hardware</h3></a>
+<ul class="level1">
+<li><a href="/hardware/closet-hardware/belt-and-tie-pullouts.html">Belt & Tie Pullouts</a></li>
+<li><a href="/hardware/closet-hardware/closet-rods.html">Closet Rods</a></li>
+<li><a href="/hardware/closet-hardware/hampers.html">Hampers</a></li>
+<li><a href="/hardware/closet-hardware/pant-racks.html">Pant Racks</a></li>
+<li><a href="/hardware/closet-hardware/sliding-door-hardware.html">Sliding Door Hardware</a></li>
+<li><a href="/hardware/closet-hardware/shoe-storage.html">Shoe Storage</a></li>
+<li><a href="/hardware/closet-hardware/closet-storage-pullouts.html">Storage Pullouts</a></li>
+</ul>
+
+
+
+</li>
+<li>
+<a href="/lighting-and-electronics"><h3>Lighting & Electronics</h3></a>
+<ul class="level1">
+<li><a href="/hardware/lighting-and-electronics/light-fixtures.html">Light Fixtures</a></li>
+<li><a href="/hardware/lighting-and-electronics/ceiling-fans.html">Ceiling Fans</a></li>
+<li><a href="/hardware/lighting-and-electronics/audio-electronics.html">Audio Electronics</a></li>
+<li><a href="/hardware/lighting-and-electronics/dimmers-switches-and-power-supplies.html">Dimmers, Switches, and Power Supplies</a></li>
+<li><a href="/hardware/lighting-and-electronics/light-bulbs.html">Light Bulbs</a></li>
+<li><a href="/hardware/lighting-and-electronics/under-cabinet-lighting.html">Under Cabinet Lighting</a></li>
+<li><a href="/hardware/lighting-and-electronics/lighting-components.html">Lighting Components</a></li>
+<li><a href="/hardware/lighting-and-electronics/light-switch-plates.html">Light Switch Plates</a></li>
+<li><a href="/hardware/lighting-and-electronics/power-strips.html">Power Strips</a></li>
+</ul>
+</li>
+
+</ul>
+<div class="clear"></div>
+<div class="nav_block1_footer nav_block4">
+<img src="/skin/frontend/enterprise/wood/images/cshLogoc.png" alt="Custom Service Hardware" /><div class="bg_strip">Custom Service Hardware offers you the opportunity to save money on all your hardware needs. Our goal is to provide the service that is customized to meet your needs and supply you the best quality hardware at the lowest possible price. Browse a high-quality selection of specialty hardware items tailored for your specific need.</div>
+
+</div></div>
+                </li>
+    		 
+
+                                        	<li class="level0 block_li parent">
+                    <a class="level-top" href="#"><span>Tools</span></a>
+                    <div class="nav_block" style="z-index: 10002"><ul class="blocklist">
+<li style="width:175px">
+
+<a href="/tools/tools-and-accessories.html"><h3>Tools & Accessories</h3></a>
+<ul>
+<li style="width:165px"><a href="/tools/tools-and-accessories/biscuit-joiner-tools.html">Biscuit Joiner Tools</a></li>
+<li style="width:165px"><a href="/tools/tools-and-accessories/cleaners-and-lubricants.html">Cleaners & Lubricants</a></li>
+<li style="width:165px"><a href="/tools/tools-and-accessories/drill-jigs-and-spacers.html">Drill Jigs & Spacers</a></li>
+<li><a href="/tools/tools-and-accessories/drivers-and-driver-bits.html">Drivers & Driver Bits</a></li>
+<li><a href="/tools/tools-and-accessories/glue-spreaders.html">Glue Spreaders</a></li>
+<li style="width:165px"><a href="/tools/tools-and-accessories/laminate-edgebanding-tools.html">Laminate/Edgebanding Tools</a></li>
+<li style="width:165px"><a href="/tools/tools-and-accessories/levels-squares-and-layout.html">Levels, Squares, and Layout</a></li>
+<li><a href="/tools/tools-and-accessories/miscellaneous-tools.html">Miscellaneous Tools</a></li>
+<li style="width:165px"><a href="/tools/tools-and-accessories/packaging-tools-and-materials.html">Packaging Tools & Materials</a></li>
+<li><a href="/tools/tools-and-accessories/tape-measures.html">Tape Measures</a></li>
+<li><a href="/tools/tools-and-accessories/hammers.html">Hammers</a></li>
+<li><a href="/tools/tools-and-accessories/pliers-cutters-snips.html">Pliers, Cutters & Snips</a></li>
+<li><a href="/tools/tools-and-accessories/wrenches.html">Wrenches</a></li>
+<li><a href="/tools/tools-and-accessories/screwdrivers.html">Screwdrivers</a></li>
+</ul>
+
+</li>
+<li style="width:165px"><a href="/tools/power-tools.html"><h3>Power Tools</h3></a>
+<ul>
+<li><a href="/tools/power-tools/pneumatic-tools.html">Pneumatic Tools</a></li>
+<li style="width:165px"><a href="/tools/power-tools/pocket-hole-machines.html">Pocket Hole Machines</a></li>
+<li><a href="/tools/power-tools/circular-saw-blades.html">Circular Saw Blades</a></li>
+<li><a href="/tools/power-tools/oscillating-blades.html">Oscillating Blades</a></li>
+<li style="width:165px"><a href="/tools/power-tools/saw-upgrades-and-guides.html">Saw Upgrades & Guides</a></li>
+<li><a href="/tools/power-tools/bits.html">Bits</a></li>
+<li><a href="/tools/power-tools/drill-bit-components-upgrades.html">Drill Bit Components</a></li>
+<li><a href="/tools/power-tools/router-tables-and-guides.html">Router Tables & Guides</a></li>
+
+</ul>
+</li>
+<li><a href="/tools/clamps.html"><h3>Clamps</h3></a>
+<ul>
+<li><a href="/tools/clamps/bar-clamps.html">Bar Clamps</a></li>
+<li><a href="/tools/clamps/bessey-auto-adjust-toggle-clamps.html">Bessey Auto Adjust Toggle Clamps</a></li>
+<li><a href="/tools/clamps/pipe-clamps.html">Pipe Clamps</a></li>
+<li><a href="/tools/clamps/specialty-clamps.html">Specialty Clamps</a></li>
+<li><a href="/tools/clamps/spring-clamps.html">Spring Clamps</a></li>
+<li><a href="/tools/clamps/clamp-tables-and-assistants.html">Clamp Tables & Assistants</a></li>
+<li><a href="/tools/clamps/clamp-accessories.html">Clamp Accessories</a></li>
+</ul></li>
+
+<li style="width:175px"><a href="/tools/shop-and-job-site-accessories.html"><h3>Shop & Job Site Accessories</h3></a>
+<ul>
+<li><a href="/tools/shop-and-job-site-accessories/3rd-hand.html">3rd Hand</a></li>
+<li><a href="/tools/shop-and-job-site-accessories/apparel.html">Apparel</a></li>
+<li><a href="/tools/shop-and-job-site-accessories/dust-masks.html">Dust Masks</a></li>
+<li><a href="/tools/shop-and-job-site-accessories/ear-plugs.html">Ear Plugs</a></li>
+<li><a href="/tools/shop-and-job-site-accessories/moisturizing-creams.html">Moisturizing Creams</a></li>
+<li><a href="/tools/shop-and-job-site-accessories/movers-and-dollies.html">Movers & Dollies</a></li>
+<li><a href="/tools/shop-and-job-site-accessories/organizers.html">Organizers</a></li>
+<li><a href="/tools/shop-and-job-site-accessories/other.html">Other</a></li>
+<li><a href="/tools/shop-and-job-site-accessories/respirators.html">Respirators</a></li>
+<li><a href="/tools/shop-and-job-site-accessories/safety-glasses.html">Safety Glasses</a></li>
+</ul>
+
+</li>
+
+</ul></div>
+                </li>
+    		 
+
+                                        	<li class="level0 block_li parent">
+                    <a class="level-top" href="#"><span>Wood Products</span></a>
+                    <div class="nav_block" style="z-index: 10002"><ul class="blocklist">
+<li><a href="/wood-products/fireplace-items.html"><h3>Fireplace Items</h3></a>
+<ul>
+<li><a href="/wood-products/fireplace-items/fireplace-accessories.html">Fireplace Accessories</a></li>
+<li><a href="/wood-products/fireplace-items/mantels.html">Mantels</a></li>
+</ul>
+</li>
+<li><a href="/wood-products/wood-items-and-fillers.html"><h3>Wood Items &<br>Fillers</h3></a>
+<ul>
+<li><a href="/wood-products/wood-items-and-fillers/plugs-dowels-and-pegs.html">Plugs, Dowels,<br>and Pegs</a></li>
+<li><a href="/wood-products/wood-items-and-fillers/tambour.html">Tambour</a></li>
+<li><a href="/wood-products/wood-items-and-fillers/vents-and-grills.html">Vents & Grills</a></li>
+<li><a href="/wood-products/wood-items-and-fillers/wood-biscuits.html">Wood Biscuits</a></li>
+<li><a href="/wood-products/wood-items-and-fillers/wood-filler.html">Wood Filler</a></li>
+</ul>
+</li>
+<li><a href="/wood-products/edgebanding-and-veneer.html"><h3>Edgebanding & Veneer</h3></a>
+<ul>
+<li><a href="/wood-products/edgebanding-and-veneer/edgebanding.html">Edgebanding</a></li>
+<li><a href="/wood-products/edgebanding-and-veneer/veneer-sheets.html">Veneer Sheets</a></li>
+<li><a href="/wood-products/edgebanding-and-veneer/fastcaps.html">Fastcaps</a></li>
+</ul>
+</li>
+<li><a href="/wood-products/wood-carvings.html"><h3>Wood Carvings</h3></a>
+<ul>
+<li><a href="/wood-products/wood-carvings/appliques-and-medallions.html">Appliques &<br>Medallions</a></li>
+<li><a href="/wood-products/wood-carvings/baseboards-mouldings-and-rails.html">Baseboards,<br>Mouldings, & Rails</a></li>
+<li><a href="/wood-products/wood-carvings/columns-and-pilasters.html">Columns & Pilasters</a></li>
+<li><a href="/wood-products/wood-carvings/corbels-and-supports.html">Corbels & Supports</a></li>
+<li><a href="/wood-products/wood-carvings/feet.html">Feet</a></li>
+<li><a href="/wood-products/wood-carvings/island-legs-and-turnings.html">Island Legs &<br>Turnings</a></li>
+<li><a href="/wood-products/wood-carvings/openings.html">Openings</a></li>
+<li><a href="/wood-products/wood-carvings/pediments.html">Pediments</a></li>
+<li><a href="/wood-products/wood-carvings/valances.html">Valances</a></li>
+</ul></li>
+
+<li><a href="/wood-products/finishes/interior.html"><h3>Finishes</h3></a>
+	<ul>
+		<li><a href="/wood-products/finishes/interior/milk-paints.html">Milk Paints</a></li>
+		<li><a href="/group-chalkpaint.html">Chalk Paints</a></li>
+		<li><a href="/wood-products/finishes/interior/dye-stains.html">Dye Stains</a></li>
+		<li><a href="/wood-products/finishes/interior/wood-stains.html">Wood Stains</a></li>
+		<li><a href="/wood-products/finishes/interior/polyurethane.html">Polyurethanes<br>and Varnishes</a></li>
+		<li><a href="/wood-products/finishes/interior/sanding-sealer-basecoat.html">Sanding Sealer Basecoat</a></li>
+		<li><a href="/wood-products/finishes/interior/accessories.html">Accessories</a></li>						
+		
+	</ul>
+</li>
+
+<li><a href="/wood-products/wood-restoration-products.html"><h3>Wood Restoration Products</h3></a>
+	<ul>
+		<li><a href="/wood-products/wood-restoration-products.html">Restoration Kits</a></li>					
+		
+	</ul>
+</li>
+
+</ul></div>
+                </li> 
+            
+            <?php if($additionalLinkUrl && $additionalLink): ?>
+                <li class="level0 clearence"><a href="<?php echo $additionalLinkUrl ?>" title="<?php echo $additionalLink ?>"><span><?php echo $additionalLink ?></span></a></li>
+            <?php endif ?> 
+                 
+        </ul>
+    </div>
+</div>
+<!-- New div class for clearance button in absolute position -->
+<div style="position: absolute; top: 204px; width: 980px;z-index: 10">
+<a href="/owners-corner.html"><img src="/images/oc-image.png" onmouseover="this.src='/images/oc-image2.png'" onmouseout="this.src='/images/oc-image.png'" style="position: absolute; right: 96px;"></a>
+<a href="/sales.html"><img src="/images/clearance-image.png" onmouseover="this.src='/images/clearance-image2.png'" onmouseout="this.src='/images/clearance-image.png'" style="position: absolute; right: 0px;"></a>
+</div>

@@ -1,0 +1,36 @@
+<?php
+/**
+ * template
+ */
+$items = $this->getLeftMenuCollection();
+$width = $this->getSubMenuWidth($items);
+$effect = $this->getEffect();
+$mobile_effect = Mage::getStoreConfig('megamenu/mobile_menu/mobile_effect', $this->getStoreId());
+$menu_type = Mage::getStoreConfig('megamenu/left_menu/responsive', $this->getStoreId());
+$className = $this->getClassMenuType('leftmenu');
+$change =  intval(Mage::getStoreConfig('megamenu/left_menu/menu_width_main', $this->getStoreId()));
+?>
+<div class="megamenu-pc ms-megamenu">
+    <ul id="ms-leftmenu" class="ms-leftmenu <?php echo $className;?>">
+        <?php if($menu_type != Magestore_Megamenu_Model_Megamenu::NO_RESPONSIVE): ?>
+            <li  class="anchor_mbmenu col-xs-12 text-right"><a  class="anchor_mbmenu_text  glyphicon glyphicon-align-justify">&nbsp;</a></li>
+        <?php endif;?>
+        <?php foreach($items as $item):?>
+            <li class="msl-level0 nav-<?php echo $item->getId(); ?><?php if($item->getLeftsubmenuAlign()):?> item_relative<?php endif; ?>" id="nav-<?php echo $item->getId(); ?>">
+                <a class="msl-label <?php if($item->getMenuType() == Magestore_Megamenu_Model_Megamenu::ANCHOR_TEXT): ?>anchor_text<?php endif;?>" <?php if($item->getLink()):?> href="<?php echo $item->getLink();?>"<?php endif; ?>>
+                    <?php if($item->getItemIcon()):?><img draggable="false" alt="<?php echo $item->getNameMenu() ?>" class="ms-iconmega" src="<?php echo Mage::getBaseUrl('media')  . '/' . $item->getItemIcon() ?>"/>&nbsp;<?php endif; ?>
+                    <?php echo $item->getNameMenu() ?>
+                    <span class="glyphicon small glyphicon-chevron-right">&nbsp;</span>
+                </a>
+                <?php if($item->getMenuType() != Magestore_Megamenu_Model_Megamenu::ANCHOR_TEXT):?><span class="mb-label glyphicon <?php if($mobile_effect == Magestore_Megamenu_Model_Megamenu::MOBILE_BLIND): ?>glyphicon-plus<?php else:?>glyphicon-chevron-right<?php endif; ?>">&nbsp;</span><?php endif; ?>
+                <?php echo $this->getContent($item); ?>
+            </li>
+        <?php endforeach;?>
+    </ul>
+</div>
+<script type="text/javascript">
+    var left = new LEFTMENU(mega('#ms-leftmenu'),mega('.main'),<?php echo $effect;?>,<?php echo $change;?>,<?php echo $width ;?>,<?php echo $menu_type;?>);
+    mega(window).resize(function() {
+        left.updateScreen();
+    });
+</script>

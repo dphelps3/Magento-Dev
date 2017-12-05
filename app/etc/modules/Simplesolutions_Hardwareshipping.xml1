@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Simplesolutions_Hardwareshipping>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Simplesolutions_Hardwareshipping>
+    </modules>
+</config>

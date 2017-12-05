@@ -1,0 +1,48 @@
+<?php if ($this->getIsNeedToDisplaySideBar()):?>
+<div class="hidden" id="wrrapper-ajaxcart-dropdown">
+<div class="es-top-cart">
+	<div class="es-block">
+		<div class="es-top-cart-arrow"></div>
+		    <?php $_cartQty = $this->getSummaryCount() ?>
+		  
+		    <div class="block-content">
+		   
+		    <?php $_items = $this->getRecentItems() ?>
+		    <?php if(count($_items)): ?>		      
+		        <ol class="es-cart-list">
+		        <?php foreach($_items as $_item): ?>
+		            <?php echo $this->getItemHtml($_item) ?>
+		        <?php endforeach; ?>
+		        </ol>
+		        <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+		    <?php else: ?>
+		        <p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+		    <?php endif ?>
+		    
+		     <?php if ($_cartQty>0): ?>
+		        <div class="es-summary">           
+		            <p class="subtotal">
+		                <?php if ($this->canApplyMsrp()): ?>
+		                    <span class="map-cart-sidebar-total"><?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></span>
+		                <?php else: ?>
+		                    <span class="label"><?php echo $this->__('Cart Subtotal:') ?></span> <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+		                    <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+		                        <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+		                    <?php endif; ?>
+		                <?php endif; ?>
+		            </p>
+		        </div>
+		    <?php endif ?>
+		    
+		    <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
+				<div class="top-cart-actions">
+					<?php echo $this->getChildHtml('extra_actions') ?>
+					<a class="es-view-cart left ext-button"  onclick="setLocation('<?php echo $this->getCartUrl() ?>')"><?php echo $this->__('View Cart') ?></a>
+			        <a class="es-checkout right main-button" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><?php echo $this->__('Checkout') ?></a>
+			    </div>
+			 <?php endif ?> 
+		    </div>
+	</div>
+</div>
+</div>
+<?php endif;?>

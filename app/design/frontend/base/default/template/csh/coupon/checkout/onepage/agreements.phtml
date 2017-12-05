@@ -1,0 +1,46 @@
+<?php
+/**
+ * Sitesquad - Custom Coupon functionality
+ *
+ * =============================================================================
+ * NOTE: See README.txt for more information about this extension
+ * =============================================================================
+ *
+ * @category   CSH
+ * @package    CSH_Coupon
+ * @copyright  Copyright (c) 2015 Sitesquad. (http://www.sitesquad.net)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Phil Mobley <phil.mobley@sitesquad.net>
+ */
+
+/**
+ * Added the child block 'checkout_review_coupon' to render the coupon form.
+ * The rest of the form is identical to "base/default" file for EE 1.12.0.0
+ */
+?>
+<?php
+/**
+ * @see Mage_Checkout_Block_Agreements
+ */
+/* @var $this Mage_Checkout_Block_Agreements */
+?>
+<?php echo $this->getChildHtml('checkout_review_coupon'); ?>
+<?php if (!$this->getAgreements()) return; ?>
+<form action="" id="checkout-agreements" onsubmit="return false;">
+<ol class="checkout-agreements">
+<?php foreach ($this->getAgreements() as $_a): ?>
+    <li>
+        <div class="agreement-content"<?php echo ($_a->getContentHeight() ? ' style="height:' . $_a->getContentHeight() . '"' : '')?>>
+            <?php if ($_a->getIsHtml()):?>
+                <?php echo $_a->getContent() ?>
+            <?php else:?>
+                <?php echo nl2br($this->htmlEscape($_a->getContent())) ?>
+            <?php endif; ?>
+        </div>
+        <p class="agree">
+            <input type="checkbox" id="agreement-<?php echo $_a->getId()?>" name="agreement[<?php echo $_a->getId()?>]" value="1" title="<?php echo $this->htmlEscape($_a->getCheckboxText()) ?>" class="checkbox" /><label for="agreement-<?php echo $_a->getId()?>"><?php echo $_a->getIsHtml() ? $_a->getCheckboxText() : $this->htmlEscape($_a->getCheckboxText()) ?></label>
+        </p>
+    </li>
+<?php endforeach ?>
+</ol>
+</form>

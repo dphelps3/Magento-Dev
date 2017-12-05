@@ -1,0 +1,24 @@
+<?php
+    $attributes = $this->getAttributes();
+    $other = $this->getOtherConditions();
+?>
+<select id="new_condition">
+    <option value="">
+        <?php print $this->__('--Add Condition--');?>
+    </option>
+    <optgroup label="<?php print $this->__('Attributes');?>">
+    <?php foreach($attributes as $code => $label){ ?>
+        <option data-type="<?php print Amasty_Feed_Model_Filter::$_TYPE_ATTRIBUTE;?>"  value="<?php print $code?>"><?php 
+        print $this->htmlEscape($label);
+    ?></option>
+    <?php }?>
+    </optgroup>
+    
+    <optgroup label="<?php print $this->__('Other');?>">
+        <?php foreach($other as $code => $label){ ?>
+        <option data-type="<?php print Amasty_Feed_Model_Filter::$_TYPE_OTHER;?>" value="<?php print $code?>"><?php 
+            print $this->htmlEscape($label);
+        ?></option>
+        <?php }?>
+    </optgroup>
+</select>

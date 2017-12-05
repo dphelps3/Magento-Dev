@@ -1,0 +1,7 @@
+<?php $value =Mage::registry('formbuilder')->getData('field');?>
+<?php $fieldvalue='';?>
+<?php if(isset($value) && !empty($value)):?>
+	<?php $id=$this->getId();?>
+	<?php $fieldvalue=$value[$id];?>
+<?php endif;?>
+<textarea name='<?php echo $this->getFieldName()?>' id='<?php echo $this->getFieldId()?>' class='<?php echo $this->getFieldClass()?>' style='<?php echo $this->getFieldStyle()?>' rows="5" cols="25"><?php echo $this->getFieldValue()?><?php echo $this->htmlEscape($fieldvalue);?></textarea>

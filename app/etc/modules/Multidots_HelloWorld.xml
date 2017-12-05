@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+      <Multidots_HelloWorld>
+         <active>false</active>
+         <codePool>local</codePool>
+      </Multidots_HelloWorld>
+    </modules>
+</config>

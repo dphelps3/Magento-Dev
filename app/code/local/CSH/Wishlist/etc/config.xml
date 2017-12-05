@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sitesquad - Custom Wishlist functionality
+ *
+ * =============================================================================
+ * NOTE: See README.txt for more information about this extension
+ * =============================================================================
+ *
+ * @category   CSH
+ * @package    CSH_Wishlist
+ * @copyright  Copyright (c) 2015 Sitesquad. (http://www.sitesquad.net)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Phil Mobley <phil.mobley@sitesquad.net>
+ */
+-->
+<config>
+    <modules>
+        <CSH_Wishlist>
+            <version>0.1.0</version>
+        </CSH_Wishlist>
+    </modules>
+    <global>
+        <blocks>
+            <cshwishlist>
+                <class>CSH_Wishlist_Block</class>
+            </cshwishlist>
+            <wishlist>
+                <rewrite>
+                    <customer_wishlist_items>CSH_Wishlist_Block_Customer_Wishlist_Items</customer_wishlist_items>
+                </rewrite>
+            </wishlist>
+        </blocks>
+        <helpers>
+            <cshwishlist>
+                <class>CSH_Wishlist_Helper</class>
+            </cshwishlist>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <wishlist>
+                <args>
+                    <modules>
+                        <csh_wishlist before="Mage_Wishlist">CSH_Wishlist</csh_wishlist>
+                    </modules>
+                </args>
+            </wishlist>
+            <enterprise_wishlist>
+                <args>
+                    <modules>
+                        <csh_wishlist before="Enterprise_Wishlist">CSH_Wishlist</csh_wishlist>
+                    </modules>
+                </args>
+            </enterprise_wishlist>
+        </routers>
+    </frontend>
+</config>

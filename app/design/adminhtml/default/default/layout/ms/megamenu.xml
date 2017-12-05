@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addJs"><file>ms/megamenu/jscolor/jscolor.js</file></action>
+        </reference>
+    </default>
+    <adminhtml_megamenu_index>
+        <reference name="notifications">
+            <block name="megamenu_preview" type="core/template" template="ms/megamenu/preview.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="megamenu/adminhtml_megamenu" name="megamenu" />
+        </reference>
+    </adminhtml_megamenu_index>
+    <adminhtml_megamenu_edit>
+        <update handle="editor"/>
+    </adminhtml_megamenu_edit>
+    <adminhtml_megamenu_product>
+        <block type="core/text_list" name="root">
+            <block type="megamenu/adminhtml_megamenu_edit_tab_content_maincontent_products" name="megamenu.edit.tab.content.maincontent.product"/>
+            <block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+                <action method="initSerializerBlock">
+                    <grid_block_name>megamenu.edit.tab.content.maincontent.product</grid_block_name>
+                    <data_callback>getSelectedRelatedProducts</data_callback>
+                    <hidden_input_name>program_product</hidden_input_name>
+                    <reload_param_name>oproduct</reload_param_name>
+                </action>
+                <action method="addColumnInputName">
+                    <input_name>product_megamenu</input_name>
+                </action>
+            </block>
+        </block>
+    </adminhtml_megamenu_product>
+    <adminhtml_megamenu_productgrid>
+        <block type="core/text_list" name="root">
+            <block type="megamenu/adminhtml_megamenu_edit_tab_content_maincontent_products" name="megamenu.edit.tab.content.maincontent.product"/>
+        </block>
+    </adminhtml_megamenu_productgrid>
+    <adminhtml_megamenu_featuredproduct>
+        <block type="core/text_list" name="root">
+            <block type="megamenu/adminhtml_megamenu_edit_tab_content_featureditem_products" name="megamenu.edit.tab.content.featureditem.product"/>
+            <block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+                <action method="initSerializerBlock">
+                    <grid_block_name>megamenu.edit.tab.content.featureditem.product</grid_block_name>
+                    <data_callback>getSelectedRelatedProducts</data_callback>
+                    <hidden_input_name>program_product</hidden_input_name>
+                    <reload_param_name>oproduct</reload_param_name>
+                </action>
+                <action method="addColumnInputName">
+                    <input_name>product_megamenu</input_name>
+                </action>
+            </block>
+        </block>
+    </adminhtml_megamenu_featuredproduct>
+    <adminhtml_megamenu_featuredproductgrid>
+        <block type="core/text_list" name="root">
+            <block type="megamenu/adminhtml_megamenu_edit_tab_content_featureditem_products" name="megamenu.edit.tab.content.featureditem.product"/>
+        </block>
+    </adminhtml_megamenu_featuredproductgrid>
+</layout>

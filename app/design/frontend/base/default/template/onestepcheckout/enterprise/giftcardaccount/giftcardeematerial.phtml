@@ -1,0 +1,62 @@
+<?php $background_button = Mage::helper('onestepcheckout')->getCheckoutButtonColor(); ?>
+<style type="text/css">
+	.giftcard-discount-ee .discount-form button{
+        background:<?php echo $background_button ?> !important;
+		display:block;
+    }
+	.giftcard-discount-ee .discount-form button:hover{cursor:pointer}
+	.giftcard-discount-ee .discount-form button{background:none repeat scroll 0 0 transparent;border:medium none;padding:0 5px;width:auto;height:35px;cursor:pointer;border-radius:3px}
+	.giftcard-discount-ee .discount-form button span{color:#FFF;font-weight:400;line-height:35px}
+	.giftcard-discount-ee .discount-form button:hover{box-shadow:0 6px 20px 0 rgba(0,0,0,0.19),0 8px 17px 0 rgba(0,0,0,0.2);opacity:1!important}
+</style>
+<div class="giftcard onestepcheckout-payment-methods" >
+    <h2>Gift Cards</h2>
+    <div id="giftcard_balance_lookup"></div>
+	<span id="gc-please-wait" class="please-wait" style="display:none;">
+        <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="" class="v-middle" /> <?php echo $this->__('Please wait, loading...') ?>
+    </span>
+    <div id="giftcard-form" class="onestepcheckout-discount giftcard-discount-ee">
+        <div class="discount-form">
+            <div class="one-field input-box">
+                <input value="" name="giftcard_code" id="giftcard_code" class="input-text" required="">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="giftcard_code">Enter the gift card code</label></br>
+            </div>
+            <div class="actions-button">
+                <button value="Add Gift Card" type="button" onclick="addGiftcardEE();" class="button"><span><span>Add Gift Card</span></span></button>
+                <button value="Check Gift Card status and balance" type="button" onclick="checkGiftCardStatusEE();" class="button check-gc-status"><span><span>Check Gift Card status and balance</span></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function addGiftcardEE()
+{
+    new Ajax.Updater(
+        'giftcard_balance_lookup',
+        '<?php echo Mage::getUrl('onestepcheckout/ajax/add') ?>',
+        {
+            onCreate: function() { $('gc-please-wait').show(); },
+            onComplete: function(transport) { 
+                $('gc-please-wait').hide();
+                save_shipping_method(shipping_method_url, update_shipping_payment, update_shipping_review);
+            },
+            parameters : {giftcard_code : $('giftcard_code').value}
+        }
+    );
+}
+
+function checkGiftCardStatusEE()
+{
+    new Ajax.Updater(
+        'giftcard_balance_lookup',
+        '<?php echo Mage::getUrl('enterprise_giftcardaccount/cart/quickCheck', array('_secure'=>true)) ?>',
+        {
+            onCreate: function() { $('gc-please-wait').show(); },
+            onComplete: function() { $('gc-please-wait').hide(); },
+            parameters : {giftcard_code : $('giftcard_code').value}
+        }
+    );
+}
+</script>

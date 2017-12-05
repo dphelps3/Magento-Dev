@@ -1,0 +1,667 @@
+<?php echo $this->getTemplatesHtml() ?>
+
+<div class="entry-edit custom-options product-custom-options">
+    <div class="entry-edit-head">
+        <h4><?php echo Mage::helper('catalog')->__('Manage Form Fieldset / Fields') ?></h4>
+        <div class="right"><?php echo $this->getAddButtonHtml() ?></div>
+    </div>
+	<div id="changeNotification" style="display:none;"> </div>
+    <dl id="form_options_container" class="box accordion" >
+		<div id="form_options_container_top">
+		
+		</div>
+    </dl>
+</div>
+
+<script type="text/javascript">
+			var firstStepTemplate = '<div class="option-box" id="option_{{id}}">'+
+			'<dt id="dt_option_{{id}}" class="entry-edit-head-dt">'+
+			'<a href="#" class="ajax" onclick="accordionOnClick({{id}});return false;"><h4>Fieldset :- {{title}}</h4></a></dt>'+
+			'<dd id="dd_option_{{id}}" class="dd-fieldset">'+
+            '<table id="<?php echo $this->getFieldId() ?>_{{id}}" class="option-header" cellpadding="0" cellspacing="0">'+
+			'<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{id}}_id" name="<?php echo $this->getFieldName() ?>[{{id}}][id]" value="{{id}}" />'+
+			'<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{id}}_is_delete" name="<?php echo $this->getFieldName() ?>[{{id}}][is_delete]" value="" />'+
+			'<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{id}}_option_id" name="<?php echo $this->getFieldName() ?>[{{id}}][option_id]" value="{{option_id}}" />'+
+            '<thead>'+
+                '<tr>'+
+                    '<th class="opt-title"><?php echo Mage::helper('formbuilder')->__('Name') ?> <span class="required">*</span></th>'+
+                    '<th class="opt-type"><?php echo Mage::helper('formbuilder')->__('Position') ?> <span class="required">*</span></th>'+
+                    '<th class="opt-status"><?php echo Mage::helper('formbuilder')->__('Status') ?></th>'+
+                    '<th class="a-right"><?php echo $this->jsQuoteEscape($this->getDeleteButtonHtml()) ?></th>'+
+                '</tr>'+
+            '</thead>'+
+            '<tr>'+
+                '<td><input type="text" class="required-entry input-text" id="<?php echo $this->getFieldId() ?>_{{id}}_title" name="<?php echo $this->getFieldName() ?>[{{id}}][title]" value="{{title}}"></td>'+
+                '<td><input type="text" class="validate-zero-or-greater input-text" name="<?php echo $this->getFieldName() ?>[{{id}}][sort_order]" id="<?php echo $this->getFieldName() ?>[{{id}}][sort_order]"value="{{sort_order}}"></td>'+
+                '<td><?php echo $this->getRequireSelectFieldsetHtml() ?></td>'+
+                '<td>&nbsp;</td>'+
+            '</tr></table><div class="field" style="margin:0 25px 0 25px;border:1px solid #CACACA;"><div class="entry-edit-head"><h4>Fields</h4><button style="float:right;" onclick="addNewField({{id}});" class="scalable add add-product-option" type="button" title="Add Field" id="add_field_form"><span><span><span>Add Field</span></span></span></button></div><div class="option-box" style="margin:20px;"><div id="special-drag_{{id}}" ><div id="form_field_container_{{id}}"></div></div></div></div></dd></div>';
+var formOption = {
+    div : $('form_options_container_top'),
+    templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+    templateText : firstStepTemplate,
+    itemCount : 1,
+    add : function(data) {
+        this.template = new Template(this.templateText, this.templateSyntax);
+		
+        if(!data.id){
+		
+			
+            data = {};
+            data.id  = this.itemCount;
+            data.type = '';
+            data.option_id = 0;
+        } else {
+			//alert(data.item_count);
+            this.itemCount = data.item_count;
+        }
+	
+		
+		//alert(data.is_status);
+        Element.insert(this.div, {'after':this.template.evaluate(data)});
+		if (data.is_status) {
+            $A($('<?php echo $this->getFieldId() ?>_'+data.id+'_is_status').options).each(function(option){
+                if (option.value==data.is_status) option.selected = true;
+            });
+        } 
+
+		//alert(this.itemCount);
+        this.itemCount++;
+        this.bindRemoveButtons();
+    },
+    remove : function(event){
+        var element = $(Event.findElement(event, 'div'));
+        if(element){
+			//alert(element.readAttribute('id'));
+            $('formbuilder_fieldset_'+element.readAttribute('id')+'_'+'is_delete').value = '1';
+            element.addClassName('no-display');
+            element.addClassName('ignore-validate');
+            element.hide();
+        }
+    },
+	addField : function(data) {
+		var element = $(Event.findElement(event, 'div'));
+        if(element){
+			
+ 
+            
+        }
+	},
+    bindRemoveButtons : function(){
+        var buttons = $$('div.product-custom-options .delete-product-option');
+        for(var i=0;i<buttons.length;i++){
+            if(!$(buttons[i]).binded){
+                $(buttons[i]).binded = true;
+                Event.observe(buttons[i], 'click', this.remove.bind(this));
+            }
+        }
+
+       
+    }
+}
+if($('add_new_form_option')){
+	//alert("hhi");
+    Event.observe('add_new_form_option', 'click', formOption.add.bind(formOption));
+}
+
+/* for add Field*/
+
+
+function addNewField(value){
+data={};
+data.divid=value;
+Sortable.destroy('special-drag_'+value);
+
+data.fieldset_id=value;
+productOption.add(data);
+
+var changeEffect;
+Sortable.create('special-drag_'+value, { tag: 'div', overlap:'horizontal',constraint:false,only :'special-drag-inner',
+		onChange: function(item) {
+			var list = Sortable.options(item).element;
+			$('changeNotification').update(Sortable.serialize(list).escapeHTML());
+			var j=0;
+			var fieldSet=decodeURIComponent(Sortable.serialize(list).escapeHTML()).split('&amp;');
+			for(i=0;i<fieldSet.length;i++)
+			{
+
+				for(i=0;i<fieldSet.length;i++)
+				{
+					var fId=fieldSet[i].replace('special-drag_','');
+					fId =fId.split('[]=');
+					if($('product_option_'+fId[1]+'_is_delete').value!=1){
+					temp = 'product_options_'+fId[0]+'_'+fId[1]+'_sort_order';
+					$(temp).value=j;
+					j++;
+					}
+				}
+			}
+			if(changeEffect) changeEffect.cancel();
+			changeEffect = new Effect.Highlight('changeNotification', {restoreColor:"transparent" });
+		},
+		
+	});
+
+
+}
+
+var template = '<div style="border-bottom:3px solid #000;margin:10px 0 10px 0px;" class="special-drag-inner" id="option_{{id}}">'+
+			'<dt id="dt_fieldset_field_{{id}}" class="entry-edit-head-dt">'+
+			'<a href="#" class="ajax" onclick="accordionOnClickField({{id}});return false;"><h4>Field :- {{title}}</h4></a></dt>'+
+			'<dd id="dd_fieldset_field_{{id}}" class="fieldset-field  dd-field">'+
+            '<table id="<?php echo $this->getFormFieldId() ?>_{{id}}" class="option-header" cellpadding="0" cellspacing="0">'+
+            '<input type="hidden" id="<?php echo $this->getFormFieldId() ?>_{{id}}_is_delete" name="<?php echo $this->getFormFieldName() ?>[{{fieldset_id}}][{{id}}][is_delete]" value="" />'+
+            '<input type="hidden" id="<?php echo $this->getFormFieldId() ?>_{{id}}_previous_type" name="<?php echo $this->getFormFieldName() ?>[{{fieldset_id}}][{{id}}][previous_type]" value="{{type}}" />'+
+            '<input type="hidden" id="<?php echo $this->getFormFieldId() ?>_{{id}}_previous_group" name="<?php echo $this->getFormFieldName() ?>[{{fieldset_id}}][{{id}}][previous_group]" value="" />'+
+            '<input type="hidden" id="<?php echo $this->getFormFieldId() ?>_{{id}}_id" name="<?php echo $this->getFormFieldName() ?>[{{fieldset_id}}][{{id}}][id]" value="{{id}}" />'+
+			'<input type="hidden" id="<?php echo $this->getFormFieldId() ?>_{{id}}_fieldset" name="<?php echo $this->getFormFieldName() ?>[{{fieldset_id}}][{{id}}][fieldset_id]" value="{{fieldset_id}}" />'+
+            '<input type="hidden" id="<?php echo $this->getFormFieldId() ?>_{{id}}_option_id" name="<?php echo $this->getFormFieldName() ?>[{{fieldset_id}}][{{id}}][option_id]" value="{{option_id}}" />'+
+            '<thead>'+
+                '<tr>'+
+                    '<th class="opt-title"><?php echo Mage::helper('catalog')->__('Title') ?> <span class="required">*</span></th>'+
+                    '<th class="opt-type"><?php echo Mage::helper('catalog')->__('Input Type') ?> <span class="required">*</span></th>'+
+                    '<th class="opt-req"><?php echo $this->jsQuoteEscape(Mage::helper('catalog')->__('Is Required')) ?></th>'+
+                    '<th class="opt-order"><?php echo Mage::helper('catalog')->__('Sort Order') ?></th>'+
+					'<th class="opt-opt-status"><?php echo Mage::helper('catalog')->__('Status') ?></th>'+
+					'<th class="opt-opt-class"><?php echo Mage::helper('catalog')->__('Validator') ?></th>'+
+                    '<th class="a-right"><?php echo $this->jsQuoteEscape($this->getFieldDeleteButtonHtml()) ?></th>'+
+					
+                '</tr>'+
+            '</thead>'+
+            '<tr>'+
+                '<td><input type="text" class="required-entry input-text" id="<?php echo $this->getFormFieldId() ?>_{{id}}_title" name="<?php echo $this->getFormFieldName() ?>[{{fieldset_id}}][{{id}}][title]" value="{{title}}">{{checkboxScopeTitle}}</td>'+
+                '<td><?php echo $this->getTypeSelectHtml() ?></td>'+
+                '<td class="opt-req"><?php echo $this->getRequireSelectHtml() ?></td>'+
+                '<td><input type="text" class="validate-zero-or-greater input-text" name="<?php echo $this->getFormFieldName() ?>[{{fieldset_id}}][{{id}}][sort_order]" value="{{sort_order}}" id="product_options_{{fieldset_id}}_{{id}}_sort_order"></td>'+
+				'<td class="opt-req"><?php echo $this->getRequireStatusSelectHtml() ?></td>'+
+				'<td class="opt-class"><?php echo $this->getValidatorHtml() ?></td>'+
+                '<td>&nbsp;</td>'+
+            '</tr></table></div></dd>';
+
+var productOption = {
+   // div : $('product_options_container_top'),
+    templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+    templateText : template,
+    itemCount : 1,
+    add : function(data) {
+        this.template = new Template(this.templateText, this.templateSyntax);
+		
+        if(!data.id){
+			field =data.fieldset_id;
+            data = {};
+            data.id  = this.itemCount;
+			data.fieldset_id  = field;
+            data.type = '';
+            data.option_id = 0;
+        } else {
+            this.itemCount = data.item_count;
+        }
+		//alert(this.itemCount);
+        Element.insert($('form_field_container_'+data.fieldset_id), {'after':this.template.evaluate(data)});
+		
+        //set selected type
+        if (data.type) {
+            $A($('<?php echo $this->getFormFieldId() ?>_'+data.id+'_type').options).each(function(option){
+                if (option.value==data.type) option.selected = true;
+            });
+        }
+		//alert(<?php echo $this->getFormFieldId() ?>);
+        //set selected is_require
+        if (data.is_require) {
+            $A($('<?php echo $this->getFormFieldId() ?>_'+data.id+'_is_require').options).each(function(option){
+                if (option.value==data.is_require) option.selected = true;
+            });
+        }
+		//alert('<?php echo $this->getFormFieldId() ?>_'+data.id+'_status');
+		if (data.status) {
+            $A($('<?php echo $this->getFormFieldId() ?>_'+data.id+'_status').options).each(function(option){
+                if (option.value==data.status) option.selected = true;
+            });
+        } 
+		
+		if (data.validator_class) {
+            $A($('<?php echo $this->getFormFieldId() ?>_'+data.id+'_validator_class').options).each(function(option){
+                if (option.value==data.validator_class) option.selected = true;
+            });
+        } 
+
+        if (data.checkboxScopeTitle) {
+            //set disabled
+            if ($('<?php echo $this->getFormFieldId() ?>_'+data.option_id+'_title') && data.scopeTitleDisabled) {
+                $('<?php echo $this->getFormFieldId() ?>_'+data.option_id+'_title').disable();
+            }
+        }
+		if(data.type =='html')
+		{
+			 $('<?php echo $this->getFormFieldId() ?>_'+data.option_id+'_title').disable();
+			 $('<?php echo $this->getFormFieldId() ?>_'+data.id+'_validator_class').disable();
+			 $('<?php echo $this->getFormFieldId() ?>_'+data.id+'_is_require').disable();
+		}
+		if(data.option_id == 0){
+		Element.addClassName($('dt_fieldset_field_'+data.id), 'open');
+		Element.addClassName($('dd_fieldset_field_'+data.id), 'open'); 
+		
+		}
+        this.itemCount++;
+        this.bindRemoveButtons();
+        productOptionType.bindSelectInputType();
+    },
+    remove : function(event){
+        var element = $(Event.findElement(event, 'div'));
+        if(element){
+			//alert(element.readAttribute('id'));
+            $('product_'+element.readAttribute('id')+'_'+'is_delete').value = '1';
+            element.addClassName('no-display');
+            element.addClassName('ignore-validate');
+            element.hide();
+        }
+    },
+    bindRemoveButtons : function(){
+        var buttons = $$('div.product-custom-options .delete-field-option');
+        for(var i=0;i<buttons.length;i++){
+            if(!$(buttons[i]).binded){
+                $(buttons[i]).binded = true;
+                Event.observe(buttons[i], 'click', this.remove.bind(this));
+            }
+        }
+        var inputs = $$('div.product-custom-options button', 'div.product-custom-options input', 'div.product-custom-options select', 'div.product-custom-options textarea');
+        <?php if ($this->isReadonly()):?>
+        for (var i=0, l = inputs.length; i < l; i ++) {
+            inputs[i].disabled = true;
+            if (inputs[i].tagName.toLowerCase()=='button') {
+                inputs[i].addClassName('disabled');
+            }
+        }
+        <?php else: ?>
+            inputs.each(function(el) { Event.observe(el, 'change', el.setHasChanges.bind(el));  } )
+        <?php endif;?>
+    }
+}
+
+
+var productOptionType = {
+    templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+    loadStepTwo : function(event){
+		//alert("test");
+        var element = $(Event.findElement(event, 'select'));
+
+        var group = '';
+        var previousGroupElm = $(element.readAttribute('id').sub('_type', '_previous_group'));
+		//alert(element.readAttribute('id').sub('_type', '_previous_group'));
+		//alert(element.getValue());
+		var optionId = element.readAttribute('id').sub('product_option_', '');    
+		var fieldset=$(element.readAttribute('id').sub('_type', '_fieldset')).getValue()
+        optionId = optionId.replace("_type", ''); 
+		//alert(optionId);
+        switch(element.getValue()){
+            case 'field':
+            case 'area':
+                template = OptionTemplateText;
+				//alert(template);
+                group = 'text';
+                break;
+            case 'file':
+                template = OptionTemplateFile;
+                group = 'file';
+                break;
+            case 'drop_down':                
+            case 'radio':
+                $$("input[name='product[options]["+fieldset +"][" + optionId + "][values][default][]']").each(function(elm){
+                    elm.type = 'radio';
+                });
+                template = OptionTemplateSelect;
+                group = 'select';
+                break;
+            case 'checkbox':                
+            case 'multiple':
+			
+                $$("input[name='product[options]["+fieldset +"][" + optionId + "][values][default][]']").each(function(elm){
+                    elm.type = 'checkbox';
+                });
+                template = OptionTemplateSelect;
+                group = 'select';
+                break;
+            case 'date':
+            case 'date_time':
+            case 'time':
+                template = OptionTemplateDate;
+                group = 'date';
+                break;
+			case 'html':
+                template = OptionTemplateHtml;
+                group = 'html';
+                break;
+            default:
+                template = '';
+                group = 'unknown';
+                break;
+        }
+
+        if (previousGroupElm.getValue() != group) {
+			
+            if ($(element.readAttribute('id')+'_'+previousGroupElm.getValue())) {
+                formElm = $(element.readAttribute('id')+'_'+previousGroupElm.getValue()).descendants();
+                formElm.each(function(elm){
+                    if (elm.tagName == 'input' || elm.tagName == 'select') {
+                        elm.name = '__delete__'+elm.readAttribute('name');
+                    }
+                });
+
+                $(element.readAttribute('id')+'_'+previousGroupElm.getValue()).addClassName('no-display');
+                $(element.readAttribute('id')+'_'+previousGroupElm.getValue()).addClassName('ignore-validate');
+                $(element.readAttribute('id')+'_'+previousGroupElm.getValue()).hide();
+            }
+
+            previousGroupElm.value = group;
+
+            if ($(element.readAttribute('id')+'_'+group)) {
+                formElm = $(element.readAttribute('id')+'_'+group).descendants();
+                formElm.each(function(elm){
+                    if (elm.match('input') || elm.match('select')) {
+                        elm.name = elm.readAttribute('name').sub('__delete__', '');
+                    }
+                });
+                $(element.readAttribute('id')+'_'+group).removeClassName('no-display');
+                $(element.readAttribute('id')+'_'+group).removeClassName('ignore-validate');
+                $(element.readAttribute('id')+'_'+group).show();
+
+            } else {
+                template = '<div id="'+element.readAttribute('id')+'_'+group+'" class="grid tier form-list">'+template+'</div><div id="'+element.readAttribute('id')+'_'+group+'_advice"></div>';
+				
+                this.secondTemplate = new Template(template, this.templateSyntax);
+				
+                data = {};
+                if (!data.option_id) {
+                    data = {};
+					//alert(element.readAttribute('id'));
+                   data.option_id = $(element.readAttribute('id').sub('_type', '_id')).getValue();
+				   
+                }
+				if (!data.fieldset) {
+                    data.fieldset = $(element.readAttribute('id').sub('_type', '_fieldset')).getValue();
+                }
+				 
+                Element.insert(element.readAttribute('id').sub('_type', ''), {'after':this.secondTemplate.evaluate(data)});
+				
+                switch(element.getValue()){
+                    case 'drop_down':
+                    case 'radio':
+                    case 'checkbox':
+                    case 'multiple':
+                        selectOptionType.bindAddButton();
+                        break;
+                }
+            }
+        }
+    },
+    addDataToValues : function(data){
+        switch(data.type){
+            case 'field':
+            case 'area':
+                template = OptionTemplateText;
+                group = 'text';
+                break;
+            case 'html':
+				template = OptionTemplateHtml;
+                group = 'html';
+                break;
+            case 'file':
+                template = OptionTemplateFile;
+                group = 'file';
+                break;
+            case 'drop_down':
+            case 'radio':
+            case 'checkbox':
+            case 'multiple':
+                template = OptionTemplateSelect;
+                group = 'select';
+                break;
+            case 'date':
+            case 'date_time':
+            case 'time':
+                template = OptionTemplateDate;
+                group = 'date';
+                break;
+        }
+		//alert(data.type);
+        $('<?php echo $this->getFormFieldId() ?>_'+data.id+'_previous_group').value = group;
+		
+        template = '<div id="<?php echo $this->getFormFieldId() ?>_{{id}}_type_'+group+'" class="grid tier form-list">'+template+'</div><div id="<?php echo $this->getFormFieldId() ?>_{{id}}_type_'+group+'_advice"></div>';
+		//alert(template);
+        this.secondTemplate = new Template(template, this.templateSyntax);
+		//alert(data.fieldset_id);
+		//alert(this.secondTemplate);
+		Element.insert($('<?php echo $this->getFormFieldId() ?>_'+data.option_id), {'after':this.secondTemplate.evaluate(data)});
+		
+		$('<?php echo $this->getFormFieldId() ?>_'+data.option_id+'_type').disable();
+		
+        if (data.checkboxScopePrice) {
+            //set disabled
+            if ($('<?php echo $this->getFormFieldId() ?>_'+data.option_id+'_price') && data.scopePriceDisabled) {
+                $('<?php echo $this->getFormFieldId() ?>_'+data.option_id+'_price').disable();
+                $('<?php echo $this->getFormFieldId() ?>_'+data.option_id+'_price_type').disable();
+            }
+        }
+		//alert(data.type);
+        switch(data.type){
+            case 'drop_down':
+            case 'radio':
+            case 'checkbox':
+            case 'multiple':
+				//alert("test");
+                data.optionValues.each(function(value) {
+                    selectOptionType.add(value);
+                });
+                selectOptionType.bindAddButton();
+                break;
+        }
+		
+        if (data.price_type) {
+            $A($('<?php echo $this->getFormFieldId() ?>_'+data.option_id+'_price_type').options).each(function(option){
+                if (option.value==data.price_type) option.selected = true;
+            });
+        }
+		
+
+    },
+    bindSelectInputType : function(){
+        var types = $$('.select-product-option-type');
+		
+        for(var i=0;i<types.length;i++){
+            if(!$(types[i]).binded){
+                $(types[i]).binded = true;
+                Event.observe(types[i], 'change', function(event){
+					//alert("hihii");
+                    productOptionType.loadStepTwo(event);
+                });
+            }
+        }
+    }
+}
+
+var productOptionScope = {
+    addScope : function(event){
+        var element = $(Event.element(event));
+        fieldToDisable = $(element.readAttribute('id').sub('_use_default', ''));
+
+        if (fieldToDisable.disabled) {
+            if (fieldToDisable.hasClassName('product-option-price')) {//need change to cheking value of element
+                $(fieldToDisable.readAttribute('id')+'_type').enable();
+            }
+            fieldToDisable.enable();
+        } else {
+            if (fieldToDisable.hasClassName('product-option-price')) {//need change to cheking value of element
+                $(fieldToDisable.readAttribute('id')+'_type').disable();
+            }
+            fieldToDisable.disable();
+        }
+    },
+    bindScopeCheckbox : function(){
+        var checkboxes = $$('.product-option-scope-checkbox');
+        for (var i=0;i<checkboxes.length;i++) {
+            if (!$(checkboxes[i]).binded) {
+                $(checkboxes[i]).binded = true;
+                Event.observe(checkboxes[i], 'click', this.addScope.bind(this));
+            }
+        }
+    }
+}
+
+if($('option_panel')){
+    $('option_panel').remove();
+}
+
+productOption.bindRemoveButtons();
+
+if($('<?php echo $this->getAddButtonId() ?>')){
+    Event.observe('<?php echo $this->getAddButtonId() ?>', 'click', productOption.add.bind(productOption));
+}
+
+//validation for selected input type
+Validation.addAllThese([
+    ['required-option-select', <?php echo $this->helper('core')->jsonEncode(Mage::helper('catalog')->__('Select type of option')) ?>, function(v, elm) {
+        if (elm.getValue() == '') {
+            return false;
+        }
+        return true;
+}]]);
+
+
+<?php foreach ($this->getOptionValues() as $_value): ?>
+    formOption.add(<?php echo $_value->toJson() ?>);
+	<?php foreach($this->setFieldValue($_value['id']) as $_field):?>
+	productOption.add(<?php echo $_field->toJson()?>);
+	productOptionType.addDataToValues(<?php echo $_field->toJson()?>);
+	var changeEffect;
+	Sortable.create('special-drag_'+<?php echo $_value['id'];?>, { tag: 'div', overlap:'horizontal',constraint:false,only :'special-drag-inner',
+			onChange: function(item) {
+				var list = Sortable.options(item).element;
+				$('changeNotification').update(Sortable.serialize(list).escapeHTML());
+				var j=0;
+				var fieldSet=decodeURIComponent(Sortable.serialize(list).escapeHTML()).split('&amp;');
+				for(i=0;i<fieldSet.length;i++)
+				{
+	
+					for(i=0;i<fieldSet.length;i++)
+					{
+						var fId=fieldSet[i].replace('special-drag_','');
+						fId =fId.split('[]=');
+						if($('product_option_'+fId[1]+'_is_delete').value!=1){
+							temp = 'product_options_'+fId[0]+'_'+fId[1]+'_sort_order';
+							$(temp).value=j;
+							j++;
+						}
+					}
+				}
+				if(changeEffect) changeEffect.cancel();
+				changeEffect = new Effect.Highlight('changeNotification', {restoreColor:"transparent" });
+			},
+			
+		});
+	<?php endforeach;?>
+    //formOption.addDataToValues(<?php echo $_value->toJson() ?>);
+<?php endforeach; ?>
+//bind scope checkboxes
+productOptionScope.bindScopeCheckbox();
+
+</script>
+
+<script>
+	function checktype(item)
+	{
+		if(item.value =='html')
+		{
+			id = item.id;
+			id = id.replace('product_option_','');
+			id = id.replace('_type','');
+			$('product_option_'+id+'_title').disabled =true;
+			$('product_option_'+id+'_title').removeClassName('required-entry');
+			$('product_option_'+id+'_is_require').disable();
+			//$('product_option_'+id+'_status').disable();
+			$('product_option_'+id+'_validator_class').disable();
+			
+		}else
+		{
+			id = item.id;
+			id = id.replace('product_option_','');
+			id = id.replace('_type','');
+			$('product_option_'+id+'_title').enable();
+			$('product_option_'+id+'_title').addClassName('required-entry');
+			$('product_option_'+id+'_is_require').enable();
+		//	$('product_option_'+id+'_status').enable();
+			$('product_option_'+id+'_validator_class').enable();
+		}
+	}
+</script>
+
+
+ <script type="text/javascript">
+    //<![CDATA[
+        document.observe('dom:loaded', function() {
+            var changeEffect;
+           Sortable.create('form_options_container', { tag: 'div', overlap:'horizontal',constraint:false,only :'option-box',
+				onChange: function(item) {
+                    var list = Sortable.options(item).element;
+					
+                    $('changeNotification').update(Sortable.serialize(list).escapeHTML());
+					var j=0;
+					var fieldSet=decodeURIComponent(Sortable.serialize(list).escapeHTML()).split('&amp;');
+					for(i=0;i<fieldSet.length;i++)
+					{
+						
+						var fId=fieldSet[i].replace('form_options_container[]=','');
+						if($('formbuilder_fieldset_option_'+fId+'_is_delete').value!=1){
+						temp = 'formbuilder[fieldset]['+fId+'][sort_order]';
+						$(temp).value=j;
+						j++;
+						}
+					}
+                    if(changeEffect) changeEffect.cancel();
+                    changeEffect = new Effect.Highlight('changeNotification', {restoreColor:"transparent" });
+                },
+               /*  onUpdate: function() {
+                    new Ajax.Request("saveImageOrder.php", {	
+                        method: "post",
+                        onLoading: function(){$('activityIndicator').show()},
+                        onLoaded: function(){$('activityIndicator').hide()},
+                        parameters: { data: Sortable.serialize("form_options_container") }
+                    });
+                }		 */		
+            });
+			
+			
+        });
+    // ]]>
+    </script>	
+	<script>
+	function accordionOnClick(optionId)
+	{
+		  if($('dd_option_'+optionId).hasClassName('open')){
+		    Element.removeClassName($('dt_option_'+optionId), 'open');
+		    Element.removeClassName($('dd_option_'+optionId), 'open'); 
+		 }else
+		 {
+			Element.addClassName($('dt_option_'+optionId), 'open');
+		    Element.addClassName($('dd_option_'+optionId), 'open'); 
+		}
+	}
+	
+	function accordionOnClickField(optionId)
+	{
+		 if($('dt_fieldset_field_'+optionId).hasClassName('open')){
+		  Element.removeClassName($('dt_fieldset_field_'+optionId), 'open');
+		  Element.removeClassName($('dd_fieldset_field_'+optionId), 'open'); 
+		 }else
+		 {
+			Element.addClassName($('dt_fieldset_field_'+optionId), 'open');
+		  Element.addClassName($('dd_fieldset_field_'+optionId), 'open'); 
+		}
+	}
+	</script>
+	
+	<style>
+		.entry-edit-head-dt h4{ color:#FFF; padding-top:5px;} 
+		.fieldset-field { padding: 11px;border: 1px solid rgb(202, 202, 202);}
+		.custom-options .option-box { border:none; padding:0px; margin:5px 0px 5px 0px;}
+		.dd-fieldset { padding:16px; border:1px solid #CACACA;}
+	</style>

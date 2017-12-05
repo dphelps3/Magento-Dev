@@ -1,0 +1,21 @@
+  =====================================
+This file describes changes between versions of module ET_HideEmptyAttributes for Magento.
+
+Legend:
+* bug fix
++ added functionality
+- removed functionality
+
+=====================================
+TODO:
++ default value for replaced text, if no value set in configuration
+
+=====================================
+ver. 0.1.2
++ Translation added
+
+ver. 0.1.1
++ Added support for select fields
+
+ver. 0.1.0
++ stable release

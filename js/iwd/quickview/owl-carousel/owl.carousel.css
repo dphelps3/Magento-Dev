@@ -1,0 +1,185 @@
+/* 
+ * 	Core Owl Carousel CSS File
+ *	v1.3.3
+ */
+
+/* clearfix */
+.iwd-qv-modal .owl-carousel .owl-wrapper:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+/* display none until init */
+.iwd-qv-modal .owl-carousel{
+	display: none;
+	position: relative;
+	width: 100%;
+	-ms-touch-action: pan-y;
+}
+.iwd-qv-modal .owl-carousel .owl-wrapper{
+	display: none;
+	position: relative;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+}
+.iwd-qv-modal .owl-carousel .owl-wrapper-outer{
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+.iwd-qv-modal .owl-carousel .owl-wrapper-outer.autoHeight{
+	-webkit-transition: height 500ms ease-in-out;
+	-moz-transition: height 500ms ease-in-out;
+	-ms-transition: height 500ms ease-in-out;
+	-o-transition: height 500ms ease-in-out;
+	transition: height 500ms ease-in-out;
+}
+
+.iwd-qv-modal .owl-carousel .owl-item{
+	float: left;
+}
+.iwd-qv-modal .owl-controls .owl-page,
+.iwd-qv-modal .owl-controls .owl-buttons div{
+	cursor: pointer;
+}
+.iwd-qv-modal .owl-controls {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* mouse grab icon */
+.iwd-qv-modal .grabbing {
+    cursor:url(grabbing.png) 8 8, move;
+}
+
+/* fix */
+.iwd-qv-modal .owl-carousel  .owl-wrapper,
+.iwd-qv-modal .owl-carousel  .owl-item{
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility:    hidden;
+	-ms-backface-visibility:     hidden;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+}
+
+
+/* FOR PAGINATION */
+.iwd-qv-modal .owl-theme .owl-controls{
+    margin-top: 10px;
+    text-align: center;
+}
+
+ /*Styling Next and Prev buttons */
+
+.iwd-qv-modal .owl-theme .owl-controls .owl-buttons div{
+    color: #FFF;
+    display: inline-block;
+    zoom: 1;
+    display: inline;/*IE7 life-saver*/
+    margin: 5px;
+    padding: 3px 10px;
+    font-size: 12px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    filter: Alpha(Opacity=50);/*IE7 fix*/
+    opacity: 0.5;
+}
+ /*Clickable class fix problem with hover on touch devices */
+ /*Use it for non-touch hover action */
+.iwd-qv-modal .owl-theme .owl-controls.clickable .owl-buttons div:hover{
+    filter: Alpha(Opacity=100);/*IE7 fix*/
+    opacity: 1;
+    text-decoration: none;
+}
+
+ /*Styling Pagination*/
+
+.iwd-qv-modal .owl-theme .owl-controls .owl-page{
+    display: inline-block;
+    zoom: 1;
+    display: inline;/*IE7 life-saver*/
+}
+.iwd-qv-modal .owl-theme .owl-controls .owl-page span{
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin: 5px 7px;
+    filter: Alpha(Opacity=50);/*IE7 fix*/
+    opacity: 0.5;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background: #869791;
+}
+
+.iwd-qv-modal .owl-theme .owl-controls .owl-page.active span,
+.iwd-qv-modal .owl-theme .owl-controls.clickable .owl-page:hover span{
+    filter: Alpha(Opacity=100);/*IE7 fix*/
+    opacity: 1;
+}
+
+ /*If PaginationNumbers is true */
+
+.iwd-qv-modal .owl-theme .owl-controls .owl-page span.owl-numbers{
+    height: auto;
+    width: auto;
+    color: #FFF;
+    padding: 2px 10px;
+    font-size: 12px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+}
+
+ /*preloading images */
+.iwd-qv-modal .owl-item.loading{
+    min-height: 150px;
+    background: url(AjaxLoader.gif) no-repeat center center
+}
+
+.iwd-qv-modal #owl-demo .owl-item > div img {
+    display: block;
+    width: 100%;
+    height: auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom:4px;
+}
+
+.iwd-qv-modal #owl-demo .owl-item > div{
+    background : #42bdc2;
+    text-align: center;
+    padding:50px 0px;
+    margin:3px;
+    color: white;
+    font-size:32px;
+    border:1px white;
+}
+
+.iwd-qv-modal .wrapper-with-margin{
+    margin:0px 50px;
+}
+
+
+.iwd-qv-modal .owl-theme .owl-controls .owl-buttons div {
+    position: absolute;
+}
+
+.iwd-qv-modal .owl-theme .owl-controls .owl-buttons .owl-prev{
+    left: -30px;
+    top: 18px;
+}
+
+.iwd-qv-modal .owl-theme .owl-controls .owl-buttons .owl-next{
+    right: -30px;
+    top: 18px;
+}

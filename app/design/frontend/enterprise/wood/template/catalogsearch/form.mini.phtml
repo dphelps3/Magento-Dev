@@ -1,0 +1,39 @@
+<form id="search_mini_form" action="<?php echo $this->helper('catalogsearch')->getResultUrl() ?>" method="get">
+    <div class="form-search">
+        <input id="search" type="text" name="<?php echo $this->helper('catalogsearch')->getQueryParamName() ?>" value="<?php echo $this->helper('catalogsearch')->getEscapedQueryText() ?>" class="input-text" />
+        <button type="submit" title="<?php echo $this->__('Go') ?>" class="button"><span><?php echo $this->__('Go') ?></span></button>
+		<?php // Simple Solutions Sku Search ?>
+			<div id="sku_checkbox" style="float: left;width: 125px;">
+				<input type="checkbox" id="searchSku" name="searchSku" /><label style="font-weight:bold; color:#c52221;font-size: 11px;padding-top:2px;">Search by SKU </label>
+				<!--<input type="hidden" id="skuTest" name="skuTest" value="false" />-->
+			</div>
+			<script type="text/javascript">
+				jQuery(document).ready(function() {
+					jQuery('#searchSku').click(function() {
+						if(jQuery('input[name=searchSku]').is(':checked')) {
+							jQuery('#sku_box').fadeIn();
+							//jQuery('#skuTest').val('true');
+						} else {
+							jQuery('#sku_box').fadeOut();
+							//jQuery('#skuTest').val('false');
+						}	
+					});
+				});
+			</script>
+			<div id="sku_box" style="float: left;width: 124px;display:none;">
+				<input type="radio" name="skuType" value="contains" /><label style="font-weight:bold; color:#c52221;font-size: 11px;padding-top:2px;width: 100px;text-align: right">Contains</label>
+				<input type="radio" name="skuType" value="exact" /><label style="font-weight:bold; color:#c52221;font-size: 11px;padding-top:2px;width: 100px;text-align: right">Exact</label>
+				<input type="radio" name="skuType" value="starts" /><label style="font-weight:bold; color:#c52221;font-size: 11px;padding-top:2px;width: 100px;text-align: right">Starts With</label>
+				<input type="radio" name="skuType" value="ends" /><label style="font-weight:bold; color:#c52221;font-size: 11px;padding-top:2px;width: 100px;text-align: right">Ends With</label>
+			</div>
+		<?php // Simple Solutions Sku Search End ?>
+
+        <div id="search_autocomplete" class="search-autocomplete"></div>
+        <script type="text/javascript">
+        //<![CDATA[
+            var searchForm = new Varien.searchForm('search_mini_form', 'search', '<?php echo $this->__('Search entire store here...') ?>');
+            searchForm.initAutocomplete('<?php echo $this->helper('catalogsearch')->getSuggestUrl() ?>', 'search_autocomplete');
+        //]]>
+        </script>
+    </div>
+</form>

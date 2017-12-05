@@ -1,0 +1,124 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition End User License Agreement
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magento.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license http://www.magento.com/license/enterprise-edition
+ */
+?>
+<!-- Facebook Pixel Code Conversion Track -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1777077195861671');
+fbq('track', "PageView");
+fbq('track', 'Purchase', {value: '0.00', currency:'USD'});</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1777077195861671&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code CT —>
+<div class="page-title">
+    <h1><?php echo $this->__('Your order has been received.') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->toHtml() ?>
+<h2 class="sub-title"><?php echo $this->__('Thank you for your purchase!') ?></h2>
+
+<?php
+$_customerId = Mage::getSingleton('customer/session')->getCustomerId();
+$lastOrderId = Mage::getSingleton('checkout/session')->getLastOrderId();
+$order = Mage::getSingleton('sales/order');
+$order->load($lastOrderId);
+$_totalData =$order->getData();
+$_sub = $_totalData['subtotal'];
+$_skus = getCartSkus($order);
+
+/* Get the list of skus from the cart as a formatted string array */
+function getCartSkus($order)
+{
+	$skus = '[';
+	$items = $order->getAllVisibleItems();
+	$count = 0;
+	foreach ($items as $_item) {
+		if( $count != 0 ) {
+			$skus .= ',';
+		}
+		$skus .= "'" . $_item->getSku() . "'";
+		$count++;
+	}
+	$skus .= ']';
+	return $skus;		
+}
+?>
+
+<img src="https://shareasale.com/sale.cfm?tracking=<?php echo $this->getOrderId() ?>&amount=<?php echo $_sub ?>&transtype=sale&merchantID=50610" width="1" height="1">
+
+<script type="text/javascript">
+//var window.tracker = window._svt._getTracker('1660_03709');
+window.tracker._setPurchProduct(<?php echo $_skus; ?>);
+window.tracker._setIsPurch(true);
+window.tracker._setEm('<?php echo $order->getCustomerEmail();?>');
+window.tracker._setPurchDollar('<?php echo $_sub ?>');
+window.tracker._setPurchID('<?php echo $this->getOrderId(); ?>');
+window.tracker._setCustAcct('<?php echo $_customerId; ?>');
+window.tracker._setCustFName('<?php echo $order->getShippingAddress()->getFirstname(); ?>');
+window.tracker._setCustLName('<?php echo $order->getShippingAddress()->getLastname(); ?>');
+window.tracker._setCustCity('<?php echo $order->getShippingAddress()->getCity(); ?>');
+window.tracker._setCustState('<?php echo $order->getShippingAddress()->getRegion(); ?>');
+window.tracker._setCustZIP('<?php echo $order->getShippingAddress()->getPostcode(); ?>');
+window.tracker._trackPageView();
+</script>
+
+<?php if ($this->getOrderId()):?>
+<?php if ($this->getCanViewOrder()) :?>
+    <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
+<?php  else :?>
+    <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?></p>
+<?php endif;?>
+    <p><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
+<?php if ($this->getCanViewOrder() && $this->getCanPrintOrder()) :?>
+    <p>
+        <?php echo $this->__('Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>
+        <?php echo $this->getChildHtml() ?>
+    </p>
+<?php endif;?>
+<?php endif;?>
+
+<?php if ($this->getAgreementRefId()): ?>
+    <p><?php echo $this->__('Your billing agreement # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getAgreementUrl()), $this->escapeHtml($this->getAgreementRefId())))?></p>
+<?php endif;?>
+
+<?php if ($profiles = $this->getRecurringProfiles()):?>
+<p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
+<ul class="disc">
+<?php foreach($profiles as $profile):?>
+<?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
+    <li><?php echo $this->__('Payment profile # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
+<?php endforeach;?>
+</ul>
+<?php endif;?>
+
+<div class="buttons-set">
+    <button type="button" class="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Continue Shopping')) ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+</div>

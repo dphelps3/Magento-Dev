@@ -1,0 +1,61 @@
+<?php
+/**
+ * Sitesquad - Custom Wishlist functionality
+ *
+ * =============================================================================
+ * NOTE: See README.txt for more information about this extension
+ * =============================================================================
+ *
+ * @category   CSH
+ * @package    CSH_Wishlist
+ * @copyright  Copyright (c) 2015 Sitesquad. (http://www.sitesquad.net)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Phil Mobley <phil.mobley@sitesquad.net>
+ */
+
+/**
+ * Based on Enterprise 1.12.0.0 version of:
+ * app/design/frontend/base/default/template/wishlist/item/list.phtml
+ */
+/* @var $this CSH_Wishlist_Block_Customer_Wishlist_Items */
+?>
+<?php
+    $columns = $this->getColumns();
+?>
+<table class="data-table" id="wishlist-table">
+    <thead>
+        <tr>
+            <?php foreach ($columns as $column): ?>
+                <th><?php echo $column->getTitle();?></th>
+            <?php endforeach; ?>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (count($this->getItems())): ?>
+            <?php foreach ($this->getItems() as $item): ?>
+                <tr id="item_<?php echo $item->getId();?>">
+                    <?php foreach ($columns as $column): ?>
+                        <td><?php $column->setItem($item); echo $column->toHtml($item);?></td>
+                    <?php endforeach; ?>
+                </tr>
+            <?php endforeach ?>
+        <?php else: ?>
+            <td colspan="<?php echo count($columns);?>" class="wishlist-empty"><?php echo $this->__('This Wishlist has no Items');?></td>
+        <?php endif; ?>
+    </tbody>
+</table>
+<div id="wishlist_total">
+	<?php echo $this->__("Total: %s", $this->getTotalPrice()); ?>
+</div>
+<?php foreach ($columns as $column): ?>
+    <?php echo $column->getAdditionalHtml();?>
+<?php endforeach; ?>
+<script type="text/javascript">
+//<![CDATA[
+    decorateTable('wishlist-table');
+
+<?php foreach ($columns as $column): ?>
+    <?php echo $column->getJs();?>
+<?php endforeach; ?>
+//]]>
+</script>

@@ -1,0 +1,7 @@
+========== BENDING RAILS ==============
+
+=============== NOTES: ================
+
+If the total rail length is greater than 16', the rail will need to be spliced. 
+This splice should be 2', so each rail sub-section should have 2' added to its length
+

@@ -1,0 +1,279 @@
+
+/* Form 7 Start */
+#form_7_form .fieldset {
+
+	border-color: #888888;
+
+	border-style: solid;
+
+	border-width: 1px;
+
+	margin: 0px 0 5px 0px;
+
+	padding: 5px;
+
+}
+#form_5 > h2.legend:nth-child(3) {
+	margin-top:10px;
+}
+
+#form_7_form h2.legend {
+
+	background-color: #c62120;
+
+	border-style: none;
+
+	color: #fff;
+
+	display: block;
+
+	font-size: 17px;
+
+	font-weight: bold;
+
+	margin: 0 auto 5px auto;
+	padding: 5px 0px 5px 22px;
+
+	position: relative;
+
+	width: 711px;
+
+	min-width: 938px;
+
+}
+
+#form_7_form .fieldset-16 .form-list .fields {
+
+	width: 40%;
+
+	float: left;
+
+	margin-right: 5%;
+
+}
+
+.form-builder-clear {
+
+	clear:both;
+
+}
+
+#form_7_form  .fields-form_ul_thumbs li.control  {
+
+	float:left;
+
+	padding: 10px 14px;
+
+	text-align:center;
+
+}
+
+#form_7_form .fieldset-19 .input-box, #form_7_form .fieldset-20 .input-box, #form_7_form .fieldset-21 .input-box {
+
+	width:100%;
+
+}
+
+#form_7_form .form_ul_thumbs li .subcat_item_pad {
+
+	text-align:center;
+
+}
+
+#form_7_form h3, #form_7_form .fieldset-19 .mainLabel,  #form_7_form .fieldset-20 .mainLabel,  #form_7_form .fieldset-21 .mainLabel, #form_7_form .fields-mullion-opening-door .field label, #form_7_form .fields-mullion-opening-door-front .field label {
+
+	color: #000;
+
+	background: #F5F5F5;
+
+	padding: 5px 0 5px 16px;
+
+	background: #F5F5F5 url("/media/customwood/switch_plus.gif") 97% 50% no-repeat;
+
+	display:block;
+
+}
+
+#form_7_form .fieldset-19 .mainLabel em, #form_7_form .fieldset-20 .mainLabel em, #form_7_form .fieldset-21 .mainLabel em {
+
+	display:none;
+
+}
+
+
+
+#form_7_form h3.formExpanded {
+
+	background:#F5F5F5 url("/media/customwood/switch_minus.gif") 97% 50% no-repeat;
+
+}
+
+#form_7_form .input-box-form_ul_thumbs, #form_7_form .input-box-mullion-opening-door, #form_7_form .input-box-mullion-opening-door-front {
+
+	display:none;
+
+}
+
+#form_7_form .field {
+
+	float:none;
+
+	width:100%;
+
+}
+
+#form_7_form .form-list label {
+
+	float:none;
+
+}
+
+#form_7_form .formQuantity {
+
+	display:none;
+
+}
+
+#form_7_form .fields-mullion-opening-door-front .field, #form_7_form .fields-mullion-opening-door .field {
+
+	float:none;
+
+	width:100%;
+
+}
+
+
+
+#form_7_form .form-matrix-table th {
+
+	text-align:center;
+
+	padding:10px;
+
+}
+
+#form_7_form .form-matrix-table td {
+
+	padding:10px;
+
+}
+
+#form_7_form .form-matrix-table input {
+
+	width:100px;
+
+}
+
+#form_1_form .form-matrix-table tr td:last-child input {
+
+	width:300px;
+
+}
+
+#form_7_form .quantitiesTable input {
+
+	width:100px;
+
+}
+
+#form_7_form .quantitiesTable .instructionsTd input {
+
+	width:350px;
+
+}
+
+#form_7_form .quantitiesTable td {
+
+	text-align:center;
+
+	padding:5px;
+
+}
+
+#form_7_form .quantitiesTable th {
+
+	text-align:center;
+
+	padding:5px;
+
+	font-weight:bold;
+
+}
+
+#form_7_form h3 {
+
+	text-transform:capitalize;
+
+}
+
+.btn-checkout-coupon {
+
+	height: 28px;
+
+	padding: 0 20px;
+
+	background-color: #c52221;
+
+	color: #fff;
+
+	border: 0;
+
+	cursor: pointer;
+
+}
+
+.btn-checkout-coupon span {
+
+	font: 12px Tahoma,Helvetica,sans-serif;
+
+	color: #fff;
+
+	text-transform:uppercase;
+
+}
+
+.checkout-coupon {
+
+	height:24px;
+
+}
+
+#checkoutCouponWrapper {
+
+	padding-left:29px;
+
+}
+
+#couponLoading {
+
+	background: url(/skin/frontend/enterprise/wood/images/opc-ajax-loader.gif) no-repeat center center;
+
+	width:20px;
+
+	height:20px;
+
+	display:none;
+
+	float:left;
+
+	margin-top:5px;
+
+}
+
+#discount-coupon-form input, #discount-coupon-form button {
+
+	float: left;
+
+	margin-right: 5px;
+
+}
+
+.block.block-list.block-compare {
+display: none;}
+
+.fields-hidden_field, .hidden_field {
+	display:none;
+}
+#form_7_form > div.std {
+	margin-bottom:20px;
+}

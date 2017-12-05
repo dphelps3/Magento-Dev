@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Abc_Twitter>
+      <active>true</active>
+      <codePool>local</codePool>
+    </Abc_Twitter>
+  </modules>
+</config>

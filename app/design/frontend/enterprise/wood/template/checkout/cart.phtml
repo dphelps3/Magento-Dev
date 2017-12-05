@@ -1,0 +1,258 @@
+<?php
+	/* Get the list of skus from the cart as a formatted string array */
+    function getCartSkus()
+    {
+        $skus = '[';
+        $items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
+		$count = 0;
+        foreach ($items as $_item) {
+			if( $count != 0 ) {
+				$skus .= ',';
+			}
+			$skus .= "'" . $_item->getSku() . "'";
+			$count++;
+		}
+		$skus .= ']';
+		return $skus;		
+    }
+ ?>
+
+<div class="cart">
+    <div class="page-title title-buttons">
+        <h1><?php echo $this->__('Shopping Cart') ?></h1>
+        <?php if(!$this->hasError()): ?>
+        <ul class="checkout-types">
+        <?php foreach ($this->getMethods('top_methods') as $method): ?>
+            <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
+            <li><?php echo $methodHtml; ?></li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        </ul>
+        <?php endif; ?>
+    </div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php echo $this->getChildHtml('form_before') ?>
+    <form id="cartform" action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
+		<?php echo $this->getBlockHtml('formkey') ?>
+        <fieldset>
+            <table id="shopping-cart-table" class="data-table cart-table">
+                <col width="1" />
+                <col />
+                <col width="1" />
+            <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
+                <col width="1" />
+            <?php endif ?>
+            <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+            <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+                <col width="1" />
+            <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+            <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+                <col width="1" />
+
+            <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+                <thead>
+                    <tr>
+                        <th rowspan="<?php echo $mergedCells; ?>">&nbsp;</th>
+                        <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Product Name') ?></span></th>
+                        <th rowspan="<?php echo $mergedCells; ?>"></th>
+                        <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><span class="nobr"><?php echo $this->__('Move to Wishlist') ?></span></th>
+                        <?php endif ?>
+                        <th class="a-center" colspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Unit Price') ?></span></th>
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><?php echo $this->__('Qty') ?></th>
+                        <th class="a-center" colspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Subtotal') ?></th>
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center">&nbsp;</th>
+                    </tr>
+                    <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+                    <tr>
+                        <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                        <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                    </tr>
+                    <?php endif; ?>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="50" class="a-right">
+                            <?php if($this->getContinueShoppingUrl()): ?>
+				<button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Continue Shopping')) ?>" class="button btn-continue" onclick="setLocation('<?php echo Mage::helper('core')->quoteEscape($this->getContinueShoppingUrl()) ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+			  <?php endif; ?>
+							
+							<?php // Add Submit Cart As Quote ?>
+							
+							<?php 
+								//~ $session_new = Mage::getSingleton('checkout/session');
+								//~ $freightflag = false;
+									
+								//~ foreach ($session_new->getQuote()->getAllItems() as $item) {
+									//~ if ($item->getProduct()->isVirtual() || $item->getParentItem()) {
+										//~ continue;
+									//~ }
+
+									//~ if ($item->getHasChildren() && $item->isShipSeparately()) {
+										//~ foreach ($item->getChildren() as $child) {
+											//~ if ($child->getFreeShipping() && !$child->getProduct()->isVirtual()) {
+												//~ $product_id = $child->getProductId();
+												//~ $productObj = Mage::getModel('catalog/product')->load($product_id);
+												//~ Mage::log(print_r($productObj, true),null,'quote.log');
+												//~ $isFreight = $productObj->getData('is_freight'); 
+												//~ $type_id = $productObj->getData('type_id'); 
+												//~ $attribute_set_id =  $productObj->getData('attribute_set_id');
+												//~ if($isFreight == '1189') {
+													//~ $freightflag = true;
+												//~ }
+												//~ if($type_id == 'cabinet') {
+													//~ $cabinet_item = true;
+												//~ }
+												//~ if($attribute_set_id == '14') {
+													//~ $cabinet_item = true;
+												//~ }
+											//~ }
+										//~ }
+									//~ } else {
+										//~ $product_id = $item->getProductId();
+										//~ $productObj = Mage::getModel('catalog/product')->load($product_id);
+										//~ Mage::log(print_r($productObj, true),null,'quote.log');
+										//~ $isFreight = $productObj->getData('is_freight'); 
+										//~ $type_id = $productObj->getData('type_id'); 
+										//~ $attribute_set_id =  $productObj->getData('attribute_set_id');
+										//~ if($isFreight == '1189') {
+											//~ $freightflag = true;
+										//~ } 
+										//~ if($type_id == 'cabinet') {
+											//~ $cabinet_item = true;
+										//~ }
+										//~ if($attribute_set_id == '14') {
+											//~ $cabinet_item = true;
+										//~ }
+									//~ }
+								//~ }
+								//Submit Cart as Quote End
+							?>
+							<?php /* if (($freightflag == true) || $cabinet_item == true) { ?>
+								<a class="quote_button" href="/quote">Submit Cart as Quote</a>
+							<?php } */ ?>
+							
+							<button type="button" title="<?php echo $this->__('Print') ?>" class="button btn-update" onclick="PrintElem('#cartform')"><span><span><?php echo $this->__('Print') ?></span></span></button>
+							<!--<button type="button" title="<?php echo $this->__('Print') ?>" class="button btn-update" onclick="window.print()"><span><span><?php echo $this->__('Print') ?></span></span></button>
+                            --><button type="submit" title="<?php echo $this->__('Update Shopping Cart') ?>" class="button btn-update"><span><span><?php echo $this->__('Update Shopping Cart') ?></span></span></button>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                <?php foreach($this->getItems() as $_item): ?>
+                    <?php echo $this->getItemHtml($_item) ?>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+            <script type="text/javascript">
+		/* 4Cite tracking code */
+		/* NOT NEEDED BECAUSE THIS IS CALLED IN THE HEADER --- window.tracker = window._svt._getTracker('1660_03709');	*/
+ 		window.tracker._setCartProduct(<?php echo getCartSkus(); ?>);
+ 		window.tracker._setIsCart(true);
+ 		window.tracker._trackPageView();
+                
+		function qtyDown(id){
+                    var qty_el = document.getElementById('cart[' + id + '][qty]');
+                    var qty = qty_el.value; 
+                    if( qty == 2) {
+                        jQuery('.box_down' + id).css({
+                            'visibility' : 'hidden'
+                        });
+                    }
+                    if( !isNaN( qty ) && qty > 0 ){
+                        qty_el.value--;
+                    }         
+                    return false;
+                }
+                
+                function qtyUp(id){
+                    var qty_el = document.getElementById('cart[' + id + '][qty]');
+                    var qty = qty_el.value; 
+                    if( !isNaN( qty )) {
+                        qty_el.value++;
+                    }
+                    jQuery('.box_down' + id).css({
+                        'visibility' : 'visible'
+                    });
+                    return false;
+                }
+				
+				function replaceAll(find, replace, str) {
+				  return str.replace(new RegExp(find, 'g'), replace);
+				}
+				
+				 function PrintElem(elem)
+					{
+						Popup(jQuery(elem).html());
+					}
+
+					function Popup(data) 
+					{
+						var mywindow = window.open('', 'cart', 'height=600,width=800');
+						mywindow.document.write('<html><head><title>Shopping Cart - Custom Service Hardware</title>');
+
+						mywindow.document.write('<link media="all" href="http://www.cshardware.com/media/css/61f5c4e399150909022e00d820429878.css" type="text/css" rel="stylesheet">');
+						mywindow.document.write('<link media="print" href="http://www.cshardware.com/media/css/6f6ce5c6ecea79de2bb8485ee47c6723.css" type="text/css" rel="stylesheet">');
+						mywindow.document.write('</head><body >');
+						var pageData = data;
+						pageData = replaceAll("</?cufon+[^>]*>","",pageData);
+						pageData = replaceAll("</?canvas+[^>]*>","",pageData);
+						pageData = replaceAll("</?button+[^>]*>","",pageData);
+						mywindow.document.write(pageData);
+						mywindow.document.write('</bod' + 'y></ht' + 'ml>');
+
+						mywindow.print();
+						//mywindow.close();
+
+						return true;
+					}
+					
+					
+					
+            </script>
+            <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+        </fieldset>
+    </form>
+    <div class="cart-collaterals">
+        <div class="col3-set">
+            <div class="col-1">
+                <?php if($_crosssell = $this->getChildHtml('crosssell')): ?>
+                    <?php echo $_crosssell; ?>
+                <?php else: ?>
+                <div class="no-crosssell">
+                    &nbsp;<!-- <img src="<?php echo $this->getSkinUrl('images/media/fpo_no_crosssell.gif') ?>" alt="" /> -->
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="col-2">
+                <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
+            </div>
+            <div class="col-3">
+                <div class="totals">
+                    <?php echo $this->getChildHtml('coupon') ?>
+					<?php echo $this->getChildHtml('giftcards') ?>
+                    <?php echo $this->getChildHtml('totals'); ?>
+                    <?php if(!$this->hasError()): ?>
+                    <ul class="checkout-types">
+                    <?php foreach ($this->getMethods('methods') as $method): ?>
+                        <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
+                        <li><?php echo $methodHtml; ?></li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </ul>
+                    <?php endif; ?>
+                </div>
+        </div>
+    </div>
+</div>
+</div>

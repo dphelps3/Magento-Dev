@@ -1,0 +1,18 @@
+<config>    
+    <modules>
+        <Simplesolutions_Ssajax>
+            <version>0.1.0</version>
+        </Simplesolutions_Ssajax>
+    </modules>
+	<frontend>
+        <routers>
+            <ssajax>
+                <use>standard</use>
+                <args>
+                    <module>Simplesolutions_Ssajax</module>
+                    <frontName>ssajax</frontName>
+                </args>
+            </ssajax>
+        </routers>  
+    </frontend>
+</config>

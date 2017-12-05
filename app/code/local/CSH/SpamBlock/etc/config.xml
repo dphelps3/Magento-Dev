@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <CSH_SpamBlock>
+      <version>0.1.0</version>
+    </CSH_SpamBlock>
+  </modules>
+  <frontend>
+    <routers>
+      <spamblock>
+        <use>standard</use>
+          <args>
+            <module>CSH_SpamBlock</module>
+            <frontName>spamblock</frontName>
+          </args>
+      </spamblock>
+    </routers>
+  </frontend>
+  <global>
+		<rewrite>        
+            <csh_spamblock_customer_accountcontroller>
+                <from><![CDATA[#^/customer/account/#]]></from> <!-- Mage_Customer_AccountController  -->
+                <to>/spamblock/customer_account/</to> <!-- CSH_SpamBlock_Customer_AccountController  -->
+            </csh_spamblock_customer_accountcontroller>
+		</rewrite>
+    <helpers>
+      <spamblock>
+        <class>CSH_SpamBlock_Helper</class>
+      </spamblock>
+    </helpers>
+  </global>
+  <admin>
+	<routers>
+	  <spamblock>
+	    <use>admin</use>
+		<args>
+		  <module>CSH_SpamBlock</module>
+		  <frontName>admin_spamblock</frontName>
+		</args>
+	  </spamblock>
+	</routers>
+  </admin>
+</config> 

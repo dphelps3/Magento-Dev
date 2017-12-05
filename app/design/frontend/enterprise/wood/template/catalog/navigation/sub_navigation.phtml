@@ -1,0 +1,46 @@
+<div id="categories">
+<div class="col_full">
+<div class="listing" >
+<?php $_maincategorylisting=$this->getCurrentCategory()?>
+<?php $_categories=$this->getCurrentChildCategories()?>
+<?php if($_categories->count()):?>
+           <? foreach ($_categories as $_category):?>
+                        <? if($_category->getIsActive()):
+                        $cur_category=Mage::getModel('catalog/category')->load($_category->getId());
+           $layer = Mage::getSingleton('catalog/layer');
+           $layer->setCurrentCategory($cur_category);
+			$catName = $this->getCurrentCategory()->getName();
+			if($_imageUrl=!$this->getCurrentCategory()->getImageUrl()):?>
+			<div class="category-box">
+				<div class="category-image-box">
+					<a href="<?php echo $this->getCategoryUrl($_category)?>"><img src="/category_image_default.gif"></a>
+				</div>
+				<div class="category-name">
+					<h4><a href="<?php echo $this->getCategoryUrl($_category)?>">
+						<?php echo $catName ?></a></h4>
+				</div>
+			</div>
+			<?endif?>
+			<? if($_imageUrl=$this->getCurrentCategory()->getImageUrl()):?>
+         <div class="category-box">
+				<div class="category-image-box">
+					 <a href="<?php echo $this->getCategoryUrl($_category)?>"><img src="<?php echo $_imageUrl?>" height="80"></a>
+				</div>
+				<div class="category-name">
+					<p><a href="<?php echo $this->getCategoryUrl($_category)?>"> <?php echo $_category->getName()?></a></p>
+				</div>
+			</div>
+<?
+                        endif;
+                        endif;?>
+            <?endforeach?>
+            <?php /* This resets the category back to the original pages category
+****     If this is not done, subsequent calls on the same page will use the last category
+****    in the foreach loop
+*/   ?>
+<?php $layer->setCurrentCategory($_maincategorylisting);  ?>
+    <?endif;?>
+</div>
+<br clear=all>
+</div>
+</div>

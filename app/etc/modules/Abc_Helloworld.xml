@@ -1,0 +1,10 @@
+<config>
+
+  <modules>
+    <Abc_Helloworld>
+      <active>true</active>
+      <codePool>local</codePool>
+    </Abc_Helloworld>
+  </modules>
+
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Abc_Twitter>
+      <version>0.0.1</version>
+    </Abc_Twitter>
+  </modules>
+  <global>
+    <blocks>
+      <twitter>
+        <class>Abc_Twitter_Block</class>
+      </twitter>
+    </blocks>
+  </global>
+</config>

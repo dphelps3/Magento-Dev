@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <DecHardware_DecHardwarePproduct>
+            <active>true</active>
+            <codePool>local</codePool>
+        </DecHardware_DecHardwarePproduct>
+    </modules>
+</config>

@@ -1,0 +1,21 @@
+<config>
+
+  <modules>
+    <Abc_Helloworld>
+      <version>0.1.0</version>
+    </Abc_Helloworld>
+  </modules>
+
+  <frontend>
+    <routers>
+      <helloworld>
+        <use>standard</use>
+        <args>
+          <module>Abc_Helloworld</module>
+          <frontName>helloworld</frontName>
+        </args>
+      </helloworld>
+    </routers>
+  </frontend>
+
+</config>

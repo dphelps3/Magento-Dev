@@ -1,0 +1,186 @@
+fieldset {
+    border-color: #888888;
+	border-style: solid;
+	border-width: 1px;
+	margin: 40px 0 5px 0px;
+	padding: 5px;
+}
+
+legend {
+    background-color: #c62120;
+	border-style: none;
+	color: #fff;
+	display: block;
+	font-size: 17px;
+	font-weight: bold;
+	margin-left: -6px;
+	margin-top: -36px;
+	padding: 5px 0px 5px 22px;
+	position: absolute;
+	width: 711px;
+	min-width: 938px;
+}
+
+fieldset h2 {
+	background-color: #aaaaaa;
+	margin: 0;
+	padding: 0;
+	padding-left: 10px;
+	margin-left: -10px;
+	font-size: 100%;
+	font-family: sans-serif;
+	font-weight: normal;
+	width: 100%;
+}
+
+label img {
+	vertical-align: middle;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.num_input {
+	text-align: right;
+	width: 50px;
+}
+
+.parts_list th {
+	font-size: 110%;
+	text-align: left;
+}
+
+.parts_list {
+	width: 100%;
+}
+
+.parts_list td {
+	vertical-align: top;
+}
+
+.toggle_desc a {
+	text-decoration: none;
+	font-size: 75%;
+	font-family: sans-serif;
+}
+
+.sku_image {
+  width: 55px;
+}
+
+.sku_td {
+	font-weight: bold;
+  width:185px;
+}
+
+.contDesc {
+  width:370px;
+}
+
+.sku_desc {
+	color: #444444;
+	font-size: 90%;
+	display: none;
+}
+
+.sku_price {
+	text-align: left;
+}
+
+.sku_note {
+	font-weight: bold;
+}
+.roller_strap_table tr td label {
+	display: block;
+	text-align: center;
+}
+.roller_strap_table td {
+	border-bottom:1px solid #ccc;
+	padding:10px 10px 10px 10px;
+	width:14%;
+}
+.roller_strap_table tr td img {
+	margin-bottom:7px;
+}
+.roller_strap_table tr td input {
+	text-align: center;
+	margin: 7px auto 2px auto;
+	display: block;
+}
+#finish_img {
+	margin-right:10px;
+}
+.finish {
+	float: left;
+	margin-right: 20px;
+        margin-top:5px;
+}
+.finish img {
+	margin-right: 10px;
+}
+.finish label {
+	margin-top: 25px;
+	display: inline-block;
+}
+.note {
+	margin: 10px 0 5px;
+}
+#parts table td {
+	padding:5px;
+}
+
+.EasyOrderForm_RollingDoorKit_Instructions {
+	width: 959px;
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.door-options {
+  display: inline-block;
+  margin-top:5px;
+  margin-bottom: 5px;
+  vertical-align: top;
+  text-align: center;
+  width: 170px;
+}
+
+.imgCushion {
+  margin-bottom: 8px;
+}
+
+#selThk {
+  display: none;
+  font-style:normal;
+  margin-top:5px;
+  margin-left:55px;
+  margin-bottom:7px;
+}
+
+#selThkOptions {
+  margin-top:10px;
+  margin-left:35px;
+  margin-bottom:18px;
+  line-height: 190%;
+}
+
+#doorFieldset {
+  transition-duration: 0.2s;
+  height: 365px;
+}
+
+.doorOpt {
+  margin-top:15px;
+  font-weight:bold;
+}
+
+.doorOpt p {
+  font-weight: normal;
+  margin-left:50px;
+  margin-top: 15px;
+  margin-bottom:30px;
+}
+
+.doorOptHeader {
+  color: #555;
+}

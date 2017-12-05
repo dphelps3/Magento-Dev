@@ -1,0 +1,12 @@
+<?php
+	$product = $this->getData('product');
+	$message = Mage::helper('checkout')->__('%s was added to your wishlist.', Mage::helper('core')->htmlEscape($product->getName()));
+?>
+<div class="iwd-qv-messages" style="display:block">
+	<p class="iwd-qv-message-success"><?php echo $message?></p>
+</div>
+
+<div class="es-action">
+	<a class="iwd-qv-button es-btn-checkout"><?php echo $this->__('Checkout')?></a>
+	<a class="iwd-qv-button right close-ajax-dialog" data-dismiss="modal"><?php echo $this->__('Continue Shopping')?></a>
+</div>

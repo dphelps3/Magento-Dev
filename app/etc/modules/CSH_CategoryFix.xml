@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <CSH_CategoryFix>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>0.1.0</version>
+    </CSH_CategoryFix>
+  </modules>
+  <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <!--FOR THE USE OF OUR CONTROLLER BEFORE THE CORE ONES -->
+                        <categoryfix before="Mage_Adminhtml">CSH_CategoryFix_Adminhtml</categoryfix>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

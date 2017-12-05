@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<!--
+/*
+ * @category    Community
+ * @package     MC_Mcautoreviewreminderemail
+ * @Document    adminhtml.xml
+ * @Created on  April 11, 2012, 7:05 PM
+ * @copyright   Copyright (c) 2012 Magento Complete
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <mcautoreviewreminderemail_section translate="title" module="mcautoreviewreminderemail">
+                                        <title>Auto Review Reminder Email</title>
+                                        <sort_order>110</sort_order>
+                                    </mcautoreviewreminderemail_section>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config> 

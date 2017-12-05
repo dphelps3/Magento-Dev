@@ -1,0 +1,40 @@
+<config>
+  <global>
+    <models>
+      <Simplesolutions_Register>
+        <class>Simplesolutions_Register_Model</class>
+      </Simplesolutions_Register>
+    </models>
+	<events>
+	  <customer_register_success>
+	    <observers>
+	      <simplesolutions_register_observer>
+	        <type>singleton</type>
+	        <class>Simplesolutions_Register_Model_Observer</class>
+	        <method>save_csh_id</method>
+	      </simplesolutions_register_observer>
+	    </observers>
+	  </customer_register_success>
+	  <adminhtml_customer_save_after>
+	    <observers>
+	      <simplesolutions_adminregister_observer>
+	        <type>singleton</type>
+	        <class>Simplesolutions_Register_Model_Observer</class>
+	        <method>save_csh_id</method>
+	      </simplesolutions_adminregister_observer>
+	    </observers>
+	  </adminhtml_customer_save_after>
+	  <customer_save_before>
+	    <observers>
+	      <simplesolutions_checkout_observer>
+	        <type>singleton</type>
+	        <class>Simplesolutions_Register_Model_Observer</class>
+	        <method>test_customer_info</method>
+	      </simplesolutions_checkout_observer>
+	    </observers>
+	  </customer_save_before>
+    </events>
+  </global>
+</config>
+
+

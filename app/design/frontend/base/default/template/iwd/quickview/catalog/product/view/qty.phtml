@@ -1,0 +1,27 @@
+<?php
+$_helper = $this->helper('catalog/output');
+$_product = $this->getProduct();
+$typeProduct = $_product->getTypeId();
+?>
+
+<?php if (in_array($typeProduct, array(
+        'configurable',
+        'downloadable',
+        'giftcard',
+        'bundle',
+        'simple',
+        'virtual',
+    ))):?>
+    <div class="left qty-block">
+        <input type="text" name="qty" class="ajax-qty-input left" value="<?php echo $this->getProductDefaultQty() * 1 ?>"/>
+        <div class="right qty-slider">
+            <i class="inc fa fa-chevron-up"></i>
+            <i class="dec fa fa-chevron-down"></i>
+        </div>
+    </div>
+    <script>
+        IWD.QuickView.Decorator.decorateQty();
+    </script>
+<?php //elseif($typeProduct == 'bundle'):?>
+<!--    <input class="input-text qty" type="text" value="0">-->
+<?php endif;?>

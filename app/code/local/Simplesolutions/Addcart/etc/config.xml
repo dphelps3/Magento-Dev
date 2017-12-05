@@ -1,0 +1,18 @@
+<config>    
+    <modules>
+        <Simplesolutions_Addcart>
+            <version>0.1.0</version>
+        </Simplesolutions_Addcart>
+    </modules>
+	<frontend>
+        <routers>
+            <addcart>
+                <use>standard</use>
+                <args>
+                    <module>Simplesolutions_Addcart</module>
+                    <frontName>addcart</frontName>
+                </args>
+            </addcart>
+        </routers>  
+    </frontend>
+</config>

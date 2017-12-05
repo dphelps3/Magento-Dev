@@ -1,0 +1,59 @@
+<?php
+/**
+ * Sitesquad - Custom Coupon functionality
+ *
+ * =============================================================================
+ * NOTE: See README.txt for more information about this extension
+ * =============================================================================
+ *
+ * @category   CSH
+ * @package    CSH_Coupon
+ * @copyright  Copyright (c) 2015 Sitesquad. (http://www.sitesquad.net)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Phil Mobley <phil.mobley@sitesquad.net>
+ */
+
+?>
+<?php
+/* @var $this CSH_Coupon_Block_Checkout_Review_Coupon */
+?>
+<?php if ($this->getIsEnabled()): ?>
+<?php $couponCode = $this->getCouponCode(); ?>
+<div id="checkoutCouponWrapper">
+    <form onsubmit="return false;" id="discount-coupon-form" action="<?php echo $this->getActionUrl()?>" method="post">
+    	<label for="coupon_code"> <?php echo $this->__('Enter your coupon code if you have one.') ?></label><br /><br />
+    	<input class="checkout-coupon" id="coupon_code" name="coupon_code" value="<?php echo $couponCode; ?>"/>
+    	<?php  if (strlen($couponCode)): ?>
+    	<button id="btn_checkout_coupon_remove" class="btn-checkout-coupon" type="button" onclick="updateCoupon(2);" value="<?php echo $this->__('Remove Coupon')?>"><span><span><?php echo $this->__('Remove Coupon') ?></span></span></button>
+    	<?php endif; ?>
+    	<button id="btn_checkout_coupon" class="btn-checkout-coupon" type="button" value="<?php echo $this->__('Apply Coupon')?>"><span><span><?php echo $this->__('Apply Coupon') ?></span></span></button>
+    	<div id="couponLoading"></div>
+    </form>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+$('btn_checkout_coupon').addEventListener('click', updateCouponNew, false);
+<?php if (strlen($couponCode)): ?>
+$('btn_checkout_coupon_remove').addEventListener('click', updateCouponRemove, false);
+<?php endif; ?>
+function updateCoupon(reqid) {
+  jQuery.noConflict();
+  jQuery('#couponLoading').toggle();
+  var reqid;
+  
+  if(reqid == 2) {
+    $('coupon_code').setValue('');
+  }
+
+  $('discount-coupon-form').request({
+    method: 'post',
+    onComplete: payment.onComplete,
+    onSuccess: payment.onSave,
+    onFailure: checkout.ajaxFailure.bind(checkout),
+  })
+}
+function updateCouponNew() { updateCoupon(1); }
+function updateCouponRemove() { updateCoupon(2); }
+//]]>
+</script>
+<?php endif; ?>

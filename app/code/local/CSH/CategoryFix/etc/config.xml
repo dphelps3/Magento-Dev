@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <CSH_CategoryFix>
+      <version>0.1.0</version>
+    </CSH_CategoryFix>
+  </modules>
+  <frontend>
+    <routers>
+      <categoryfix>
+        <use>standard</use>
+          <args>
+            <module>CSH_CategoryFix</module>
+            <frontName>categoryfix</frontName>
+          </args>
+      </categoryfix>
+    </routers>
+  </frontend>
+  <global>
+		<rewrite>        
+            <csh_categoryfix_adminhtml_catalog_categorycontroller>
+                <from><![CDATA[#^/admin/catalog_category/#]]></from> <!-- Mage_Adminhtml_Catalog_CategoryController  -->
+                <to>/categoryfix/adminhtml_catalog_category/</to> <!-- CSH_CategoryFix_Adminhtml_Catalog_CategoryController  -->
+            </csh_categoryfix_adminhtml_catalog_categorycontroller>
+		</rewrite>
+    <helpers>
+      <categoryfix>
+        <class>CSH_CategoryFix_Helper</class>
+      </categoryfix>
+    </helpers>
+  </global>
+  <admin>
+	<routers>
+	  <categoryfix>
+	    <use>admin</use>
+		<args>
+		  <module>CSH_CategoryFix</module>
+		  <frontName>categoryfix</frontName>
+		</args>
+	  </categoryfix>
+	</routers>
+  </admin>
+</config> 

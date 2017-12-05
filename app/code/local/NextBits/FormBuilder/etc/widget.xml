@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<widgets>
+	<formbuilder_form type="formbuilder/form" module="formbuilder">
+		<name>Formbuilder - Add Form</name>
+		<description type="desc">Adds form into page</description>
+		<parameters>
+			<form_id>
+				<label>Form Name</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>select</type>
+				<source_model>formbuilder/formbuilder</source_model>
+			</form_id>
+		</parameters>
+	</formbuilder_form>
+	<formbuilder_results type="formbuilder/results" translate="name description" module="formbuilder">
+		<name>Formbuilder - Results</name>
+		<description type="desc">Adds formbuilder collected results to a page</description>
+		<parameters>
+			<result_form_id>
+				<label>Form Name</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>select</type>
+				<source_model>formbuilder/formbuilder</source_model>
+			</result_form_id>
+			<page_size>
+				<label>Results per page</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>10</value>
+			</page_size>
+			<template>  
+					<visible>0</visible>  
+					<value>formbuilder/results/default.phtml</value>  
+			</template>
+			<field_ids> 
+				<required>1</required> 
+				<visible>1</visible> 
+				<label>Form Fields that will display in grid</label> 
+				<type>multiselect</type>
+				<source_model>formbuilder/fields</source_model>
+			</field_ids>
+		</parameters>
+	</formbuilder_results>
+</widgets>

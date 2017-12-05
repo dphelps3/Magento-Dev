@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Turnkeye_FacebookProductsTab>
+            <version>0.1.1</version>
+        </Turnkeye_FacebookProductsTab>
+    </modules>
+
+    <global>
+        <blocks>
+            <turnkeye_facebookproductstab>
+                <class>Turnkeye_FacebookProductsTab_Block</class>
+            </turnkeye_facebookproductstab>
+        </blocks>
+
+        <helpers>
+            <turnkeye_facebookproductstab>
+                <class>Turnkeye_FacebookProductsTab_Helper</class>
+            </turnkeye_facebookproductstab>
+        </helpers>
+
+        <resources>
+            <turnkeye_facebookproductstab_setup>
+                <setup>
+                    <module>Turnkeye_FacebookProductsTab</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </turnkeye_facebookproductstab_setup>
+        </resources>
+    </global>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <Turnkeye_FacebookProductsTab>
+                    <files>
+                        <default>Turnkeye_FacebookProductsTab.csv</default>
+                    </files>
+                </Turnkeye_FacebookProductsTab>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <frontend>
+        <routers>
+            <turnkeye_facebookproductstab>
+                <use>standard</use>
+                <args>
+                    <module>Turnkeye_FacebookProductsTab</module>
+                    <frontName>facebook-catalog</frontName>
+                </args>
+            </turnkeye_facebookproductstab>
+        </routers>
+        <layout>
+            <updates>
+                <turnkeye_facebookproductstab>
+                    <file>turnkeye_facebookproductstab.xml</file>
+                </turnkeye_facebookproductstab>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Turnkeye_FacebookProductsTab>
+                    <files>
+                        <default>Turnkeye_FacebookProductsTab.csv</default>
+                    </files>
+                </Turnkeye_FacebookProductsTab>
+            </modules>
+        </translate>
+    </frontend>
+</config>

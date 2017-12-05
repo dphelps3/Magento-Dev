@@ -1,0 +1,18 @@
+<?php
+    $attributes = $this->getAttributes(TRUE);
+?>
+<div id="output_row" class="inside-row output-default-row">
+    <select id="output_attribute" name="advanced[:value_order][output][attribute][]">
+        <?php foreach($attributes as $code => $label){ ?>
+        <option value="<?php print $code?>"><?php 
+            print $this->htmlEscape($label);
+        ?></option>
+        <?php }?>
+    </select>
+    <input id="output_operator" name="advanced[:value_order][output][parent][]" type="checkbox"/><label>&nbsp;<?php print $this->__("Parent")?></label>
+    
+    <span style="float: right;">
+        <button id="delete_output" type="button" class="scalable delete" style=""><span><span><span></span></span></span></button>
+    </span>
+</div>
+

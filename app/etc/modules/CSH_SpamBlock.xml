@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <CSH_SpamBlock>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>0.1.0</version>
+    </CSH_SpamBlock>
+  </modules>
+</config>

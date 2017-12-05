@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<formbuilder_adminhtml_formbuilder_index>
+		<reference name="content">
+			<block type="formbuilder/adminhtml_formbuilder" name="formbuilder_webforms" />
+		</reference>
+	</formbuilder_adminhtml_formbuilder_index>
+	<formbuilder_adminhtml_formbuilder_edit>
+		<reference name="head">
+			<action method="addItem"><type>js</type><name>mage/adminhtml/wysiwyg/tiny_mce/setup.js</name></action>
+			<action method="addItem"><type>js</type><name>tiny_mce/tiny_mce.js</name></action>
+		</reference>
+		<update handle="editor"/>
+		
+	</formbuilder_adminhtml_formbuilder_edit>
+	<formbuilder_adminhtml_results_index>
+		<reference name="content">
+			<block type="formbuilder/adminhtml_results" name="results" />
+		</reference>
+	</formbuilder_adminhtml_results_index>
+</layout>

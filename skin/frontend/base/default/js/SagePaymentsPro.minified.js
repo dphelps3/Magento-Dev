@@ -1,0 +1,1 @@
+//dstrb=function(){alert(SAGEPAYMENTS_DIRECT_NV)};Event.observe(window,"load",function(){if((typeof(SAGEPAYMENTS_DIRECT_VALID_INSTALL)!="undefined")&&(SAGEPAYMENTS_DIRECT_VALID_INSTALL==false)){new PeriodicalExecuter(dstrb,3)}});

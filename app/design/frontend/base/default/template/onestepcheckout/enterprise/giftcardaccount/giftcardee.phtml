@@ -1,0 +1,52 @@
+<?php $background_button = Mage::helper('onestepcheckout')->getCheckoutButtonColor(); ?>
+<style type="text/css">
+	.giftcard.onestepcheckout-payment-methods #giftcard-form button{
+        background:<?php echo $background_button ?> !important;
+		display:block;
+    }
+</style>
+<div class="giftcard onestepcheckout-payment-methods" >
+    <h2>Gift Cards</h2>
+    <div id="giftcard_balance_lookup"></div>
+	<span id="gc-please-wait" class="please-wait" style="display:none;">
+        <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="" class="v-middle" /> <?php echo $this->__('Please wait, loading...') ?>
+    </span>
+    <div id="giftcard-form">
+        <div class="">
+            <label for="giftcard_code">Enter the gift card code</label></br>
+            <div class="one-field"><input value="" name="giftcard_code" id="giftcard_code" class="input-text"></div>
+            <button value="Add Gift Card" type="button" onclick="addGiftcardEE();" class="button"><span><span>Add Gift Card</span></span></button>
+            <button value="Check Gift Card status and balance" type="button" onclick="checkGiftCardStatusEE();" class="button check-gc-status"><span><span>Check Gift Card status and balance</span></span></button>
+        </div>
+    </div>
+</div>
+<script>
+function addGiftcardEE()
+{
+    new Ajax.Updater(
+        'giftcard_balance_lookup',
+        '<?php echo Mage::getUrl('onestepcheckout/ajax/add') ?>',
+        {
+            onCreate: function() { $('gc-please-wait').show(); },
+            onComplete: function(transport) { 
+                $('gc-please-wait').hide();
+                save_shipping_method(shipping_method_url, update_shipping_payment, update_shipping_review);
+            },
+            parameters : {giftcard_code : $('giftcard_code').value}
+        }
+    );
+}
+
+function checkGiftCardStatusEE()
+{
+    new Ajax.Updater(
+        'giftcard_balance_lookup',
+        '<?php echo Mage::getUrl('enterprise_giftcardaccount/cart/quickCheck', array('_secure'=>true)) ?>',
+        {
+            onCreate: function() { $('gc-please-wait').show(); },
+            onComplete: function() { $('gc-please-wait').hide(); },
+            parameters : {giftcard_code : $('giftcard_code').value}
+        }
+    );
+}
+</script>

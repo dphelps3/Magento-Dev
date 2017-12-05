@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : MC_Mcautoreviewreminderemail.xml
+    Created on : May 10, 2012, 3:05 PM
+    Author     : Magento Complete
+    Description:
+        Purpose of the document follows.
+-->
+
+<config>
+    <modules>
+        <MC_Mcautoreviewreminderemail>
+            <active>true</active>
+            <codePool>community</codePool>
+        </MC_Mcautoreviewreminderemail>
+    </modules>
+</config>

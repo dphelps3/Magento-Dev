@@ -1,0 +1,69 @@
+<?php $fields= $this->getFields();?>
+<?php //echo "<prE>";print_R($fields);exit;?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $collection = $this->getCollection(); ?>
+<div class="page-title">
+    <h1><?php echo Mage::registry('formresult_form')->getName();?> <?php echo $this->__('Results');?></h1>
+</div>
+<?php echo $this->getPagerHtml(); ?>
+<?php if($collection->getSize()): ?>
+<table class="data-table" id="my-custom-table">
+    <thead>
+        <tr>
+			<?php foreach($fields as $key=>$_field):?>
+				<th><?php echo $_field->getTitle();?></th>
+			<?php endforeach;?>
+			<th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+		
+        <?php $_odd = ''; ?>
+        <?php foreach ($collection as $_obj): ?>
+        <tr>
+            <?php foreach($fields as $key=>$_field):?>
+				<?php $_fieldKey = 'field_'.$_field->getFieldId();?>
+				<?php if($_field->getType() =='date'):?>
+					<?php $value = Mage::helper('core')->jsonDecode($_obj->getData($_fieldKey));?>
+					<td><?php echo $value['date'];?></td>
+				<?php elseif($_field->getType() =='file'):?>
+					<?php $url = $_obj->getData($_fieldKey);?>
+					<?php $fullUrl =explode('=>',$url);
+					$url =Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'formbuilder'.$fullUrl[1];?>
+					<?php $html="<a target='_black' href=".$url.">".$fullUrl[0]."</a>";?>
+					<td><?php echo $html;?></td>
+				<?php elseif($_field->getType() =='checkbox' || $_field->getType() =='multiple' || $_field->getType() =='radio'):?>
+					<?php $value = Mage::helper('core')->jsonDecode($_obj->getData($_fieldKey));
+					$explode =implode('<br/>',$value);
+					?>
+					<td><?php echo $explode;?></td>
+				<?php elseif($_field->getType()=='date_time'):?>
+					<?php if($_obj->getData($_fieldKey)):?>
+					<?php $value = Mage::helper('core')->jsonDecode($_obj->getData($_fieldKey));?>
+					<?php $explode =$value['date'].' '.$value['hour'].':'.$value['minute'].' '.$value['day_part'];?>
+					<td><?php echo $explode;?></td>
+					<?php else:?>
+						<td></td>
+					<?php endif;?>
+				<?php elseif($_field->getType()=='time'):?>
+					<?php if($_obj->getData($_fieldKey)):?>
+					<?php $value = Mage::helper('core')->jsonDecode($_obj->getData($_fieldKey));?>
+					<?php $explode =$value['hour'].':'.$value['minute'].' '.$value['day_part'];?>
+					<td><?php echo $explode;?></td>
+					<?php else:?>
+						<td></td>
+					<?php endif;?>
+				<?php else:?>
+					<td><?php echo $_obj->getData($_fieldKey);?></td>
+				<?php endif;?>
+			<?php endforeach;?>
+			<td><a href="<?php echo $this->getBaseUrl('').'formbuilder/index/view/id/'.$_obj->getId();?>"><?php echo $this->__('Details');?></a></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-custom-table');</script>
+<?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+    <p><?php echo $this->__('The collection is empty.'); ?></p>
+<?php endif ?>

@@ -1,0 +1,31 @@
+<form id="co-comments-form" action="">
+<fieldset>
+    <ul class="form-list">
+    <li id="comments-form">
+        <fieldset>
+            <ul>
+                <li class="wide">
+                    <label for="simplesolutions:comments" class="required"><?php echo $this->__('Would you like to add any comments?') ?></label>
+                    <div class="input-box">
+                        <textarea name='simplesolutions[comments]'  class="required-entry input-text" id="simplesolutions:comments" value='<?php echo $this->getQuote()->getSimpleSolutionsComments()?>'/>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+     </li>
+    </ul>
+    <div class="buttons-set" id="comments-buttons-container">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="button" title="<?php echo $this->__('Continue') ?>" class="button" onclick="comments.save()"><span><span><?php echo $this->__('Continue') ?></span></span></button>
+        <span class="please-wait" id="comments-please-wait" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading next step...') ?>" title="<?php echo $this->__('Loading next step...') ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
+        </span>
+    </div>
+</fieldset>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var comments = new CommentsMethod('co-comments-form','<?php echo $this->getUrl('custom/onepage/saveComments') ?>');
+    var commentsForm2 = new VarienForm('co-comments-form');
+//]]>
+</script>

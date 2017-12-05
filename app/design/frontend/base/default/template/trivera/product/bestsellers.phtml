@@ -1,0 +1,79 @@
+<?php
+/**
+ * Trivera bestsellers of category
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       design
+ * @package        base_default
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */ 
+?>
+<?php
+/**
+ * Bestsellers category product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+<?php
+    $productQty = 5;
+    $storeId = Mage::app()->getStore()->getId();    
+    $attributesToSelect = array('name', 'small_image','price');    
+    $products = Mage::getResourceModel('reports/product_collection')                ->addOrderedQty();
+    if(Mage::helper('catalog/product_flat')->isEnabled()){
+        $productFlatTable = Mage::getResourceSingleton('catalog/product_flat')->getFlatTableName($storeId);   
+        $products->joinTable(array('flat_table'=>$productFlatTable),'entity_id=entity_id', $attributesToSelect);
+    }else{
+       $products->addAttributeToSelect($attributesToSelect);
+    }
+    $products->setStoreId($storeId)
+          ->addStoreFilter($storeId)
+          ->addCategoryFilter(Mage::getModel('catalog/category')->load($this->getData('category_id')))
+          ->setPageSize($productQty)
+          ->setOrder('ordered_qty', 'desc'); // most best sellers on top
+     Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($products);
+     Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($products);
+    $_productCollection=$products;   
+    $_helper = $this->helper('catalog/output');
+?>
+<h2 class="sectionHead">
+    <span><?php echo $this->__('MOST POPULAR') ?></span>
+</h2>
+<?php if(!$_productCollection->count()): ?>
+    <p class="note-msg"><?php echo $this->__('There are no bestsellers products matching the selection.') ?></p>
+<?php else: ?>
+    <?php // Begin block products ?>
+    <?php $_iterator = 0; ?>
+    <ul class="products-grid row first odd most-popular">        
+    <?php foreach ($_productCollection as $_product): ?>        
+        <?php if( ($_iterator == $productQty) or ($_iterator == sizeof($_productCollection))) : 
+            break;
+        endif; ?>
+        <li class="col-xs-6 col-md-15" style="text-align:center;">            
+            <?php // Product Image ?>
+            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="img-thumbnail" /></a>
+                    <?php // Product name ?>
+                    <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                    <h2 class="product-name" style="min-height:90px;"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h2>
+                    <?php // Product price ?>
+                    <?php echo $this->getPriceHtml($_product, true) ?>
+                    <?php // Product buy button ?>
+                    <div class="actions">
+                    <?php if($_product->isSaleable()): ?>
+                        <a class="add-to-cart-quick" href="<?php echo $_product->getProductUrl() ?>" ><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-primary" ><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></a>                        
+                    <?php else: ?>
+                        <button type="button" class="button out-of-stock" onclick="return false"><span><span><?php echo $this->__('Out of stock') ?></span></span></button>                        
+                    <?php endif; ?>
+                    </div>
+        </li>
+        <?php $_iterator++; ?>
+    <?php endforeach; ?>        
+    </ul>
+<?php endif; ?>

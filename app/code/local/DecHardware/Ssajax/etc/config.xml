@@ -1,0 +1,18 @@
+<config>
+    <modules>
+        <DecHardware_Ssajax>
+            <version>0.1.0</version>
+        </DecHardware_Ssajax>
+    </modules>
+	<frontend>
+        <routers>
+            <ssajax>
+                <use>standard</use>
+                <args>
+                    <module>DecHardware_Ssajax</module>
+                    <frontName>ssajax</frontName>
+                </args>
+            </ssajax>
+        </routers>
+    </frontend>
+</config>

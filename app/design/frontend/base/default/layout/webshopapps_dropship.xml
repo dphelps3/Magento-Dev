@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <dropship_index_index>
+        <reference name="content">
+            <block type="dropship/dropship" name="dropship" template="webshopapps/dropship/dropship.phtml" />
+        </reference>
+    </dropship_index_index>
+    
+    <dropship_checkout_onepage_index>
+        <update handle="checkout_onepage_index"/>
+ 	</dropship_checkout_onepage_index> 
+ 	
+ 	<dropship_checkout_onepage_progress>
+        <update handle="checkout_onepage_progress"/>
+ 	</dropship_checkout_onepage_progress> 
+ 	
+ 	<dropship_checkout_onepage_paymentmethod>
+        <update handle="checkout_onepage_paymentmethod"/>
+ 	</dropship_checkout_onepage_paymentmethod> 
+ 	
+ 	 <dropship_checkout_onepage_shippingmethod>
+        <update handle="checkout_onepage_shippingmethod"/>
+ 	</dropship_checkout_onepage_shippingmethod> 
+ 	
+ 	 <dropship_checkout_onepage_additional>
+        <update handle="checkout_onepage_additional"/>
+ 	</dropship_checkout_onepage_additional> 
+ 	
+ 	 <dropship_checkout_onepage_review>
+        <update handle="checkout_onepage_review"/>
+ 	</dropship_checkout_onepage_review> 
+ 	
+ 	 <dropship_checkout_onepage_success>
+        <update handle="checkout_onepage_success"/>
+ 	</dropship_checkout_onepage_success>  	
+ 	
+ 	 <dropship_checkout_onepage_failure>
+        <update handle="checkout_onepage_failure"/>
+ 	</dropship_checkout_onepage_failure>  
+ 	
+ 	<dropship_checkout_cart_index>
+ 		<update handle="checkout_cart_index"/>
+ 	</dropship_checkout_cart_index>
+ 	
+ 	
+  <checkout_onepage_index>
+    <reference name="checkout.onepage.shipping_method">
+		<block type="dropship/checkout_onepage_shipping_method_available" name="checkout.onepage.shipping_method.available" as="available" template="webshopapps/dropship/checkout/onepage/shipping_method/available.phtml"/>
+  	</reference> 
+  </checkout_onepage_index>
+    
+  
+  <checkout_onepage_shippingmethod>
+        <remove name="right"/>
+        <remove name="left"/>
+        <block type="dropship/checkout_onepage_shipping_method_available" name="root" output="toHtml" template="webshopapps/dropship/checkout/onepage/shipping_method/available.phtml"/>
+    </checkout_onepage_shippingmethod>
+    
+  
+  <sales_order_view>
+  	<reference name="my.account.wrapper">
+  		<block type="sales/order_info" name="sales.order.info" as="info" template="webshopapps/dropship/sales/order/info.phtml"/>
+      </reference>
+      <reference name="sales.order.view">
+      	<block type="sales/order_items" name="order_items" template="webshopapps/dropship/sales/order/items.phtml">
+      		<action method="addItemRender"><type>default</type><block>sales/order_item_renderer_default</block><template>webshopapps/dropship/sales/order/items/renderer/default.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>sales/order_item_renderer_grouped</block><template>webshopapps/dropship/sales/order/items/renderer/default.phtml</template></action>
+            <block type="sales/order_totals" name="order_totals" template="sales/order/totals.phtml">
+                <action method="setLabelProperties"><value>colspan="5" class="a-right"</value></action>
+                <action method="setValueProperties"><value>class="last a-right"</value></action>
+                <block type="tax/sales_order_tax" name="tax" template="tax/order/tax.phtml" />
+            </block>
+        </block>
+      </reference>
+      
+  </sales_order_view>
+    
+</layout> 

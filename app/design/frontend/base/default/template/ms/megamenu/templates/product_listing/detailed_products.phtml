@@ -1,0 +1,62 @@
+<?php
+$store = Mage::app()->getStore();
+$products = $this->getProducts($store);
+$columnNumber = $this->getColumnNumber();
+$colunnSize = $this->getColumnSize();
+$products_used_label = explode(', ',$this->getItem()->getProductsUsingLabel());
+$products_label = $this->getItem()->getProductLabel();
+$products_label_color = $this->getItem()->getProductLabelColor();
+if(count($products) < $columnNumber){
+    $columnNumber = count($products);
+}elseif($columnNumber>12){
+    $columnNumber = 12;
+}
+$col_index = floor(12/$columnNumber);
+switch ($columnNumber) {
+    case 5:$col_index = 24;
+        break;
+    case 7:$col_index = 14;
+        break;
+    case 8:$col_index = 125;
+        break;
+    case 9:$col_index = 111;
+        break;
+    case 10:$col_index = 100;
+        break;
+    case 11:$col_index = 909;
+        break;
+    default:
+        break;
+}
+?>
+<?php if(count($products)):?>
+    <div class="row ms-productgrid">
+        <?php if($this->getItem()->getProductsBoxTitle()): ?><strong class="ms-boxtitle form-group col-xs-12"><?php echo $this->getItem()->getProductsBoxTitle(); ?></strong><?php endif; ?>
+        <?php $i=1; foreach($products as $product):?>
+            <div class="item text-center col-sm-<?php echo $col_index ?> col-xs-<?php if($columnNumber != 1){ if($col_index>4) echo '6';else echo '4';}else{echo '12';}?> col-tn-<?php if($columnNumber != 1) echo '6';else echo '12';?>">
+                <a class="product-image form-group" href="<?php echo $product->getProductUrl()?>">
+                    <?php $_imgHtml   = '';
+                    if ($product->getSmallImage()) {
+                        $_imgHtml = '<img src="'.$this->helper("catalog/image")->init($product, "small_image")->resize(135).'" width="135" height="135" alt="'.$this->stripTags($this->getImageLabel($product, "small_image"), null, true) .'" />';
+                    }else{
+                        $_imgHtml = '<img src="'.Mage::getBaseUrl("media").'megamenu/sample_data/small_image.jpg" alt="'.$this->stripTags($product->getName(), null, true).'" title="'.$this->stripTags($product->getName(), null, true).'"/>';
+                    }
+                     echo $_imgHtml;
+                    ?>
+                </a>
+                <a class="product-name form-group" href="<?php echo $product->getProductUrl()?>"><strong><?php echo $product->getName()?></strong><?php if(in_array($product->getId(), $products_used_label)):?><span class="product-label">&nbsp;(<?php echo $this->filterCms($products_label);?>)</span><?php endif;?></a>
+                <div class="form-group"><?php
+                    $price = $this->getPriceHtml($product);
+                    $price = str_replace('product-price-'.$product->getId(),'menu-item-'.$this->getItem()->getId().'-grid-product-price-'.$product->getId(),$price);
+                    echo $price;
+                    ?></div>
+            </div>
+            <?php if($i%2==0): ?><div class="hidden-lg hidden-md hidden-sm hidden-xs col-tn-12"></div><?php endif;?>
+            <?php if(($i%2==0&&$col_index>4)||($i%3==0&&$col_index<=4)): ?><div class="hidden-lg hidden-md hidden-sm col-xs-12 hidden-tn"></div><?php endif;?>
+            <?php if($i%$columnNumber==0): ?><div class="col-sm-12 form-group hidden-xs hidden-tn"></div><?php endif; ?>
+            <?php $i++; endforeach;?>
+    </div>
+    <style>
+        .ms-topmenu .product-label{color:#<?php echo $products_label_color; ?>}
+    </style>
+<?php endif;?>

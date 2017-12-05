@@ -1,0 +1,18 @@
+<config>
+    <modules>
+        <DecHardware_Addcart>
+            <version>0.1.0</version>
+        </DecHardware_Addcart>
+    </modules>
+	<frontend>
+        <routers>
+            <addcart>
+                <use>standard</use>
+                <args>
+                    <module>DecHardware_Addcart</module>
+                    <frontName>addcart</frontName>
+                </args>
+            </addcart>
+        </routers>
+    </frontend>
+</config>

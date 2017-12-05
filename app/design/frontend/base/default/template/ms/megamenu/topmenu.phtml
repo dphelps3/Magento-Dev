@@ -1,0 +1,43 @@
+<?php 
+/**
+ * template
+ */
+$items = $this->getTopMenuCollection();
+$width = $this->getSubMenuWidth($items);
+$effect = $this->getEffect();
+$mobile_effect = Mage::getStoreConfig('megamenu/mobile_menu/mobile_effect', $this->getStoreId());
+$menu_type = Mage::getStoreConfig('megamenu/top_menu/responsive', $this->getStoreId());
+$className = $this->getClassMenuType('topmenu');
+$change =  intval(Mage::getStoreConfig('megamenu/top_menu/menu_width_main', $this->getStoreId()));
+$align = Mage::getStoreConfig('megamenu/top_menu/topmenu_align',$this->getStoreId());
+?>
+<div class="megamenu-pc ms-megamenu">
+    <ul id="ms-topmenu" class="ms-topmenu <?php echo $className;?>">
+    <?php if($menu_type != Magestore_Megamenu_Model_Megamenu::NO_RESPONSIVE): ?>
+    <li  class="anchor_mbmenu col-xs-12 text-right"><a  class="anchor_mbmenu_text  glyphicon glyphicon-align-justify">&nbsp;</a></li>
+    <?php endif;?>
+    <?php foreach($items as $item):?>
+        <li class="ms-level0 nav-<?php echo $item->getId(); ?>" id="nav-<?php echo $item->getId(); ?>">
+            <a class="ms-label <?php if($item->getMenuType() == Magestore_Megamenu_Model_Megamenu::ANCHOR_TEXT): ?>anchor_text<?php endif;?>" <?php if($item->getLink()):?> href="<?php echo $item->getLink();?>"<?php endif; ?>>
+                <?php if($item->getItemIcon()&& $align != 1):?><img alt="<?php echo $item->getNameMenu() ?>" class="ms-iconmega" draggable="false" src="<?php echo Mage::getBaseUrl('media')  . '/' . $item->getItemIcon() ?>"/>&nbsp;<?php endif; ?>
+                <?php echo $item->getNameMenu() ?>
+                <?php if($item->getItemIcon()&& $align == 1):?>&nbsp;<img alt="<?php echo $item->getNameMenu() ?>" class="ms-iconmega" draggable="false" src="<?php echo Mage::getBaseUrl('media')  . '/' . $item->getItemIcon() ?>"/><?php endif; ?>
+            </a>
+            <?php if($item->getMenuType() != Magestore_Megamenu_Model_Megamenu::ANCHOR_TEXT):?>
+                <span class="mb-label glyphicon <?php if($mobile_effect == Magestore_Megamenu_Model_Megamenu::MOBILE_BLIND): ?>glyphicon-plus<?php else:?>glyphicon-chevron-right<?php endif; ?>">&nbsp;</span>
+                <?php echo $this->getContent($item); ?>
+            <?php endif; ?>
+        </li>
+    <?php endforeach;?>
+    </ul>
+</div>
+<div class="div-temp">&nbsp;</div>
+<script type="text/javascript">
+    var menu = new MEGAMENU(mega('#ms-topmenu'),<?php echo $effect;?>,<?php echo $change;?>,<?php echo $width ;?>,<?php echo $menu_type ?>);
+    mega(window).load(function() {
+        menu.updateScreen();
+    });
+    mega(window).resize(function() {
+        menu.updateScreen();
+    });
+</script>

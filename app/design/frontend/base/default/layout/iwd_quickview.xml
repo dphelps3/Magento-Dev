@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+	<default>
+		<reference name="head">
+            <action method="addLinkRel"><rel>stylesheet</rel><href>//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css</href></action>
+
+            <action method="addItem"><type>skin_css</type><name>css/iwd/quickview/styles.css</name><params/></action>
+			<action method="addItem"><type>skin_js</type><name>js/iwd/quickview/quickview.js</name><params/></action>
+			<!-- add out-of-stock notif. js -->
+            <action method="addItem" ifconfig="stocknotification/default/status"><type>skin_js</type><name>js/iwd/stocknotification/stocknotification.js</name><params/></action>
+
+			<!-- DEFAULT JS FILES FOR PRODUCT PAGE  -->
+			<action method="addJs"><script>varien/product.js</script></action>
+            <action method="addJs"><script>varien/configurable.js</script></action>
+			<action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+
+            <action method="addItem"><type>skin_js</type><name>js/iwd/quickview/lib/modernizr.custom.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/iwd/quickview/lib/imagesloaded.js</name></action>
+
+
+            <!--  BUNDLE PRODUCT -->
+            <action method="addItem"><type>skin_js</type><name>js/bundle.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/iwd/quickview/bundle.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/iwd/quickview/lib/elevatezoom/jquery.elevatezoom.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/iwd/quickview/app.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/iwd/quickview/product-config.js</name></action>
+
+            <!--<action method="addItem"><type>skin_js</type><name>js/iwd/quickview/configurableswatches/product-media.js</name></action>-->
+            <action method="addItem"><type>skin_js</type><name helper="iwd_quickview/data/getProductMediaJs"/></action>
+
+            <!--<action method="addItem"><type>skin_js</type><name>js/iwd/quickview/configurableswatches/swatches-product.js</name></action>-->
+            <action method="addItem"><type>skin_js</type><name helper="iwd_quickview/data/getSwatchesProductJs"/></action>
+
+            <!-- if out-of-stock is enabled-->
+            <action method="addItem" ifconfig="stocknotification/default/status"><type>skin_css</type><name>css/iwd/stocknotification/style.css</name><params/></action>
+
+            <!--    OWL SLIDER -->
+            <action method="addItem"><type>js</type><name>iwd/quickview/owl-carousel-2/owl.carousel.js</name></action>
+            <action method="addItem"><type>js_css</type><name>iwd/quickview/owl-carousel-2/assets/owl.carousel.css</name></action>
+            <action method="addItem"><type>js_css</type><name>iwd/quickview/owl-carousel-2/assets/owl.theme.default.css</name></action>
+            <!--<action method="addItem"><type>js_css</type><name>iwd/quickview/owl-carousel/owl.theme.css</name></action>-->
+
+            <!-- PRODUCT VIDEO -->
+            <action ifconfig="iwd_productvideo/general/enabled" method="addLinkRel"><rel>stylesheet</rel><href>//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css</href></action>
+            <action method="addItem" ifconfig="iwd_productvideo/general/enabled"><type>js</type><name>iwd/productvideo/video.js</name></action>
+            <action method="addItem" ifconfig="iwd_productvideo/general/enabled"><type>js</type><name>iwd/productvideo/product-video.js</name></action>
+            <action method="addItem" ifconfig="iwd_productvideo/general/enabled"><type>skin_js</type><name>js/iwd/productvideo/view.js</name></action>
+            <action method="addItem" ifconfig="iwd_productvideo/general/enabled"><type>skin_css</type><name>css/iwd/productvideo/video-js.css</name><params/></action>
+            <action method="addItem" ifconfig="iwd_productvideo/general/enabled"><type>skin_css</type><name>css/iwd/productvideo/style.css</name><params/></action>
+        </reference>
+
+        <reference name="before_body_end">
+			<block type="iwd_quickview/dialog" name="modal.quickview" template="iwd/quickview/modal.phtml" />
+
+            <block type="iwd_quickview/cart_dropdown" name="top_cart" template="iwd/quickview/cart/dropdown.phtml" before="-">
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>iwd/quickview/checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>iwd/quickview/checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>iwd/quickview/checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>bundle</type><block>bundle/checkout_cart_item_renderer</block><template>iwd/quickview/checkout/cart/sidebar/default.phtml</template></action>
+                <block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label" module="checkout">
+                    <label>Shopping Cart Sidebar Extra Actions</label>
+                </block>
+          	</block>
+		</reference>
+    </default>
+    <checkout_cart_index>
+        <block name="formkey" type="core/template" template="core/formkey.phtml" />
+    </checkout_cart_index>
+    <catalog_product_view>
+        <reference name="iwd_qv_content">
+            <block type="catalog/product_view" name="iwd.qv.product.info" template="iwd/quickview/catalog/product/view.phtml">
+                <block type="iwd_quickview/product_view_media" name="iwd.qv.product.info.media" as="iwd-qv-media" template="iwd/quickview/catalog/product/view/media.phtml"/>
+
+                <action method="setTierPriceTemplate"><template>catalog/product/view/tierprices.phtml</template></action>
+
+                <block type="core/text_list" name="iwd.qv.product.info.extrahint" as="iwd-qv-extrahint" translate="label">
+                    <label>Product View Extra Hint</label>
+                    <block type="cataloginventory/qtyincrements" name="iwd.qv.product.info.extrahint.qtyincrements" template="iwd/quickview/cataloginventory/qtyincrements.phtml"/>
+                </block>
+
+                <block type="catalog/product_view" name="iwd.qv.product.info.qty" as="iwd-qv-qty" template="iwd/quickview/catalog/product/view/qty.phtml"/>
+
+                <block type="catalog/product_view" name="iwd.qv.product.info.options.wrapper" as="product_options_wrapper" template="iwd/quickview/catalog/product/view/options/wrapper.phtml" translate="label">
+                    <label>Info Column Options Wrapper</label>
+                    <block type="catalog/product_view_options" name="iwd.qv.product.info.options" as="product_options" template="iwd/quickview/catalog/product/view/options.phtml">
+                        <block type="core/template" name="iwd_qv_options_js" template="iwd/quickview/catalog/product/view/options/js.phtml"/>
+                        <action method="addOptionRenderer"><type>text</type><block>catalog/product_view_options_type_text</block><template>iwd/quickview/catalog/product/view/options/type/text.phtml</template></action>
+                        <action method="addOptionRenderer"><type>file</type><block>catalog/product_view_options_type_file</block><template>iwd/quickview/catalog/product/view/options/type/file.phtml</template></action>
+                        <action method="addOptionRenderer"><type>select</type><block>catalog/product_view_options_type_select</block><template>iwd/quickview/catalog/product/view/options/type/select.phtml</template></action>
+                        <action method="addOptionRenderer"><type>date</type><block>catalog/product_view_options_type_date</block><template>iwd/quickview/catalog/product/view/options/type/date.phtml</template></action>
+                    </block>
+                    <block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml"/>
+                </block>
+
+                <block type="core/template_facade" name="product.info.container1" as="iwd-qv-container1">
+                    <action method="setDataByKey"><key>alias_in_layout</key><value>iwd-qv-container1</value></action>
+                    <action method="setDataByKeyFromRegistry"><key>iwd_qv_options_container</key><key_in_registry>product</key_in_registry></action>
+                    <action method="append"><block>iwd.qv.product.info.options.wrapper</block></action>
+                </block>
+            </block>
+        </reference>
+     </catalog_product_view>
+
+    <PRODUCT_TYPE_configurable translate="label" module="catalog">
+        <label>Catalog Product View (Configurable)</label>
+                <!--<reference name="iwd.qv.product.info.options.configurable.after"><block type="core/template" template="iwd/quickview/configurableswatches/catalog/product/view/type/configurable/swatch-js.phtml" /></reference>-->
+        <reference name="iwd.qv.product.info">
+            <block type="catalog/product_view_type_configurable" name="iwd.qv.product.info.configurable" as="iwd-qv-product_type_data" template="iwd/quickview/catalog/product/view/type/default.phtml">
+                <block type="core/text_list" name="iwd.qv.product.info.configurable.extra" as="iwd-qv-product_type_data_extra" translate="label">
+                    <label>Product Extra Info</label>
+                </block>
+            </block>
+            <block type="catalog/product_view_type_configurable" name="iwd.qv.product.info.availability" as="iwd-qv-product_type_availability" template="catalog/product/view/type/availability/default.phtml" />
+        </reference>
+        <reference name="iwd.qv.product.info.options.wrapper">
+            <block type="catalog/product_view_type_configurable" name="iwd.qv.product.info.options.configurable" as="iwd-qv-options_configurable" before="-" template="iwd/quickview/catalog/product/view/type/options/configurable.phtml">
+                <block type="core/text_list" name="iwd.qv.product.info.options.configurable.renderers" as="attr_renderers" />
+                <block type="core/text_list" name="iwd.qv.product.info.options.configurable.after" as="after" />
+            </block>
+        </reference>
+                <!--<reference name="iwd.qv.product.info.media.after"><block type="configurableswatches/catalog_media_js_product" name="iwd.qv.configurableswatches.media.js.product" /></reference>-->
+        <reference name="iwd.qv.product.info.options.configurable.renderers">
+            <block type="configurableswatches/catalog_product_view_type_configurable_swatches" template="iwd/quickview/configurableswatches/catalog/product/view/type/options/configurable/swatches.phtml" />
+        </reference>
+    </PRODUCT_TYPE_configurable>
+    <PRODUCT_TYPE_downloadable translate="label" module="downloadable">
+        <label>Catalog Product View (Downloadable)</label>
+        <reference name="iwd.qv.product.info">
+            <block type="downloadable/catalog_product_view_type" name="product.info.downloadable" as="iwd-qv-product_type_data" template="iwd/quickview/downloadable/catalog/product/type.phtml">
+                <block type="downloadable/catalog_product_samples" name="product.info.downloadable.samples" as="iwd-qv-samples" template="iwd/quickview/downloadable/catalog/product/samples.phtml"/>
+                <!--<block type="cataloginventory/stockqty_default" name="product.info.downloadable.extra" as="iwd-qv-product_type_data_extra" template="cataloginventory/stockqty/default.phtml"/>-->
+            </block>
+        </reference>
+        <reference name="iwd.qv.product.info.options.wrapper">
+            <block type="downloadable/catalog_product_links" name="product.info.downloadable.options" as="type_downloadable_options" before="-" template="downloadable/catalog/product/links.phtml"/>
+            <action method="insert"><block>product.info.downloadable.options</block></action>
+        </reference>
+    </PRODUCT_TYPE_downloadable>
+    <PRODUCT_TYPE_bundle translate="label" module="bundle">
+        <reference name="iwd.qv.product.info">
+            <block type="bundle/catalog_product_view_type_bundle" name="iwd.qv.product.info.bundle" as="iwd-qv-product_type_data" template="iwd/quickview/bundle/catalog/product/view/type/bundle.phtml">
+                <!--<action method="addPriceBlockType"><type>bundle</type><block>bundle/catalog_product_price</block><template>bundle/catalog/product/price.phtml</template></action>
+                <block type="bundle/catalog_product_price" name="bundle.prices" as="iwd-qv-bundle_prices" template="bundle/catalog/product/view/price.phtml">
+                    <action method="setMAPTemplate"><tmpl>catalog/product/price_msrp_item.phtml</tmpl></action>
+                </block>-->
+            </block>
+
+            <action method="addPriceBlockType"><type>bundle</type><block>bundle/catalog_product_price</block><template>bundle/catalog/product/price.phtml</template></action>
+            <block type="bundle/catalog_product_price" name="bundle.prices" as="iwd-qv-bundle_prices" template="bundle/catalog/product/view/price.phtml">
+                <action method="setMAPTemplate"><tmpl>catalog/product/price_msrp_item.phtml</tmpl></action>
+            </block>
+            <block type="bundle/catalog_product_view_type_bundle" name="product.info.availability" as="iwd-qv-product_type_availability" template="bundle/catalog/product/view/type/bundle/availability.phtml" />
+        </reference>
+        <reference name="iwd.qv.product.info.options.wrapper">
+            <block type="bundle/catalog_product_view_type_bundle" name="iwd.qv.product.info.bundle.options" as="type_bundle_options" template="bundle/catalog/product/view/type/bundle/options.phtml">
+                <action method="addRenderer"><type>select</type><block>bundle/catalog_product_view_type_bundle_option_select</block></action>
+                <action method="addRenderer"><type>multi</type><block>bundle/catalog_product_view_type_bundle_option_multi</block></action>
+                <action method="addRenderer"><type>radio</type><block>bundle/catalog_product_view_type_bundle_option_radio</block></action>
+                <action method="addRenderer"><type>checkbox</type><block>bundle/catalog_product_view_type_bundle_option_checkbox</block></action>
+            </block>
+            <action method="insert"><block>iwd.qv.product.info.bundle.options</block></action>
+        </reference>
+    </PRODUCT_TYPE_bundle>
+    <PRODUCT_TYPE_simple translate="label" module="catalog">
+        <reference name="iwd.qv.product.info">
+            <block type="catalog/product_view_type_simple" name="iwd.qv.product.info.availability" as="iwd-qv-product_type_availability" template="catalog/product/view/type/availability/default.phtml" />
+        </reference>
+    </PRODUCT_TYPE_simple>
+    <PRODUCT_TYPE_grouped translate="label" module="catalog">
+        <reference name="iwd.qv.product.info">
+            <block type="catalog/product_view_type_grouped" name="iwd.qv.product.info.availability" as="iwd-qv-product_type_availability" template="catalog/product/view/type/availability/grouped.phtml" />
+            <block type="catalog/product_view_type_grouped" name="iwd.qv.product.info.grouped" as="iwd-qv-product_type_data" template="iwd/quickview/catalog/product/view/type/grouped.phtml">
+                <block type="core/text_list" name="iwd.qv.product.info.grouped.extra" as="iwd-qv-product_type_data_extra" translate="label">
+                    <label>Product Extra Info</label>
+                </block>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_grouped>
+    <PRODUCT_TYPE_virtual translate="label" module="catalog">
+        <reference name="iwd.qv.product.info">
+            <block type="catalog/product_view_type_virtual" name="iwd.qv.product.info.availability" as="iwd-qv-product_type_availability" template="catalog/product/view/type/availability/default.phtml" />
+        </reference>
+    </PRODUCT_TYPE_virtual>
+    <PRODUCT_TYPE_giftcard translate="label" module="enterprise_giftcard">
+        <label>Catalog Product View (Gift Card)</label>
+        <reference name="iwd.qv.product.info.options.wrapper">
+            <block type="enterprise_giftcard/catalog_product_view_type_giftcard" name="iwd.qv.product.info.giftcard" as="iwd-qv-product_type_data" template="iwd/quickview/giftcard/catalog/product/view/type/giftcard.phtml">
+                <action method="addPriceBlockType"><type>giftcard</type><block>enterprise_giftcard/catalog_product_price</block><template>giftcard/catalog/product/price.phtml</template></action>
+                <block type="enterprise_giftcard/catalog_product_view_type_giftcard_form" name="iwd.qv.product.info.giftcard.form" as="product.info.giftcard.form" template="giftcard/catalog/product/view/type/giftcard/form.phtml"/>
+                <block type="cataloginventory/stockqty_default" name="iwd.qv.product.info.giftcard.extra" as="iwd-qv-product_type_data_extra" template="cataloginventory/stockqty/default.phtml"/>
+            </block>
+        </reference>
+        <reference name="product.clone_prices">
+            <action method="addPriceBlockType"><type>giftcard</type><block>enterprise_giftcard/catalog_product_price</block><template>iwd/quickview/giftcard/catalog/product/price.phtml</template></action>
+        </reference>
+    </PRODUCT_TYPE_giftcard>
+</layout>

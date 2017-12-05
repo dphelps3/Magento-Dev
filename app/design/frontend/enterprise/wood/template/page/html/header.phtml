@@ -1,0 +1,251 @@
+<?php
+function curPageURL() {
+	$page = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+	$page = str_replace("www.","",$page);
+	$page = str_replace("cshardware.com","",$page);
+	$page = str_replace("cshardware.net","",$page);
+	return $page;
+}
+?>
+<?php $showBanner = false; ?>
+<?=$this->getChildHtml('banner')?>
+<?php
+/* if(curPageURL() == "/checkout/cart/"): ?>
+<?php
+	$datetime1 = date_create('2013-12-26 13:00:00');
+	$datetime2 = date_create('2014-12-30 4:00:00');
+	$datenow = new DateTime("now");
+	
+?>
+<?php if ($datenow >= $datetime1 && $datenow < $datetime2): ?>
+<?php $showBanner = true; ?>
+<!-- TOP SITE-WIDE BANNER -->
+
+<a style="color:#FFFFFF;" href="/tax-exempt">
+<div class="save5banner" style="position:fixed;position:absolute;left:0px;top:0px;right:0px;height:38px;z-index:100000;">
+<center style="z-indez:100001;color:#FFFFFF;font-size:250%;font-family:Impact, Charcoal, sans-serif;text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">
+TAX-EXEMPT? Click for details on using your tax-exempt status online
+</center>
+</div>
+</a>
+<!-- END BANNER -->
+
+<?php endif;?>
+<?php endif; */
+ /* ?>
+<!-- TURKEY ANIMATION -->
+<a href="/thanksgiving" id="turkey" style="z-index:999999;">
+<img src="/media/wysiwyg/animated-turkey-walkink-strutting-his-stuff.gif" alt="" />
+</a>
+<script type="text/javascript">
+
+var turkey = document.getElementById('turkey');
+var height, width;
+
+init();
+
+function init() {
+  turkey.style.position="absolute"
+  turkey.style.left = '-200px';
+  turkey.style.top = '-200px';
+  height = window.innerHeight;
+  width = window.innerWidth;
+
+  doMove();
+}
+
+function doMove() {
+	turkey = document.getElementById('turkey');
+
+	if (parseInt(turkey.style.top) > height) {
+		turkey.style.top = '-200px';
+	}
+	if (parseInt(turkey.style.left) > width) {
+		turkey.style.left = '-200px';
+	}
+	turkey.style.left = (parseInt(turkey.style.left)+10)+'px'; // pseudo-property code: Move right by 10px
+	turkey.style.top = (parseInt(turkey.style.top)+10)+'px'; // pseudo-property code: Move right by 10px
+	setTimeout(doMove,200); // call doMove() in 20 msec
+} 
+
+</script>
+
+<!-- END TURKEY --> */ 
+$showThanksgiving = false;
+if (false && $_SERVER['REMOTE_ADDR'] == '0.0.0.0') {
+	$showThanksgiving = true;	
+} else {
+	$datetime1 = date_create('2014-11-26 01:00:00');
+	$datetime2 = date_create('2014-12-01 00:00:01');
+	$datenow = new DateTime("now");
+	if ($datenow >= $datetime1 && $datenow < $datetime2) {
+		$servername = "localhost";
+		$username = "cshardwa";
+		$password = "T2l8T1170";
+		$dbname = "cshardwa_production";
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		$sql = "SELECT id, date, ip FROM promo_tracking WHERE ip='" . $_SERVER['REMOTE_ADDR'] . "'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
+				if((time()-(60*60*24)) > strtotime($row["date"])) {
+					$showThanksgiving = false;
+				}
+			}
+			$sql = "UPDATE promo_tracking SET date='" .(date("Y-m-d H:i:s")) . "' WHERE ip='" . $_SERVER['REMOTE_ADDR'] . "'";
+		} else {
+			$sql = "INSERT INTO promo_tracking (ip, date) VALUES('" . $_SERVER['REMOTE_ADDR'] . "','" . (date("Y-m-d H:i:s")) . "')";
+			if ($conn->query($sql) === TRUE) {
+				/* echo "New record created successfully"; */
+			} else {
+				/* echo "Error: " . $sql . "<br>" . $conn->error; */
+			}
+			$showThanksgiving = false;
+		}
+		$conn->close();
+	}
+}
+
+if ($showThanksgiving) {
+?>
+	
+	<!-- THANKSGIVING ANIMATION -->
+<a href="https://www.cshardware.com/thanksgiving5" id="deer5"  style="z-index:999999;cursor:crosshair;">
+<img src="https://www.cshardware.com/deer.gif" alt="" />
+</a>
+<a href="https://www.cshardware.com/thanksgiving10" id="deer10"  style="z-index:999999;cursor:crosshair;">
+<img src="https://www.cshardware.com/deer.gif" alt="" />
+</a>
+<a href="https://www.cshardware.com/thanksgivingfreeship" id="deership" style="z-index:999999;cursor:crosshair;">
+<img src="https://www.cshardware.com/deer.gif" alt="" />
+</a>
+<script type="text/javascript">
+
+var deer5 = document.getElementById('deer5');
+var deer10 = document.getElementById('deer10');
+var deership = document.getElementById('deership');
+var height, width;
+
+init();
+
+function init() {
+		height = window.innerHeight;
+		width = window.innerWidth;
+		  
+		deer5.style.position="absolute"
+		deer5.style.left = width + 200 + 'px';
+		deer5.style.top = '-200px';
+		deer10.style.position="absolute"
+		deer10.style.left = width + 200 + 'px';
+		deer10.style.top = '-400px';
+		deership.style.position="absolute"
+		deership.style.left = width + 200 + 'px';
+		deership.style.top = '-600px';
+
+		doMove();
+}
+
+function doMove() {
+
+	if (parseInt(deer5.style.top) > height) {
+		deer5.style.top = '-200px';
+	}
+	if (parseInt(deer5.style.left) < 0) {
+		deer5.style.left = width + 200 + 'px';
+	}
+	deer5.style.left = (parseInt(deer5.style.left)-15)+'px'; 
+	deer5.style.top = (parseInt(deer5.style.top)+5)+'px';
+	
+	if (parseInt(deer10.style.top) > height) {
+		deer10.style.top = '-400px';
+	}
+	if (parseInt(deer10.style.left) < 0) {
+		deer10.style.left = width + 200 + 'px';
+	}
+	deer10.style.left = (parseInt(deer10.style.left)-25)+'px'; 
+	deer10.style.top = (parseInt(deer10.style.top)+10)+'px';
+	
+	if (parseInt(deership.style.top) > height) {
+		deership.style.top = '-200px';
+	}
+	if (parseInt(deership.style.left) < 0) {
+		deership.style.left = width + 200 + 'px';
+	}
+	deership.style.left = (parseInt(deership.style.left)-30)+'px'; 
+	deership.style.top = (parseInt(deership.style.top)+7)+'px';
+	
+	setTimeout(doMove,100);
+} 
+
+</script>
+<!-- END THANKSGIVING ANIMATION -->
+<?php
+}
+
+?>
+<div id="top"></div>
+
+<?php if ($showBanner): ?>
+	<br><br><br>
+<?php endif; ?>
+<div class="header-container">
+    <div class="header">
+        <div class="header-left">
+            <?php echo $this->getChildHtml('store_language') ?>         
+            <?php if ($this->getIsHomePage()):?>
+            <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+            <?php else:?>
+            <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+            <?php endif?>
+        </div>
+        <div class="header-center">
+            <span class="welcome-msg"><?php echo $this->getWelcome() ?></span>
+            <?php echo $this->getChildHtml('topBar') ?>   
+        </div>        
+        <div class="header-right">
+			<?php echo $this->getChildHtml('topLinks') ?>  
+			<div class="clear"></div>   
+            <div class="minicart">
+                <?php echo $this->getChildHtml('top_cart') ?>
+            </div>  
+            <?php echo $this->getChildHtml('currency') ?>  
+            <div class="clear"></div>   
+			<div id="masthead_phone">Customer Service:<a href="tel:800-882-0009">800-882-0009</a></div>
+		
+			<?php $email = Mage::getSingleton('customer/session')->getCustomer()->getEmail();?>
+			<?php //$on = Mage::helper('monkey')->subscribedToList($email,'c1dc51008f'); ?>
+			<?php /*if($on == false): 
+			
+			<div style="float: right; margin-bottom: 0px;">
+			<div class="clear"></div>
+			<div id="mc_embed_signup">
+			<form action="http://cshardware.us5.list-manage1.com/subscribe/post?u=d701161ada6d19621a09bdfc1&amp;id=c1dc51008f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+				<div class="form-subscribe">
+					<div class="form-subscribe-header"><h4><?php echo $this->__('Sign up for exclusive benefits and savings') ?></h4></div>
+						<div class="input-box">
+						   <input type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="email address" class="input-text required-entry validate-email" />
+							  
+							<button type="submit" id="mc-embedded-subscribe" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>  
+						</div>  
+					</div>
+			</form>
+			</div>
+						
+			</div>
+
+			<div class="clear"></div>
+			 endif; */ ?>
+			
+        </div>      
+    </div>
+	
+			
+	
+	
+    <?php echo $this->getChildHtml('topMenu') ?>
+
+    <?php echo $this->getChildHtml('topContainer'); ?>
+
+</div>
+    <?php echo $this->getChildHtml('topBread') ?>

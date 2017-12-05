@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout> 
+ 	<adminhtml_system_config_edit>
+  		<reference name="head">
+            <action method="addJs"><script>iwd/quickview/colpick.js</script></action>
+            <action method="addJs"><script>iwd/quickview/system.js</script></action>
+            <action method="addCss"><name>iwd/quickview/system/colpick.css</name></action>
+        </reference>
+ 	</adminhtml_system_config_edit>
+</layout>

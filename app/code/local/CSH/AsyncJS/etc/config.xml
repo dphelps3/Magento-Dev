@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <CSH_AsyncJS>
+      <version>0.1.0</version>
+    </CSH_AsyncJS>
+  </modules>
+  <global>
+    <helpers>
+      <asyncjs>
+        <class>CSH_AsyncJS_Helper</class>
+      </asyncjs>
+    </helpers>
+	<blocks>
+	  <asyncjs>
+		<class>CSH_AsyncJS_Block</class>
+	  </asyncjs>
+			<page>
+				<rewrite>
+					<html_head>CSH_AsyncJS_Block_Page_Html_Head</html_head>
+				</rewrite>
+			</page>
+	</blocks>
+  </global>
+</config> 

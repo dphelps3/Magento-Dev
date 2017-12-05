@@ -1,0 +1,264 @@
+<?php
+    $_helper = $this->helper('catalog/output');
+    $_product = $this->getProduct();
+    $typeProduct = $_product->getTypeId();
+    $edit = $this->getData('edit');
+    $mode = Mage::app()->getRequest()->getParam('iwd_qv_mode'); if(empty($mode)) $mode = 'qv';
+    $designPrefix = $mode == 'aac' ? 'aac_' : '';
+
+    $extraInfoEnabled = true;
+    $productNameEnabled = Mage::getStoreConfig('iwd_quickview/' . $designPrefix . 'design_product_name/enable');
+    $shortDescEnabled = Mage::getStoreConfig('iwd_quickview/design_short_description/enable');
+    $priceEnabled = Mage::getStoreConfig('iwd_quickview/' . $designPrefix . 'design_price/enable');
+    $qtyEnabled = Mage::getStoreConfig('iwd_quickview/' . $designPrefix . 'design_qty/enable');
+    $addToCartEnabled = Mage::getStoreConfig('iwd_quickview/design_add_to_cart/enable');
+    $prodLinkEnabled = Mage::getStoreConfig('iwd_quickview/design_product_link/enable');
+    $mediaEnabled = Mage::getStoreConfig('iwd_quickview/design_media_block/enable');
+
+    // styling AddToCart button
+    $popupWidth = intval(Mage::getStoreConfig('iwd_quickview/' . $designPrefix . 'design/popup_width'));
+    $popupWidth = ($popupWidth < 320) ? 320 : $popupWidth;
+    // END styling AddToCart button
+
+    // force load short_description, because Mage_Review_Block_Product_View_List clean short_description attribute
+    $model = Mage::getModel('catalog/product')->load($_product->getId());
+    $_product->setShortDescription($model->getShortDescription());
+
+    if($mode == 'aac') // turn off non needed blocks when it's AAC
+    {
+        $mediaEnabled = false;
+        $shortDescEnabled = false;
+        $extraInfoEnabled = false;
+        $prodLinkEnabled = false;
+        $addToCartEnabled = true;
+    }
+?>
+
+<div id="iwd-qv-mode" class="iwd-qv-mode-<?php echo $mode; ?>" data-mode="<?php echo $mode; ?>">
+    <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+    <?php if($mediaEnabled): ?>
+        <div class="left-col">
+            <div class="product-img-box">
+                <?php echo $this->getChildHtml('iwd-qv-media') ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <div class="<?php echo $mediaEnabled ? 'right-col' : 'central-col'; ?>">
+        <?php if($productNameEnabled):?>
+            <h3><?php echo $_product->getName()?></h3>
+        <?php endif; ?>
+        <?php
+        if ($_product->getShortDescription() && $shortDescEnabled ): ?>
+            <div class="short-description">
+                <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+            </div>
+        <?php endif; ?>
+
+        <script type="text/javascript">
+            var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+        </script>
+        <form class="<?php echo $typeProduct;?>"
+              action="<?php echo $this->getSubmitUrl($_product) ?>"
+              method="post" id="iwd_qv_product_addtocart_form_modal"
+              <?php if($_product->getOptions()): ?>enctype="multipart/form-data"<?php endif; ?>>
+            <input type="hidden" name="iwd_qv_mode" value="<?php echo $mode; ?>"/>
+            <?php //var_dump($this->getLayout()->createBlock('stocknotification/grouped')->toHtml());?>
+
+            <div class="no-display">
+                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                <input type="hidden" name="related_product" id="related-products-field" value="" />
+            </div>
+
+            <?php if($extraInfoEnabled):?>
+                <div class="extra-info">
+                    <?php /*echo $this->getReviewsSummaryHtml($_product, 'default', false)*/ ?>
+                    <?php  echo $this->getChildHtml('iwd-qv-product_type_availability'); ?>
+                </div>
+            <?php endif; ?>
+
+            <!-- IWD Out-of-stock notification  -->
+            <?php if(Mage::helper('core')->isModuleEnabled('IWD_StockNotification')):?>
+                <div class="margin-ver-15" style="color: black">
+                    <?php if($_product->getTypeId() == 'giftcard'): ?>
+                        <?php echo ($this->getLayout()->createBlock('stocknotification/default')->setTemplate('stocknotification/default.phtml')->toHtml()); ?>
+                    <?php else:?>
+                        <?php echo (Mage::app()->getLayout()->getBlock('product.info')->getChildHtml('stocknotification')); ?>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+            <!--  END IWD Out-of-stock notification  -->
+
+            <!--IWD Backorder-->
+            <?php if(Mage::helper('core')->isModuleEnabled('IWD_BackOrder')):?>
+                <?php echo Mage::helper('backorder')->initBackorderQuickView($_product, "product");?>
+            <?php endif;?>
+            <!--END IWD Backorder-->
+
+            <?php echo $this->getChildHtml('iwd-qv-product_type_data') ?>
+
+            <?php echo $this->getChildHtml('iwd-qv-extrahint') ?>
+
+            <?php echo $this->getChildHtml('other');?>
+
+            <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                <?php echo $this->getChildChildHtml('iwd-qv-container1', '', true, true) ?>
+            <?php endif;?>
+
+            <?php echo $this->getChildHtml('iwd-qv-options-configurable') ?>
+
+            <?php if($priceEnabled):?>
+                <div class="price-info">
+                    <?php echo $this->getPriceHtml($_product, false, '') ?>
+                    <?php echo $this->getChildHtml('iwd-qv-bundle_prices') ?>
+                    <?php echo $this->getTierPriceHtml() ?>
+                </div>
+            <?php endif; ?>
+
+            <!-- if both qty and add_to_cart enable - show this block -->
+            <?php if(($qtyEnabled || $addToCartEnabled) && $_product->isSaleable() ):?>
+                <div class="modal-addtocart es-action">
+                    <?php if($qtyEnabled): ?>
+                        <?php echo $this->getChild('iwd-qv-qty')->toHtml() ?>
+                    <?php endif; ?>
+                    <?php if($addToCartEnabled): ?>
+                        <div class="addtocart-button-wrap">
+                            <button class="button btn-add-to-cart add-to-cart" type="submit">
+                                <span>
+                                    <span><?php echo $edit ? $this->__('Update Product') : $this->__('Add to Cart') ?></span>
+                                </span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if($prodLinkEnabled):?>
+                <div class="go-to-product">
+                    <a href="<?php echo $_product->getProductUrl(); ?>"><?php echo $_helper->__("Go to Product"); ?>&nbsp;<i class="fa fa-chevron-right"></i></a>
+                </div>
+            <?php endif; ?>
+        </form>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<?php if(Mage::helper('core')->isModuleEnabled('IWD_Productvideo')): ?>
+    <!--IWD Product Video-->
+    <?php echo Mage::app()->getLayout()->createBlock('iwd_productvideo/frontend_init')->setTemplate('iwd/productvideo/init.phtml')->toHtml(); ?>
+    <script>
+        jQueryIWD(document).ready(function(){
+            IWD.PV.Frontend.thumbnailsBox = '.iwd-qv-modal .more-views ul';
+            IWD.PV.Frontend.imageBox = '.iwd-qv-modal .product-img-box .product-image';
+            IWD.PV.inPopup = 0;
+        });
+    </script>
+    <!--END IWD Product Video-->
+<?php endif; ?>
+
+<style>
+    <?php if(!$priceEnabled): ?>
+        .iwd-qv-modal .configurable .price-box {
+            display: none !important;
+        }
+    <?php endif; ?>
+
+    .iwd-qv-modal-dialog {
+        width: <?php echo $popupWidth; ?>px;
+    }
+
+    <?php if($popupWidth > 768):?>
+        @media (min-width: 768px) and (max-width: <?php echo $popupWidth?>px) {
+            .iwd-qv-modal-dialog { width: 100%; padding: 0 10px; }
+        }
+    <?php endif; ?>
+
+    <?php if($popupWidth <= 700): ?>
+        .iwd-qv-modal .stock-notification .input-box .email_notification_wrapper {
+            padding-right: 0;
+            /*padding-bottom: 10px;*/
+        }
+        .iwd-qv-modal .email_notification_wrapper #email_notification {
+            float: none;
+            width: 70%;
+            min-width: 150px;
+        }
+        .iwd-qv-modal .stock-notification .request-notice {
+            float: none;
+            width: 70%;
+            min-width: 150px;
+        }
+    <?php endif; ?>
+
+    @media screen and (max-width:768px) {
+        .iwd-qv-modal-dialog {width:320px; margin:0 auto; margin-top:100px;}
+    }
+    .iwd-qv-modal .modal-addtocart .btn-add-to-cart span {
+        background-color: #<?php echo Mage::getStoreConfig('iwd_quickview/' . $designPrefix . 'design_add_to_cart/color'); ?>;
+        color: #<?php echo Mage::getStoreConfig('iwd_quickview/' . $designPrefix . 'design_add_to_cart/text_color'); ?>;
+    }
+    .iwd-qv-modal .modal-addtocart .btn-add-to-cart:hover span {
+        background-color: #<?php echo Mage::getStoreConfig('iwd_quickview/' . $designPrefix . 'design_add_to_cart/hover_color'); ?>;
+        color: #<?php echo Mage::getStoreConfig('iwd_quickview/' . $designPrefix . 'design_add_to_cart/text_hover_color'); ?>;
+    }
+    .iwd-qv-modal .right-col h3, .iwd-qv-modal .central-col h3 {
+        color: #<?php echo Mage::getStoreConfig('iwd_quickview/' . $designPrefix . 'design_product_name/color'); ?>;
+    }
+    .iwd-qv-modal .go-to-product a {
+        color: #<?php echo Mage::getStoreConfig('iwd_quickview/design_product_link/color'); ?>;
+    }
+    .iwd-qv-modal .go-to-product a:hover {
+        color: #<?php echo Mage::getStoreConfig('iwd_quickview/design_product_link/hover_color'); ?>;
+    }
+    .price-box .old-price .price,
+    .price-box .special-price .price,
+    .iwd-qv-modal .configurable .regular-price .price {
+        color: #<?php echo Mage::getStoreConfig('iwd_quickview/' . $designPrefix . 'design_price/color'); ?>;
+    }
+    .iwd-qv-modal .qty-block {
+        background-color: #<?php echo Mage::getStoreConfig('iwd_quickview/' . $designPrefix . 'design_qty/color'); ?>;
+    }
+    .iwd-qv-modal .short-description .std {
+        color: #<?php echo Mage::getStoreConfig('iwd_quickview/design_short_description/color'); ?>;
+    }
+</style>
+
+<script>
+    // hide second price for conf. product
+    var prices = jQueryIWD('.iwd-qv-modal .configurable .price-box');
+    if(prices.length >= 2) {
+        prices.eq(0).remove();
+    }
+
+    var prices1 = jQueryIWD('.iwd-qv-modal .giftcard .price-box');
+    if(prices1.length >= 2) {
+        prices1.eq(1).remove();
+    }
+
+    <?php if(Mage::getStoreConfig('iwd_quickview/slider/enable')):
+        $items = Mage::getStoreConfig('iwd_quickview/slider/items');
+        $items1199 = Mage::getStoreConfig('iwd_quickview/slider/items_1199');
+        $items767 = Mage::getStoreConfig('iwd_quickview/slider/items_767');
+        $items479 = Mage::getStoreConfig('iwd_quickview/slider/items_479');
+    ?>
+    setTimeout(function(){ // wait to images load
+        // thumbnails slider
+        jQueryIWD('.iwd-qv-modal .product-image-thumbs').owlCarouselIWD({
+            nav: true,
+            margin: 10,
+            loop:false,
+            navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+            //autoWidth: true,
+            items:  <?php echo $items1199 ? $items1199 : 3 ?>,
+            responsive:{
+                0:{ items: <?php echo $items479 ? $items479 : 3 ?> },
+                479:{ items: <?php echo $items479 ? $items479 : 3 ?>},
+                767:{ items: <?php echo $items767 ? $items767 : 3 ?>},
+                1199:{ items: <?php echo $items1199 ? $items1199 : 3 ?>}
+            }
+        });
+    }, 700);
+<?php endif; ?>
+</script>
+

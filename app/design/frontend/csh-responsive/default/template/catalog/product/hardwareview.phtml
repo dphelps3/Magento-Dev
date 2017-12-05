@@ -1,0 +1,336 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     enterprise_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<style type="text/css">
+    .availability{
+        padding:0px 15px;
+    }
+    h1 {
+        font-size:40px;
+        margin-top:0px;
+    }
+    .hardware-info{
+        padding:5px 15px;
+        border: 1px solid #c4c4c4;
+        background-color:#ddd;
+    }
+    h2.hardwareGroup{
+        padding:0px 15px;
+        font-family:"Titillium Web",sans-serif;
+        font-weight:900;
+        letter-spacing:0.5px;
+        text-transform:uppercase;
+    }
+    #hardware-panel a.accordion-toggle{
+        display: block;
+		padding:5px 15px;
+        height:60px;
+        background-image:url(/media/wysiwyg/Rolling_Library_Ladders_legend_background.jpg);
+        color:#fff;
+        cursor:pointer;
+        text-decoration: none;
+    }
+    @media (min-width: 769px){
+		td.a-right {
+            text-align: right !important;
+        }
+        td.a-center {
+            text-align: center !important;
+        }
+	}
+    @media (max-width: 768px){
+		.product-main-info{
+            padding:0px 15px;
+        }
+        td.a-right {
+            text-align: left !important;
+        }
+        td.a-center {
+            text-align: left !important;
+        }
+	}
+    #hardware-panel input.input-text.qty{
+        text-align:center;
+    }
+    .hardware-bottom{
+        padding:0px 15px;
+    }
+	/* block going to cart and cart*/
+	#going_to_cart {
+		display:none;
+	}
+	@media (min-width: 768px){
+		#going_to_cart.going_visible {
+			display:none;
+		}
+	}
+	@media (max-width: 767px){
+		#going_to_cart.going_visible {
+			display:block;
+			position: fixed;
+			z-index: 999;
+			width:103%;
+			bottom:0px;
+			padding: 12px;
+			margin-bottom:0px;		background-image:url(/media/wysiwyg/screw_red_background.jpg);
+			font-family: "Titillium Web";
+			font-size: 14px;
+			font-weight: 900;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+			color:#fff;
+		}
+	}
+	#cart_total_quantity{
+		line-height: 36px;
+	}
+	#going_to_cart .going_buttons{
+		text-align:right;
+	}
+	#going_back_button{
+		display:none;
+	}
+    .btn-clear {
+        background-color: #989898;
+        border-color: #989898;
+        color: #ffffff;
+    }
+
+
+</style>
+<div id="messages_product_view" class="container"><?php echo $this->getMessagesBlock()->setEscapeMessageFlag(true)->toHtml() ?></div>
+<div class="product-view container hardware-view" style="">
+    <!--<div>-->
+    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <?php echo $this->getBlockHtml('formkey') ?>
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>
+        <div class="product-essential row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <?php echo $this->getChildHtml('media') ?>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6" style="">
+                <div class="product-main-info">
+                    <p class="product-ids"><?php echo $this->__('SKU# %s', $this->escapeHtml($_product->getSku())); ?></p>
+                    <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                    <?php echo $this->getChildHtml('alert_urls') ?>
+                    <div class="clearfix">&nbsp;</div>
+                    <?php if ($_product->getShortDescription()):?>
+                        <div class="short-description std">
+                            <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                        </div>
+                    <?php endif;?>
+                    <div class="clearfix">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+        <div  class="row">
+            <div id="hardware-panel" class="col-xs-12 panel-group">
+                <?php echo $this->getChildHtml('product_type_data') ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="hardware-bottom" >
+                <?php echo $this->getChildHtml('tierprices') ?>
+                <?php echo $this->getChildHtml('extrahint') ?>
+
+                <?php if (!$this->hasOptions()): ?>
+                    <div class="add-to-box">
+                        <?php if ($_product->isSaleable()): ?>
+                            <?php echo $this->getChildHtml('addtocart') ?>
+                        <?php endif; ?>
+                        <?php echo $this->getChildHtml('addto') ?>
+                    </div>
+                <?php else: ?>
+                    <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container1')): ?>
+                        <div class="options-container-small">
+                            <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                        </div>
+                    <?php else: ?>
+                        <?php echo $this->getChildHtml('addto') ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2')): ?>
+                    <div class="options-container-big">
+                        <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($this->canEmailToFriend()): ?>
+                    <div class="a-left">
+                        <a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-envelope mr-3"></span><?php echo $this->__('Email to a Friend') ?></a>
+                    </div>
+                <?php endif; ?>
+
+                <?php echo $this->getChildHtml('other'); ?>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+        <div class="row">
+            <div class="col-xs-12">
+            <?php echo $this->getChildHtml('relatedProducts') ?>
+            <?php echo $this->getChildHtml('upsell_products') ?>
+            <?php echo $this->getChildHtml('productTagList') ?>
+            <?php echo $this->getChildHtml('product_additional_data') ?>
+            </div>
+        </div>
+    </form>
+</div>
+			<div id="going_to_cart" class="row" data-goingback="" >
+				<div id="cart_total_quantity" class="col-xs-4">TOTAL QUANTITY:&nbsp;<span id="cart_total_quantity_value">0</span>
+				</div>
+				<div class="going_buttons col-xs-4">
+					<button id="going_back_button" class="btn btn-sm btn-clear" onclick="going_hardware_back(this)" type="button">Go Back<span class="glyphicon glyphicon-menu-right"></span></button>
+				</div>
+				<div class="going_buttons col-xs-4">
+					<button class="btn btn-sm btn-clear" onclick="going_to_add_button(this)" type="button">Make Order<span class="glyphicon glyphicon-menu-right"></span></button>
+				</div>
+			</div>
+			<script type="text/javascript">
+                //<![CDATA[
+                var total_qty = 0;
+
+                jQuery('#hardware-panel input[type="text"]').each(function(){
+                    this.oninput=function(){save_input_qty()};
+                });
+
+                save_input_qty();
+
+                function save_input_qty() {
+                    total_qty = 0;
+                    jQuery('#hardware-panel input[type="text"]').each(function(){
+                        total_qty += parseInt(jQuery(this).val());
+                    });
+                    if(total_qty > 0){
+                        jQuery("#going_to_cart").addClass('going_visible');
+                        jQuery("#going_to_cart #cart_total_quantity_value").text(total_qty);
+                    }
+                }
+
+				function going_to_add_button(elem){
+						var windowOffset = window.pageYOffset || document.documentElement.scrollTop;
+						if(windowOffset) {
+							jQuery(elem).closest('#going_to_cart').attr('data-goingback',windowOffset);
+						}
+						var offset = jQuery('div.hardware-bottom').offset();
+						if(offset && (jQuery('div.hardware-bottom:visible').length > 0)) {
+							jQuery('#going_back_button').show();
+							jQuery('html,body').animate({
+								scrollTop: jQuery('div.hardware-bottom').offset().top -20
+							}, 100);
+						}
+				}
+
+				function going_hardware_back(elem){
+						var windowOffset = jQuery(elem).closest('#going_to_cart').attr('data-goingback');
+						if(windowOffset) {
+							jQuery('html,body').animate({
+								scrollTop: windowOffset
+							}, 100);
+						}
+						jQuery('#going_back_button').hide();
+				}
+                //]]>
+			</script>
+
+<script type="text/javascript">
+//<![CDATA[
+    var productAddToCartForm = new VarienForm('product_addtocart_form');
+    productAddToCartForm.submit = function(button, url) {
+        if (this.validator.validate()) {
+            var form = this.form;
+            var oldUrl = form.action;
+
+            if (url) {
+                form.action = url;
+            }
+            var e = null;
+            try {
+                this.form.submit();
+            } catch (e) {
+            }
+            this.form.action = oldUrl;
+            if (e) {
+                throw e;
+            }
+
+            if (button && button != 'undefined') {
+                button.disabled = true;
+            }
+        }
+    }.bind(productAddToCartForm);
+
+    productAddToCartForm.submitLight = function(button, url) {
+        if (this.validator) {
+            var nv = Validation.methods;
+            delete Validation.methods['required-entry'];
+            delete Validation.methods['validate-one-required'];
+            delete Validation.methods['validate-one-required-by-name'];
+            // Remove custom datetime validators
+            for (var methodName in Validation.methods) {
+                if (methodName.match(/^validate-datetime-.*/i)) {
+                    delete Validation.methods[methodName];
+                }
+            }
+
+            if (this.validator.validate()) {
+                if (url) {
+                    this.form.action = url;
+                }
+                this.form.submit();
+            }
+            Object.extend(Validation.methods, nv);
+        }
+    }.bind(productAddToCartForm);
+
+    jQuery(function () {
+        jQuery('#hardware-panel').on('shown.bs.collapse', function (e) {
+            var offset = jQuery('#hardware-panel .in').offset();
+            if(offset) {
+                jQuery('html,body').animate({
+                    scrollTop: jQuery('#hardware-panel .in').closest('.hardwareCategory.panel').offset().top -20
+                }, 100);
+            }
+        });
+    });
+//]]>
+</script>

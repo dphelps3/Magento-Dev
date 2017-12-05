@@ -1,0 +1,62 @@
+<?php $_order = $this->getOrder() ?>
+<div class="box-left">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php //echo Mage::helper('sales')->__('Custom Fields') ?>Freight Shipping Attributes</h4>
+        </div>
+        <div class="fieldset">
+            <table cellspacing="0" class="form-list">
+            <?php 
+            	$custom = $this->getCustomVars();
+				if(!$custom) {
+					echo 'N/A';
+				} else {
+					foreach($custom as $key => $value){ 
+					if($key == 'csh_comments2') {
+						
+					} else {
+						if($key == 'csh_residential') {
+							$key = 'Residential';
+						} else if ($key == 'csh_liftgate') {
+							$key = 'Liftgate';
+						}  else if ($key == 'csh_appointment') {
+							$key = 'Appointment';
+						}
+						if($value == 1) {
+							$value="Yes";
+						} else if ($value == 2) {
+							$value="No";
+						}
+						
+            ?>
+            <tr>
+                <td style="width:10%" class="label"><strong><?php echo Mage::helper('sales')->__($key) ?></strong></td>
+                <td class="value"><?php echo $value;?></td>
+            </tr>
+				<?php }
+				}
+			}	?>
+            </table>
+        </div>
+		<div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php //echo Mage::helper('sales')->__('Custom Fields') ?>Customer Comments</h4>
+        </div>
+		<div class="fieldset">
+            <table cellspacing="0" class="form-list">
+            <?php 
+            	$custom = $this->getCustomVars();
+				if(!$custom['csh_comments2']) {
+					echo 'No comment';
+				} else {
+					?>
+					<tr>
+						<td><?php echo $custom['csh_comments2']; ?></td>
+						
+					</tr>
+
+				<?php }	?>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>

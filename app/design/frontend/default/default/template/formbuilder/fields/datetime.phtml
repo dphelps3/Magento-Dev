@@ -1,0 +1,99 @@
+<?php $value =Mage::registry('formbuilder')->getData('field');?>
+<?php $fieldvalue='';?>
+<?php if(isset($value) && !empty($value)):?>
+	<?php $id=$this->getId();?>
+	<?php $fieldvalue=$value[$id];?>
+	<?php //echo "<prE>";print_r($fieldvalue);exit;?>
+<?php endif;?>
+<?php if($this->getFieldType() =='date_time' || $this->getFieldType() =='date'):?>
+<input type='text' name='<?php echo $this->getFieldName()?>[date]' id='<?php echo $this->getFieldId()?>[date]' class='datetime-picker <?php echo $this->getFieldClass()?>' style='<?php echo $this->getFieldStyle()?>' value="<?php if(!empty($fieldvalue)):?><?php echo htmlspecialchars($fieldvalue['date'])?><?php endif;?>"/>
+<img id="<?php echo $this->getFieldName()?>_trig" class="v-middle" title="<?php echo $this->__('Select Date');?> alt="<?php echo $this->__('Select Date')?> src="<?php echo $this->getSkinUrl('images/calendar.gif');?>" />
+<?php endif;?>
+<?php $flag=false;?>
+ <?php if (Mage::getSingleton('catalog/product_option_type_date')->is24hTimeFormat()) {
+            $hourStart = 0;
+            $hourEnd = 23;
+            $dayPartHtml = '';
+        } else {
+            $hourStart = 1;
+            $hourEnd = 12;
+			$flag=true;
+		}
+?>
+<?php if($this->getFieldType() =='date_time' || $this->getFieldType() =='time'):?>
+<?php $hour ='';?>
+<?php $minute ='';?>
+<?php $day ='';?>
+<?php if(isset($fieldvalue)):?>
+	<?php //echo "<prE>";print_r($fieldvalue);exit;?>
+	<?php if(isset($fieldvalue['hour'])):?>
+		<?php $hour =$fieldvalue['hour'];?>
+	<?php endif;?>
+	<?php if(isset($fieldvalue['minute'])):?>
+		<?php $minute =$fieldvalue['minute'];?>
+	<?php endif;?>
+	<?php if(isset($fieldvalue['day_part'])):?>
+		<?php $day =$fieldvalue['day_part'];?>
+	<?php endif;?>
+<?php endif;?>
+<?php //echo $hour;?>
+<select id="date_<?php echo $this->getId()?>_hour" name="<?php echo $this->getFieldName()?>[hour]" title="<?php echo $this->__('Hour');?>" style="width:auto;" class="datetime-picker">
+	<option value="">-</option>
+	<?php for($i=$hourStart;$i<=$hourEnd;$i++):?>
+		<option value="<?php echo $i;?>" <?php if($hour == $i):?>selected="selected"<?php endif;?>><?php echo $i;?></option>
+	<?php endfor;?>
+	
+</select>
+<select id="date_<?php echo $this->getId()?>_minute" name="<?php echo $this->getFieldName()?>[minute]" title="<?php echo $this->__('Minute');?>" style="width:auto;" class="datetime-picker">
+	<option value="">-</option>
+	<?php for($i=0;$i<=59;$i++):?>
+		<option value="<?php echo $i;?>" <?php if($minute == $i):?> selected="selected"<?php endif;?>><?php echo $i;?></option>
+	<?php endfor;?>
+	
+</select>
+<?php if($flag== true):?>
+<select id="date_<?php echo $this->getId()?>_day_part" name="<?php echo $this->getFieldName()?>[day_part]" title="<?php echo $this->__('Day Part');?>" style="width:auto;">
+	<option value="am" <?php if($day == 'am'):?> selected="selected" <?php endif;?>><?php echo $this->__('AM');?></option>
+	<option value="pm" <?php if($day == 'pm'):?>selected="selected" <?php endif;?>><?php echo $this->__('PM');?></option>
+</select>
+<?php endif;?>
+<?php endif;?>
+<?php if($this->getFieldType() =='date_time' || $this->getFieldType() =='date'):?>
+<script type="text/javascript">
+//<![CDATA[
+var calendarSetupObject = {
+inputField : "<?php echo $this->getFieldName()?>"+'[date]',
+ifFormat : "%m/%e/%Y",
+showsTime : "false",
+button : "<?php echo $this->getFieldName()?>_trig",
+align : "Bl",
+singleClick : true
+}
+Calendar.setup(calendarSetupObject);
+//]]>
+</script>
+<?php endif;?>
+<?php if($this->getField()->getIsRequire()):?>
+<?php if($this->getFieldType() =='date_time' || $this->getFieldType() =='time'):?>
+
+<input class="validate-datetime-<?php echo $this->getId();?>" type="hidden" value="" name="validate-datetime-<?php echo $this->getId();?>">
+<script type="text/javascript">
+//<![CDATA[
+Validation.addAllThese(
+[
+['validate-datetime-<?php echo $this->getId();?>', 'This is a required option', function(v) {
+
+var dateTimeParts = $$('.datetime-picker[id^="date_<?php echo $this->getId()?>"]');
+
+for (var i=0; i < dateTimeParts.length; i++) {
+
+if (dateTimeParts[i].value == "") return false;
+}
+return true;
+}]
+]
+);
+//]]>
+</script>
+<?php endif;?>
+<?php endif;?>

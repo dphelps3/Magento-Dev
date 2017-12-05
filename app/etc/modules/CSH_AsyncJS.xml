@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <CSH_AsyncJS>
+      <active>false</active>
+      <codePool>local</codePool>
+      <version>0.1.0</version>
+    </CSH_AsyncJS>
+  </modules>
+</config>

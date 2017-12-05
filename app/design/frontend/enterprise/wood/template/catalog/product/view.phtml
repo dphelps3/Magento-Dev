@@ -1,0 +1,351 @@
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<?php $_layout = themeOptions('layout'); ?>
+
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<a class="back-to" href="javascript: history.go(-1)"><?php echo $this->__('Return to Previous Page') ?></a>
+
+<div itemscope itemtype="http://data-vocabulary.org/Product">
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view layout_<?php echo $_layout ?>">
+    <div class="product-essential">
+    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>
+        <div id="addedoverlay" style='display:none'> </div>
+        <div id='added' style='display:none'></div>
+        <div id='productname' style='display:none'><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></div>
+
+        <div class="product-img-box">
+            <?php echo $this->getChildHtml('media') ?>
+        </div>
+        
+        <div class="product-shop">
+            <div class="white-back">
+                <div class="product-name">
+                    <h2 itemprop="name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+                </div>
+                
+                <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+                <?php echo $this->getChildHtml('alert_urls') ?>
+                <?php echo $this->getChildHtml('extrahint') ?>
+                <?php if($_product->getTypeId() != 'bundle'): ?>
+				<?php $_price = $this->helper('tax')->getPrice($_product, $_product->getMsrp()) ?>
+						<?php if ($_product->getMsrp()): ?>
+							<?php $_msrpPrice = $this->helper('core')->currency($_product->getMsrp(),true,true) ?>
+							<?php $_realPrice = $_product->getFinalPrice(); ?>
+							<?php if ($_realPrice < $_product->getMsrp()): ?>
+							<p class="special-price">
+							<span class="old-price" id="product-price-<?php echo $_product->getId() ?><?php echo $this->getIdSuffix() ?>"><?php echo $_msrpPrice ?></span>
+							<span><b><?php echo ' Save ' . round(100-(($_realPrice / $_product->getMsrp())*100),0) . '%' ?></b></span>
+							</p>
+							<?php endif; ?>
+						<?php endif; ?>
+                    <?php echo $this->getPriceHtml($_product) ?>
+                <?php else: ?>
+					<span  itemprop="identifier" content="sku:<?php echo $_product->getSku(); ?>">
+                    <?php echo $this->__('SKU:').'<strong>'.$_product->getSku().'</strong>'; ?>
+					</span>
+                    <?php echo $this->getChildHtml('product_type_data') ?>
+                <?php endif;?>
+                
+                <div class="addtocont">
+                    <?php if($_product->getTypeId() != 'bundle'): ?>
+                        <span class="product-code"><?php echo $this->__('SKU:').' <strong>'.$_product->getSku().'</strong>'; ?></span>
+                        <?php echo $this->getChildHtml('product_type_data') ?>
+                    <?php endif;?>
+                    <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('productview')->toHtml(); ?>
+                </div>
+                <div class="clear"></div>
+                <?php echo $this->getTierPriceHtml() ?>
+                <?php if ($_product->getShortDescription()):?>
+                    <div class="short-description">
+                        <p><?php echo $this->__('Quick Overview:') ?></p>
+                        <div itemprop="description" class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                    </div>
+                <?php endif;?>
+                <?php if ($_product->getSoldAs()):?>
+		<div><strong>Sold as: <?php echo $_product->getSoldAs() ?></strong></div>
+                <?php endif;?>
+                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                    <div id="container1"><?php echo $this->getChildChildHtml('container1', '', true, true) ?><div class="clear"></div></div>
+                <?php endif;?>   
+                
+                
+                <?php if (!$this->hasOptions()):?>
+                    <div class="add-to-box">
+                        <?php if($_product->isSaleable()): ?>
+                            <?php echo $this->getChildHtml('addtocart') ?>
+                            <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+                                <span class="or"><?php echo $this->__('OR') ?></span>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        <?php echo $this->getChildHtml('addto') ?>
+                    </div>
+                <?php endif; ?>  
+                <?php if($_layout == 'horizontal'): ?>
+                    <div class="clear"></div> 
+                    <?php $use_share = themeOptions('use_share'); ?>
+                    <?php $share_code = themeOptions('share_code'); ?>
+                    <?php if($use_share && $share_code): ?>  
+                        <?php echo $share_code; ?>
+                    <?php endif; ?>
+                <?php endif; ?>  
+                
+                <?php echo $this->getChildHtml('other');?>
+            </div>
+            <?php if($_layout != 'horizontal'): ?>
+                <div class="product_right">
+                    <?php if(themeOptions('brand')): ?>
+						<?php $brand_attr = themeOptions('brand_attr'); ?>
+                        <?php if ($_product->getData($brand_attr)):  ?>
+                            <?php
+							$brandImageExt = trim(themeOptions('brand_image_extension'));
+							$brandPageBasePath = trim(themeOptions('brand_page_base_path')); 
+							$brandLinkSearch = themeOptions('brand_link_search_enabled');
+							$attr = $_product->getResource()->getAttribute($brand_attr);	
+							$brandValue = trim($attr->getFrontend()->getValue($_product));	
+							$brandValueCode = str_replace(" ", "_", strtolower($brandValue));	
+							$brandLabel = $attr->getStoreLabel();							
+							$brandImageUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'wysiwyg/blanco/attributes/' . $brand_attr . '/' . $brandValueCode . '.' . $brandImageExt;
+
+							if ($brandLinkSearch)
+								$brandPageUrl = Mage::getUrl() . 'catalogsearch/result/?q=' . $brandValue;
+							elseif ($brandPageBasePath != '')
+							{
+								$basePath = ($brandPageBasePath == '/') ? '' : $brandPageBasePath . '/';
+								$brandPageUrl = Mage::getUrl() . $basePath . str_replace(" ", "-", strtolower($brandValue));
+							}
+							else
+								$brandPageUrl = '';
+
+							?>
+                            <div class="brand-logo">
+                            	<?php if ($brandPageUrl != ''): ?>
+                                	<a href="<?php echo $brandPageUrl;?>" title="<?php echo str_replace("%s", $brandValue, $this->__('Click to see more products from %s')); ?>"><img src="<?php echo $brandImageUrl;?>" alt="<?php echo $brandValue; ?>" width="145" height="50" /></a>
+                                <?php else: ?>
+                                	<img src="<?php echo $brandImageUrl;?>" title="<?php echo $brandLabel .': '. $brandValue; ?>" alt="<?php echo $brandValue; ?>" width="145" height="50" />
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                                    
+                
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('productview')->toHtml(); ?>
+                    <?php $use_share = themeOptions('use_share'); ?>
+                    <?php $share_code = themeOptions('share_code'); ?>
+                    <?php if($use_share && $share_code): ?>  
+                        <?php echo $share_code; ?>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+
+
+        <div class="clearer"></div>
+        <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+            <div id="container2"><?php echo $this->getChildChildHtml('container2', '', true, true) ?></div>
+        <?php endif;?>
+    </form>
+	
+	<script src="http://malsup.github.com/jquery.form.js"></script> 
+	<script type="text/javascript">
+		window.tracker = window._svt._getTracker('1660_03709');
+     		window.tracker._setViewProduct('<?php echo $_product->getSku() ?>');
+		window.tracker._trackPageView();
+	</script>
+    <script type="text/javascript">
+    //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+		var url = jQuery('#product_addtocart_form').attr('action');
+		url = url.replace("checkout/cart","ajax/index");  
+						
+        var msgHtml;
+        var productImg = jQuery('.main-thumbnail').html();
+        var windowOver = jQuery('#addedoverlay');
+        var windowBox = jQuery('#added');
+        var titleForBox = jQuery('#productname').text();   
+        var data = {'isAjax':1}
+        
+        jQuery('#product_addtocart_form').ajaxForm({
+            url: url,
+            data: data,
+            dataType: 'json',
+            beforeSubmit: function(){    
+                if(productAddToCartForm.validator.validate()){
+                    windowOver.show();
+                    windowBox.show().css({
+                        backgroundImage: "url('<?php echo $this->getSkinUrl('images/loading.gif')?>')"
+                    });                    
+                }else{
+                    return false;
+                }
+            },
+            error: function(data){
+	            windowBox.css({
+       			      backgroundImage: 'none'
+                }).html('<?php echo $this->__('Error') ?>');					   
+                windowOver.one('click',function(){
+		            hidewindow(windowBox,windowOver);                    
+                });	       
+                                 
+                jQuery('#hidewindow').click(function(){
+		            hidewindow(windowBox,windowOver);                    
+                });
+            },
+            success : function(data,statusText,xhr ){
+                if(data.status == 'SUCCESS'){
+                    if(jQuery('.block-cart')){
+                        jQuery('.block-cart').replaceWith(data.sidebar);
+                    }
+                    if(jQuery('.header .block-cart-header')){
+                        jQuery('.header .block-cart-header').replaceWith(data.topcart);
+                    }     
+                    msgHtml = '<div class="added-content"><div style="float:left;">' + productImg + '</div><em>' + titleForBox + '</em> <?php echo $this->__('was successfully added to your shopping cart.') ?><div style="clear:both;"></div><a id="hidewindow" href="javascript:void(0);"><?php echo $this->__('Continue shopping') ?></a>&nbsp;<a href="<?php echo $this->getUrl('checkout/cart')?>"><?php echo $this->__('View cart & checkout') ?></a></div>';             
+                }else{
+                    msgHtml = '<div class="added-content"><p class="error-msg" style="margin-bottom:15px;">' + data.message + '</p><a id="hidewindow" href="javascript:void(0);"><?php echo $this->__('Continue shopping') ?></a>&nbsp;<a href="<?php echo $this->getUrl('checkout/cart')?>"><?php echo $this->__('View cart & checkout') ?></a></div>';
+                }					   
+               
+                windowBox.css({
+       			      backgroundImage: 'none'
+                }).html(msgHtml);					   
+                windowOver.one('click',function(){
+    	            hidewindow(windowBox,windowOver);                    
+                });	       
+                                 
+                jQuery('#hidewindow').click(function(){
+    	            hidewindow(windowBox,windowOver);                    
+                });	   
+			        window.tracker = window._svt._getTracker('1660_03709');	
+				window.tracker._setCartProduct('<?php echo $_product->getSku() ?>');
+				window.tracker._setIsCart(true);
+				window.tracker._trackPageView();
+            }
+        }); 
+        
+        function hidewindow(windowBox,windowOver){
+            windowOver.fadeOut(400);
+            windowBox.fadeOut(400).html('');	
+        }
+
+    //]]>
+    </script>
+    </div>
+	<?php echo $this->getChildHtml('product_type_data_grouped') ?>
+	<?php if ($_product->getData('model_3d')): ?>
+	
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/ThreeJS/three.min.js"></script>
+		<script type="text/javascript" src="js/ThreeJS/OBJLoader.js"></script>
+		<script type="text/javascript" src="js/ThreeJS/orbitcontrols.js"></script>
+		<script type="text/javascript" src="js/ThreeJS/detector.js"></script>
+
+		<div style="height:36px;width:480px;"><h4>3D Preview. Click and drag the box below:</h4></span></div>
+		<div id="container" style="min-height:360px;width:480px;border:1px solid #aaa;"></div>
+
+		<script type="text/javascript">
+			if ( ! Detector.webgl ) { Detector.addGetWebGLMessage(); }
+
+			var renderer, camera, scene, controls, scope;
+			var middle = new THREE.Vector3();
+
+			init();
+
+			render();
+
+			function cameraUpdate() {
+				WIDTH = document.getElementById('container').clientWidth;
+				HEIGHT = document.getElementById('container').clientHeight;
+				var VIEW_ANGLE = 45, ASPECT = WIDTH / HEIGHT, NEAR = 0.1, FAR = 10000;
+				camera.aspect = ASPECT;
+				camera.updateProjectionMatrix();
+				renderer.setSize( WIDTH, HEIGHT );
+				renderer.render( scene, camera );
+			}
+
+				function init() {
+				var WIDTH = document.getElementById('container').clientWidth;
+				var HEIGHT = document.getElementById('container').clientHeight;
+				var VIEW_ANGLE = 45, ASPECT = WIDTH / HEIGHT, NEAR = 0.1, FAR = 10000;
+							
+
+				renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true, antialias: true});
+				camera =  new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
+				scene = new THREE.Scene();
+				scene.add(camera);
+				renderer.setSize(WIDTH, HEIGHT);
+				container.appendChild(renderer.domElement);
+
+				var ambient = new THREE.AmbientLight( 0x404070 );
+				scene.add( ambient );
+
+				var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+				directionalLight.position.set( 0, 0, 1 );
+				scene.add( directionalLight );
+
+				
+				controls = new THREE.OrbitControls( camera, renderer.domElement );
+				controls.addEventListener( 'change', render );
+
+				var manager = new THREE.LoadingManager();
+				manager.onProgress = function ( item, loaded, total ) {	};
+
+				var bLoader = new THREE.OBJLoader( manager, 1 );
+				bLoader.load( "media/3d/product/" + "<?php echo $_product->getData('model_3d')?>",  function ( object ) {
+					
+					object.position.x = 0;
+					object.position.y = 0;
+					object.position.z = 0;
+					scene.add( object ); 
+					
+					}  );
+
+					camera.position.y = 0;
+					camera.position.x = 0;
+					camera.position.z = 25;
+					camera.lookAt(new THREE.Vector3(0, 0, 0));
+					
+				renderer.render( scene, camera );
+
+			}
+
+			function render() {
+				renderer.render( scene, camera );
+			}
+
+		</script>
+
+
+
+	
+	<?php endif; ?>
+
+    <div class="product-collateral">
+        <?php echo $this->getChildHtml('info_tabs') ?>
+        <?php echo $this->getChildHtml('product_additional_data') ?>
+        <?php 
+		if ($_additional = $this->getChildHtml('additional')) { 
+			foreach ($_additional as $_data): ?>
+				<?php 
+				$_attribute = $_product->getResource()->getAttribute($_data['code']);
+				if (!is_null($_product->getData($_attribute->getAttributeCode())) && ((string)$_attribute->getFrontend()->getValue($_product) != '')) { 
+					?>
+					<tr>
+						<th class="label"><?php echo $this->htmlEscape($this->__($_data['label'])) ?></th>
+						<td class="data"><?php echo $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?></td>
+					</tr>
+				<?php } 
+			endforeach; 
+		}
+		?>
+    </div>
+	<div id="related_products_product_view">
+        <?php echo $this->getChildHtml('related_products') ?>
+        <?php echo $this->getChildHtml('upsell_products') ?>
+	</div>
+</div>
+</div>

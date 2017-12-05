@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CSH_Rewrite>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Catalog />
+                <Mage_Checkout />
+                <Mage_Cms />
+            </depends>
+        </CSH_Rewrite>
+    </modules>
+</config>

@@ -1,0 +1,51 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition End User License Agreement
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magento.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license http://www.magento.com/license/enterprise-edition
+ */
+?>
+<script type="text/javascript">
+//<![CDATA[
+	var selectedValue;
+	
+	function getSelVal(sel) {
+		selectedValue = sel;
+		console.log("Value: " + selectedValue)
+		
+		if (!selectedValue) {
+			console.log("NO VALUE");
+		}
+	}
+//]]>
+</script>
+<div style="height:10px;"></div>
+<label for="<?php echo $this->getFieldId('customersource')?>"><?php echo '<em style="color:#f15c22;margin-right:4px;">*</em>' ?><?php echo $this->__('How did you hear about us?') ?></label>
+<div class="input-box">
+    <select onchange="getSelVal(this.value)" id="<?php echo $this->getFieldId('customersource')?>" name="<?php echo $this->getFieldName('customersource')?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Customersource')) ?>"<?php if ($this->isRequired()):?> class="validate-select"<?php endif; ?> <?php echo $this->getFieldParams() ?>>
+        <?php $options = Mage::getResourceSingleton('customer/customer')->getAttribute('customersource')->getSource()->getAllOptions();?>
+        <?php $value = $this->getCustomersource();?>
+        <?php foreach ($options as $option):?>
+            <option value="<?php echo $option['value'] ?>"<?php if ($option['value'] == $value) echo ' selected="selected"' ?>><?php echo $option['label'] ?></option>
+        <?php endforeach;?>
+    </select>
+</div>

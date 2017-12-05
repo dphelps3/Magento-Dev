@@ -1,0 +1,8 @@
+<config>
+  <modules>
+    <Abc_Configviewer>
+      <active>true</active>
+      <codePool>local</codePool>
+    </Abc_Configviewer>
+  </modules>
+</config>

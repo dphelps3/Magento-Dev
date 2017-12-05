@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <CSH_PayPal>
+      <version>0.1.0</version>
+    </CSH_PayPal>
+  </modules>
+  <global>
+    <helpers>
+      <paypal>
+        <class>CSH_PayPal_Helper</class>
+      </paypal>
+    </helpers>
+	<models>
+	  <paypal>
+		<class>CSH_PayPal_Model</class>
+		<resourceModel>paypal_mysql4</resourceModel>
+	  </paypal>
+			<sales>
+				<rewrite>
+					<order_payment>CSH_PayPal_Model_Sales_Order_Payment</order_payment>
+				</rewrite>
+			</sales>
+	</models>
+  </global>
+</config> 

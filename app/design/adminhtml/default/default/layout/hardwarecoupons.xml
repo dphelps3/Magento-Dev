@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <hardwarecoupons_adminhtml_codes_index>
+	<reference name="content">
+	  <block type="hardwarecoupons/adminhtml_codes" name="codes" />
+	</reference>
+  </hardwarecoupons_adminhtml_codes_index>
+</layout>

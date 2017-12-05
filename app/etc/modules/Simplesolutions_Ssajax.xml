@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Simplesolutions_Ssajax>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Simplesolutions_Ssajax>
+    </modules>
+</config>

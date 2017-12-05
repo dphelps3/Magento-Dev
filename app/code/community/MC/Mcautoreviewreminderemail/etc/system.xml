@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+
+<!--
+/*
+ * @category    Community
+ * @package     MC_Mcautoreviewreminderemail
+ * @Document    system.xml
+ * @Created on  April 11, 2012, 7:05 PM
+ * @copyright   Copyright (c) 2012 Magento Complete
+ */
+-->
+
+ <config>
+     <tabs>
+       <mctab translate="label" module="mcautoreviewreminderemail">
+           <label>Mc Extensions</label>
+           <sort_order>4000</sort_order>
+       </mctab>
+	</tabs>
+     <sections>
+         <mcautoreviewreminderemail_section translate="label" module="mcautoreviewreminderemail">
+             <label>Auto Review Reminder Email</label>
+             <tab>mctab</tab>
+             <frontend_type>text</frontend_type>
+             <sort_order>4000</sort_order>
+             <show_in_default>1</show_in_default>
+             <show_in_website>1</show_in_website>
+             <show_in_store>1</show_in_store>
+            <groups>
+                 <mcautoreviewreminderemail_group translate="label" module="mcautoreviewreminderemail">
+                     <label> Auto Review Reminder Email Setting</label>
+                     <frontend_type>text</frontend_type>
+                     <sort_order>1000</sort_order>
+                     <show_in_default>1</show_in_default>
+                     <show_in_website>1</show_in_website>
+                     <show_in_store>1</show_in_store>
+                     <fields>
+                         <mcautoreviewreminderemail_enable translate="label">
+                            <label>Enable </label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mcautoreviewreminderemail_enable>
+                            <mcautoreviewreminderemail_license translate="label">
+                            <label>License key <![CDATA[<span class="required">*</span>]]></label>
+                            <comment>Enter License Key</comment>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>mcautoreviewreminderemail/Mcautoreviewreminderemailconfig</backend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment><![CDATA[ <span class="note">Please Enter License Key !</span>]]>     </comment>
+                        </mcautoreviewreminderemail_license>
+                        <mcautoreviewreminderemail_order_status>
+                            <label>Order Complete Status </label>
+                            <comment>Select Order Complete Status as per your regional language. In most of the stores, its 'Complete'</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </mcautoreviewreminderemail_order_status>
+                        <mcautoreviewreminderemail_duration translate="label">
+                            <label>Delay</label>
+                            <comment>Mail will be sent if an order gets completed within X days of delay from order placement date</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-number validate-zero-or-greater</validate>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mcautoreviewreminderemail_duration>
+                        <mcautoreviewreminderemail_email_template>
+                            <label>Select Email Template </label>
+                            <comment>It is advisable to create a new email template for this purpose and then select it in this configuration. Make sure you add review URL in your template. For e.g., {{ReviewURL}} <![CDATA[ <br /><span style="color:#FFA500">NOTE:- Default template from locale should not be used. Make sure you add product Name in your template. For e.g., {{ProductName}} You can also use other variables like OrderNumber {{OrderNumber}}</span>]]></comment>
+                            <frontend_type>select</frontend_type>
+							<backend_model>mcautoreviewreminderemail/Mcautoreviewreminderemailtemplate</backend_model>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </mcautoreviewreminderemail_email_template>
+                        <mcautoreviewreminderemail_identity translate="label">
+                            <label>Choose Sender's Email </label>
+                            <comment>Choose the right sender user as per your choice</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mcautoreviewreminderemail_identity>
+                    </fields>
+                 </mcautoreviewreminderemail_group>
+             </groups>
+         </mcautoreviewreminderemail_section>
+     </sections>
+ </config>

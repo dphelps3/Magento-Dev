@@ -1,0 +1,254 @@
+#easyconf-container {
+    margin-bottom: 5px;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+}
+
+#easyconf-container table, tr, td, div {
+    border: 0px;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0px;
+}
+
+#product_info_tabs_easyconf {
+    color: #dd6600;
+}
+
+.attribute-name {
+    vertical-align: middle;
+    padding: 0px 25px 0px 10px;
+    margin: 0px;
+    border-bottom: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    white-space: nowrap;
+}
+
+.attribute-row-1 {
+    background-color: #fafafa;
+    white-space: nowrap;
+}
+
+.attribute-row-0 {
+    background-color: #ededed;
+    white-space: nowrap;
+}
+
+.attribute-value-row {
+    border-bottom: 1px solid #cccccc;
+    width: 100%;
+    padding: 0px 10px;
+    white-space: nowrap;
+}
+
+.column {
+    width: 25px;
+    border-right: 1px solid #cccccc;
+}
+
+.micro-label {
+    font-family: sans-serif;
+    font-size: 0.8em;
+    line-height: 0.8em;
+    padding: 0;
+    margin: 0;
+}
+
+.input-qty {
+    border: 1px solid;
+    border-color: #aaaaaa;
+    padding: 0px;
+    margin: 0px;
+    width: inherit;
+    font-size: 0.9em;
+}
+
+.empty-cell {
+    margin: 0px;
+    padding: 0px;
+
+    height: 105px;
+
+    text-align: right;
+    vertical-align: bottom;
+
+    border-top: 1px solid #ffffff;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-left: 0px;
+}
+
+.empty-cell button {
+    margin: 5px;
+}
+
+.empty-cell-bottom {
+    margin: 0px;
+    padding: 0px;
+
+    text-align: right;
+    vertical-align: top;
+
+    border-width: 0px 1px 0px 0px;
+    border-style: solid;
+    border-color: #ffffff;
+}
+
+.empty-cell-bottom button {
+    margin: 5px;
+}
+
+.product-column-header {
+    margin: 0px;
+    padding: 0px;
+
+    height: 105px;
+    width: 25px;
+
+    text-align: center;
+
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-left: 0px;
+}
+
+.btn {
+    cursor: pointer;
+    padding: 1px;
+    margin: 0px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#product-config-form {
+    z-index: 10000;
+
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 524px;
+    margin-left: -262px;
+
+    background-color: #FAFAFA;
+    border: 1px solid #D6D6D6;
+    padding: 10px;
+}
+
+#product-config-form fieldset fieldset {
+    border: 1px solid #D6D6D6;
+    padding: 5px;
+    margin: 5px;
+}
+
+.form-close {
+    float: right;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+#product-column-blank {
+    display: none;
+}
+
+#easyconf-progress {
+    background-color: #fff4e9;
+    border: 2px solid #f1af73;
+    position: fixed;
+    text-align: center;
+    width: 250px;
+    padding: 25px;
+    top: 45%;
+    left: 50%;
+    margin-left: -125px;
+    font-size: 1.2em;
+    color: #d85909;
+    font-weight: bold;
+    text-align: center;
+    z-index: 10000;
+}
+
+#easyconf-progress-log {
+    position: relative;
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: normal;
+    text-align: left;
+    margin-top: 31px;
+    margin-left: 31px;
+    list-style: none;
+}
+
+#easyconf-progress-log-container {
+    clear: both;
+    overflow: hidden;
+    height: 60px;
+}
+
+#easyconf-progress-log li.log-success {
+    color: #3d6611;
+}
+
+#easyconf-progress-log li.log-error {
+    color: #993d11;
+}
+
+#generation-form {
+    z-index: 10000;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    width: 524px;
+    margin-left: -262px;
+    background-color: #FAFAFA;
+    border: 1px solid #D6D6D6;
+    padding: 10px;
+}
+
+#generation-form fieldset {
+    border: 1px solid #D6D6D6;
+    padding: 5px;
+    margin: 5px;
+}
+
+#generation-form-tip {
+    text-align: right;
+}
+
+.cell-selected {
+    background-image: url('images/selected.gif');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.rb {
+    visibility: hidden;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+}
+
+.ar:hover {
+    background-color: #c7ebeb;
+    cursor: pointer;
+}
+
+#easyconf-litebox {
+    z-index: 9999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    top: 0px;
+    left: 0px;
+    background-color: #000000;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=75);
+    -moz-opacity: 0.75;
+    -khtml-opacity: 0.75;
+    opacity: 0.75;
+}

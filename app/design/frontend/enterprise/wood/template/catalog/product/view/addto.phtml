@@ -1,0 +1,47 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+<ul class="add-to-links">
+<?php if ($this->helper('wishlist')->isAllow()) : ?>
+	<script type="text/javascript">
+		function adjust_product_url() {
+			var prod_ids = new Array();
+			var wishlisturl2 = "<?php echo $_wishlistSubmitUrl ?>";
+			var start_index = wishlisturl2.split("product/");
+			var ajax_to_send = start_index[0]+"product/";
+			jQuery("input.qty").each(function(){
+				var val = parseInt(jQuery(this).val());
+				if(val > 0) {
+					var prod_name = jQuery(this).attr("name");
+					var start_index = prod_name.indexOf('[');
+					var end_index = prod_name.indexOf(']');
+					var prod_id = prod_name.substring((start_index + 1), end_index);
+					//alert(prod_name+", "+start_index+", "+end_index+", "+prod_id);
+					//jQuery.ajax({
+						//type: "GET",
+						//url: ajax_to_send
+					//});
+					//console.log(ajax_to_send);
+					ajax_to_send += prod_id + "_";
+				}
+			});
+			ajax_to_send = ajax_to_send.slice(0, -1);
+			ajax_to_send += "/";
+			//alert(ajax_to_send);
+			window.location.href = ajax_to_send;
+			//alert(ajax_to_send);
+		}
+	</script>
+    <li class="wishlist-li"><a href="<?php echo $_wishlistSubmitUrl ?>" onclick="<?php if($_product->getTypeId() != 'cabinet') { ?>productAddToCartForm.submitLight(this, '<?php echo $_wishlistSubmitUrl ?>');<?php } else { ?>adjust_product_url();<?php } ?>  return false;" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+    <li style="display:none;" class="wishlist-li"><a href="#" onclick="adjust_product_url(); return false;">Test</a></li>
+<?php endif; ?>
+<?php
+    $_compareUrl = false; //= $this->helper('catalog/product_compare')->getAddUrl($_product);
+?>
+<?php if($_compareUrl) : ?>
+    <li class="compare-li"><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+<?php endif; ?>
+<?php if ($this->canEmailToFriend()): ?>
+    <li class="email-friend"><span class="separator">|</span> <a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></li>
+<?php endif; ?>
+</ul>
