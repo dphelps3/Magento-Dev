@@ -1,0 +1,110 @@
+<?php /* @copyright  Copyright (c) 2012 AITOC, Inc. */ ?>
+
+<input type="hidden" id="products[<?php echo $this->getId() ?>][name]"
+       value="<?php echo $this->getProduct()->getName() ?>"/>
+<input type="hidden" id="products[<?php echo $this->getId() ?>][autogenerate_name]"
+       value="<?php echo $this->getProduct()->getAutogenerateName() ?>"/>
+<input type="hidden" id="products[<?php echo $this->getId() ?>][sku]"
+       value="<?php echo $this->getProduct()->getSku() ?>"/>
+<input type="hidden" id="products[<?php echo $this->getId() ?>][autogenerate_sku]"
+       value="<?php echo $this->getProduct()->getAutogenerateSku() ?>"/>
+<input type="hidden" id="products[<?php echo $this->getId() ?>][weight]"
+       value="<?php echo $this->getProduct()->getWeight() ?>"/>
+<input type="hidden" id="products[<?php echo $this->getId() ?>][price]"
+       value="<?php echo Mage::app()->getStore()->roundPrice($this->getProduct()->getPrice()) ?>"/>
+<input type="hidden" id="products[<?php echo $this->getId() ?>][status]"
+       value="<?php echo $this->getProduct()->getStatus() ?>"/>
+<input type="hidden" id="products[<?php echo $this->getId() ?>][visibility]"
+       value="<?php echo $this->getProduct()->getVisibility() ?>"/>
+<input type="hidden" id="products[<?php echo $this->getId() ?>][stock]"
+       value="<?php echo $this->getProduct()->getStockItem()->getIsInStock() ?>"/>
+<input type="hidden" id="products[<?php echo $this->getId() ?>][is_changed]"
+       value="<?php echo ($this->getProduct()->getIsChanged()) ? '1' : '0' ?>"/>
+
+<table cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="product-column-header" valign="bottom">
+
+            <!-- status indicators -->
+            <div class="btn"
+                 id="product-unchanged-<?php echo $this->getId() ?>"<?php echo ($this->getProduct()->getIsChanged()) ? ' style="display: none;"' : '' ?>>
+                <img align="absmiddle"
+                     src="<?php echo $this->getSkinUrl('images/aiteasyconf/unchanged.png') ?>"
+                     title="<?php echo Mage::helper('aiteasyconf')->__('Product has no changes'); ?>"
+                     alt="<?php echo Mage::helper('aiteasyconf')->__('Product has no changes'); ?>"/>
+            </div>
+            <div class="btn"
+                 id="product-changed-<?php echo $this->getId() ?>"<?php echo ($this->getProduct()->getIsChanged()) ? '' : ' style="display: none;"' ?>>
+                <img align="absmiddle"
+                     src="<?php echo $this->getSkinUrl('images/aiteasyconf/changed.png') ?>"
+                     title="<?php echo Mage::helper('aiteasyconf')->__('Product has the changes'); ?>"
+                     alt="<?php echo Mage::helper('aiteasyconf')->__('Product has the changes'); ?>"/>
+            </div>
+            <div class="btn" id="product-invalid-<?php echo $this->getId() ?>" style="display: none;">
+                <img align="absmiddle"
+                     src="<?php echo $this->getSkinUrl('images/aiteasyconf/invalid.png') ?>"
+                     title="<?php echo Mage::helper('aiteasyconf')->__('Product is not configured properly'); ?>"
+                     alt="<?php echo Mage::helper('aiteasyconf')->__('Product is not configured properly'); ?>"/>
+            </div>
+            <div class="btn" id="product-duplicate-<?php echo $this->getId() ?>" style="display: none;">
+                <img align="absmiddle"
+                     src="<?php echo $this->getSkinUrl('images/aiteasyconf/duplicate.png') ?>"
+                     title="<?php echo Mage::helper('aiteasyconf')->__('Product is a duplicate of another product'); ?>"
+                     alt="<?php echo Mage::helper('aiteasyconf')->__('Product is a duplicate of another product'); ?>"/>
+            </div>
+            <!-- status indicators end -->
+
+            <div class="btn" onclick="ec_configurationForm.open('<?php echo $this->getId() ?>')">
+                <img align="absmiddle"
+                     src="<?php echo $this->getSkinUrl('images/aiteasyconf/edit.png') ?>"
+                     title="<?php echo Mage::helper('aiteasyconf')->__('Edit'); ?>"
+                     alt="<?php echo Mage::helper('aiteasyconf')->__('Edit'); ?>"/>
+            </div>
+            <div class="btn" onclick="ec_helper.deleteProduct('<?php echo $this->getId() ?>')">
+                <img align="absmiddle"
+                     src="<?php echo $this->getSkinUrl('images/aiteasyconf/delete.png') ?>"
+                     title="<?php echo Mage::helper('aiteasyconf')->__('Delete'); ?>"
+                     alt="<?php echo Mage::helper('aiteasyconf')->__('Delete'); ?>"/>
+            </div>
+            <span class="micro-label"><?php echo Mage::helper('catalog')->__('Qty'); ?></span><br/>
+            <input type="text"
+                   class="input-qty"
+                   id="products[<?php echo $this->getId() ?>][qty]"
+                   value="<?php echo (float)$this->getProduct()->getStockItem()->getQty() ?>"
+                   onchange="ec_helper.setProductStatus('<?php echo $this->getId() ?>', 'changed')"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="column">
+            <table width="100%" cellpadding="0" cellspacing="0" id="product-attributes-<?php echo $this->getId() ?>">
+                <?php $r = 0;
+                foreach ($this->getAttributes() as $attribute): ?>
+                    <tr class="attribute-row-<?php echo ++$r % 2 ?>">
+                        <td>
+                            <fieldset
+                                id="form-product-<?php echo $this->getId() ?>-attribute-<?php echo $attribute->getId() ?>">
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <?php foreach ($attribute->getSource()->getAllOptions(false, true) as $option): ?>
+                                        <tr>
+                                            <td align="center" class="attribute-value-row ar"
+                                                onclick="this.down().down().click();">
+                                                <div>
+                                                    <input
+                                                        type="radio"
+                                                        class="rb"
+                                                        name="product-<?php echo $this->getId() ?>-attribute-<?php echo $attribute->getId() ?>"
+                                                        value="<?php echo $option['value'] ?>" <?php echo ($this->getProduct()->getData($attribute->getAttributeCode()) == $option['value']) ? 'checked="checked"' : '' ?>
+                                                        onclick="ec_helper.setProductStatus('<?php echo $this->getId() ?>', 'changed'); ec_helper.decorate('<?php echo $this->getId() ?>');"/>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </table>
+                            </fieldset>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        </td>
+    </tr>
+</table>

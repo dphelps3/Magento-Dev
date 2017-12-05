@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <modules>
+        <Aitoc_Aiteasyconf>
+            <version>10.0.8</version>
+            <platform>enterprise</platform>
+        </Aitoc_Aiteasyconf>
+    </modules>
+
+    <frontend>
+        <translate>
+            <modules>
+                <Aitoc_Aiteasyconf>
+                    <files>
+                        <default>Aitoc_Aiteasyconf.csv</default>
+                    </files>
+                </Aitoc_Aiteasyconf>
+            </modules>
+        </translate>
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <aitoc_aiteasyconf after="Mage_Adminhtml">Aitoc_Aiteasyconf_Adminhtml</aitoc_aiteasyconf>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <Aitoc_Aiteasyconf>
+                    <files>
+                        <default>Aitoc_Aiteasyconf.csv</default>
+                    </files>
+                </Aitoc_Aiteasyconf>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <aiteasyconf translate="title">
+                            <title>Configurable Products Pro</title>
+                            <sort_order>10</sort_order>
+                        </aiteasyconf>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <global>
+        <resources>
+            <aiteasyconf_setup>
+                <setup>
+                    <module>Aitoc_Aiteasyconf</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </aiteasyconf_setup>
+
+            <aiteasyconf_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </aiteasyconf_write>
+
+            <aiteasyconf_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </aiteasyconf_read>
+        </resources>
+
+        <models>
+            <aiteasyconf>
+                <class>Aitoc_Aiteasyconf_Model</class>
+                <resourceModel>aiteasyconf_mysql4</resourceModel>
+            </aiteasyconf>
+
+            <aiteasyconf_mysql4>
+                <class>Aitoc_Aiteasyconf_Model_Mysql4</class>
+                <entities>
+                    <temporary>
+                        <table>aiteasyconf_temporary</table>
+                    </temporary>
+                </entities>
+            </aiteasyconf_mysql4>
+
+            <catalog_resource_eav_mysql4>
+                <rewrite>
+                    <product>Aitoc_Aiteasyconf_Model_Rewrite_CatalogResourceEavMysql4Product</product>
+                    <product_type_configurable>Aitoc_Aiteasyconf_Model_Rewrite_CatalogResourceEavMysql4ProductTypeConfigurable</product_type_configurable>
+                </rewrite>
+            </catalog_resource_eav_mysql4>
+        </models>
+
+        <blocks>
+            <aiteasyconf>
+                <class>Aitoc_Aiteasyconf_Block</class>
+            </aiteasyconf>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_edit_tabs>Aitoc_Aiteasyconf_Block_Rewrite_AdminCatalogProductEditTabs</catalog_product_edit_tabs>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <helpers>
+            <aiteasyconf>
+                <class>Aitoc_Aiteasyconf_Helper</class>
+            </aiteasyconf>
+        </helpers>
+
+    </global>
+
+    <default>
+        <aitsys>
+            <aiteasyconf>
+                <batchsize_php>50</batchsize_php>
+                <batchsize_js>50</batchsize_js>
+                <html_size_limit>5</html_size_limit>
+                <use_items_limit>1</use_items_limit>
+            </aiteasyconf>
+        </aitsys>
+    </default>
+
+</config>

@@ -1,0 +1,451 @@
+<?php /* @copyright  Copyright (c) 2012 AITOC, Inc. */ ?>
+
+<!-- restoration menu -->
+<?php echo $this->getRestoreHtml() ?>
+<!-- restoration menu end -->
+
+<!-- top menu stripe -->
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->_getHelper()->__('Configurable Products Pro') ?></h4>
+    </div>
+    <fieldset id="grop_fields">
+
+        <div id="easyconf-messages" style="float: left;">
+            <ul class="messages"></ul>
+        </div>
+
+        <p class="a-right">
+            <?php echo $this->getButtonHtml($this->_getHelper()->__('Create New'), 'ec_helper.createProduct()', 'scalable add') ?>
+            <?php echo $this->getButtonHtml($this->_getHelper()->__('Delete All'), 'ec_helper.deleteAll()', 'scalable delete') ?>
+        </p>
+    </fieldset>
+    <input type="hidden" id="aiteasyconf_has_changes" name="aiteasyconf_has_changes" value="0"/>
+</div>
+<!-- top menu stripe end -->
+
+<!-- main table -->
+<div id="easyconf-container">
+    <table id="easyconf-main-table">
+        <tr id="easyconf-main-row">
+
+            <!-- attributes column -->
+            <td>
+                <table>
+                    <tr>
+                        <td class="empty-cell"><?php echo $this->getButtonHtml($this->_getHelper()->__('Generate'), 'ec_generationForm.open()', 'scalable save'); ?></td>
+                    </tr>
+                    <tr>
+                        <td class="column">
+                            <table>
+                                <?php $r = 0;
+                                foreach ($this->getAttributes() as $attribute): ?>
+                                    <tr id="attribute-<?php echo $attribute->getId() ?>"
+                                        class="attribute-row-<?php echo ++$r % 2 ?>">
+                                        <td class="attribute-name">
+                                            <input type="checkbox" id="generate-all-<?php echo $attribute->getId() ?>"
+                                                   onclick="ec_helper.toggleAllOptions(this)"/>
+                                            <label
+                                                for="generate-all-<?php echo $attribute->getId() ?>"><?php echo $attribute->getFrontendLabel() ?></label>
+                                        </td>
+                                        <td>
+                                            <table width="100%">
+                                                <?php foreach ($attribute->getSource()->getAllOptions(false, true) as $option): ?>
+                                                    <tr>
+                                                        <td class="attribute-value-row">
+                                                            <div>
+                                                                <input type="checkbox"
+                                                                       id="generate-<?php echo $attribute->getId() ?>-<?php echo $option['value'] ?>"/>
+                                                                <label
+                                                                    for="generate-<?php echo $attribute->getId() ?>-<?php echo $option['value'] ?>"><?php echo $option['label'] ?></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="empty-cell-bottom"><?php echo $this->getButtonHtml($this->_getHelper()->__('Generate'), 'ec_generationForm.open()', 'scalable save'); ?></td>
+                    </tr>
+                </table>
+            </td>
+            <!-- attributes column end -->
+
+            <!-- products columns -->
+            <?php foreach ($this->getUsedProductsIds() as $id): ?>
+                <td id="product-column-<?php echo $id ?>">
+                    <?php echo $this->getSimpleProductHtml($id) ?>
+                </td>
+            <?php endforeach ?>
+            <!-- products columns end -->
+        </tr>
+    </table>
+</div>
+<!-- main table end -->
+
+<!-- bottom menu stripe -->
+<div class="entry-edit">
+    <fieldset id="grop_fields">
+        <p class="a-right">
+            <?php echo $this->getButtonHtml($this->_getHelper()->__('Create New'), 'ec_helper.createProduct()', 'scalable add'); ?>
+            <?php echo $this->getButtonHtml($this->_getHelper()->__('Delete All'), 'ec_helper.deleteAll()', 'scalable delete'); ?>
+        </p>
+    </fieldset>
+</div>
+<!-- bottom menu stripe end -->
+
+<!--  blank product column  -->
+<div id="product-column-blank">
+    <?php echo $this->getSimpleProductHtml() ?>
+</div>
+<!--  blank product column end  -->
+
+<!-- product configuration form -->
+<div id="product-config-form">
+    <fieldset id="product-config-form-validate">
+
+        <input type="hidden" id="product-config[is_changed]"/>
+
+        <div class="form-close" onclick="ec_configurationForm.close()">
+            <img src="<?php echo $this->getSkinUrl('images/aiteasyconf/close.png') ?>"
+                 title="<?php echo $this->_getHelper()->__('Close') ?>"
+                 alt="<?php echo $this->_getHelper()->__('Close') ?>"/>
+        </div>
+
+        <h4><?php echo $this->_getHelper()->__('Product Configuration') ?></h4>
+
+        <fieldset>
+            <legend><?php echo $this->_getHelper()->__('Product Configuration') ?></legend>
+            <table class="form-list">
+                <tr>
+                    <td class="label">
+                        <label for="product-config[name]"><?php echo Mage::helper('catalog')->__('Name') ?></label>
+                    </td>
+                    <td class="value">
+                        <input type="text" id="product-config[name]" class="input-text required-entry"/>
+                        <input type="checkbox" id="product-config[autogenerate_name]"
+                               onclick="toggleValueElements(this, this.up().up(), this.checked)"/>
+                        <label
+                            for="product-config[autogenerate_name]"><?php echo Mage::helper('catalog')->__('Autogenerate') ?></label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label for="product-config[sku]"><?php echo Mage::helper('catalog')->__('SKU') ?></label>
+                    </td>
+                    <td class="value">
+                        <input type="text" id="product-config[sku]" class="input-text required-entry" maxlength="64"/>
+                        <input type="checkbox" id="product-config[autogenerate_sku]"
+                               onclick="toggleValueElements(this, this.up().up(), this.checked)"/>
+                        <label
+                            for="product-config[autogenerate_sku]"><?php echo Mage::helper('catalog')->__('Autogenerate') ?></label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label for="product-config[status]"><?php echo Mage::helper('catalog')->__('Status') ?> <span
+                                class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <select id="product-config[status]" class="required-entry select">
+                            <option value=""
+                                    selected="selected"><?php echo Mage::helper('catalog')->__('-- Please Select --') ?></option>
+                            <?php foreach (Mage::getModel('catalog/product_status')->getOptionArray() as $value => $label): ?>
+                                <option value="<?php echo $value ?>"><?php echo $label ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label for="product-config[visibility]"><?php echo Mage::helper('catalog')->__('Visibility') ?>
+                            <span class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <select id="product-config[visibility]" class="required-entry select">
+                            <option value=""
+                                    selected="selected"><?php echo Mage::helper('catalog')->__('-- Please Select --') ?></option>
+                            <?php foreach (Mage::getModel('catalog/product_visibility')->getOptionArray() as $value => $label): ?>
+                                <option value="<?php echo $value ?>"><?php echo $label ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label for="product-config[weight]"><?php echo Mage::helper('catalog')->__('Weight') ?> <span
+                                class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <input type="text" id="product-config[weight]"
+                               class="input-text required-entry validate-zero-or-greater"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label for="product-config[price]"><?php echo Mage::helper('catalog')->__('Price') ?> <span
+                                class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <input type="text" id="product-config[price]"
+                               class="input-text required-entry validate-zero-or-greater"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label for="product-config[qty]"><?php echo Mage::helper('catalog')->__('Qty') ?> <span
+                                class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <input type="text" id="product-config[qty]"
+                               class="input-text required-entry <?php echo !Mage::getStoreConfig('cataloginventory/item_options/backorders') ? "validate-zero-or-greater" : "" ?>"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label
+                            for="product-config[stock]"><?php echo Mage::helper('catalog')->__('Stock Availability') ?>
+                            <span class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <select id="product-config[stock]" class="required-entry select">
+                            <option value=""
+                                    selected="selected"><?php echo Mage::helper('catalog')->__('-- Please Select --') ?></option>
+                            <option value="1"><?php echo Mage::helper('catalog')->__('In Stock') ?></option>
+                            <option value="0"><?php echo Mage::helper('catalog')->__('Out of Stock') ?></option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <h4>Configurable Attributes</h4>
+
+        <fieldset>
+            <legend><?php echo $this->_getHelper()->__('Product Attributes') ?></legend>
+            <table class="form-list">
+                <?php foreach ($this->getAttributes() as $attribute): ?>
+                    <tr>
+                        <td class="label">
+                            <label
+                                for="product-config[attributes][<?php echo $attribute->getId() ?>]"><?php echo $attribute->getFrontendLabel() ?>
+                                <span class="required">*</span></label>
+                        </td>
+                        <td class="value">
+                            <select id="product-config[attributes][<?php echo $attribute->getId() ?>]"
+                                    class="required-entry select">
+                                <option value=""
+                                        selected="selected"><?php echo Mage::helper('catalog')->__('-- Please Select --') ?></option>
+                                <?php foreach ($attribute->getSource()->getAllOptions(false, true) as $option): ?>
+                                    <option
+                                        value="<?php echo $option['value'] ?>"><?php echo $option['label'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        </fieldset>
+        <p class="a-right">
+            <?php echo $this->getButtonHtml($this->_getHelper()->__('Cancel'), 'ec_configurationForm.close()', 'scalable back'); ?>
+            <?php echo $this->getButtonHtml($this->_getHelper()->__('Apply'), 'ec_configurationForm.apply()', 'scalable save'); ?>
+        </p>
+    </fieldset>
+</div>
+<!-- product configuration form end -->
+
+<!-- generation form -->
+<div id="generation-form">
+
+    <fieldset id="generation-form-validate">
+        <div class="form-close" onclick="ec_generationForm.close()">
+            <img src="<?php echo $this->getSkinUrl('images/aiteasyconf/close.png') ?>"
+                 title="<?php echo $this->_getHelper()->__('Close') ?>"
+                 alt="<?php echo $this->_getHelper()->__('Close') ?>"/>
+        </div>
+
+        <h4><?php echo $this->_getHelper()->__('Products Generation') ?></h4>
+
+        <fieldset class="generation">
+            <legend><?php echo $this->_getHelper()->__('Products Generation') ?></legend>
+
+            <table class="form-list">
+                <tr>
+                    <td class="label">
+                        <label for="generation-common-weight"><?php echo Mage::helper('catalog')->__('Weight') ?> <span
+                                class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <input type="text" id="generation-common-weight"
+                               class="input-text required-entry validate-zero-or-greater"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label for="generation-common-price"><?php echo Mage::helper('catalog')->__('Price') ?> <span
+                                class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <input type="text" id="generation-common-price"
+                               class="input-text required-entry validate-zero-or-greater"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label for="generation-common-qty"><?php echo Mage::helper('catalog')->__('Qty') ?> <span
+                                class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <input type="text" id="generation-common-qty"
+                               class="input-text required-entry <?php echo !Mage::getStoreConfig('cataloginventory/item_options/backorders') ? "validate-zero-or-greater" : "" ?>"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label for="generation-common-status"><?php echo Mage::helper('catalog')->__('Status') ?> <span
+                                class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <select id="generation-common-status" class="required-entry select">
+                            <option value=""
+                                    selected="selected"><?php echo Mage::helper('catalog')->__('-- Please Select --') ?></option>
+                            <?php foreach (Mage::getModel('catalog/product_status')->getOptionArray() as $value => $label): ?>
+                                <option value="<?php echo $value ?>"><?php echo $label ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label
+                            for="generation-common-visibility"><?php echo Mage::helper('catalog')->__('Visibility') ?>
+                            <span class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <select id="generation-common-visibility" class="required-entry select">
+                            <option value=""
+                                    selected="selected"><?php echo Mage::helper('catalog')->__('-- Please Select --') ?></option>
+                            <?php foreach (Mage::getModel('catalog/product_visibility')->getOptionArray() as $value => $label): ?>
+                                <option value="<?php echo $value ?>"><?php echo $label ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label">
+                        <label
+                            for="generation-common-stock"><?php echo Mage::helper('catalog')->__('Stock Availability') ?>
+                            <span class="required">*</span></label>
+                    </td>
+                    <td class="value">
+                        <select id="generation-common-stock" class="required-entry select">
+                            <option value=""
+                                    selected="selected"><?php echo Mage::helper('catalog')->__('-- Please Select --') ?></option>
+                            <option value="1"><?php echo Mage::helper('catalog')->__('In Stock') ?></option>
+                            <option value="0"><?php echo Mage::helper('catalog')->__('Out of Stock') ?></option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </fieldset>
+
+    <p class="a-right">
+    <div id="generation-form-tip"></div>
+    </p>
+
+    <p class="a-right">
+        <?php echo $this->getButtonHtml($this->_getHelper()->__('Cancel'), 'ec_generationForm.close()', 'scalable back'); ?>
+        <?php echo $this->getButtonHtml($this->_getHelper()->__('Generate'), 'ec_generationForm.generate()', 'scalable save'); ?>
+    </p>
+</div>
+<!-- generation form end -->
+
+<!-- progress bar -->
+<div id="easyconf-progress">
+    <div style="float: left;">
+        <img src="<?php echo $this->getSkinUrl('images/aiteasyconf/loading.gif') ?>" title="Loading..."
+             alt="Loading..."/>
+    </div>
+    <div id="easyconf-progress-text"></div>
+    <div id="easyconf-progress-log-container">
+        <ul id="easyconf-progress-log"></ul>
+    </div>
+</div>
+<!-- progress bar end -->
+
+<!-- litebox -->
+<div id="easyconf-litebox"></div>
+<!-- litebox end -->
+
+<script type="text/javascript">
+
+    ec_helper = new EC_Helper();
+    ec_helper.setParameter('mainId',         <?php echo $this->getProductId() ?>);
+    ec_helper.setParameter('controllerUrl', '<?php echo $this->getControllerUrl() ?>');
+    ec_helper.setParameter('batchSize',      <?php echo $this->_getHelper()->getBatchSize('js') ?>);
+    ec_helper.setParameter('productsLimit',  <?php echo $this->getProductsLimit() ?>);
+    ec_helper.setParameter('useLimit',       <?php echo $this->_getHelper()->getUseItemsLimit() ?>);
+
+    <?php foreach ($this->getAttributes() as $attribute): ?>
+    ec_helper.addAttributeId(<?php echo $attribute->getId() ?>);
+    <?php endforeach ?>
+
+    ec_translator = new EC_Translator();
+
+    <?php foreach ($this->_getHelper()->getPhrases() as $key => $text): ?>
+    ec_translator.addPhrase('<?php echo $key ?>', '<?php echo $text ?>');
+    <?php endforeach ?>
+
+    ec_progressBar = new EC_Progressbar();
+    ec_configurationForm = new EC_ConfigurationForm();
+    ec_generationForm = new EC_GenerationForm();
+    ec_messenger = new EC_Messenger();
+
+    ec_messenger.message(
+        '<?php echo $this->_getHelper()->__('The total number of simple products within the current configurable product is %s', $this->getUsedProductsCount()) ?>',
+        0
+    );
+
+    ec_helper.decorate();
+    ec_helper.toggleLitebox(false);
+
+    if (ec_helper.getParameter('useLimit')) {
+        ec_messenger.message(
+            ec_translator.say('productslimitenabled').replace('###', ec_helper.getParameter('productsLimit')),
+            1
+        );
+    }
+    else {
+        ec_messenger.message(
+            ec_translator.say('productslimitrecommended').replace('###', ec_helper.getParameter('productsLimit')),
+            1
+        );
+    }
+
+    productForm.submitOriginal = productForm.submit;
+
+    productForm.submit = function (url) {
+        if (url) {
+            $('product_edit_form').action = url;
+        }
+        ec_helper.save();
+    };
+</script>

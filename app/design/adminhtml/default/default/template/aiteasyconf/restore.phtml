@@ -1,0 +1,26 @@
+<?php /* @copyright  Copyright (c) 2012 AITOC, Inc. */ ?>
+
+<div id="easyconf-restore" class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->_getHelper()->__('Temporary data restoration') ?></h4>
+    </div>
+    <fieldset>
+        <div id="easyconf-restore-messages">
+            <ul class="messages">
+                <li class="notice-msg">
+                    <span>
+                    <?php echo $this->_getHelper()->__('Temporary data is detected in the database. It contains %s products.<br />
+                                                        This may be a result of an interrupted saving process.<br />
+                                                        You can restore this data into the table. Existing products will not be overwritten. The changes will not be applied until you save them.<br />
+                                                        Otherwise you can ignore it. Temporary data will be cleared and the current data will be re-uploaded when you save the changes.',
+                        $this->getDetected()) ?>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <p class="a-right">
+            <?php echo $this->getButtonHtml($this->_getHelper()->__('Restore data'), 'ec_helper.ajax_restore()', 'scalable save') ?>
+            <?php echo $this->getButtonHtml($this->_getHelper()->__('Ignore'), 'ec_helper.ignoreRestoration()', 'scalable back') ?>
+        </p>
+    </fieldset>
+</div>
