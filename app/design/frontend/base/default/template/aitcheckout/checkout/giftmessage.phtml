@@ -1,0 +1,31 @@
+<?php $targetCheckbox = $this->getTargetCheckboxId(); ?>
+<?php $targetDiv = $this->getContainerId(); ?>
+<script type="text/javascript">
+    //@todo change on mode with 'var'
+    shippingMethod = aitCheckout.getStep('shipping_method');
+</script>
+<?php if (Mage::helper('aitcheckout')->isCompactDesign()): ?>
+    <script type="text/javascript">
+        if ($('<?php echo $targetDiv ?>') && $('<?php echo $targetCheckbox ?>'))//execute gifts logic only if needed elements exist
+        {
+            shippingMethod.initDeselectGiftOptionsCheckboxEvents('<?php echo $targetCheckbox ?>');
+            giftMessPopup = new AitGiftMessagePopup('<?php echo $targetDiv ?>', '<?php echo $targetCheckbox ?>', '<?php echo Mage::helper('aitcheckout')
+                ->__('Close')?>', '<?php echo Mage::helper('aitcheckout')->__('Close And Save') ?>');
+            $('<?php echo $targetCheckbox ?>').observe('click', function (event) {
+                if ($('<?php echo $targetCheckbox ?>').checked)
+                    giftMessPopup.show();
+            });
+        }
+    </script>
+<?php else: ?>
+    <script type="text/javascript">
+        if ($('<?php echo $targetDiv ?>') && $('<?php echo $targetCheckbox ?>'))//execute gifts logic only if needed elements exist
+        {
+            shippingMethod.initDeselectGiftOptionsCheckboxEvents('<?php echo $targetCheckbox ?>');
+        }
+    </script>
+    <div id="shipping-method-save-gift-options-button">
+        <button value="Save Changes" type="button" class="button" onclick="shippingMethod.initSaveGiftOptionsEvents('shipping-method-save-gift-options-button');">
+            <span><span>Save Changes</span></span></button>
+    </div>
+<?php endif; ?>

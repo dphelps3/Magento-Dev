@@ -1,0 +1,241 @@
+.login-link {
+    margin: 0px 0px 5px 0px;
+    padding:0px;
+    float:left;
+    width:100%;
+    text-align:left;
+}
+
+.aitcheckout-wait{
+    width:100%;
+    height:100%;
+    background-color:#FFFFFF;
+    z-index:500;
+    opacity: 0.6;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.aitcheckout-wait img{
+    left:50%;
+    top:40%;
+    display:block;
+    position:absolute;
+}
+
+#co-checkout-form #checkoutSteps {
+   border-bottom: 1px solid #CFCFCF;
+   overflow: hidden;
+}
+
+#co-checkout-form #checkoutSteps li.section{
+	display:block;
+	border-bottom:1px solid #CFCFCF;
+    overflow: hidden;}
+	
+#co-checkout-form #checkoutSteps li#opc-coupon,
+#co-checkout-form #checkoutSteps li#opc-review,
+#co-checkout-form #checkoutSteps li#opc-giftmessage,
+#co-checkout-form #checkoutSteps li#opc-agreements,
+#co-checkout-form #checkoutSteps li#opc-newsletter,
+#co-checkout-form #checkoutSteps li#opc-eegiftwrapping,
+#co-checkout-form #checkoutSteps li#opc-aitgiftwrap{
+	margin-bottom:0;
+	border-bottom:none;}
+	
+#co-checkout-form li#opc-coupon .form-list li{
+	display:block;
+	float:left;}
+#co-checkout-form li#opc-giftcard .form-list li{
+	display:block;
+	float:left;}
+	
+#co-checkout-form #coupon-apply-button,
+#co-checkout-form #coupon-cancel-button{
+	margin: 0 0 0 15px;}
+	
+#co-checkout-form .success-msg{
+	overflow:hidden;
+	clear:both;}
+	
+#co-checkout-form .buttons-set{
+	border:none;
+	margin:0;
+	padding:0;
+	padding: 15px 20px;}
+	
+#co-checkout-form .checkout-agreements .agree{
+	padding:5px 0px 3px 0px;}
+	
+#co-checkout-form .gift-messages-form .inner-box{
+	height:auto;}
+	
+#co-checkout-form #checkout-subscribe-newsletter{
+    background: #FCFCFC;
+    padding: 15px 30px;
+    position: relative;
+}
+   
+#co-checkout-form #opc-review #checkout-step-review fieldset{
+   margin-top:0;}
+
+*+html #co-checkout-form #checkoutSteps li.section{
+   margin-top:-4px;}
+   
+   
+/* qty buttons */
+
+.qty_box{
+	width:55px;}
+
+#co-checkout-form .qty{
+	width:35px;
+	margin-right:5px;
+	float:left;}
+	
+#co-checkout-form .qty_buttons{
+	overflow:hidden;
+	width:10px;}
+	
+#co-checkout-form .qty_buttons .btn-increase{
+	display:block;
+	width:10px;
+	height:10px;
+	background-image:url(../../../images/aitoc/aitcheckout/incr.png);
+	background-position:top left;
+	background-repeat:no-repeat;
+	margin-bottom:3px;}
+	
+#co-checkout-form .qty_buttons .btn-decrease{
+	display:block;
+	width:10px;
+	height:10px;
+	background-image:url(../../../images/aitoc/aitcheckout/decr.png);
+	background-position:top left;
+	background-repeat:no-repeat;}
+   
+button.btn-move-to-wishlist span {
+   border-color:#406A83;}
+   
+*+html #checkoutSteps{
+   padding-top:7px;}
+   
+/* enterprise */
+.opc{
+   float:none;
+   width:auto;}
+
+.opc .step{
+   min-height:0;}
+   
+.aitcheckout-checkout-index .cart{
+   background: none;}
+
+.aitcheckout-checkout-index .col-main{
+   padding: 0;}
+   
+.aitcheckout-checkout-index .col-main .page-title{
+   margin: 0;}
+
+#coupon-code-label{
+   width: auto;}
+   
+   #delivery_date_trig
+{
+margin-left:15px;
+}
+#checkout-step-deliverydate .form-list label  {width: auto;}
+#checkout-step-deliverydate div.validation-passed {
+    background: url("../../../images/icon_ok.gif") no-repeat scroll 100% 18px transparent;
+}
+*+html #co-billing-form .control{
+    width:260px;}
+
+*+html #co-billing-form .control .checkbox{
+    float:right;
+    margin:0 !important;}
+
+.please-wait-modified
+{
+    height: 21px;
+    line-height: 21px;    
+    width: 300px;
+    z-index:500;     
+    background-color:#FFFFFF;    
+    opacity: 0.6;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+    position:absolute;    
+}
+
+.please-wait-modified img
+{
+    margin-left: 142px; 
+}
+.registered-users .captcha-image {
+    width:300px;
+    margin:0px;
+}
+
+.co-checkout-insteadform-div{
+    background-color: #FBFAF6;
+    border: 1px solid #D9DDE3;
+    padding: 10px 59px;
+}
+.co-checkout-insteadform-div#co-checkout-form .form-list .input-box {
+    clear:none;
+}
+
+.co-checkout-insteadform-div#co-checkout-form  .form-list label, #checkout-step-login .form-list .label {
+    width: 90px;
+    text-align:right;
+}
+
+.co-checkout-insteadform-div#co-checkout-form .form-list .validation-advice {
+    margin-right: -250px;
+    width: 250px;
+}
+
+#shipping-method-save-gift-options-button{
+    margin:10px;
+    display:none;
+}
+#ait-shipping-method-not-selected-error{
+    display:none;
+}
+
+ul.options-list>li {
+    min-width: 250px;
+    color: #636363;
+    background-color: #f4f4f4;
+    margin: 0 0 5px;
+    padding: 6px 10px 6px 20px;
+    font-size: 13px;
+    font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+    font-weight: 600;
+    cursor: default;
+}
+
+ul.options-list>li:hover {
+    background-color: #ececec;
+}
+
+ul.options-list>li>input {
+    margin-right: 15px;
+}
+
+
+.value {
+    position: relative;
+}
+    .value>img {
+        position: absolute;
+        top: 7px;
+        right: 10px;
+        width: 15px;
+    }
+
+    .value>select {
+        width: 365px!important;
+    }

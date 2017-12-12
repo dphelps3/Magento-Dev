@@ -1,0 +1,29 @@
+<?php
+$_cards = $this->getTotal()->getGiftCards();
+if (!$_cards) {
+    $_cards = $this->getQuoteGiftCards();
+}
+?>
+<?php if ($this->getTotal()->getValue()): ?>
+<?php foreach ($_cards as $_c): ?>
+    <tr>
+        <th colspan="<?php echo $this->getColspan(); ?>" style="<?php echo $this->getTotal()->getStyle() ?>" class="a-right">
+            <?php if ($this->getRenderingArea() == $this->getTotal()->getArea()): ?><strong><?php endif; ?>
+                <?php $_title = $this->__('Remove'); ?>
+                <?php if((Mage::helper('aitcheckout')->isShowCheckoutOutsideCart() || Mage::helper('aitcheckout')->isDisabled()) && Mage::helper('aitcheckout')->isCartPage()) : ?>
+                    <?php $_url = Mage::getUrl('enterprise_giftcardaccount/cart/remove', array('code'=>$_c['c'])); ?>
+                    <a href="<?php echo $_url; ?>" title="<?php echo $_title; ?>" class="btn-remove"><img src="<?php echo $this->getSkinUrl('images/btn_remove.gif') ?>" alt="<?php echo $this->__('Remove')?>" /></a>
+                <?php else : ?>
+                    <a href="#" rel="<?php echo $_c['c']; ?>" onclick="return false;" title="<?php echo $_title; ?>" class="btn-remove3"><img src="<?php echo $this->getSkinUrl('images/btn_remove.gif') ?>" alt="<?php echo $this->__('Remove')?>" /></a>
+                <?php endif; ?>
+                <?php echo $this->__('Gift Card (%s)', $_c['c']); ?>
+            <?php if ($this->getRenderingArea() == $this->getTotal()->getArea()): ?></strong><?php endif; ?>
+        </th>
+        <td style="<?php echo $this->getTotal()->getStyle() ?>" class="a-right">
+            <?php if ($this->getRenderingArea() == $this->getTotal()->getArea()): ?><strong><?php endif; ?>
+                -<?php echo $this->helper('checkout')->formatPrice($_c['a']) ?>
+            <?php if ($this->getRenderingArea() == $this->getTotal()->getArea()): ?></strong><?php endif; ?>
+        </td>
+    </tr>
+<?php endforeach; ?>
+<?php endif; ?>

@@ -1,0 +1,23 @@
+<ul class="form-list">
+<?php foreach($this->getFields() as $field): ?>
+    <li>
+        <div class="input-box">
+		<?php echo $field->getHtml() ?>
+		<div>
+	</li>
+<?php endforeach?>
+</ul> 
+<script type="text/javascript">
+//<![CDATA[
+
+    aitCheckout.createStep('deliverydate',{
+            }, {
+                doCheckErrors : false,
+                isLoadWaiting : false,
+                isUpdateOnReload : false,
+                container: 'checkout-step-deliverydate'
+            }
+    );
+
+//]]>
+</script>
