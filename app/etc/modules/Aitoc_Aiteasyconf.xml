@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Aitoc_Aiteasyconf>
-            <active>false</active>
+            <active>true</active>
             <codePool>local</codePool>
             <self_name>Configurable Products Pro</self_name>
             <priority>1000</priority>
