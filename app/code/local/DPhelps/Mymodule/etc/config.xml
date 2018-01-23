@@ -23,11 +23,15 @@
             </updates>
          </layout>
     </frontend>
-    <global>
-        <blocks>
+    <admin>
+        <routers>
             <mymodule>
-                <class>DPhelps_Mymodule_Block</class>
+                <use>admin</use>
+                    <args>
+                        <module>DPhelps_Mymodule</module>
+                        <frontName>admin_mymodule</frontName>
+                    </args>
             </mymodule>
-        </blocks>
-    </global>
+        </routers>
+    </admin>
 </config>

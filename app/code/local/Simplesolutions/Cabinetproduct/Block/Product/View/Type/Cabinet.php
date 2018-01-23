@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class Simplesolutions_Cabinetproduct_Block_Product_View_Type_Cabinet extends Mage_Catalog_Block_Product_View_Abstract
 {

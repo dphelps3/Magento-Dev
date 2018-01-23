@@ -69,7 +69,7 @@ Easylife.SwitcherSystem = Class.create({
         that.currentType = type;
         that.submitUrl = submitUrl;
         new Ajax.Request(url, {
-            method: 'get',
+            method: 'post',
             parameters: {
                 attribute_id: attributeId,
                 type: type,

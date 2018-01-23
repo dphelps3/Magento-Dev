@@ -53,6 +53,7 @@ class Mage_Catalog_Block_Product_List extends Mage_Catalog_Block_Product_Abstrac
      *
      * @return Mage_Eav_Model_Entity_Collection_Abstract
      */
+
     protected function _getProductCollection()
     {
         if (is_null($this->_productCollection)) {

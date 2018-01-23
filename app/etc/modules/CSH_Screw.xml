@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CSH_Screw>
+            <active>true</active>
+            <codePool>local</codePool>
+        </CSH_Screw>
+    </modules>
+</config>

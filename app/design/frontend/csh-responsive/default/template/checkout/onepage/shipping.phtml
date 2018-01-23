@@ -89,6 +89,11 @@
                             <div class="input-box">
                                 <?php echo $this->getCountryHtmlSelect('shipping') ?>
                             </div>
+                            <pre>
+                            <?php
+                                print_r($this->getAddress()->getCountryId());
+                            ?>
+                            </pre>
                         </div>
                     </li>
                     <li class="fields">

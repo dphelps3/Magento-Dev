@@ -1840,16 +1840,16 @@ MURPHY BEDS
 	height: auto;
 }
 .mB_sec1-container {
-	background-image: url(http://cdn.cshardware.com/media/wysiwyg/murphy-bed-background2.jpg);
+	background-image: url(/media/wysiwyg/murphy-bed-background2.jpg);
 	padding-top: 40px;
 }
-.mB_sec2-container {background-image: url(http://cdn.cshardware.com/media/wysiwyg/murphy-bed-background3.jpg);}
+.mB_sec2-container {background-image: url(/media/wysiwyg/murphy-bed-background3.jpg);}
 
-.mB_sec3-container {background-image: url(http://cdn.cshardware.com/media/wysiwyg/murphy-bed-background4.jpg);}
+.mB_sec3-container {background-image: url(/media/wysiwyg/murphy-bed-background4.jpg);}
 
-.mB_sec4-container {background-image: url(http://cdn.cshardware.com/media/wysiwyg/murphy-bed-background5.jpg);}
+.mB_sec4-container {background-image: url(/media/wysiwyg/murphy-bed-background5.jpg);}
 
-.mB_sec5-container { background-image: url(http://cdn.cshardware.com/media/wysiwyg/murphy-bed-background6.jpg); }
+.mB_sec5-container { background-image: url(/media/wysiwyg/murphy-bed-background6.jpg); }
 
 #ladder-fields legend, #screws-fields legend, #door-fields legend{
 	background-color: #444;

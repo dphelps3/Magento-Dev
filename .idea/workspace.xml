@@ -3,8 +3,63 @@
   <component name="ChangeListManager">
     <list default="true" id="8749ae83-e71b-4b48-9767-ebfb4c85423f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/etc/modules/Aitoc_Aiteasyconf.xml" afterPath="$PROJECT_DIR$/app/etc/modules/Aitoc_Aiteasyconf.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/etc/modules/Aitoc_Aitinstall.xml" afterPath="$PROJECT_DIR$/app/etc/modules/Aitoc_Aitinstall.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Catalog/Product/Tab.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Catalog/Product/Tab.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Grid/Filter/Switcher.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Grid/Filter/Switcher.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Helper/Image.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Helper/Image.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Abstract.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Abstract.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Color.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Color.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Image.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Image.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Options.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Options.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Product/Image.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Product/Image.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/Renderer.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/Renderer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Dependency.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Dependency.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Head.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Head.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Catalog/Product/View/Type/Configurable/Config.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Catalog/Product/View/Type/Configurable/Config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Exception.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Exception.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Helper/Data.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Helper/Data.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Helper/Optimage.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Helper/Optimage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/Enabled/Comment.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/Enabled/Comment.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Attribute.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Attribute.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Config/Source/Attributes.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Config/Source/Attributes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Config/Source/Switch.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Config/Source/Switch.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Observer.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Observer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Resource/Setup.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Resource/Setup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/controllers/Adminhtml/SwitcherController.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/controllers/Adminhtml/SwitcherController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/data/easylife_switcher_setup/data-install-2.0.0.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/data/easylife_switcher_setup/data-install-2.0.0.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/data/easylife_switcher_setup/data-upgrade-1.9.8-1.9.9.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/data/easylife_switcher_setup/data-upgrade-1.9.8-1.9.9.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/adminhtml.xml" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/adminhtml.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/config.xml" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/system.xml" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/system.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/install-0.0.1.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/install-0.0.1.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/install-2.0.0.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/install-2.0.0.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-0.0.1-1.0.1.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-0.0.1-1.0.1.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-1.0.2-1.1.0.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-1.0.2-1.1.0.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-1.9.9-2.0.0.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-1.9.9-2.0.0.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/core/Mage/Catalog/Block/Product/List.php" afterPath="$PROJECT_DIR$/app/code/core/Mage/Catalog/Block/Product/List.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php" afterPath="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/etc/config.xml" afterPath="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/etc/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Product/View/Type/Cabinet.php" afterPath="$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Product/View/Type/Cabinet.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/adminhtml/default/default/layout/easylife_switcher.xml" afterPath="$PROJECT_DIR$/app/design/adminhtml/default/default/layout/easylife_switcher.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/configurable.phtml" afterPath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/configurable.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/config/attribute/after.phtml" afterPath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/config/attribute/after.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/config/form/field/attribute.phtml" afterPath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/config/form/field/attribute.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/dependency.phtml" afterPath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/dependency.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/category/view.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/category/view.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/product/list.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/product/list.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/product/view/attributes.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/product/view/attributes.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/checkout/onepage/shipping.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/checkout/onepage/shipping.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/custom/checkout/onepage.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/custom/checkout/onepage.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/customer/widget/name.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/customer/widget/name.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/locale/en_US/Easylife_Switcher.csv" afterPath="$PROJECT_DIR$/app/locale/en_US/Easylife_Switcher.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/easylife_switcher/adminhtml/configurable.js" afterPath="$PROJECT_DIR$/js/easylife_switcher/adminhtml/configurable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/easylife_switcher/adminhtml/system.js" afterPath="$PROJECT_DIR$/js/easylife_switcher/adminhtml/system.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/easylife_switcher/event.simulate.js" afterPath="$PROJECT_DIR$/js/easylife_switcher/event.simulate.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/easylife_switcher/product.js" afterPath="$PROJECT_DIR$/js/easylife_switcher/product.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skin/frontend/base/default/css/easylife_switcher/styles.css" afterPath="$PROJECT_DIR$/skin/frontend/base/default/css/easylife_switcher/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skin/frontend/csh-responsive/default/css/csh-custom.css" afterPath="$PROJECT_DIR$/skin/frontend/csh-responsive/default/css/csh-custom.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,33 +68,57 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings" doNotAsk="true" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cabinet.phtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/design/frontend/enterprise/cshardware/template/catalog/product/view/type/cabinet.phtml">
+      <file leaf-file-name="IndexController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="37" column="2" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+              <folding>
+                <marker date="1516647816603" expanded="true" signature="1410:1452" ph="..." />
+                <marker date="1516647816603" expanded="true" signature="2455:2523" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cabinet.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Product/View/Type/Cabinet.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hardware.phtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/design/frontend/enterprise/cshardware/template/catalog/product/view/type/hardware.phtml">
+      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/etc/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="27" column="32" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+            <state relative-caret-position="-754">
+              <caret line="27" column="25" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="27" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tab.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Adminhtml/Catalog/Product/Tab.php">
+      <file leaf-file-name="Mymodule.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/Block/Mymodule.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/etc/config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="682">
+              <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -51,7 +130,34 @@
     <findStrings>
       <find>phtml</find>
       <find>cabinet</find>
+      <find>you can't</find>
+      <find>code</find>
+      <find>country</find>
+      <find>_address</find>
+      <find>getAddress</find>
+      <find>$</find>
+      <find>GET</find>
+      <find>post</find>
+      <find>Add to Cart</find>
+      <find>SKU</find>
+      <find>Price From</find>
+      <find>.label</find>
+      <find>regular</find>
+      <find>config</find>
+      <find>configur</find>
+      <find>label</find>
+      <find>regular-price</find>
+      <find>product-&gt;is</find>
+      <find>div class=&quot;price-box</find>
+      <find>From</find>
+      <find>add to cart</find>
+      <find>view product</find>
+      <find>price</find>
     </findStrings>
+    <replaceStrings>
+      <replace>jQuery</replace>
+      <replace>View Product</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,26 +169,64 @@
         <option value="$PROJECT_DIR$/app/code/local/Simplesolutions/Hardwareproduct/Block/Product/View/Type/Hardware.php" />
         <option value="$PROJECT_DIR$/app/design/frontend/enterprise/cshardware/layout/cabinetproduct.xml" />
         <option value="$PROJECT_DIR$/app/design/frontend/enterprise/cshardware/template/catalog/product/view/type/hardware.phtml" />
+        <option value="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing-dp.phtml" />
+        <option value="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing.phtml" />
+        <option value="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/product/view/attributes.phtml" />
+        <option value="$PROJECT_DIR$/app/design/frontend/csh-responsive/enterprise/template/checkout/onepage/billing.phtml" />
+        <option value="$PROJECT_DIR$/app/code/core/Mage/Checkout/Block/Onepage/Abstract.php" />
+        <option value="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/checkout/onepage/shipping.phtml" />
+        <option value="$PROJECT_DIR$/skin/frontend/csh-responsive/default/css/csh-custom.css" />
+        <option value="$PROJECT_DIR$/js/easylife_switcher/adminhtml/system.js" />
+        <option value="$PROJECT_DIR$/app/code/community/OrganicInternet/SimpleConfigurableProducts/Catalog/Block/Product/Price.php" />
+        <option value="$PROJECT_DIR$/phpinfo.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/app/code/core/Mage/Catalog/Block/Product/List.php" />
+        <option value="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/category/view.phtml" />
+        <option value="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/product/list.phtml" />
+        <option value="$PROJECT_DIR$/dev/AJAX Examples/aventos2.js" />
+        <option value="$PROJECT_DIR$/dev/AJAX Examples/screw.phtml" />
+        <option value="$PROJECT_DIR$/dev/AJAX Examples/screw.php" />
+        <option value="$PROJECT_DIR$/dev/structure.txt" />
+        <option value="$PROJECT_DIR$/app/etc/modules/CSH_Screw.xml" />
+        <option value="$PROJECT_DIR$/app/code/local/CSH/Screw/controllers/IndexController.php" />
+        <option value="$PROJECT_DIR$/app/code/local/CSH/Screw/config.xml" />
+        <option value="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/etc/config.xml" />
+        <option value="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php" />
+        <option value="$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Product/View/Type/Cabinet.php" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="PhpDebugGeneral" break_at_first_line="true" />
   <component name="PhpServers">
-    <servers />
+    <servers>
+      <server host="C:/xampp/apache" id="97153b07-cf5c-4e7f-a550-fc30856dd1c1" name="localhost" />
+      <server host="localhost" id="88c7efd2-376f-4dac-b4ac-9f6bee453ccb" name="localhost (1)" />
+    </servers>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="257" />
-    <option name="y" value="3" />
-    <option name="width" value="1613" />
-    <option name="height" value="1000" />
+  <component name="PhpWebServerValidation" path_to_validation_script="E:\Phelps\Magento-Dev" selected_validation_type="LOCAL" web_path_to_validation_script="http://127.0.0.1/" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP from XAMPP" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-12" />
+    <option name="y" value="-8" />
+    <option name="width" value="1920" />
+    <option name="height" value="1040" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -98,6 +242,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -113,198 +259,30 @@
             <path>
               <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
               <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="code" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dev" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
               <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="code" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="local" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="code" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="local" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Simplesolutions" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="code" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="local" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Simplesolutions" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Cabinetproduct" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="code" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="local" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Simplesolutions" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Cabinetproduct" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Block" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="code" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="local" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Simplesolutions" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Cabinetproduct" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Block" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Adminhtml" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="code" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="local" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Simplesolutions" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Cabinetproduct" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Block" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Adminhtml" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Catalog" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="code" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="local" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Simplesolutions" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Cabinetproduct" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Block" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Adminhtml" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Catalog" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Product" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="code" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="local" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Simplesolutions" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Hardwareproduct" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="code" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="local" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Simplesolutions" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Hardwareproduct" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="etc" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="enterprise" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="enterprise" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="cshardware" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="enterprise" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="cshardware" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="enterprise" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="cshardware" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="catalog" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="enterprise" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="cshardware" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="catalog" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="product" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="enterprise" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="cshardware" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="catalog" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="product" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="enterprise" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="cshardware" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="catalog" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="product" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="type" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dev" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AJAX Examples" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Magento-Production" />
+    <property name="SearchEverywhereHistoryKey" value="configurable-price-from-label&#9;null&#9;null" />
+    <property name="settings.editor.selected.configurable" value="settings.php.debug.servers" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Phelps\Magento-Dev\app\design\frontend\csh-responsive\default\template\custom\checkout" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -317,6 +295,14 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.shipping.phtml">
+    <configuration name="shipping.phtml" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Magento-Dev/app/design/frontend/csh-responsive/default/template/checkout/onepage/shipping.phtml" />
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.shipping.phtml" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -337,28 +323,42 @@
       <workItem from="1510686350160" duration="7084000" />
       <workItem from="1512496148081" duration="12000" />
       <workItem from="1512579722231" duration="9000" />
+      <workItem from="1513376489466" duration="10168000" />
+      <workItem from="1514385574833" duration="2801000" />
+      <workItem from="1514993653707" duration="9144000" />
+      <workItem from="1515426236791" duration="957000" />
+      <workItem from="1515512702421" duration="15125000" />
+      <workItem from="1515623214537" duration="195000" />
+      <workItem from="1515766013696" duration="6522000" />
+      <workItem from="1515774324876" duration="1333000" />
+      <workItem from="1515776026594" duration="1288000" />
+      <workItem from="1515777343142" duration="3405000" />
+      <workItem from="1515783763101" duration="6558000" />
+      <workItem from="1516032876218" duration="10352000" />
+      <workItem from="1516224002872" duration="3686000" />
+      <workItem from="1516628397317" duration="18099000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9339000" />
+    <option name="totallyTimeSpent" value="98972000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="257" y="3" width="1613" height="1000" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21665624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28072035" sideWeight="0.21614583" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.49573562" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40572035" sideWeight="0.7838542" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3209746" sideWeight="0.49166667" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -369,235 +369,449 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3209746" sideWeight="0.49166667" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28072035" sideWeight="0.21614583" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18020834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.49573562" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2171875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40572035" sideWeight="0.7838542" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$USER_HOME$/Desktop/learnangular/app/component.artist-details.js" />
+        <option value="$USER_HOME$/Desktop/learnangular/app/component.artist-item.js" />
+        <option value="$USER_HOME$/Desktop/learnangular/app/pipe.search.js" />
+        <option value="$USER_HOME$/Desktop/learnangular/app/component.artist-item.js.map" />
+        <option value="$USER_HOME$/Desktop/learnangular/app/pipe.search.js.map" />
+        <option value="$USER_HOME$/Desktop/learnangular/app/component.artist-details.js.map" />
+      </list>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/code/core/Mage/Catalog/Block/Product/List.php</url>
+          <line>184</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="30" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="index.php">
+        <watch expression="$title" language="PHP" />
+        <watch expression="$this" language="PHP" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/enterprise/cshardware/template/catalog/product/view/type/cabinet.phtml">
+    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Model/Config/Base.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="37" column="2" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+        <state relative-caret-position="290">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Model/Locale.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Model/Config/Options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Varien/Simplexml/Element.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Varien/Simplexml/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="600" column="0" lean-forward="false" selection-start-line="600" selection-start-column="0" selection-end-line="600" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Varien/Event/Collection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/community/Inchoo/FeaturedProducts/Block/Product/List.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="41" column="23" lean-forward="false" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/core/Mage/Core/Block/Abstract.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="308" column="23" lean-forward="false" selection-start-line="308" selection-start-column="23" selection-end-line="308" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Model/Config/Element.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/community/Aitoc/Aitsys/Model/Rewriter/Autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Varien/Autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Block/Template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Varien/Event/Observer/Collection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Varien/Event/Observer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Varien/Event.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Varien/Object.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="400" column="0" lean-forward="false" selection-start-line="400" selection-start-column="0" selection-end-line="400" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Magestore/Megamenu/Model/Observer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Model/App.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="1322" column="0" lean-forward="false" selection-start-line="1322" selection-start-column="0" selection-end-line="1322" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Varien/Profiler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Model/Layout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="519" column="0" lean-forward="false" selection-start-line="519" selection-start-column="0" selection-end-line="519" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Model/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="1218" column="0" lean-forward="false" selection-start-line="1218" selection-start-column="0" selection-end-line="1218" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Mage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4994">
+          <caret line="250" column="0" lean-forward="false" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/enterprise/cshardware/template/catalog/product/view/type/hardware.phtml">
+    <entry file="file://$PROJECT_DIR$/app/code/core/Mage/Page/Block/Html/Breadcrumbs.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="27" column="32" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="968">
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Adminhtml/Catalog/Product/Tab.php">
+    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Block/Abstract.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-          <folding />
+        <state relative-caret-position="6446">
+          <caret line="316" column="0" lean-forward="false" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/enterprise/cshardware/template/catalog/product/view/type/cabinet.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="37" column="2" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/enterprise/cshardware/template/catalog/product/view/type/hardware.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="27" column="32" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Adminhtml/Catalog/Product/Tab.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/checkout/cart.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/checkout/cart.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/checkout/cart.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/checkout/onepage.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="47" column="13" lean-forward="true" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/checkout/cart.phtml">
+    <entry file="file://$PROJECT_DIR$/app/code/core/Mage/Catalog/Block/Breadcrumbs.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1034">
-          <caret line="74" column="62" lean-forward="false" selection-start-line="74" selection-start-column="62" selection-end-line="74" selection-end-column="62" />
+          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/.htaccess">
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/core/Mage/Catalog/Block/Category/View.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="65" column="5" lean-forward="false" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/core/Mage/Catalog/Block/Product/List.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3542">
+          <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/design/frontend/base/default/template/catalog/product/price.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Amasty/Base/etc/config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/adminhtml/default/default/layout/cabinetproduct.xml">
+    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Sales/etc/config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Hardwareproduct/Block/Adminhtml/Catalog/Product/Tab.php">
+    <entry file="file://$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/product/list.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2178">
+          <caret line="126" column="30" lean-forward="false" selection-start-line="126" selection-start-column="30" selection-end-line="126" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/category/view.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="3" lean-forward="true" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
+          <folding>
+            <element signature="e#6#974#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/AJAX Examples/examples2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/AJAX Examples/aventos2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="34" column="55" lean-forward="false" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <marker date="1516631547241" expanded="true" signature="3605:3611" ph=" " />
+            <marker date="1516631547241" expanded="true" signature="3620:3626" ph=" " />
+            <marker date="1516631547241" expanded="true" signature="3635:3641" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/AJAX Examples/screw.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#92#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/AJAX Examples/screw.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/CSH/PayPal/etc/config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/adminhtml/default/default/layout/hardwareproduct.xml">
+    <entry file="file://$PROJECT_DIR$/app/etc/modules/Easylife_Switcher.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/README.txt">
+    <entry file="file://$PROJECT_DIR$/app/etc/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="85" lean-forward="true" selection-start-line="11" selection-start-column="85" selection-end-line="11" selection-end-column="85" />
+        <state relative-caret-position="-528">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/enterprise/cshardware/layout/cabinetproduct.xml">
+    <entry file="file://$PROJECT_DIR$/app/etc/modules/DPhelps_Mymodule.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Hardwareproduct/Block/Product/View/Type/Hardware.php">
+    <entry file="file://$PROJECT_DIR$/app/code/local/CSH/Screw/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/CSH/Screw/controllers/IndexController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/etc/modules/CSH_Screw.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="6" column="100" lean-forward="true" selection-start-line="6" selection-start-column="100" selection-end-line="6" selection-end-column="100" />
+          <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Hardwareproduct/controllers/IndexController.php">
+    <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/Block/Mymodule.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Hardwareproduct/Helper/Data.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Hardwareproduct/Model/Product/Type/Hardware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Hardwareproduct/Model/Observer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/enterprise/cshardware/template/catalog/product/view/type/cabinet.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="37" column="2" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/design/frontend/enterprise/cshardware/template/catalog/product/view/type/hardware.phtml">
+    <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/etc/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="27" column="32" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+        <state relative-caret-position="682">
+          <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/core/Mage/Core/Block/Template.php">
+    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/etc/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="110" column="20" lean-forward="false" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/core/Mage/Adminhtml/Block/Widget/Tab/Interface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Hardwareproduct/etc/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-832">
-          <caret line="27" column="25" lean-forward="true" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+        <state relative-caret-position="-754">
+          <caret line="27" column="25" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="27" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Adminhtml/Catalog/Product/Tab.php">
+    <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+        <state relative-caret-position="374">
+          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <marker date="1516647816603" expanded="true" signature="1410:1452" ph="..." />
+            <marker date="1516647816603" expanded="true" signature="2455:2523" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Product/View/Type/Cabinet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/structure.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="28" column="53" lean-forward="true" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
           <folding />
         </state>
       </provider>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CSH_Screw>
+            <version>0.1.0</version>
+        </CSH_Screw>
+    </modules>
+    <frontend>
+        <routers>
+            <screw>
+                <use>standard</use>
+                <args>
+                    <module>CSH_Screw</module>
+                    <frontName>screw</frontName>
+                </args>
+            </screw>
+        </routers>
+        <layout>
+            <updates>
+                <screw>
+                    <file>screw.xml</file>
+                </screw>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <blocks>
+            <screw>
+                <class>CSH_Screw_Block</class>
+            </screw>
+        </blocks>
+    </global>
+</config>
