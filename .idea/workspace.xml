@@ -2,64 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8749ae83-e71b-4b48-9767-ebfb4c85423f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Catalog/Product/Tab.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Catalog/Product/Tab.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Grid/Filter/Switcher.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Grid/Filter/Switcher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Helper/Image.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/Helper/Image.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Abstract.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Abstract.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Color.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Color.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Image.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Image.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Options.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Options.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Product/Image.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/After/Product/Image.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/Renderer.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Attribute/Renderer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Dependency.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Dependency.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Head.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Adminhtml/System/Head.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Catalog/Product/View/Type/Configurable/Config.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Block/Catalog/Product/View/Type/Configurable/Config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Exception.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Exception.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Helper/Data.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Helper/Data.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Helper/Optimage.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Helper/Optimage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/Enabled/Comment.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/Enabled/Comment.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Attribute.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Attribute.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Config/Source/Attributes.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Config/Source/Attributes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Config/Source/Switch.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Adminhtml/System/Config/Source/Switch.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Observer.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Observer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Resource/Setup.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/Model/Resource/Setup.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/controllers/Adminhtml/SwitcherController.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/controllers/Adminhtml/SwitcherController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/data/easylife_switcher_setup/data-install-2.0.0.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/data/easylife_switcher_setup/data-install-2.0.0.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/data/easylife_switcher_setup/data-upgrade-1.9.8-1.9.9.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/data/easylife_switcher_setup/data-upgrade-1.9.8-1.9.9.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/adminhtml.xml" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/adminhtml.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/config.xml" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/system.xml" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/etc/system.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/install-0.0.1.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/install-0.0.1.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/install-2.0.0.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/install-2.0.0.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-0.0.1-1.0.1.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-0.0.1-1.0.1.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-1.0.2-1.1.0.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-1.0.2-1.1.0.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-1.9.9-2.0.0.php" afterPath="$PROJECT_DIR$/app/code/community/Easylife/Switcher/sql/easylife_switcher_setup/upgrade-1.9.9-2.0.0.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/core/Mage/Catalog/Block/Product/List.php" afterPath="$PROJECT_DIR$/app/code/core/Mage/Catalog/Block/Product/List.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php" afterPath="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/etc/config.xml" afterPath="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/etc/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Product/View/Type/Cabinet.php" afterPath="$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Product/View/Type/Cabinet.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/adminhtml/default/default/layout/easylife_switcher.xml" afterPath="$PROJECT_DIR$/app/design/adminhtml/default/default/layout/easylife_switcher.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/configurable.phtml" afterPath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/configurable.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/config/attribute/after.phtml" afterPath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/config/attribute/after.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/config/form/field/attribute.phtml" afterPath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/config/form/field/attribute.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/dependency.phtml" afterPath="$PROJECT_DIR$/app/design/adminhtml/default/default/template/easylife_switcher/system/dependency.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/category/view.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/category/view.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/product/list.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/product/list.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/product/view/attributes.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/catalog/product/view/attributes.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/checkout/onepage/shipping.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/checkout/onepage/shipping.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/custom/checkout/onepage.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/custom/checkout/onepage.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/customer/widget/name.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/customer/widget/name.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/locale/en_US/Easylife_Switcher.csv" afterPath="$PROJECT_DIR$/app/locale/en_US/Easylife_Switcher.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/easylife_switcher/adminhtml/configurable.js" afterPath="$PROJECT_DIR$/js/easylife_switcher/adminhtml/configurable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/easylife_switcher/adminhtml/system.js" afterPath="$PROJECT_DIR$/js/easylife_switcher/adminhtml/system.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/easylife_switcher/event.simulate.js" afterPath="$PROJECT_DIR$/js/easylife_switcher/event.simulate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/easylife_switcher/product.js" afterPath="$PROJECT_DIR$/js/easylife_switcher/product.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skin/frontend/base/default/css/easylife_switcher/styles.css" afterPath="$PROJECT_DIR$/skin/frontend/base/default/css/easylife_switcher/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skin/frontend/csh-responsive/default/css/csh-custom.css" afterPath="$PROJECT_DIR$/skin/frontend/csh-responsive/default/css/csh-custom.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing-dp.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing.phtml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing.phtml" afterPath="$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing-streamlined.phtml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,54 +16,11 @@
   <component name="ComposerSettings" doNotAsk="true" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="IndexController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php">
+      <file leaf-file-name="remember_me_tooltip.phtml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/design/frontend/enterprise/default/template/persistent/remember_me_tooltip.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-              <folding>
-                <marker date="1516647816603" expanded="true" signature="1410:1452" ph="..." />
-                <marker date="1516647816603" expanded="true" signature="2455:2523" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cabinet.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Product/View/Type/Cabinet.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/etc/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-754">
-              <caret line="27" column="25" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="27" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Mymodule.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/Block/Mymodule.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/etc/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+            <state relative-caret-position="660">
+              <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -191,8 +93,8 @@
         <option value="$PROJECT_DIR$/app/code/local/CSH/Screw/controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/app/code/local/CSH/Screw/config.xml" />
         <option value="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/etc/config.xml" />
-        <option value="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Product/View/Type/Cabinet.php" />
+        <option value="$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php" />
       </list>
     </option>
   </component>
@@ -218,9 +120,9 @@
   </component>
   <component name="PhpWebServerValidation" path_to_validation_script="E:\Phelps\Magento-Dev" selected_validation_type="LOCAL" web_path_to_validation_script="http://127.0.0.1/" />
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP from XAMPP" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-8" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1957" />
+    <option name="y" value="26" />
     <option name="width" value="1920" />
     <option name="height" value="1040" />
   </component>
@@ -255,6 +157,82 @@
               <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
               <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="csh-responsive" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="csh-responsive" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="default" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="csh-responsive" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="default" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="csh-responsive" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="default" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="persistent" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="csh-responsive" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="default" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="persistent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="checkout" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Magento-Dev" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="design" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="csh-responsive" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="default" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="persistent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="checkout" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="onepage" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Magento-Dev" type="b2602c69:ProjectViewProjectNode" />
@@ -336,17 +314,18 @@
       <workItem from="1515783763101" duration="6558000" />
       <workItem from="1516032876218" duration="10352000" />
       <workItem from="1516224002872" duration="3686000" />
-      <workItem from="1516628397317" duration="18099000" />
+      <workItem from="1516628397317" duration="26074000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98972000" />
+    <option name="totallyTimeSpent" value="106947000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1957" y="26" width="1920" height="1040" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19537815" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28072035" sideWeight="0.21614583" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -424,27 +403,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Model/Config/Base.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Model/Locale.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Mage/Core/Model/Config/Options.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/Varien/Simplexml/Element.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
@@ -765,10 +723,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dev/structure.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="28" column="53" lean-forward="true" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/Block/Mymodule.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/etc/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-754">
+          <caret line="27" column="25" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="27" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -781,25 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/etc/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-754">
-          <caret line="27" column="25" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="27" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <marker date="1516647816603" expanded="true" signature="1410:1452" ph="..." />
-            <marker date="1516647816603" expanded="true" signature="2455:2523" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/code/local/Simplesolutions/Cabinetproduct/Block/Product/View/Type/Cabinet.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -808,10 +763,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dev/structure.txt">
+    <entry file="file://$PROJECT_DIR$/app/code/local/DPhelps/Mymodule/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="28" column="53" lean-forward="true" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
+        <state relative-caret-position="757">
+          <caret line="210" column="478" lean-forward="false" selection-start-line="210" selection-start-column="478" selection-end-line="210" selection-end-column="478" />
+          <folding>
+            <marker date="1516814960973" expanded="true" signature="1530:1572" ph="..." />
+            <marker date="1516814960973" expanded="true" signature="7993:8061" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing-streamlined.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+          <folding>
+            <marker date="1513710186419" expanded="true" signature="1235:1306" ph="Select a bil... your" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/design/frontend/csh-responsive/default/template/persistent/checkout/onepage/billing.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="143" column="66" lean-forward="false" selection-start-line="143" selection-start-column="66" selection-end-line="143" selection-end-column="66" />
+          <folding>
+            <marker date="1513709188305" expanded="true" signature="1267:1338" ph="Select a bil... your" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/design/frontend/enterprise/default/template/persistent/remember_me_tooltip.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
       </provider>
