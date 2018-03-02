@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Simplesolutions_Groupedproduct>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Simplesolutions_Groupedproduct>
+    </modules>
+</config>

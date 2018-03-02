@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<layout>
+    <PRODUCT_TYPE_grouped>
+        <label>Catalog Product View (Grouped)</label>
+        <reference name="product.info">
+            <block type="groupedproduct/product_view_type_grouped" name="product.info.grouped" as="product_type_data" template="catalog/product/view/type/grouped.phtml">
+                <block type="core/text_list" name="product.info.grouped.extra" as="product_type_data_extra" translate="label">
+                    <label>Product Extra Info</label>
+                </block>
+            </block>
+        </reference>
+        <reference name="product.info">
+            <action method="setTemplate">
+                <template>catalog/product/groupedview.phtml</template>
+            </action>
+        </reference>
+    </PRODUCT_TYPE_grouped>
+</layout>

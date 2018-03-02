@@ -57,6 +57,14 @@
             <div class="col-xs-12 col-sm-6 col-md-6">
                 
                 <div class="product-main-info">
+
+                    <!-- get product type data -->
+                    <?php
+                    echo "<pre>";
+                        //print_r($_product->getTypeId());
+                    echo "</pre>";
+                    ?>
+
                      <p class="product-ids"><?php echo $this->__('SKU# %s', $this->escapeHtml($_product->getSku())); ?></p>
                     <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
                 
@@ -93,24 +101,8 @@
                     <?php endif;?>
 
                 </div>
+
                 <?php echo $this->getChildHtml('extrahint') ?>
-                <hr>
-                <?php if (!$this->hasOptions()):?>
-                    <div class="add-to-box">
-                        <?php if($_product->isSaleable()): ?>
-                            <?php echo $this->getChildHtml('addtocart') ?>
-                        <?php endif; ?>
-                        <?php echo $this->getChildHtml('addto') ?>
-                    </div>
-                <?php else:?>
-                    <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container1') ):?>
-                        <div class="options-container-small">
-                            <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-                        </div>
-                    <?php else: ?>
-                        <?php echo $this->getChildHtml('addto') ?>
-                    <?php endif;?>
-                <?php endif; ?>
 
                 <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2') ):?>
                     <div class="options-container-big">
@@ -119,41 +111,72 @@
                 <?php endif;?>
 
                 <hr>
-                <div class="row">
-                    <div class="col-sm-12">
-                      <h6>SHARE</h6>                   
 
-                    <!-- SHARE -->
-                    <?php $productName = $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
-                    <?php $productUrl = $_helper->productAttribute($_product, $_product->getProductUrl(), 'product_url'); ?>
-                    <?php $productImage = $_product->getImageUrl() ?>
-
-                        <ul class="social-icons">
-                            <li class="facebook"><a href="javascript:popWin('https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($productUrl); ?>&t=<?php echo urlencode($productName); ?>', 'facebook', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Share on Facebook') ?>"><i class="fa fa-facebook"></i></a></li>
-                            
-                            <li class="twitter"><a href="javascript:popWin('http://twitter.com/home/?status=<?php echo urlencode($productName . ' (' . $productUrl . ')'); ?>', 'twitter', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Tweet') ?>"><i class="fa fa-twitter"></i></a></li>
-                            
-                            <li class="google"><a href="javascript:popWin('https://plus.google.com/share?url=<?php echo urlencode($productUrl); ?>', 'google', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Share on Google Plus') ?>"><i class="fa fa-google-plus"></i></a></li>
-                            
-                            <li class="pinterest"><a href="javascript:popWin('https://pinterest.com/pin/create/button/?url=<?php echo urlencode($productUrl); ?>&media=<?php echo urlencode($productImage); ?>&description=<?php echo urlencode($productName); ?>', 'pinterest', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Pin it') ?>"><i class="fa fa-pinterest"></i></a></li>
-
-                            <?php if ($this->canEmailToFriend()): ?>
-                            <li class="email"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-                            <?php endif; ?>
-                            <li class="print"><a href="javascript:window.print();"><i class="fa fa-print" aria-hidden="true"></i></a></li>
-                        </ul>
-                        <!-- END SHARE -->       
-                    </div>
-                </div>
 
                 <?php echo $this->getChildHtml('other');?>
             </div>
 
         </div>
+
+        <div>
+            <?php
+            if($_product->getTypeId() == 'grouped') {
+                echo $this->getChildHtml('product_type_data');
+            }
+            ?>
+        </div>
+
+        <?php if (!$this->hasOptions()):?>
+            <div class="add-to-box pull-right">
+                <?php if($_product->isSaleable()): ?>
+                    <?php echo $this->getChildHtml('addtocart') ?>
+                <?php endif; ?>
+                <?php echo $this->getChildHtml('addto') ?>
+            </div>
+        <?php else:?>
+            <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container1') ):?>
+                <div class="options-container-small">
+                    <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                </div>
+            <?php else: ?>
+                <?php echo $this->getChildHtml('addto') ?>
+            <?php endif;?>
+        <?php endif; ?>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h6>SHARE</h6>
+
+                <!-- SHARE -->
+                <?php $productName = $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+                <?php $productUrl = $_helper->productAttribute($_product, $_product->getProductUrl(), 'product_url'); ?>
+                <?php $productImage = $_product->getImageUrl() ?>
+
+                <ul class="social-icons">
+                    <li class="facebook"><a href="javascript:popWin('https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($productUrl); ?>&t=<?php echo urlencode($productName); ?>', 'facebook', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Share on Facebook') ?>"><i class="fa fa-facebook"></i></a></li>
+
+                    <li class="twitter"><a href="javascript:popWin('http://twitter.com/home/?status=<?php echo urlencode($productName . ' (' . $productUrl . ')'); ?>', 'twitter', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Tweet') ?>"><i class="fa fa-twitter"></i></a></li>
+
+                    <li class="google"><a href="javascript:popWin('https://plus.google.com/share?url=<?php echo urlencode($productUrl); ?>', 'google', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Share on Google Plus') ?>"><i class="fa fa-google-plus"></i></a></li>
+
+                    <li class="pinterest"><a href="javascript:popWin('https://pinterest.com/pin/create/button/?url=<?php echo urlencode($productUrl); ?>&media=<?php echo urlencode($productImage); ?>&description=<?php echo urlencode($productName); ?>', 'pinterest', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Pin it') ?>"><i class="fa fa-pinterest"></i></a></li>
+
+                    <?php if ($this->canEmailToFriend()): ?>
+                        <li class="email"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                    <?php endif; ?>
+                    <li class="print"><a href="javascript:window.print();"><i class="fa fa-print" aria-hidden="true"></i></a></li>
+                </ul>
+                <!-- END SHARE -->
+            </div>
+        </div>
+
         <div class="clearfix">&nbsp;</div>
         <!--<div>-->
             <div class="row">
                 <div class="col-xs-12">
+
+
+
                 <?php echo $this->getChildHtml('info_tabs') ?>
                 </div>
             </div>

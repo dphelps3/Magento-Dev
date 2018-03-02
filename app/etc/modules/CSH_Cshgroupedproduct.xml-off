@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <CSH_Cshgroupedproduct>
+            <active>true</active>
+            <codePool>local</codePool>
+        </CSH_Cshgroupedproduct>
+    </modules>
+</config>

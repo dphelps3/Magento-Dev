@@ -1,0 +1,6 @@
+<?php
+
+class CSH_Cshgroupedproduct_Model_Import_Entity_Product_Type_Cshgrouped
+extends Mage_ImportExport_Model_Import_Entity_Product_Type_Abstract {
+
+}

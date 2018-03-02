@@ -93,7 +93,6 @@ class Varien_Autoload
         //echo $classFile;die();
         return include $classFile;
     }
-
     /**
      * Register autoload scope
      * This process allow include scope file which can contain classes

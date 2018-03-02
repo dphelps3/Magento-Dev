@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout>
+<PRODUCT_TYPE_cshgrouped>
+    <label>Catalog Product View (CSH Grouped)</label>
+    <reference name="product.info">
+        <block type="cshgroupedproduct/product_view_type_cshgrouped" name="product.info.cshgrouped" as="product_type_data" template="catalog/product/view/type/cshgrouped.phtml">
+            <block type="core/text_list" name="product.info.cshgrouped.extra" as="product_type_data_extra" translate="label">
+                <label>Product Extra Info</label>
+            </block>
+        </block>
+    </reference>
+    <reference name="product.info">
+        <action method="setTemplate"><template>catalog/product/cshgroupedview.phtml</template></action>
+    </reference>
+</PRODUCT_TYPE_cshgrouped>
+</layout>

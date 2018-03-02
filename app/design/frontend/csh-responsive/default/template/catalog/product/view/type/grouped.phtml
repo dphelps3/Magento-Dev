@@ -10,17 +10,17 @@
  * http://opensource.org/licenses/afl-3.0.php
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
- * to license@magentocommerce.com so we can send you a copy immediately.
+ * to license@magento.com so we can send you a copy immediately.
  *
  * DISCLAIMER
  *
  * Do not edit or add to this file if you wish to upgrade Magento to newer
  * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magentocommerce.com for more information.
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2006-2017 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -31,66 +31,170 @@
  * @see Mage_Catalog_Block_Product_View_Type_Grouped
  */
 ?>
+<style>
+    .assoc_line_total {
+        font-family: 'Titillium Web', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+    }
+</style>
 <?php $this->setPreconfiguredValue(); ?>
 <?php $_product = $this->getProduct(); ?>
 <?php $_associatedProducts = $this->getAssociatedProducts(); ?>
 <?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
 <?php if ($this->displayProductStockStatus()): ?>
     <?php if ($_product->isAvailable() && $_hasAssociatedProducts): ?>
-        <p class="availability in-stock"><span class="glyphicon glyphicon-ok mr-3"></span><span><?php echo $this->__('In stock') ?></span></p>
+        <p class="availability in-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('In stock') ?></span></p>
     <?php else: ?>
-        <p class="availability out-of-stock"><span class="glyphicon glyphicon-exclamation-sign mr-3"></span><span><?php echo $this->__('Out of stock') ?></span></p>
+        <p class="availability out-of-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('Out of stock') ?></span></p>
     <?php endif; ?>
 <?php endif; ?>
+
+<?php /*temporary array for holding product id values*/ ?>
+<script type="text/javascript">
+    var idArray = [];
+</script>
+
 <?php echo $this->getChildHtml('product_type_data_extra') ?>
-<div class="table-responsive">
-    <table class="table grouped-items-table table-condensed table-hover" id="super-product-table">
-        <col />
-        <col />
-        <col width="1" />
-        <thead>
-            <tr>
-                <th><?php echo $this->__('Product Name') ?></th>
-                <?php if ($this->getCanShowProductPrice($_product)): ?>
-                <th class="a-right"><?php echo $this->__('Price') ?></th>
-                <?php endif; ?>
-                <?php if ($_product->isSaleable()): ?>
-                <th class="a-center"><?php echo $this->__('Qty') ?></th>
-                <?php endif; ?>
-            </tr>
-        </thead>
-        <tbody class="font12">
-        <?php if ($_hasAssociatedProducts): ?>
+<table class="data-table grouped-items-table" id="super-product-table">
+    <col />
+    <col />
+    <col width="1" />
+    <thead>
+    <tr>
+        <th class="a-left">Image</th>
+        <th><?php echo $this->__('Product Name') ?></th>
+        <?php if ($this->getCanShowProductPrice($_product)): ?>
+            <th class="a-right"><?php echo $this->__('Price') ?></th>
+        <?php endif; ?>
+        <?php if ($_product->isSaleable()): ?>
+            <th class="a-center"><?php echo $this->__('Qty') ?></th>
+            <th class="a-right">Total</th>
+        <?php endif; ?>
+    </tr>
+    </thead>
+    <tbody>
+
+    <?php if ($_hasAssociatedProducts): ?>
         <?php foreach ($_associatedProducts as $_item): ?>
+
+            <?php /* pushing each product id to the js array */ ?>
+            <script type="text/javascript">
+                idArray.push("#product-price-<?php echo $_item->getId();?>");
+            </script>
+
             <?php $_finalPriceInclTax = $this->helper('tax')->getPrice($_item, $_item->getFinalPrice(), true) ?>
             <tr>
-                <td><?php echo $this->escapeHtml($_item->getName()) ?></td>
-                <?php if ($this->getCanShowProductPrice($_product)): ?>
-                <td class="a-right">
-                    <?php if ($this->getCanShowProductPrice($_item)): ?>
-                    <?php echo $this->getPriceHtml($_item, true) ?>
-                    <?php echo $this->getTierPriceHtml($_item) ?>
-                    <?php endif; ?>
+                <td>
+                    <img src="/media/catalog/product/<?php echo $this->escapeHtml($_item->getData('small_image')); ?>" />
                 </td>
+                <td>
+                    <?php echo $this->escapeHtml($_item->getName()); ?>
+                </td>
+                <?php if ($this->getCanShowProductPrice($_product)): ?>
+                    <td class="a-right">
+                        <?php if ($this->getCanShowProductPrice($_item)): ?>
+                            <?php echo $this->getPriceHtml($_item, true) ?>
+                            <?php echo $this->getTierPriceHtml($_item) ?>
+                        <?php endif; ?>
+                    </td>
                 <?php endif; ?>
                 <?php if ($_product->isSaleable()): ?>
-                <td class="a-center">
-                <?php if ($_item->isSaleable()) : ?>
-                    <input type="text" name="super_group[<?php echo $_item->getId() ?>]" maxlength="12" value="<?php echo $_item->getQty()*1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty" />
-                <?php else: ?>
-                    <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
-                <?php endif; ?>
-                </td>
+                        <?php if ($_item->isSaleable()) : ?>
+                        <td class="a-center">
+
+                            <!--value="--><?php /*echo $_item->getQty()*1 */ ?><!-- " -->
+                            <input type="text" id="<?php echo $_item->getId() ?>" name="super_group[<?php echo $_item->getId() ?>]" maxlength="12" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Qty')) ?>" class="input-text qty" placeholder="0" />
+                        </td>
+                        <td class="a-right">
+                            <span id="line_total_<?php echo $_item->getId();?>" class="assoc_line_total">$0.00</span>
+                        </td>
+                        <?php else: ?>
+                        <td class="a-center">
+                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                        </td>
+                        <td></td>
+                        <?php endif; ?>
                 <?php endif; ?>
             </tr>
         <?php endforeach; ?>
-        <?php else: ?>
-           <tr>
-               <td colspan="<?php if ($_product->isSaleable()): ?>4<?php else : ?>3<?php endif; ?>"><?php echo $this->__('No options of this product are available.') ?></td>
-           </tr>
-        <?php endif; ?>
-        </tbody>
-    </table>
-</div>
-    
-<script type="text/javascript">decorateTable('super-product-table')</script>
+    <?php else: ?>
+        <tr>
+            <td colspan="<?php if ($_product->isSaleable()): ?>4<?php else : ?>3<?php endif; ?>"><?php echo $this->__('No options of this product are available.') ?></td>
+        </tr>
+    <?php endif; ?>
+    </tbody>
+</table>
+<script type="text/javascript">
+    decorateTable('super-product-table');
+
+    // for loop
+    /*for (var i = 0; i < idArray.length; i++){
+        console.log(idArray[i].val());
+    }*/
+
+    //console.log(idArray[1]);
+
+    // function for stripping white spaces and dollar signs then parsing the string to decimals
+    function priceStripper(oldPrice) {
+
+        // trim the white spaces
+        var newPrice = jQuery.trim(oldPrice);
+
+        // remove the dollar value
+        newPrice = newPrice.replace('$', '');
+
+        // parse from string to double, with two decimal places
+        newPrice = parseFloat(newPrice).toFixed(2);
+
+        return newPrice;
+    }
+
+    jQuery(document).ready(function() {
+
+        // listen for change in quantity
+        jQuery(".qty").keyup(function(){
+
+            var spanId = ("#product-price-" + this.id + "");
+            var price = jQuery(spanId).text();
+            var optimizedPrice = priceStripper(price);
+
+            var lineTotal = (optimizedPrice * this.value).toFixed(2);
+
+            // console.log(lineTotal);
+            var lineTotalTag = ("#line_total_" + this.id + "").toString();
+            // console.log(lineTotalTag);
+
+            if(lineTotal == 0.00 || lineTotal.length == 0) {
+                jQuery(lineTotalTag).html("$0.00");
+            } else {
+                jQuery(lineTotalTag).html("$" + lineTotal);
+            }
+
+            // update the line total
+            /*if(lineTotal != 0.00) {
+                jQuery("#line_total[" + this.id + "]").html(lineTotal);
+            }*/
+
+        });
+
+
+        // for loop
+        /* for (var i = 0; i < idArray.length; i++) {
+
+            // retrieve the span value
+            var data = jQuery(idArray[i]).text();
+
+            // trim the white spaces
+            var data = jQuery.trim(data);
+
+            // remove the dollar value
+            var data = data.replace('$', '');
+
+            // parse from string to double
+            var data = parseFloat(data).toFixed(2);
+            console.log(data);
+        } */
+    });
+
+</script>
