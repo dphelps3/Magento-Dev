@@ -9,9 +9,9 @@
 17.0  - Combined zip with Common and New Logger
 17.1  - Fixed logging so it's inside the debug if statement. Fixed Free shipping promotions for 1.4.1.1 and under.
 17.2  - Removed old variable "FreeFound. Was undeclared.
-17.3  - Added in extra methods for Boardriders. Now supports zip code, get all package ids and delivery type filter as well as distinct delivery type filter. 
-17.3.1- Put fix in as was string comparing using a equal sign. 
-17.4  - is 17.3.1. 
+17.3  - Added in extra methods for Boardriders. Now supports zip code, get all package ids and delivery type filter as well as distinct delivery type filter.
+17.3.1- Put fix in as was string comparing using a equal sign.
+17.4  - is 17.3.1.
 17.5  - Bug fix. Variable of out scope.
 17.6  - Bug fix. Under certain O/S directory structure was incorrectly referenced.
 17.6.1- Latest common code.
@@ -29,7 +29,7 @@
 17.17 - Refactored remove virtual item price logic as it wasn't evaluating bundle item children items correctly.
 17.18 - Added support for ALT= with other algorithm operators
 17.19 - Moved common to local.
-17.20 - Can now force the extension to always use the base currency rather than the store currency. 
+17.20 - Can now force the extension to always use the base currency rather than the store currency.
 17.21 - Added support for minimum shipping price. Added support for splitting shipping group check based on whether custom options present or not.
 17.22 - Updated to support reducing zipcode to 5 chars for Brazil and USA
 17.23 - Fixed max price logic so that works when max price not set on all matching rows.
@@ -61,3 +61,61 @@
 19.6  - PROD-17 Added fix so that when a c= product is added to the cart the customer code is used
 19.7  - PROD-20 Added comma seperated cities
 19.8  - Prod-21/22 Fixed Free Shipping and zero shipping text logic
+19.9  - Prod-19 Added zip code max length to product matrix. Added Freight_qty_thersold capability
+19.10 - Prod-14 Added SQL file to select Base Currency on install
+19.11 - PROD-24 Added custom error messages
+19.12 - PROD-26 Added more logging to ensure clarity
+19.13 - PROD-30 Added new feature to only allow the cheapest allowed free method to be set to free
+19.14 - PROD-37 Fixed issue with observer failing for virtual/multi-addresses
+
+19.15  - PROD-44 add key to set warehouse in dropship, PROD-45 Added support for UPS Zones in ProductMatrix
+19.15.1  - Latest common
+19.15.2  - PROD-48 Brazil postcodes will now look at the full 8 Digit Postal Codes
+19.16  - PROD-49 Add in support to filter by warehouse
+19.17  - PROD-47 Implemented coupon code logic
+19.17.1  - COMMON-34 Removed unnecessary rewrite
+19.17.2  - PROD-52 - Fixed issue when UPS Zones and filtering on the warehouse are used together
+19.17.4  - PROD-53 Fixed issue with the wrong tooltip being displayed when using the alt= algorithm
+19.17.5  - PROD-53 - Fixed notes showing for the incorrect method
+19.17.6  - PROD-56 - Imporoved filtering for Brazil postcodes
+19.17.7  - PROD-53 - Fixed tooltip results when using alt=
+19.18  - PROD-57 Added cutoff time to delivery methods
+19.19  - PROD-61 - OSC Tooltips
+19.19.1  - DROP-93 Issue when using warehouse as package_id
+19.20  - PROD-62 Added support to work out percentages and check for min value at end of processing as new algorithm
+19.21  - PROD-64 -Day Logic
+19.21.1  - PROD-65 - Comma in shipping method name causing issues with free shipping
+19.21.2  - PROD-67 - Fixed issue with c= algorithm not working with a free shipping method
+19.22  - PROD-68 - Added in SKU functionality
+19.23  - PROD-70 Fixed append * rates
+19.23.1  - DOCS-1 - Updated system.xml links to documentation
+19.24  - PROD-72 Fixed bug in Magento EE where AE region wont allow matches on ProductMatrix or tablerates
+19.24.1  - PROD-67 - Fix c= algorithm
+19.24.2  - New wsaCommon
+19.25  - PROD-74 Removed tooltips from ProductMatrix theme. PROD-75 Removed Google Checkout Payment
+19.24.3  - PROD-76 No longer checks serial key if extn is inactive
+19.25.4  - PROD-76 No longer checks serial key if extn is inactive
+19.25.5  - PROD-78 Fixed issue with coupon algorithm in admin quote.
+19.25.6  - PROD-79 Fixed issue with the custom attribute not picking up on the product
+19.25.7  - PROD-80 Resolved issue with Shipping Methods not displaying when Recurring Profile in the cart
+19.26  - PROD-81 Added support for restricting shipping based on time/day
+19.27  - PROD-82 Added support for a start time e.g. start=14:00 in algorithm
+19.27.1  - Latest Common
+19.27.2  - PROD-84 Resolved issue with alt causing delivery type to be excluded.
+19.27.3  - PROD-85 Resolved issue with CSV import when using UPS zones.
+19.27.4  - PROD-47 Added -1 functionality for coupon algorithm
+19.28  - PROD-86 Added use parent for grouped products.
+19.29  - PROD-89 PROD-88 - Added cprice algorithm to increment shipping price based on cart price. Changed shipping QTY to decimal
+19.29.1  - PROD-87 Fix for UK post code filtering when using max postcode length
+19.30  - PROD-90 Added indexing to table to speed up processing
+19.30.1  - PROD-91 Alt algorithm not working as expected for highest price.
+19.30.2  - PROD-92 Issue with i= algorithm doubling rates when used with highest price.
+19.30.3  - PROD-93 c= algorithm not working correctly with highest price
+19.30.4  - New WSA Logger
+19.30.5  - New version of WSA Common module to address SUPEE-6285
+19.31  - Fixed Grouped Product use parent
+19.31.1  - PROD-94 Fixed issue with custom option being used as package_id
+19.31.2  - MD-150 Fixed issue with mergeResults being case sensitive with algorithms.
+19.31.3  - PROD-95 Issue with IM algorithm when using highest price
+19.31.4  - PROD-96 Improved postal code filtering
+19.31.5  - WSA16-21 Fixed issue with day algorithm not looking at store time zone

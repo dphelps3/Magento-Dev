@@ -3,7 +3,8 @@
  *
  * @category   Webshopapps
  * @package    Webshopapps_productmatrix
- * @copyright  Copyright (c) 2010 Zowta Ltd (http://www.webshopapps.com)
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
  * @license    http://www.webshopapps.com/license/license.txt - Commercial license
  */
 

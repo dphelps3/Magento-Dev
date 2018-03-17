@@ -91,20 +91,20 @@ class Webshopapps_Wsacommon_Model_Export_Csv extends Mage_Core_Model_Abstract
         $found = false;
         foreach ($csvFiles as $file) {
             $file = basename($file);
-            $posOfId = strpos($file, 'Id=');
-            $websiteId = substr($file, $posOfId+3, 1);
+            $strippedTimestamp = preg_replace('/_[^_.]*\./', '.', $file);//COMMON-38
+            $strippedExtn = str_replace('.csv', '', $strippedTimestamp);
+            $posOfId = strpos($strippedExtn, 'Id=');
+            $websiteId = substr($strippedExtn, $posOfId+3);
 
             // Get files for the current website config scope
             if ($website == $websiteId) {
                 $this->timeSortSetup($file);
                 $found = true;
             }
-
         }
 
         return $found;
     }
-
 
     /**
      * Loops through csv files and sets up $_dateFileArray & $_theDataArray
@@ -123,6 +123,7 @@ class Webshopapps_Wsacommon_Model_Export_Csv extends Mage_Core_Model_Abstract
      * Get most recent csv, read data and assign to $this->$theData
      *
      * @param $csvFiles Array of csv files in var/export.
+     * @return array
      */
     protected function _findMostRecentCSV()
     {
@@ -130,14 +131,16 @@ class Webshopapps_Wsacommon_Model_Export_Csv extends Mage_Core_Model_Abstract
         array_multisort($this->_fileDates, SORT_DESC);
         $mostRecent = $this->_fileDates[0];
         $mostRecentCSV = $this->_dateFileArray[$mostRecent];
-        $dir = Mage::getBaseDir('var') . DS . 'export' . DS . $mostRecentCSV;
+        $fullFileName = Mage::getBaseDir('var') . DS . 'export' . DS . $mostRecentCSV;
 
-        if (is_file($dir)) {
-            $fp = fopen($dir, 'r');
-            $theData = fread($fp, filesize($dir));
-            fclose($fp);
+        if (is_file($fullFileName)) {
+            $theData = array(
+                'type'  => 'filename',
+                'value' => $fullFileName,
+                'rm'    => false // can delete file after use
+            );
         } else {
-            $theData = $this->_noCSVPresent($dir);
+            $theData = $this->_noCSVPresent($fullFileName);
             return $theData;
         }
 
@@ -159,7 +162,7 @@ class Webshopapps_Wsacommon_Model_Export_Csv extends Mage_Core_Model_Abstract
     /**
      * Assigns blank CSV file to $this->_theDataArray and posts a log
      *
-     * @param $dir Location of var/export.
+     * @return array
      */
     protected function _getNoCsvFilePresentArr()
     {

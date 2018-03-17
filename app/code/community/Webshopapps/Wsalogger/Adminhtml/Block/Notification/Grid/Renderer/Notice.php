@@ -45,7 +45,8 @@
  *
  * @category    WebShopApps
  * @package     WebShopApps WsaLogger
- * @copyright   Copyright (c) 2011 Zowta Ltd (http://www.webshopapps.com)
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Webshopapps_Wsalogger_Adminhtml_Block_Notification_Grid_Renderer_Notice

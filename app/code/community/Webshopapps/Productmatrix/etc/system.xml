@@ -23,7 +23,8 @@
  *
  * @category   Webshopapps
  * @package    Webshopapps_productmatrix
- * @copyright  Copyright (c) 2012 Zowta Ltd (http://www.webshopapps.com)
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
  * @license    http://www.webshopapps.com/license/license.txt - Commercial license
 */
 -->
@@ -39,7 +40,7 @@
       <show_in_store>1</show_in_store>
       <groups>
         <productmatrix translate="label">
-          <comment><![CDATA[<strong><a href="http://wiki.webshopapps.com/extensions/product-matrix/" target="_blank">ProductMatrix Help and Examples</a></strong>]]></comment>
+          <comment><![CDATA[<strong><a href="http://support.webshopapps.com/productmatrix/" target="_blank">ProductMatrix Help and Examples</a></strong>]]></comment>
           <label>Webshopapps Product Matrix Rates</label>
           <frontend_type>text</frontend_type>
           <sort_order>2</sort_order>
@@ -50,7 +51,7 @@
                  <![CDATA[
                 <div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">
                 This module was developed by <a href="http://www.webshopapps.com" target="_blank">WebShopApps.com</a> - <b>Magento Shipping Extension Specialists</b>.
-                <br/> For docs & examples refer to the WebShopApps <a href="http://wiki.webshopapps.com/extensions/product-matrix">wiki</a>.
+                <br/> For docs & examples refer to the WebShopApps <a href="http://support.webshopapps.com/productmatrix/">Knowledge Base</a>.
                 </div>
                   ]]>
                 </comment>
@@ -77,7 +78,7 @@
 			  </tooltip>
 			  <comment>
 				  <![CDATA[If this is empty then extension will not work.
-				  <br/>See this <a href="http://wiki.webshopapps.com/installation/serial-keys">wiki</a> article for more info
+				  <br/>See this <a href="http://support.webshopapps.com/productmatrix/installing-serial-keys-3/">Knowledge Base</a> article for more info
 				  ]]>
 			  </comment>
 			</serial>
@@ -124,7 +125,7 @@
               <frontend_type>import</frontend_type>
               <backend_model>productmatrix_adminhtml/system_config_backend_shipping_productmatrix</backend_model>
               <sort_order>40</sort_order>
-              <show_in_default>0</show_in_default>
+              <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>0</show_in_store>
               <comment>
@@ -132,12 +133,12 @@
               </comment>
             </import>
             <export translate="label">
-	    	           <label>Export</label>
-	    	           <frontend_model>wsacommon_adminhtml/system_config_form_field_exportmatrix</frontend_model>
-	    	           <sort_order>41</sort_order>
-	    	           <show_in_default>0</show_in_default>
-	    	           <show_in_website>1</show_in_website>
-	    	           <show_in_store>0</show_in_store>
+               <label>Export</label>
+               <frontend_model>productmatrix_adminhtml/system_config_form_field_exportmatrix</frontend_model>
+               <sort_order>41</sort_order>
+               <show_in_default>0</show_in_default>
+               <show_in_website>1</show_in_website>
+               <show_in_store>0</show_in_store>
              </export>
             <min_shipping_cost translate="label">
               <label>Minimum Shipping Cost</label>
@@ -165,8 +166,17 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>0</show_in_store>
-              <comment>Select the <![CDATA[<a href="http://wiki.webshopapps.com/configuration-1/csvs/postcode-filtering" target="_blank">postcode matching algorithm</a>]]></comment>
+              <comment>Select the <![CDATA[<a href="http://support.webshopapps.com/productmatrix/filtering-based-on-postcodezipcode/" target="_blank">postcode matching algorithm</a>]]></comment>
             </postcode_filter>
+            <zipcode_max_length translate="label">
+              <label>Zip Code Max Length</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>61</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Strip long zipcodes to this length</comment>
+            </zipcode_max_length>
             <advanced_heading translate="label">
 	                    <label>Advanced Settings</label>
 	                    <frontend_model>webshopapps_productmatrix/adminhtml_system_config_form_field_heading</frontend_model>
@@ -210,6 +220,17 @@
 			  <show_in_website>1</show_in_website>
 			  <show_in_store>1</show_in_store>
             </zero_shipping_text>
+            <attribute_filter_product translate="label">
+              <label>Attribute to Filter Products On</label>
+              <frontend_type>text</frontend_type>
+              <comment>
+                Advanced option, Do not touch unless you know what you are doing.
+              </comment>
+              <sort_order>95</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </attribute_filter_product>
            <parent_group translate="label">
               <label>Which Shipping Group?</label>
               <frontend_type>select</frontend_type>

@@ -39,14 +39,28 @@
  *
  * @category   Webshopapps
  * @package    Webshopapps_Productmatrix
- * @copyright  Copyright (c) 2010 Zowta Ltd (http://www.webshopapps.com)
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
  * @license    www.webshopapps.com/license/license.txt
  * @author     Webshopapps <sales@webshopapps.com>
 */
 /**
  * Shipping data helper
  */
-class Mage_Shipping_Helper_Data extends Mage_Core_Helper_Abstract
+class Webshopapps_Productmatrix_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    
+    public function showToolTips($desc)
+    {
+        if($desc == '' or $desc == '*') {
+            return false;
+        }
+
+        $options = explode(',', Mage::getStoreConfig("carriers/productmatrix/ship_options"));
+
+        if (in_array('show_tooltips',$options)) {
+            return true;
+        }
+
+        return false;
+    }
 }

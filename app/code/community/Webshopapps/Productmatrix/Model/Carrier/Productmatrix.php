@@ -1,10 +1,16 @@
 <?php
-/* ProductMatrix
+/**
+ * WebShopApps Shipping Module
  *
- * @category   Webshopapps
- * @package    Webshopapps_productmatrix
- * @copyright  Copyright (c) 2010 Zowta Ltd (http://www.webshopapps.com)
- * @license    http://www.webshopapps.com/license/license.txt - Commercial license
+ * @category    WebShopApps
+ * @package     WebShopApps_ProductMatrix
+ * User         Karen Baker
+ * Date         2nd May 2013
+ * Time         3pm
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
+ * @license     http://www.WebShopApps.com/license/license.txt - Commercial license
+ *
  */
 
 
@@ -19,8 +25,9 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
     protected $_default_condition_name = 'per_package';
 
     protected $_conditionNames = array();
+    protected $_options = array();
 	private $hasCustomopts = false;
-	
+    protected $_isFixed = true;
 
 
     public function __construct()
@@ -34,35 +41,36 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
     /**
      * Previous entry point, now cut down to look like UPS
      *
-     * @param Mage_Shipping_Model_Rate_Request $data
+     * @param Mage_Shipping_Model_Rate_Request $request
+     * @internal param \Mage_Shipping_Model_Rate_Request $data
      * @return Mage_Shipping_Model_Rate_Result
      */
     public function setRequest(Mage_Shipping_Model_Rate_Request $request)
     {
-        
+
         $this->_options = explode(',',Mage::getStoreConfig("carriers/productmatrix/ship_options"));
 		$skus = explode(',',Mage::getStoreConfig('shipping/downloadshipping/sku_match'),-1);
-        
+
         $request->setPMConditionName($this->getConfigData('condition_name') ? $this->getConfigData('condition_name') : $this->_default_condition_name);
-       
-        
+
+
         $this->_rawRequest = $request;
-               
+
         $freeBoxes = 0;
         $found=false;
         $total=0;
-        
+
         try {
         	foreach ($request->getAllItems() as $item) {
-        			
+
         		$applyShipping = Mage::getModel('catalog/product')->load($item->getProduct()->getId())->getApplyShipping();
-        			
+
         		if(in_array($item->getSku(),$skus )){
         			$this->hasCustomopts = true;
         		}
-        			
+
         		if (($item->getFreeShipping() && $item->getProductType()!= Mage_Catalog_Model_Product_Type::TYPE_VIRTUAL )||
-        				($item->getFreeShipping() && $item->getProductType()== Mage_Catalog_Model_Product_Type::TYPE_VIRTUAL && $applyShipping) || 
+        				($item->getFreeShipping() && $item->getProductType()== Mage_Catalog_Model_Product_Type::TYPE_VIRTUAL && $applyShipping) ||
         					($item->getFreeShipping())) {
         			$freeBoxes+=$item->getQty();
         		}
@@ -91,19 +99,19 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
         	// this is really bad programmtically but we are going to ignore this, as in some cases there wont be
         	// anything in getAllItems.
         }
-        
+
         if ($found && in_array('remove_virtual',$this->_options)) {
         	// this fixes bug in Magento where package value is not set correctly, but at expense of sacrificing discounts
         	$this->_rawRequest->setPackageValue($this->_rawRequest->getPackageValue() - $total);
         }
         $this->setFreeBoxes($freeBoxes);
-        
+
         $this->_rawRequest->setIgnoreFreeItems(false);
 
     }
-    
+
 	protected function _getQuotes()
-    { 
+    {
     	if (in_array('custom_sorting',$this->_options)) {
         	$result = Mage::getModel('productmatrix_shipping/rate_result');
         } else {
@@ -112,12 +120,13 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
         $request = $this->_rawRequest;
         $version = Mage::helper('wsacommon')->getVersion();
         $freeTextSet = false;
-    	
-     	$ratearray = $this->getRate($request);
-     	
+
+        $customErrorText = null;
+     	$ratearray = $this->getRate($request,$customErrorText);
+
      	//This is fixing M1.4.0-1.4.1 when a cart is purely free shipping.
      	$brokenFree = false;
-     	
+
      	if ($version == 1.6 || $version == 1.7 || $version == 1.8){
      		if ($request->getFreeShipping() === true || $request->getPackageQty() == $this->getFreeBoxes()){
      			$brokenFree = true;
@@ -130,7 +139,8 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
 		            $error = Mage::getModel('shipping/rate_result_error');
 		            $error->setCarrier('productmatrix');
 		            $error->setCarrierTitle($this->getConfigData('title'));
-		            $error->setErrorMessage($this->getConfigData('specificerrmsg'));
+		            $error->setErrorMessage($customErrorText == null ? $this->getConfigData('specificerrmsg') :
+                        $customErrorText);
 		            $result->append($error);
 	     		}
 				return $result;
@@ -138,13 +148,12 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
      			$method = Mage::getModel('shipping/rate_result_method');
 	     		$method->setCarrier('productmatrix');
 				$method->setCarrierTitle($this->getConfigData('title'));
-				
+
 				$shippingPrice = 0.00;
-				
+
 				if ($this->getConfigData('free_shipping_text') != "") {
 					$modifiedName=preg_replace('/&|;| /',"_",$this->getConfigData('free_shipping_text'));
 					$method->setMethodTitle($this->getConfigData('free_shipping_text'));
-					$freeTextSet = true;
 				} else {
 					$modifiedName="productmatrix_free_promotion";
 					$method->setMethodTitle(Mage::helper('shipping')->__('Free Shipping'));
@@ -158,13 +167,10 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
 				return $result;
      		}
      	}
-     		     	
+
      	$max_shipping_cost=$this->getConfigData('max_shipping_cost');
      	$min_shipping_cost=$this->getConfigData('min_shipping_cost');
-		if($_SERVER["REMOTE_ADDR"] == '72.239.158.50'){
-			//Mage::log('ratearray1 product matrix.php: ', null, 'aaron_product_matrix.log');
-			//Mage::log($ratearray, null, 'aaron_product_matrix.log');
-		}
+
 	    foreach ($ratearray as $rate)
 		{
 		   if (!empty($rate) && $rate['price'] >= 0) {
@@ -185,42 +191,39 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
 				} else {
 					$shippingPrice = $this->getFinalPriceWithHandlingFee($price);
 				}
-				//this is a fix for 1.4.1.1 and earlier versions where the free ship logic used for UPS doesnt work				
+				//this is a fix for 1.4.1.1 and earlier versions where the free ship logic used for UPS doesnt work
 				if (($version == 1.6 || $version == 1.7 || $version == 1.8) &&
 					 ($request->getFreeShipping() === true || $request->getPackageQty() == $this->getFreeBoxes() )) {
 						$shippingPrice = 0.00;
 						if ($this->getConfigData('free_shipping_text') != "") {
 							$modifiedName=preg_replace('/&|;| /',"_",$this->getConfigData('free_shipping_text'));
 							$method->setMethodTitle($this->getConfigData('free_shipping_text'));
-							$freeTextSet = true;													
+							$freeTextSet = true;
 						} else {
 							$modifiedName=preg_replace('/&|;| /',"_",$rate['delivery_type']);
-							$method->setMethodTitle(Mage::helper('shipping')->__($rate['delivery_type']));							
-						}					
+							$method->setMethodTitle(Mage::helper('shipping')->__($rate['delivery_type']));
+						}
 				}
 				else if ($price==0  && $this->getConfigData('zero_shipping_text')!='') {
        	   			$modifiedName=preg_replace('/&|;| /',"_",$this->getConfigData('zero_shipping_text'));
 					$method->setMethodTitle($this->getConfigData('zero_shipping_text'));
-				} else {
-       	   			$modifiedName=preg_replace('/&|;| /',"_",$rate['method_name']);
-					$method->setMethodTitle(Mage::helper('shipping')->__($rate['delivery_type']));
-				}
+                } else {
+                    $modifiedName=preg_replace('/&|;| /',"_",$rate['method_name']);
+                    $method->setMethodTitle(Mage::helper('shipping')->__($rate['delivery_type']));
+                }
+
 
 				$method->setMethod($modifiedName);
 				$method->setMethodDescription($rate['notes']);
-				
+
 				$method->setPrice($shippingPrice);
 				$method->setCost($rate['cost']);
 				$method->setDeliveryType($rate['delivery_type']);
 
 				$result->append($method);
-				
+
 				if ($freeTextSet) break;
 			}
-		}
-		if($_SERVER["REMOTE_ADDR"] == '72.239.158.50'){
-			//Mage::log('result product matrix.php: ', null, 'aaron_product_matrix.log');
-			//Mage::log($result, null, 'aaron_product_matrix.log');
 		}
         return $result;
     }
@@ -252,11 +255,13 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
         	),
 
         	'parent_group'=>array(
-            	'child'  			=> Mage::helper('shipping')->__('Default(Child) Shipping Group'),
-            	'both'  			=> Mage::helper('shipping')->__('Parent Shipping Group'),
-        		'configurable'  	=> Mage::helper('shipping')->__('Configurable Parent, Bundle Child'),
-        		'bundle'  			=> Mage::helper('shipping')->__('Configurable Child, Bundle Parent'),
-        	),        
+            	'child'  			    => Mage::helper('shipping')->__('Default(Child) Shipping Group'),
+            	'both'  			    => Mage::helper('shipping')->__('Parent Shipping Group'),
+        		'configurable'  	    => Mage::helper('shipping')->__('Configurable Parent, Bundle Child, Grouped Child'),
+        		'bundle'  			    => Mage::helper('shipping')->__('Configurable Child, Bundle Parent, Grouped Child'),
+                'configurable_grouped'  => Mage::helper('shipping')->__('Configurable Parent, Bundle Child, Grouped Parent'),
+                'bundle_grouped'  		=> Mage::helper('shipping')->__('Configurable Child, Bundle Parent, Grouped Parent'),
+        	),
         	'postcode_filtering'=>array(
             	'uk'  			    => Mage::helper('shipping')->__('UK'),
         		'canada'  		    => Mage::helper('shipping')->__('Canada Ranges'),
@@ -265,7 +270,7 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
         		'can_numeric'  	    => Mage::helper('shipping')->__('Both Canada and Numeric'),
         		'none'  		    => Mage::helper('shipping')->__('None/Pattern Matching'),
         ),
-        'shipoptions'=>array(
+        'shipoptions'=>array(   // please keep in alphabetical order!
                 'NONE'  			=> Mage::helper('shipping')->__('N/A'),
                 'use_base'  		=> Mage::helper('shipping')->__('Always use base currency prices'),
         		'append_star_rates' => Mage::helper('shipping')->__('Append * shipping group rates'),
@@ -273,21 +278,26 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
         		'custom_sorting'  	=> Mage::helper('shipping')->__('Custom sorting'),
         		'remove_virtual'  	=> Mage::helper('shipping')->__('Exclude virtual from cart price & qty'),
         		'filter_subtotal'  	=> Mage::helper('shipping')->__('Filter on subtotal price/weight'),
+                'cheapest_free'     => Mage::helper('shipping')->__('Only allow cheapest free method to be free'),
                 'round_price'       => Mage::helper('shipping')->__('Round shipping price to nearest whole number'),
                 'reduce_free'       => Mage::helper('shipping')->__('Reduce all rates by free shipping amount'),
                 'show_tooltips'  	=> Mage::helper('shipping')->__('Show tooltips'),
-                'split_custom'		=> Mage::helper('shipping')->__('Split shipping groups based on custom options being present' ),
+                'use_sku'           => Mage::helper('shipping')->__('Use custom option SKU as shipping group'),
+                'split_custom'		=> Mage::helper('shipping')->__('Use shipping group -OPTIONS for custom options'),
                 'use_discounted'    => Mage::helper('shipping')->__('Use discounted price'),
                 'group_text'  		=> Mage::helper('shipping')->__('Use text based shipping group'),
-        		'use_tax'			=> Mage::helper('shipping')->__('Use tax inclusive prices'),
+                'use_tax'			=> Mage::helper('shipping')->__('Use tax inclusive prices'),
+                'warehouse'			=> Mage::helper('shipping')->__('Use with Dropship warehouse'),
+                'zone_lookup'		=> Mage::helper('shipping')->__('UPS Zone lookup'),
+                'group_parent'		=> Mage::helper('shipping')->__('Use Grouped Product Shipping Group'),
         ),
         'label_carriers'=>array(
-               	'fedex'  			=> Mage::helper('shipping')->__('Fedex'),     
+               	'fedex'  			=> Mage::helper('shipping')->__('Fedex'),
         		'ups' 				=> Mage::helper('shipping')->__('UPS'),
         		'usps'  			=> Mage::helper('shipping')->__('USPS'),
         		'NONE'  			=> Mage::helper('shipping')->__('None'),
         ),
-        
+
 
         );
 
@@ -306,9 +316,9 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
         return $codes[$type][$code];
     }
 
-    public function getRate(Mage_Shipping_Model_Rate_Request $request)
-    {  	
-        return Mage::getResourceModel('productmatrix_shipping/carrier_productmatrix')->getNewRate($request);
+    public function getRate(Mage_Shipping_Model_Rate_Request $request, &$errorText)
+    {
+        return Mage::getResourceModel('productmatrix_shipping/carrier_productmatrix')->getNewRate($request,$errorText);
     }
 
  	/**
@@ -325,31 +335,50 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
        $deliveryTypes=array();
        $freeText=preg_replace('/&|;| /',"_",$this->getConfigData('free_shipping_text'));
        $zeroText=preg_replace('/&|;| /',"_",$this->getConfigData('zero_shipping_text'));
-       
+
        foreach ($collection->getItems() as $item) {
-       	   $newDelType=preg_replace('/&|;| /',"_",$item['delivery_type']);
-       	   $deliveryTypes[]=$newDelType;
-       	   $allowedMethods[$newDelType] = $item['delivery_type'];
+           $algorithmCol = explode('&', $item['algorithm']);
+           $newDelType=preg_replace('/&|;| /',"_",$item['delivery_type']);
+
+           foreach ($algorithmCol as $algorithmRow) {
+               $algorithm=explode("=",$algorithmRow,2);
+
+               if (count($algorithm)!=2) {
+                   continue;
+               }
+
+               $algKey = strtolower($algorithm[0]);
+               $algValue = $algorithm[1];
+
+               if($algKey == "c"){
+                   $newDelType = $algValue;
+               }
+           }
+
+           if(!array_key_exists($newDelType, $allowedMethods)) {
+       	      $deliveryTypes[]=$newDelType;
+       	      $allowedMethods[$newDelType] = $item['delivery_type'];
+           }
        }
-       
+
        if(trim($freeText) != '') {
 	       $deliveryTypes[]=$freeText;
 	       $allowedMethods[$freeText] = $this->getConfigData('free_shipping_text');
        }
-       
+
        if(trim($zeroText) != '') {
 	       $deliveryTypes[]=$zeroText;
 	       $allowedMethods[$zeroText] = $this->getConfigData('zero_shipping_text');
        }
        return $allowedMethods;
     }
-    
+
     protected function _updateFreeMethodQuote($request)
     {
         if ($request->getFreeMethodWeight() == $request->getPackageWeight() || !$request->hasFreeMethodWeight()) {
             return;
         }
-        
+
         $savedDifference = -1;
         $savedId = -1;
 
@@ -358,11 +387,23 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
             return;
         }
         $freeRateIdArr = array();
+        $cheapestFreeOnly = in_array('cheapest_free',$this->_options);
+        $cheapestFreeMethod = "";
+        $cheapestFreePrice = 9999;
+        $cheapestFreeId = 0;
 
         if (is_object($this->_result)) {
             foreach ($this->_result->getAllRates() as $i=>$item) {
                 if (in_array($item->getMethod(),$freeMethodArr)) {
                     $freeRateIdArr[$item->getMethod()] = $i;
+
+                    if($cheapestFreeOnly) {
+                        if($item->getPrice() < $cheapestFreePrice) {
+                            $cheapestFreePrice = $item->getPrice();
+                            $cheapestFreeMethod = $item->getMethod();
+                            $cheapestFreeId = $i;
+                        }
+                    }
                 }
             }
         }
@@ -370,13 +411,13 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
         if (count($freeRateIdArr)==0) {
             return;
         }
-        
-        
-        
+
+        $freeRateIdArr = $cheapestFreeOnly ? array($cheapestFreeMethod => $cheapestFreeId) : $freeRateIdArr;
+
         foreach ($freeRateIdArr as $freeMethod=>$freeRateId) {
 	        $price = null;
 	        if ($request->getFreeMethodWeight() > 0) {
-	            $this->_setFreeMethodRequest($freeMethod);	
+	            $this->_setFreeMethodRequest($freeMethod);
 	            $result = $this->_getQuotes();
 	            if ($result && ($rates = $result->getAllRates()) && count($rates)>0) {
 	                if ((count($rates) == 1) && ($rates[0] instanceof Mage_Shipping_Model_Rate_Result_Method)) {
@@ -399,7 +440,7 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
 	             */
 	            $price = 0;
 	        }
-	
+
 	        /**
 	         * if we did not get our free shipping method in response we must use its old price
 	         */
@@ -409,7 +450,7 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
 	            $this->_result->getRateById($freeRateId)->setPrice($price);
 	        }
         }
-        
+
         if ($savedDifference > 0 && in_array('reduce_free',$this->_options)) {
         	// reduce the other amounts by the saved shipping rate
             foreach ($this->_result->getAllRates() as $i=>$item) {
@@ -432,9 +473,9 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
 
 
     }
-    
-    
-    
+
+
+
     /************************************************
      * SHIPMENT Logic
      */
@@ -447,8 +488,8 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
     {
         return $this->getConfigData('labelling_carrier')!='NONE';
     }
-    
-    
+
+
  	/**
      * Do request to shipment
      *
@@ -466,7 +507,7 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
     		return $response;
     	}
     	$carrier = Mage::getModel('productmatrix/carrier_'.$carrierCode.'stub');
-    	
+
         $packages = $request->getPackages();
         if (!is_array($packages) || !$packages) {
             Mage::throwException(Mage::helper('usa')->__('No packages for request'));
@@ -480,7 +521,7 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
             $request->setPackageWeight($package['params']['weight']);
             $request->setPackageParams(new Varien_Object($package['params']));
             $request->setPackageItems($package['items']);
-            
+
             $result = $carrier->doShipmentRequest($request);
 
             if ($result->hasErrors()) {
@@ -498,13 +539,13 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
             }
         }
 
-        
+
         if ($result->getErrors()) {
             $response->setErrors($result->getErrors());
         }
         return $response;
     }
-    
+
       /**
      * For multi package shipments. Delete requested shipments if the current shipment
      * request is failed
@@ -517,7 +558,7 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
     {
         return true;
     }
-    
+
 	/**
      * Get carrier by its code
      *
@@ -551,8 +592,9 @@ class Webshopapps_Productmatrix_Model_Carrier_Productmatrix
     }
 
     /**
-     * @param $tracking
+     * @param      $tracking
      * @param null $postcode
+     * @param null $orderId
      * @return array|bool|string
      */
     public function getTrackingInfo($tracking, $postcode=null, $orderId=null)

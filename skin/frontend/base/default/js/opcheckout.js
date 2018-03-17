@@ -359,6 +359,7 @@ Billing.prototype = {
     },
 
     save: function(){
+        
         if (checkout.loadWaiting!=false) return;
 
         var validator = new Validation(this.form);

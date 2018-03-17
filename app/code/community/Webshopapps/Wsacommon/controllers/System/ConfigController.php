@@ -28,8 +28,6 @@
 
 class Webshopapps_Wsacommon_System_ConfigController   extends Mage_Adminhtml_Controller_Action
 {
-
-
     /*
      * Export shipping table rates in csv format
      *
@@ -43,6 +41,16 @@ class Webshopapps_Wsacommon_System_ConfigController   extends Mage_Adminhtml_Con
             $fileInfo[0] = 'blank.csv';
         }
         $this->_prepareDownloadResponse($fileInfo[0], $fileInfo[1]);
+    }
+
+    /**
+     * COMMON-48
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return true;
     }
 
 }

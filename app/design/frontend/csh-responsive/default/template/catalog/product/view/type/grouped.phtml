@@ -33,9 +33,32 @@
 ?>
 <style>
     .assoc_line_total {
-        font-family: 'Titillium Web', sans-serif;
         font-size: 18px;
         font-weight: 700;
+    }
+
+    #super-product-table, #super-product-stack {
+        font-family: 'Titillium Web', sans-serif;
+        text-transform: uppercase;
+    }
+
+    .grouped-items-table td {
+        vertical-align:middle;
+    }
+
+    #super-product-stack {
+        display:none;
+    }
+
+    @media only screen and (max-width: 768px) {
+
+        #super-product-table {
+            display:none;
+        }
+
+        #super-product-stack {
+            display:block;
+        }
     }
 </style>
 <?php $this->setPreconfiguredValue(); ?>
@@ -56,21 +79,25 @@
 </script>
 
 <?php echo $this->getChildHtml('product_type_data_extra') ?>
+<?php /* FOR DESKTOP VIEW */ ?>
 <table class="data-table grouped-items-table" id="super-product-table">
-    <col />
-    <col />
-    <col width="1" />
     <thead>
     <tr>
-        <th class="a-left">Image</th>
+        <th class="a-left"><?php echo $this->__('Image') ?></th>
         <th><?php echo $this->__('Product Name') ?></th>
+        <th class="a-left" id="assocProdDimensions" style="display:none;"><?php echo $this->__('Dimensions') ?></th>
+        <th class="a-left" id="assocProdColor" style="display:none;"><?php echo $this->__('Color') ?></th>
+        <th class="a-left" id="assocProdFinish" style="display:none;"><?php echo $this->__('Finish') ?></th>
+
         <?php if ($this->getCanShowProductPrice($_product)): ?>
             <th class="a-right"><?php echo $this->__('Price') ?></th>
         <?php endif; ?>
         <?php if ($_product->isSaleable()): ?>
             <th class="a-center"><?php echo $this->__('Qty') ?></th>
-            <th class="a-right">Total</th>
+            <th class="a-right"><?php echo $this->__('Total') ?></th>
         <?php endif; ?>
+
+        <th class="a-right"><?php echo $this->__('PURCHASE') ?></th>
     </tr>
     </thead>
     <tbody>
@@ -85,12 +112,96 @@
 
             <?php $_finalPriceInclTax = $this->helper('tax')->getPrice($_item, $_item->getFinalPrice(), true) ?>
             <tr>
+                <!-- output product image -->
                 <td>
                     <img src="/media/catalog/product/<?php echo $this->escapeHtml($_item->getData('small_image')); ?>" />
                 </td>
+
+                <!-- output product name -->
                 <td>
-                    <?php echo $this->escapeHtml($_item->getName()); ?>
+                    <b><?php echo $this->escapeHtml($_item->getName()); ?></b>
                 </td>
+
+                <!-- output dimensions, if applicable -->
+                <?php if ($_item->getData('width') || $_item->getData('depth') || $_item->getData('length') || $_item->getData('height')): ?>
+                <script>
+                    jQuery('#assocProdDimensions').show();
+                </script>
+                <td>
+
+                <?php
+                    // create an array to hold dimension values
+                    $dimArray = array();
+
+
+                    if ($_item->getData('width')){
+                        $dimArray['width'] = $this->escapeHtml($_item->getData('width'));
+                    }
+
+                    if ($_item->getData('length')){
+                        $dimArray['length'] = $this->escapeHtml($_item->getData('length'));
+                    }
+
+                    if ($_item->getData('height')){
+                        $dimArray['height'] = $this->escapeHtml($_item->getData('height'));
+                    }
+
+                    if ($_item->getData('depth')){
+                        $dimArray['depth'] = $this->escapeHtml($_item->getData('depth'));
+                    }
+                ?>
+                    <?php
+                        // count elements in array
+                        $dimArrayCount = count($dimArray);
+                    ?>
+
+                    <?php if ($_item->getData('width')): ?>
+                        <?php echo $this->escapeHtml($_item->getData('width')) . " W"; ?>
+                    <?php endif; ?>
+
+                    <?php if ($_item->getData('length')): ?>
+                        <?php if ($dimArrayCount > 1) { echo ", "; } ?>
+                        <?php echo $this->escapeHtml($_item->getData('length')) . " L"; ?>
+                    <?php endif; ?>
+
+                    <?php if ($_item->getData('height')): ?>
+                        <?php if ($dimArrayCount > 1) { echo ", "; } ?>
+                        <?php echo $this->escapeHtml($_item->getData('height')) . " H"; ?>
+                    <?php endif; ?>
+
+                    <?php if ($_item->getData('depth')): ?>
+                        <?php if ($dimArrayCount > 1) { echo ", "; } ?>
+                        <?php echo $this->escapeHtml($_item->getData('depth')) . " D"; ?>
+                    <?php endif; ?>
+
+                </td>
+                <?php else: ?>
+                <td></td>
+                <?php endif; ?>
+
+                <!-- output color, if applicable -->
+                <?php if ($_item->getData('color') && $_item->getData('finish')): ?>
+                <script>
+                    jQuery('#assocProdColor').show();
+                </script>
+                <td>
+                    <?php echo $this->escapeHtml($_item->getData('color_value')); ?>
+                </td>
+                <?php else: ?>
+                <td></td>
+                <?php endif; ?>
+
+                <!-- output finish, if applicable -->
+                <?php if (!($_item->getData('color')) && $_item->getData('finish')): ?>
+                    <script>
+                        jQuery('#assocProdFinish').show();
+                    </script>
+                    <td>
+
+                    </td>
+                <?php endif; ?>
+
+                <!-- output product price -->
                 <?php if ($this->getCanShowProductPrice($_product)): ?>
                     <td class="a-right">
                         <?php if ($this->getCanShowProductPrice($_item)): ?>
@@ -109,6 +220,20 @@
                         <td class="a-right">
                             <span id="line_total_<?php echo $_item->getId();?>" class="assoc_line_total">$0.00</span>
                         </td>
+                        <td class="a-right">
+                            <?php $_product = $this->getProduct(); ?>
+                            <?php $buttonTitle = $this->__('Add to Cart'); ?>
+                            <?php if($_product->isSaleable()): ?>
+                                <div class="add-to-cart">
+                                    <?php if((!$_product->isGrouped()) and ($_product->getTypeId() != Simplesolutions_Cabinetproduct_Model_Product_Type_Cabinet::TYPE_CABINET )): ?>
+                                        <label for="qty"><?php echo $this->__('Quantity') ?></label>
+                                        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty" />
+                                    <?php endif; ?>
+                                    <button type="button" title="<?php echo $buttonTitle ?>" class="btn btn-primary" onclick="productAddToCartForm.submit(this)"><span><i class="fa fa-shopping-cart" aria-hidden="true"></i><span><?php echo $buttonTitle ?></span></span></button>
+                                    <?php echo $this->getChildHtml('', true, true) ?>
+                                </div>
+                            <?php endif; ?>
+                        </td>
                         <?php else: ?>
                         <td class="a-center">
                             <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
@@ -125,15 +250,84 @@
     <?php endif; ?>
     </tbody>
 </table>
+<?php /* END DESKTOP VIEW */ ?>
+<?php /* FOR MOBILE VIEW
+
+ */ ?>
+
+    <?php if ($_hasAssociatedProducts): ?>
+        <?php foreach ($_associatedProducts as $_item): ?>
+        <table class="data-table grouped-items-table" id="super-product-stack">
+        <tr>
+            <!-- output product image -->
+            <td>
+                <img src="/media/catalog/product/<?php echo $this->escapeHtml($_item->getData('small_image')); ?>" />
+
+                <!-- output product name -->
+                &nbsp;&nbsp;<b><?php echo $this->escapeHtml($_item->getName()); ?></b>
+            </td>
+        </tr>
+        <tr>
+            <!-- output dimensions, if any -->
+            <td>
+                <b>Dimensions: </b>
+                <?php if ($_item->getData('width') || $_item->getData('depth') || $_item->getData('length') || $_item->getData('height')): ?>
+
+                <?php
+                // create an array to hold dimension values
+                $dimArray = array();
+
+
+                if ($_item->getData('width')){
+                    $dimArray['width'] = $this->escapeHtml($_item->getData('width'));
+                }
+
+                if ($_item->getData('length')){
+                    $dimArray['length'] = $this->escapeHtml($_item->getData('length'));
+                }
+
+                if ($_item->getData('height')){
+                    $dimArray['height'] = $this->escapeHtml($_item->getData('height'));
+                }
+
+                if ($_item->getData('depth')){
+                    $dimArray['depth'] = $this->escapeHtml($_item->getData('depth'));
+                }
+                ?>
+                <?php
+                // count elements in array
+                $dimArrayCount = count($dimArray);
+                ?>
+
+                <?php if ($_item->getData('width')): ?>
+                    <?php echo $this->escapeHtml($_item->getData('width')) . " W"; ?>
+                <?php endif; ?>
+
+                <?php if ($_item->getData('length')): ?>
+                    <?php if ($dimArrayCount > 1) { echo ", "; } ?>
+                    <?php echo $this->escapeHtml($_item->getData('length')) . " L"; ?>
+                <?php endif; ?>
+
+                <?php if ($_item->getData('height')): ?>
+                    <?php if ($dimArrayCount > 1) { echo ", "; } ?>
+                    <?php echo $this->escapeHtml($_item->getData('height')) . " H"; ?>
+                <?php endif; ?>
+
+                <?php if ($_item->getData('depth')): ?>
+                    <?php if ($dimArrayCount > 1) { echo ", "; } ?>
+                    <?php echo $this->escapeHtml($_item->getData('depth')) . " D"; ?>
+                <?php endif; ?>
+            <?php endif; ?>
+            </td>
+        </tr>
+        </table><br />
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+<?php /* END MOBILE VIEW */ ?>
+
 <script type="text/javascript">
     decorateTable('super-product-table');
-
-    // for loop
-    /*for (var i = 0; i < idArray.length; i++){
-        console.log(idArray[i].val());
-    }*/
-
-    //console.log(idArray[1]);
 
     // function for stripping white spaces and dollar signs then parsing the string to decimals
     function priceStripper(oldPrice) {
@@ -152,6 +346,9 @@
 
     jQuery(document).ready(function() {
 
+        // running total
+        var runningTotal = parseFloat("0.00");
+
         // listen for change in quantity
         jQuery(".qty").keyup(function(){
 
@@ -167,17 +364,14 @@
 
             if(lineTotal == 0.00 || lineTotal.length == 0) {
                 jQuery(lineTotalTag).html("$0.00");
+                // runningTotal = parseFloat("0.00");
             } else {
                 jQuery(lineTotalTag).html("$" + lineTotal);
             }
 
-            // update the line total
-            /*if(lineTotal != 0.00) {
-                jQuery("#line_total[" + this.id + "]").html(lineTotal);
-            }*/
-
+            runningTotal += parseFloat(lineTotal);
+            jQuery('#groupedTotal').html("$" + runningTotal).toFixed(2);
         });
-
 
         // for loop
         /* for (var i = 0; i < idArray.length; i++) {

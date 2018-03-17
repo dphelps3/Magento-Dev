@@ -20,7 +20,8 @@
  *
  * @category    WebShopApps
  * @package     WebShopApps WsaLogger
- * @copyright   Copyright (c) 2011 Zowta Ltd (http://www.webshopapps.com)
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Webshopapps_Wsalogger_Helper_Data extends Mage_Core_Helper_Abstract
@@ -32,14 +33,18 @@ class Webshopapps_Wsalogger_Helper_Data extends Mage_Core_Helper_Abstract
 	 * Enter description here ...
 	 */
 	public static function getNewVersion() {
-		$version = Mage::getVersion();	
-		$eeVersion = 0;
+		$version = Mage::getVersion();
+
 		if (version_compare($version, '1.6', '>=')) {
 			if (version_compare($version, '1.12') >= 0) $eeVersion = 12;
-			else if (version_compare($version, '1.11') >= 0) $eeVersion = 11;
+            else if (version_compare($version, '1.14') >= 0) $eeVersion = 14;
+            else if (version_compare($version, '1.13') >= 0) $eeVersion = 13;
+            else if (version_compare($version, '1.11') >= 0) $eeVersion = 11;
 			else if (version_compare($version, '1.10') >= 0) $eeVersion = 10;
-			else if (version_compare($version, '1.7') >= 0 && !self::isEnterpriseEdition()) $eeVersion = 12;  //CE 1.7, EE unknown at present
-			else if (version_compare($version, '1.6') >= 0 && !self::isEnterpriseEdition()) $eeVersion = 11;  //CE 1.6, EE unknown at present
+            else if (version_compare($version, '1.9') >= 0 && !self::isEnterpriseEdition()) $eeVersion = 14;  //CE 1.8, EE 1.13
+            else if (version_compare($version, '1.8') >= 0 && !self::isEnterpriseEdition()) $eeVersion = 13;  //CE 1.8, EE 1.13
+            else if (version_compare($version, '1.7') >= 0 && !self::isEnterpriseEdition()) $eeVersion = 12;  //CE 1.7, EE 1.12
+			else if (version_compare($version, '1.6') >= 0 && !self::isEnterpriseEdition()) $eeVersion = 11;  //CE 1.6, EE 1.11
 			else if (version_compare($version, '1.9') >= 0) $eeVersion = 9;
 			else if (version_compare($version, '1.8') >= 0) $eeVersion = 8;
 			else if (version_compare($version, '1.7') >= 0) $eeVersion = 7;
@@ -54,6 +59,7 @@ class Webshopapps_Wsalogger_Helper_Data extends Mage_Core_Helper_Abstract
 			else if (version_compare($version, '1.3.2.4') >= 0) $eeVersion = 6;
 			else $eeVersion = 8;  // default to this if unsure, changed to assume is 1.4.1+
 		}
+
 		return $eeVersion;
 	}
 	
@@ -65,11 +71,16 @@ class Webshopapps_Wsalogger_Helper_Data extends Mage_Core_Helper_Abstract
 	        return true;
 	}
 	
-public function isDebug($moduleName) {
+    public function isDebug($moduleName) {
 		
 		$path = 'wsalogmenu/modules_disable_logger/'.$moduleName; 
 		return Mage::getStoreConfig($path) ? true : false;
 		
 	}
+
+    public function isDebugError()
+    {
+        return Mage::getStoreConfig('wsalogmenu/wsalog/debug_error_messages');
+    }
 	
 }

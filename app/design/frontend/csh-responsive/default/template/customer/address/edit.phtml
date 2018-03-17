@@ -72,17 +72,17 @@
             <ul>
                 <li class="form-group">
                     <label for="street_1" class="required"><em>*</em><?php echo $this->__('Street Address') ?></label>
-                    <input type="text" name="street[]" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" title="<?php echo $this->__('Street Address') ?>" id="street_1" class="form-control required-entry" />
+                    <input type="text" name="street[]" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" title="<?php echo $this->__('Street Address') ?>" id="street_1" class="userAddressInfo form-control required-entry" />
                 </li>
             <?php for ($_i=2, $_n=$this->helper('customer/address')->getStreetLines(); $_i<=$_n; $_i++): ?>
                 <li class="form-group">
-                    <input type="text" name="street[]" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet($_i)) ?>" title="<?php echo $this->__('Street Address '.$_i) ?>" id="street_<?php echo $_i?>" class="form-control" />
+                    <input type="text" name="street[]" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet($_i)) ?>" title="<?php echo $this->__('Street Address '.$_i) ?>" id="street_<?php echo $_i?>" class="userAddressInfo form-control" />
                 </li>
             <?php endfor ?>
                 <li class="fields">
                     <div class="form-group">
                         <label for="city" class="required"><em>*</em><?php echo $this->__('City') ?></label>
-                        <input type="text" name="city" value="<?php echo $this->htmlEscape($this->getAddress()->getCity()) ?>" title="<?php echo $this->__('City') ?>" class="form-control required-entry" id="city" />
+                        <input type="text" name="city" value="<?php echo $this->htmlEscape($this->getAddress()->getCity()) ?>" title="<?php echo $this->__('City') ?>" class="userAddressInfo form-control required-entry" id="city" />
                     </div>
                     <div class="form-group">
                         <label for="region_id" class="required"><em>*</em><?php echo $this->__('State/Province') ?></label>
@@ -150,4 +150,25 @@
     new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
     $('country').addClassName('form-control');
 //]]>
+
+
+function titleCase(str) {
+    return str.toLowerCase().split(' ').map(function(word) {
+        return (word.charAt(0).toUpperCase() + word.slice(1));
+    }).join(' ');
+}
+
+jQuery(document).ready(function(){
+
+    var string;
+    var updatedString;
+
+    jQuery(".userAddressInfo").change(function(){
+        string = jQuery(this).val();
+
+        updatedString = titleCase(string);
+
+        jQuery(this).val(updatedString);
+    });
+});
 </script>

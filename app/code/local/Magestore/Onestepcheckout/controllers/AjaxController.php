@@ -76,7 +76,7 @@ class Magestore_Onestepcheckout_AjaxController extends Mage_Core_Controller_Fron
         $email = $this->getRequest()->getPost('onestepcheckout_register_username', false);
 
         $customer = Mage::getModel('customer/customer')
-                ->setFirstname($firstName)
+                ->setFirstname(ucfirst(strtolower($firstName)))
                 ->setLastname($lastName)
                 ->setEmail($email)
                 ->setPassword($pass)

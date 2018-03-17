@@ -50,20 +50,23 @@
         </div>
         <div class="product-essential row">
 
-            <div class="col-xs-12 col-sm-6 col-md-6">
-                <?php echo $this->getChildHtml('media') ?>
-            </div>
+            <?php /* check to see if product is grouped */ ?>
+            <?php if ($_product->getTypeId() == 'grouped'): ?>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+            <?php else: ?>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+            <?php endif; ?>
+                    <?php echo $this->getChildHtml('media') ?>
+                </div>
 
-            <div class="col-xs-12 col-sm-6 col-md-6">
+            <?php /* check to see if product is grouped */ ?>
+            <?php if ($_product->getTypeId() == 'grouped'): ?>
+                <div class="col-xs-12 col-sm-8 col-md-8">
+            <?php else: ?>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+            <?php endif; ?>
                 
                 <div class="product-main-info">
-
-                    <!-- get product type data -->
-                    <?php
-                    echo "<pre>";
-                        //print_r($_product->getTypeId());
-                    echo "</pre>";
-                    ?>
 
                      <p class="product-ids"><?php echo $this->__('SKU# %s', $this->escapeHtml($_product->getSku())); ?></p>
                     <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
@@ -126,7 +129,7 @@
             ?>
         </div>
 
-        <?php if (!$this->hasOptions()):?>
+        <?php if (!$this->hasOptions() && !($_product->getTypeId() == 'grouped')):?>
             <div class="add-to-box pull-right">
                 <?php if($_product->isSaleable()): ?>
                     <?php echo $this->getChildHtml('addtocart') ?>

@@ -71,12 +71,54 @@
                     </tr>
                     <?php endif; ?>
                 </thead>
+
+                <?php
+                    // create an array to store cart items
+                    $cartItems = array();
+
+                    foreach($this->getItems() as $_item) {
+
+                        // retrieve the freight value for current item
+                        $isFreight = Mage::getModel('catalog/product')->load($_item->getProductId())->getData('is_freight');
+
+                        // if the item contains a freight value, prepend it to the array
+                        if ($isFreight) {
+                            array_unshift($cartItems, $_item);
+                        } else {
+                            array_push($cartItems, $_item);
+                        }
+                    }
+                ?>
+
                 <tbody>
+                <?php /*
                 <?php foreach($this->getItems() as $_item): ?>
-                    <?php echo $this->getItemHtml($_item) ?>
-                <?php endforeach ?>
+                    <?php
+
+                            $isFreight = Mage::getModel('catalog/product')->load($_item->getProductId())->getData('is_freight');
+                            // print_r(Mage::getModel('catalog/product')->load($_item->getProductId()));
+                            // var_dump(get_class_methods(get_class($_item)));
+                            // var_dump(get_class_methods(get_class($_item->getData('height'))));
+                        echo "<pre>";
+                            echo "Freight: " . $isFreight;
+                        echo "</pre>";
+                        // echo $this->getItemHtml($_item);
+                    ?>
+                <?php endforeach ?> */ ?>
+
+                <pre>
+                    <?php echo count($cartItems) ?>
+                </pre>
+
+                    <?php
+                        foreach($cartItems as $cartItem){
+                            echo $this->getItemHtml($cartItem);
+                        }
+                    ?>
+
                 </tbody>
             </table>
+
             <script type="text/javascript">decorateTable('shopping-cart-table')</script>
         </fieldset>
     </form>

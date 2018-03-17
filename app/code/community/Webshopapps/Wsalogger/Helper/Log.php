@@ -20,35 +20,36 @@
  *
  * @category    WebShopApps
  * @package     WebShopApps WsaLogger
- * @copyright   Copyright (c) 2011 Zowta Ltd (http://www.webshopapps.com)
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 class Webshopapps_Wsalogger_Helper_Log extends Mage_Core_Helper_Abstract
 {
-	
+
 	const SEVERITY_CRITICAL = 1;
     const SEVERITY_MAJOR    = 2;
     const SEVERITY_MINOR    = 3;
     const SEVERITY_NOTICE   = 4;
     const SEVERITY_NONE     = -1;
-    
-	/**
-	 * 
-	 * Enter description here ...
-	 * @param unknown_type $severity - CRITIAL,MAJOR,MINOR,NOTICE - 1-4
-	 * @param unknown_type $title
-	 * @param unknown_type $description
-	 * @param unknown_type $url
-	 */
-	
-	public static function postDebug($extension,$title,$description,$debug=true,$code=0,$url='') {
-		
+
+
+    /**
+     * @param string $extension
+     * @param string $title
+     * @param string $description
+     * @param bool $debug
+     * @param int $code
+     * @param string $url
+     */
+    public static function postDebug($extension,$title,$description,$debug=true,$code=0,$url='') {
+
 		if (!Mage::getStoreConfig('wsalogmenu/wsalog/active') || !$debug) {
     		return ;
-    	}  
-        
-       Mage::dispatchEvent('wsalogger_log_mesasge', 
+    	}
+
+       Mage::dispatchEvent('wsalogger_log_mesasge',
        					array('severity'=>self::SEVERITY_NOTICE,
        						  	'title' => $title,
        						  	'extension' => $extension,
@@ -57,65 +58,90 @@ class Webshopapps_Wsalogger_Helper_Log extends Mage_Core_Helper_Abstract
        							'url'			=> $url
        							));
 	}
-	
 
-	public static function postInfo($extension,$title,$description,$debug=true,$code=0,$url='') {
-		
-		if (!Mage::getStoreConfig('wsalogmenu/wsalog/active')) {
+    /**
+     * @param string $extension
+     * @param string $title
+     * @param string $description
+     * @param bool $debug
+     * @param int $code
+     * @param string $url
+     */
+    public static function postInfo($extension,$title,$description,$debug=true,$code=0,$url='') {
+
+		if (!Mage::getStoreConfig('wsalogmenu/wsalog/active') || !$debug) {
     		return ;
     	}
-    	  
 
-        Mage::dispatchEvent('wsalogger_log_mesasge', 
+
+        Mage::dispatchEvent('wsalogger_log_mesasge',
        					array('severity'=>self::SEVERITY_MINOR,
        						  	'extension' => $extension,
        							'title' => $title,
        						  	'description' => $description,
        					       	'code'			=> $code,
-       							'url'			=> $url       						 	     					
+       							'url'			=> $url
        							));
 	}
-	
-	
+
+    /**
+     * @param string $extension
+     * @param string $title
+     * @param string $description
+     * @param bool $debug
+     * @param int $code
+     * @param string $url
+     */
 	public static function postWarning($extension,$title,$description,$debug=true,$code=0,$url='') {
-		
-		if (!Mage::getStoreConfig('wsalogmenu/wsalog/active')) {
+
+		if (!Mage::getStoreConfig('wsalogmenu/wsalog/active') || !$debug) {
     		return ;
     	}
-		
-        Mage::dispatchEvent('wsalogger_log_mesasge', 
+
+        Mage::dispatchEvent('wsalogger_log_mesasge',
        					array('severity'=>self::SEVERITY_MAJOR,
        						  	'title' => $title,
        						  	'extension' => $extension,
        							'description' => $description,
        					       	'code'			=> $code,
        							'url'			=> $url
-       							));        
+       							));
 	}
-	
+
+    /**
+     * @param string $extension
+     * @param string $title
+     * @param string $description
+     * @param bool $debug
+     * @param int $code
+     * @param string $url
+     */
 	public static function postCritical($extension,$title,$description,$debug=true,$code=0,$url='') {
-		
-		if (!Mage::getStoreConfig('wsalogmenu/wsalog/active')) {
+
+		if (!Mage::getStoreConfig('wsalogmenu/wsalog/active') || !$debug) {
     		return ;
     	}
-    	      
-       	Mage::dispatchEvent('wsalogger_log_mesasge', 
+
+       	Mage::dispatchEvent('wsalogger_log_mesasge',
        					array('severity'=>self::SEVERITY_CRITICAL,
        						  	'title' => $title,
        						  	'extension' => $extension,
        							'description' => $description,
        					       	'code'			=> $code,
        							'url'			=> $url
-       							));              
+       							));
 	}
-	
-	
- 	public function getSeverities($severity = null)
+
+    /**
+     * @param string $severity
+     * @return array|string
+     */
+    public function getSeverities($severity = null)
     {
-    	
+
     	return Mage::getSingleton('wsalogger/log')->getSeverities($severity);
-       
+
     }
-	
-	
+
+
 }
