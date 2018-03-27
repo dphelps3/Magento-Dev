@@ -86,14 +86,14 @@ class Webshopapps_Wsacommon_Model_Shipping_Shipping extends Mage_Shipping_Model_
 
 
         if (Mage::helper('wsacommon')->isModuleEnabled('Webshopapps_Dropship','carriers/dropship/active', $storeId)) {
-            if(Mage::helper('dropcommon')->calculateDropshipRates()) {//DROP-98
+            /*if(Mage::helper('dropcommon')->calculateDropshipRates()) {//DROP-98*/
                 if (!Mage::registry('dropship_shipmodel')) {
                     $model = Mage::getModel('dropship/shipping_shipping');
                     Mage::register('dropship_shipmodel', $model);
                 }
                 Mage::registry('dropship_shipmodel')->resetResult();
                 return Mage::registry('dropship_shipmodel')->collectRates($request);
-            }
+            /* } */
         }
 
 

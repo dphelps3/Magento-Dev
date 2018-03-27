@@ -31,21 +31,16 @@
  * @see Mage_Review_Block_Product_View
  */
 ?>
-<?php /* Declare Variables */ ?>
 <?php $_helper = $this->helper('catalog/output'); ?>
 <?php $_product = $this->getProduct(); ?>
 <?php $messagesBlock = $this->getMessagesBlock()->setEscapeMessageFlag(true)->toHtml();
 if(strpos($messagesBlock,'comparison list') !== false):
     $messagesBlock = $this->getMessagesBlock()->addSuccess('<a href="'.Mage::getUrl('catalog/product_compare/index').'" >'.$this->__('Go to comparison list.').'</a>')->setEscapeMessageFlag(false)->toHtml();
 endif; ?>
-
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
-
 <div id="messages_product_view" class="container"><?php echo $messagesBlock ?></div>
-
-<!-- Product View -->
 <div class="product-view container">
     <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
         <?php echo $this->getBlockHtml('formkey') ?>
@@ -55,73 +50,92 @@ endif; ?>
         </div>
         <div class="product-essential row">
 
-            <?php /* if product is grouped, make tweaks to the template */ ?>
+            <?php /* check to see if product is grouped */ ?>
             <?php if ($_product->getTypeId() == 'grouped'): ?>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-            <?php else: ?>
+            <div class="col-xs-12 col-sm-4 col-md-4">
+                <?php else: ?>
                 <div class="col-xs-12 col-sm-6 col-md-6">
-            <?php endif; ?>
-                <?php /* Display product image */ ?>
+                    <?php endif; ?>
                     <?php echo $this->getChildHtml('media') ?>
                 </div>
 
-            <?php /* if product is grouped, make tweaks to the template */ ?>
-            <?php if ($_product->getTypeId() == 'grouped'): ?>
+                <?php /* check to see if product is grouped */ ?>
+                <?php if ($_product->getTypeId() == 'grouped'): ?>
                 <div class="col-xs-12 col-sm-8 col-md-8">
-            <?php else: ?>
-                <div class="col-xs-12 col-sm-6 col-md-6">
-            <?php endif; ?>
-
-                <div class="product-main-info">
-                    <p class="product-ids"><?php echo $this->__('SKU# %s', $this->escapeHtml($_product->getSku())); ?></p>
-                    <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
-
-                    <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
-                    <?php echo $this->getChildHtml('alert_urls') ?>
-                    <!-- PRICE SAVINGS FROM PRIOR BUILD -->
-                    <?php if($_product->getTypeId() != 'bundle'): ?>
-                        <?php $_price = $this->helper('tax')->getPrice($_product, $_product->getMsrp()) ?>
-                        <?php if ($_product->getMsrp()): ?>
-                            <?php $_msrpPrice = $this->helper('core')->currency($_product->getMsrp(),true,true) ?>
-                            <?php $_realPrice = $_product->getFinalPrice(); ?>
-                            <?php if ($_realPrice < $_product->getMsrp()): ?>
-                                <p class="special-price">
-                                    <span class="old-price" id="product-price-<?php echo $_product->getId() ?><?php echo $this->getIdSuffix() ?>"><?php echo $_msrpPrice ?></span>
-                                    <span><?php echo ' Save ' . round(100-(($_realPrice / $_product->getMsrp())*100),0) . '%' ?></span>
-                                </p>
-                            <?php endif; ?>
-                        <?php endif; ?>
-                        <?php echo $this->getPriceHtml($_product) ?>
                     <?php else: ?>
-                        <span  itemprop="identifier" content="sku:<?php echo $_product->getSku(); ?>">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <?php endif; ?>
+
+                        <div class="product-main-info">
+
+                            <p class="product-ids"><?php echo $this->__('SKU# %s', $this->escapeHtml($_product->getSku())); ?></p>
+                            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+
+                            <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+                            <?php echo $this->getChildHtml('alert_urls') ?>
+                            <!-- PRICE SAVINGS FROM PRIOR BUILD -->
+                            <?php if($_product->getTypeId() != 'bundle'): ?>
+                                <?php $_price = $this->helper('tax')->getPrice($_product, $_product->getMsrp()) ?>
+                                <?php if ($_product->getMsrp()): ?>
+                                    <?php $_msrpPrice = $this->helper('core')->currency($_product->getMsrp(),true,true) ?>
+                                    <?php $_realPrice = $_product->getFinalPrice(); ?>
+                                    <?php if ($_realPrice < $_product->getMsrp()): ?>
+                                        <p class="special-price">
+                                            <span class="old-price" id="product-price-<?php echo $_product->getId() ?><?php echo $this->getIdSuffix() ?>"><?php echo $_msrpPrice ?></span>
+                                            <span><?php echo ' Save ' . round(100-(($_realPrice / $_product->getMsrp())*100),0) . '%' ?></span>
+                                        </p>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <?php echo $this->getPriceHtml($_product) ?>
+                            <?php else: ?>
+                                <span  itemprop="identifier" content="sku:<?php echo $_product->getSku(); ?>">
                     <?php echo $this->__('SKU:').'<strong>'.$_product->getSku().'</strong>'; ?>
                     </span>
-                        <?php /* echo $this->getChildHtml('product_type_data') */ ?>
-                    <?php endif;?>
-                    <?php echo ($_product->getCanShowPrice() === false) ? '' : $this->getTierPriceHtml(); ?>
-                    <!-- END PRICE SAVINGS-->
-                    <!-- <hr> -->
+                                <?php echo $this->getChildHtml('product_type_data') ?>
+                            <?php endif;?>
+                            <?php echo ($_product->getCanShowPrice() === false) ? '' : $this->getTierPriceHtml(); ?>
+                            <!-- END PRICE SAVINGS-->
+                            <hr>
 
-                    <?php if ($_product->getShortDescription()):?>
-                        <div class="short-description std">
-                            <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+                            <?php if ($_product->getShortDescription()):?>
+                                <div class="short-description std">
+                                    <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+                                </div>
+                            <?php endif;?>
+
                         </div>
-                    <?php endif;?>
+
+                        <?php echo $this->getChildHtml('extrahint') ?>
+
+                        <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2') ):?>
+                            <div class="options-container-big">
+                                <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                            </div>
+                        <?php endif;?>
+
+                        <hr>
+
+
+                        <?php echo $this->getChildHtml('other');?>
+                    </div>
 
                 </div>
-                <?php if (!$this->hasOptions()):?>
-                    <?php /* if product is not grouped, display cart and wishlist */ ?>
-                    <?php if ($_product->getTypeId() != 'grouped'): ?>
-                        <div class="add-to-box">
-                            <?php if($_product->isSaleable()): ?>
-                                <?php echo $this->getChildHtml('addtocart') ?>
-                                <!-- Includes Bread Plugin -->
-                                <?php echo $this->getChildHtml('extrahint') ?>
 
-                            <?php endif; ?>
-                            <?php echo $this->getChildHtml('addto') ?>
-                        </div>
-                    <?php endif; ?>
+                <div>
+                    <?php
+                    if($_product->getTypeId() == 'grouped') {
+                        echo $this->getChildHtml('product_type_data');
+                    }
+                    ?>
+                </div>
+
+                <?php if (!$this->hasOptions() && !($_product->getTypeId() == 'grouped')):?>
+                    <div class="add-to-box pull-right">
+                        <?php if($_product->isSaleable()): ?>
+                            <?php echo $this->getChildHtml('addtocart') ?>
+                        <?php endif; ?>
+                        <?php echo $this->getChildHtml('addto') ?>
+                    </div>
                 <?php else:?>
                     <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container1') ):?>
                         <div class="options-container-small">
@@ -132,16 +146,6 @@ endif; ?>
                     <?php endif;?>
                 <?php endif; ?>
 
-                <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2') ):?>
-                    <div class="options-container-big">
-                        <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-                    </div>
-                <?php endif;?>
-
-                <hr>
-
-                <?php /* if product is not grouped show the share icons */ ?>
-                <?php if ($_product->getTypeId() != 'grouped'): ?>
                 <div class="row">
                     <div class="col-sm-12">
                         <h6>SHARE</h6>
@@ -168,28 +172,18 @@ endif; ?>
                         <!-- END SHARE -->
                     </div>
                 </div>
-                <?php endif; ?>
 
-                <?php echo $this->getChildHtml('other');?>
-            </div>
+                <div class="clearfix">&nbsp;</div>
+                <!--<div>-->
+                <div class="row">
+                    <div class="col-xs-12">
 
-        </div>
 
-        <?php /* if product is grouped show each child item */ ?>
-        <?php if ($_product->getTypeId() == 'grouped'): ?>
-            <div>
-                <?php echo $this->getChildHtml('product_type_data') ?>
-            </div>
-        <?php endif;?>
 
-        <div class="clearfix">&nbsp;</div>
-        <!--<div>-->
-        <div class="row">
-            <div class="col-xs-12">
-                <?php echo $this->getChildHtml('info_tabs') ?>
-            </div>
-        </div>
-        <div class="clearfix">&nbsp;</div>
+                        <?php echo $this->getChildHtml('info_tabs') ?>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
 
     </form>
     <?php echo $this->getChildHtml('relatedProducts') ?>
