@@ -1,0 +1,563 @@
+<?xml version="1.0"?>
+<!--
+@author Bread   copyright   2016
+@author Joel    @Mediotype
+-->
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <breadcheckout translate="label" module="breadcheckout">
+                    <label>Bread Checkout</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>305</sort_order>
+                    <frontend_class>complex</frontend_class>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>
+                    <![CDATA[
+                        <div class="bread-brand">
+                            <span class="bread-logo"></span>
+                        Bread Payments by <a href="https://www.getbread.com/" target="_blank">getbread.com</a> - <b>Onsite Consumer Financing</b>.
+                        <br/> Developers API reference <a href="http://developers.getbread.com/" target="_blank">Bread Developer API Reference</a>
+                        </div>
+                    ]]>
+                    </comment>
+                    <fields>
+                        <active translate="label">
+                            <label>Enable Bread</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+				        <title translate="label">
+				        	<label>Payment Method Title (what customers will see)</label>
+				               <frontend_type>text</frontend_type>
+				               <sort_order>1</sort_order>
+				               <show_in_default>1</show_in_default>
+				               <show_in_website>1</show_in_website>
+				               <show_in_store>0</show_in_store>
+				               <comment>
+				                   <![CDATA[
+				                       <div>
+				                           <p>The Title for the payment method in checkout.</p>
+				                       </div>
+				                   ]]>
+				               </comment>
+				        </title>
+                        <api_mode translate="label">
+                            <label>Sandbox (Test) Mode</label>
+                             <frontend_type>select</frontend_type>
+                             <source_model>breadcheckout/system_config_source_apiMode</source_model>
+                             <sort_order>2</sort_order>
+                             <show_in_default>1</show_in_default>
+                             <show_in_website>1</show_in_website>
+                             <show_in_store>1</show_in_store>
+                        </api_mode>
+                        <api_public_key translate="label">
+                            <label>Production API Key</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_class>config-advanced</frontend_class>
+                            <validate>validate-length maximum-length-36 validate-length minimum-length-36</validate>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_public_key>
+                        <api_secret_key translate="label">
+                            <label>Production API Secret Key</label>
+                            <frontend_type>obscure</frontend_type>
+                            <frontend_class>config-advanced</frontend_class>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <validate>validate-length maximum-length-36</validate>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_secret_key>
+                       <api_sandbox_public_key translate="label">
+                           <label>Sandbox API Key</label>
+                           <frontend_type>text</frontend_type>
+                           <frontend_class>config-advanced</frontend_class>
+                           <validate>validate-length maximum-length-36 validate-length minimum-length-36</validate>
+                           <sort_order>5</sort_order>
+                           <show_in_default>1</show_in_default>
+                           <show_in_website>1</show_in_website>
+                           <show_in_store>1</show_in_store>
+                       </api_sandbox_public_key>
+                       <api_sandbox_secret_key translate="label">
+                           <label>Sandbox API Secret Key</label>
+                           <frontend_type>obscure</frontend_type>
+				           <frontend_class>config-advanced</frontend_class>
+				           <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+				           <validate>validate-length maximum-length-36</validate>
+				           <sort_order>6</sort_order>
+				           <show_in_default>1</show_in_default>
+				           <show_in_website>1</show_in_website>
+				           <show_in_store>1</show_in_store>
+				       </api_sandbox_secret_key>
+				       <payment_action translate="label">
+				            <label>Payment Action</label>
+				            <frontend_type>select</frontend_type>
+				            <source_model>breadcheckout/system_config_source_paymentAction</source_model>
+				            <sort_order>7</sort_order>
+				            <show_in_default>1</show_in_default>
+				            <show_in_website>1</show_in_website>
+				            <show_in_store>1</show_in_store>
+				       </payment_action>
+                       <bread_advanced type="group" translate="label">
+                           <label>Advanced Settings</label>
+                           <frontend_class>bread-advanced config-advanced</frontend_class>
+                           <frontend_type>text</frontend_type>
+                           <show_in_default>1</show_in_default>
+                           <show_in_website>1</show_in_website>
+                           <show_in_store>1</show_in_store>
+                           <sort_order>20</sort_order>
+                           <fields>
+				               <cart_size_targeted_financing translate="label">
+				                   <label>Enable Targeted Financing based on Cart Size</label>
+				                   <frontend_type>select</frontend_type>
+				                   <sort_order>1</sort_order>
+				                   <source_model>adminhtml/system_config_source_yesno</source_model>
+				                   <show_in_default>1</show_in_default>
+				                   <show_in_website>1</show_in_website>
+				                   <show_in_store>1</show_in_store>
+				                   <comment>Only enable if you have received financing program Ids from your Bread representative</comment>
+				               </cart_size_targeted_financing>
+				               <cart_threshold translate="label">
+				                   <label>Cart Size Threshold</label>
+				                   <comment>Cart Size (USD) over which a targeted financing program will be used</comment>
+				                   <frontend_type>text</frontend_type>
+				                   <sort_order>2</sort_order>
+				                   <show_in_default>1</show_in_default>
+				                   <show_in_website>1</show_in_website>
+				                   <show_in_store>1</show_in_store>
+				                   <frontend_class>validate-number required-entry</frontend_class>
+				                   <depends><cart_size_targeted_financing>1</cart_size_targeted_financing></depends>
+				               </cart_threshold>
+				               <cart_size_financing_program_id translate="label">
+				                   <label>Financing Program Id</label>
+				                   <comment>Financing Program Id provided by Bread</comment>
+				                   <frontend_type>text</frontend_type>
+				                   <sort_order>3</sort_order>
+				                   <show_in_default>1</show_in_default>
+				                   <show_in_website>1</show_in_website>
+				                   <show_in_store>1</show_in_store>
+				                   <frontend_class>required-entry</frontend_class>
+				                   <depends><cart_size_targeted_financing>1</cart_size_targeted_financing></depends>
+				               </cart_size_financing_program_id>
+                               <create_customer_account translate="label">
+                                   <label>Create accounts for new customers</label>
+                                   <frontend_type>select</frontend_type>
+                                   <source_model>adminhtml/system_config_source_yesno</source_model>
+                                   <sort_order>4</sort_order>
+                                   <show_in_default>1</show_in_default>
+                                   <show_in_website>1</show_in_website>
+                                   <show_in_store>1</show_in_store>
+                                   <depends><breadcheckout><active>1</active></breadcheckout></depends>
+                               </create_customer_account>
+                               <log_enabled translate="label">
+                                   <label>Enable extra logging</label>
+                                   <frontend_type>select</frontend_type>
+                                   <sort_order>5</sort_order>
+                                   <source_model>adminhtml/system_config_source_yesno</source_model>
+                                   <show_in_default>1</show_in_default>
+                                   <show_in_website>1</show_in_website>
+                                   <show_in_store>1</show_in_store>
+                               </log_enabled>
+                           </fields>
+                   	  </bread_advanced>
+                      <bread_productdetail type="group" translate="label">
+                        	        <label>Settings: Product Details Page</label>
+                                    <frontend_type>text</frontend_type>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <sort_order>30</sort_order>
+                                    <fields>
+				                        <enabled_on_product_page translate="label">
+				                            <label>Display on Product Details Page</label>
+				                            <frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>0</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <depends><breadcheckout><active>1</active></breadcheckout></depends>
+				                        </enabled_on_product_page>
+				                        <allowcheckoutpdp translate="label">
+				                            <label>Allow Checkout From Bread modal</label>
+				                            <frontend_type>select</frontend_type>
+				                            <sort_order>1</sort_order>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <comment>
+				                                <![CDATA[
+				                                    <div>
+				                                        <p>If set to 'No', users will be unable to checkout via Bread button. If an
+														<strong>addToCart</strong> callback is specified, the user is given the option to add 
+														the product their to cart before returning to your site.</p>
+				                                    </div>
+				                                ]]>
+				                            </comment>
+				                        </allowcheckoutpdp>
+				                        <as_low_as translate="label">
+				                            <label>Display lowest available price per month (to new users)</label>
+				                            <frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>2</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <depends><breadcheckout><active>1</active></breadcheckout></depends>
+				                        </as_low_as>
+				                        <button_on_products translate="label">
+				                            <label>Display as label only</label>
+				                            <frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>3</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                        </button_on_products>
+				                        <display_new_window translate="label">
+											<label>Display in new window (instead of modal)</label>
+											<frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>4</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                        </display_new_window>
+				                        <button_design translate="label">
+				                            <label>Custom CSS</label>
+				                            <frontend_type>textarea</frontend_type>
+				                            <sort_order>5</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <comment>
+				                                <![CDATA[
+				                                    <div>
+				                                        <p>Enter custom CSS in a non-breaking string to overwrite default Bread CSS.</p>
+				                                    </div>
+				                                ]]>
+				                            </comment>
+				                        </button_design>
+										<use_default_button_size translate="label">
+				                            <label>Use default button size</label>
+				                            <frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>6</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <depends><breadcheckout><active>1</active></breadcheckout></depends>
+				                        </use_default_button_size>
+                                    </fields>
+                        </bread_productdetail>
+						<bread_categorypage type="group" translate="label">
+							<label>Settings: Category Pages</label>
+							<frontend_type>text</frontend_type>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<sort_order>38</sort_order>
+							<fields>
+								<enabled_on_category_page translate="label">
+									<label>Display on Category Page</label>
+									<frontend_type>select</frontend_type>
+									<source_model>adminhtml/system_config_source_yesno</source_model>
+									<sort_order>0</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<depends><breadcheckout><active>1</active></breadcheckout></depends>
+								</enabled_on_category_page>
+								<as_low_as translate="label">
+									<label>Display lowest available price per month (to new users)</label>
+									<frontend_type>select</frontend_type>
+									<source_model>adminhtml/system_config_source_yesno</source_model>
+									<sort_order>2</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<depends><breadcheckout><active>1</active></breadcheckout></depends>
+								</as_low_as>
+								<label_only translate="label">
+									<label>Display as label only</label>
+									<frontend_type>select</frontend_type>
+									<source_model>adminhtml/system_config_source_yesno</source_model>
+									<sort_order>3</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+								</label_only>
+								<display_new_window translate="label">
+									<label>Display in new window (instead of modal)</label>
+									<frontend_type>select</frontend_type>
+									<source_model>adminhtml/system_config_source_yesno</source_model>
+									<sort_order>4</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+								</display_new_window>
+								<button_design translate="label">
+									<label>Custom CSS</label>
+									<frontend_type>textarea</frontend_type>
+									<sort_order>5</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<comment>
+										<![CDATA[
+				                                    <div>
+				                                        <p>Enter custom CSS in a non-breaking string to overwrite default Bread CSS.</p>
+				                                    </div>
+				                                ]]>
+									</comment>
+								</button_design>
+								<use_default_button_size translate="label">
+									<label>Use default button size</label>
+									<frontend_type>select</frontend_type>
+									<source_model>adminhtml/system_config_source_yesno</source_model>
+									<sort_order>6</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<depends><breadcheckout><active>1</active></breadcheckout></depends>
+								</use_default_button_size>
+								<categories translate="label">
+									<label>Select Categories</label>
+									<source_model>breadcheckout/system_config_source_categoryTree</source_model>
+									<frontend_type>multiselect</frontend_type>
+									<sort_order>7</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+								</categories>
+							</fields>
+						</bread_categorypage>
+                      <bread_cartpage type="group" translate="label">
+                        	        <label>Settings: Shopping Cart Page</label>
+                                    <frontend_type>text</frontend_type>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <sort_order>40</sort_order>
+                                    <fields>
+				                        <enabled_on_cart_page translate="label">
+				                            <label>Display on Shopping Cart</label>
+				                            <frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>0</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <depends><breadcheckout><active>1</active></breadcheckout></depends>
+				                        </enabled_on_cart_page>
+				                        <allowcheckoutcart translate="label">
+				                            <label>Allow Checkout From Bread Pop Up On Cart Page</label>
+				                            <frontend_type>select</frontend_type>
+				                            <sort_order>1</sort_order>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <comment>
+				                                <![CDATA[
+				                                    <div>
+				                                        <p>If set to 'No', users will be unable to checkout via Bread button and will direct back to your site</p>
+				                                    </div>
+				                                ]]>
+				                            </comment>
+				                        </allowcheckoutcart>
+				                        <as_low_as translate="label">
+				                            <label>Display lowest available price per month (to new users)</label>
+				                            <frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>2</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <depends><breadcheckout><active>1</active></breadcheckout></depends>
+				                        </as_low_as>
+				                        <display_new_window translate="label">
+											<label>Display in new window (instead of modal)</label>
+											<frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>3</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                        </display_new_window>
+										<use_pdp_css translate="label">
+											<label>Use Product Detail Button CSS</label>
+										    <frontend_type>select</frontend_type>
+										    <source_model>adminhtml/system_config_source_yesno</source_model>
+										    <sort_order>4</sort_order>
+										    <show_in_default>1</show_in_default>
+										    <show_in_website>0</show_in_website>
+										    <show_in_store>0</show_in_store>
+										</use_pdp_css>
+				                        <button_design translate="label">
+				                            <label>Custom CSS</label>
+				                            <frontend_type>textarea</frontend_type>
+				                            <depends><use_pdp_css>0</use_pdp_css></depends>
+				                            <sort_order>5</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <comment>
+				                                <![CDATA[
+				                                    <div>
+				                                        <p>Enter custom CSS in a non-breaking string to overwrite default Bread CSS.</p>
+				                                    </div>
+				                                ]]>
+				                            </comment>
+				                        </button_design>
+										<use_default_button_size translate="label">
+				                            <label>Use default button size</label>
+				                            <frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>6</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <depends><breadcheckout><active>1</active></breadcheckout></depends>
+				                        </use_default_button_size>
+                                    </fields>
+                        </bread_cartpage>
+                      <bread_checkout type="group" translate="label">
+                        	        <label>Settings: Payment Method at Checkout</label>
+                                    <frontend_type>text</frontend_type>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <sort_order>50</sort_order>
+                                    <fields>
+				                        <display_as_payment_method translate="label">
+				                            <label>Display as Payment Method on Checkout</label>
+				                            <frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>0</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <depends><breadcheckout><active>1</active></breadcheckout></depends>
+				                        </display_as_payment_method>
+				                        <sort_order translate="label">
+				                            <label>Sort Order</label>
+				                            <comment>The Position In the Payment Method List In Checkout</comment>
+				                            <frontend_type>text</frontend_type>
+				                            <sort_order>2</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>0</show_in_store>
+				                            <frontend_class>validate-number</frontend_class>
+				                        </sort_order>
+				                        <display_new_window translate="label">
+											<label>Display in new window (instead of modal)</label>
+											<frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>3</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                        </display_new_window>
+										<use_pdp_css translate="label">
+											<label>Use Product Detail Button CSS</label>
+										    <frontend_type>select</frontend_type>
+										    <source_model>adminhtml/system_config_source_yesno</source_model>
+										    <sort_order>4</sort_order>
+										    <show_in_default>1</show_in_default>
+										    <show_in_website>1</show_in_website>
+										    <show_in_store>1</show_in_store>
+										</use_pdp_css>
+				                        <button_design translate="label">
+				                            <label>Custom CSS</label>
+				                            <frontend_type>textarea</frontend_type>
+				                            <depends><use_pdp_css>0</use_pdp_css></depends>
+				                            <sort_order>5</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <comment>
+				                                <![CDATA[
+				                                    <div>
+				                                        <p>Enter custom CSS in a non-breaking string to overwrite default Bread CSS.</p>
+				                                    </div>
+				                                ]]>
+				                            </comment>
+				                        </button_design>
+										<use_default_button_size translate="label">
+				                            <label>Use default button size</label>
+				                            <frontend_type>select</frontend_type>
+				                            <source_model>adminhtml/system_config_source_yesno</source_model>
+				                            <sort_order>6</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <depends><breadcheckout><active>1</active></breadcheckout></depends>
+				                        </use_default_button_size>
+				                        <incomplete_checkout_message translate="label">
+				                            <label>Incomplete Bread Checkout error</label>
+				                            <frontend_type>textarea</frontend_type>
+				                            <sort_order>7</sort_order>
+				                            <show_in_default>1</show_in_default>
+				                            <show_in_website>1</show_in_website>
+				                            <show_in_store>1</show_in_store>
+				                            <comment>
+				                                <![CDATA[
+				                                    <div>
+				                                        <p>This message is displayed if a customer selects Bread as the payment method, but didn't complete the Bread checkout yet.</p>
+				                                    </div>
+				                                ]]>
+				                            </comment>
+				                        </incomplete_checkout_message>
+									</fields>
+                        </bread_checkout>
+                        <healthcare_mode translate="label">
+                            <label>Healthcare mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[
+                                    <div>
+                                        <p>If yes, no item information nor customer addresses will be sent to bread. Also, checkout from product and cart pages will be disabled.</p>
+                                    </div>
+                                ]]>
+                            </comment>
+                        </healthcare_mode>
+                        <skip_review_step translate="label">
+                            <label>Skip Checkout Review Step</label>
+                            <comment>
+                                <![CDATA[
+                                    <div>
+                                        <p>If yes, the customer will be redirected to a confirmation page at the end of the Bread flow when paying with Bread at checkout. If no, the customer will simply be advanced to the review step like normal.</p>
+                                    </div>
+                                ]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </skip_review_step>
+                    </fields>
+                </breadcheckout>
+            </groups>
+        </payment>
+    </sections>
+</config>

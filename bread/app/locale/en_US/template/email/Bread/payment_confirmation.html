@@ -1,0 +1,20 @@
+<!--@subject {{var subject}}@-->
+
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0" align="center" style="background-color: #FAFAFA; width: 100%;">
+    <tr>
+        <td class="action-content">
+            <h3 style="font-weight: 400; font-family:'Open Sans', sans-serif; ">{{var firstName}},</h3>
+            <h3 style="font-weight: 400; font-family:'Open Sans', sans-serif; ">Thanks for shopping at {{var store.FrontendName}}, we've created a cart for you. To complete your order with financing, please use this personalized link:<br />
+                <a href="{{var url}}">{{var url}}</a> </h3>
+            <h3 style="font-weight: 400; font-family:'Open Sans', sans-serif; "> Your cart includes: </h3>
+
+            {{block type='core/template' area='frontend' template='breadcheckout/bread_customer_cart_items.phtml' items=$items}}<br/>
+
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}

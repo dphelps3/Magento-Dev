@@ -1,0 +1,31 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: astayart
+ * Date: 7/18/15
+ * Time: 4:09 PM
+ */
+
+/** @var Hawksearch_Proxy_Block_System_Config_Route_Js $this */
+$store = Mage::app()->getStore();
+?>
+<script type="text/javascript">
+    //<![CDATA[
+    Validation.add('validate-route-ajax', 'Route string is not valid', function(v){
+        var status = false;
+        new Ajax.Request('<?php echo $this->getValidateUrl() ?>', {
+			asynchronous: false,
+			parameters: {routeString: v, store: "<?php echo $this->getStore() ?>"},
+			onSuccess: function(t) {
+                var res = t.responseText.evalJSON();
+                status = res.valid;
+            },
+            onFailure: function(t) {
+                alert('Unable to validate cron string, please refresh page and try again.');
+                status = false;
+            }
+		});
+		return status;
+	});
+	//]]>
+</script>

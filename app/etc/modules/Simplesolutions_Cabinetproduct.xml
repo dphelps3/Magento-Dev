@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Simplesolutions_Cabinetproduct>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Simplesolutions_Cabinetproduct>
+    </modules>
+</config>

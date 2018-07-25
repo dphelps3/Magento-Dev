@@ -1,0 +1,159 @@
+<?php /* @var $this Bread_BreadCheckout_Block_Payment_Form */ ?>
+
+<ul class="form-list" id="payment_form_<?php echo $this->getMethodCode(); ?>" style="display:none">
+    <input id="bread_transaction_id" name="bread_transaction_id" type="hidden" value="<?php echo $this->getBreadTransactionId(); ?>" class="validate-bread"/>
+</ul>
+
+<?php echo $this->getBeforeHtml(); ?>
+<script type="text/javascript">
+
+    Validation.add('validate-bread','<?php echo $this->escapeHtml($this->getIncompleteCheckoutMessage()); ?>', function(bread_transaction_id)
+    {
+        var passed = false;
+        if(Validation.get('IsEmpty').test(bread_transaction_id)){
+            document.checkoutWithBread();
+        }else {
+            new Ajax.Request('<?php echo $this->getValidationUrl() ?>', {
+                parameters: {bread_transaction_id:bread_transaction_id},
+                method: 'post',
+                asynchronous: false,
+                onComplete: function (transport) {
+                    var response = transport.responseText.evalJSON();
+                    if (response.valid) {
+                        passed = true;
+                    }else{
+                        window.location = window.location;
+                    }
+                }
+            });
+        }
+        return passed;
+    });
+
+    document.checkoutWithBread = function(){
+        var breadConfig = {
+            buttonId       : 'bread-checkout-btn',
+            <?php if(!$this->helper('breadcheckout')->isHealthcare()) : ?>
+            items          : <?php echo $this->getItemsData(); ?>,
+            <?php endif; ?>
+            discounts      : <?php echo $this->getDiscountDataJson();?>,
+            shippingOptions: <?php echo $this->getShippingOptions(); ?>,
+            customTotal    : <?php echo $this->getGrandTotal(); ?>,
+            actAsLabel     : false,
+            asLowAs        : <?php echo $this->getAsLowAs(); ?>,
+            showInWindow   : <?php echo $this->getShowInWindow()?>,
+            <?php if(!$this->helper('breadcheckout')->isHealthcare()) : ?>
+            shippingContact: <?php echo $this->getShippingAddressData(); ?>,
+            billingContact : <?php echo $this->getBillingAddressData(); ?>,
+            <?php endif; ?>
+            buttonLocation      : '<?php echo $this->helper('breadcheckout')->getCheckoutLocation(); ?>',
+            done           : function (err, tx_token) {
+                if (tx_token !== undefined) {
+                    new Ajax.Request('<?php echo $this->getPaymentUrl() ?>', {
+                        parameters:     {token: tx_token},
+                        onSuccess:      function (transport) {
+                            try {
+                                if (transport.responseText.isJSON()) {
+                                    var response = transport.responseText.evalJSON()
+                                    if (response.error) {
+                                        alert(response.message);
+                                    } else {
+                                        $('bread_transaction_id').value = tx_token;
+                                        <?php if (count(Mage::getBlockSingleton('checkout/agreements')->getAgreements())==0):?>
+                                            if(!$('payment-buttons-container')){
+                                                payment.save = function(){
+                                                    if (checkout.loadWaiting!=false) return;
+                                                    var validator = new Validation(this.form);
+                                                    if (this.validate() && validator.validate()) {
+                                                        var request = new Ajax.Request(
+                                                            this.saveUrl,
+                                                            {
+                                                                method:'post',
+                                                                onComplete: this.onComplete,
+                                                                onSuccess: this.onSave,
+                                                                onFailure: checkout.ajaxFailure.bind(checkout),
+                                                                parameters: Form.serialize(this.form)
+                                                            }
+                                                        );
+                                                    }
+                                                }
+                                                payment.onSave = function(){
+                                                    checkout.setLoadWaiting(false);
+                                                    var review     = new Review('<?php echo $this->getUrl('checkout/onepage/saveOrder', [ 'form_key' => Mage::getSingleton('core/session')->getFormKey() ]) ?>', '<?php echo $this->getUrl('checkout/onepage/success') ?>', $('checkout-agreements'));
+                                                    review.save = function () {
+                                                        var params = Form.serialize(payment.form);
+                                                        params.save = true;
+                                                        var request = new Ajax.Request(
+                                                            this.saveUrl,
+                                                            {
+                                                                method    : 'post',
+                                                                parameters: params,
+                                                                onComplete: this.onComplete,
+                                                                onSuccess : this.onSave,
+                                                                onFailure : checkout.ajaxFailure.bind(checkout)
+                                                            }
+                                                        );
+                                                    };
+                                                    review.save();
+                                                };
+                                            }else{
+                                                payment.onSave = function(){
+                                                        checkout.setLoadWaiting(false);
+                                                        <?php if(!$this->getSkipReview()):?>
+                                                        checkout.setPayment();
+                                                        checkout.reloadReviewBlock();
+                                                        checkout.changeSection('review');
+                                                        window.review     = new Review('<?php echo $this->getUrl('checkout/onepage/saveOrder', [ 'form_key' => Mage::getSingleton('core/session')->getFormKey() ]) ?>', '<?php echo $this->getUrl('checkout/onepage/success') ?>', $('checkout-agreements'));
+                                                        <?php else: ?>
+                                                        var review     = new Review('<?php echo $this->getUrl('checkout/onepage/saveOrder', [ 'form_key' => Mage::getSingleton('core/session')->getFormKey() ]) ?>', '<?php echo $this->getUrl('checkout/onepage/success') ?>', $('checkout-agreements'));
+                                                        review.save = function () {
+                                                            var params = Form.serialize(payment.form);
+                                                            params.save = true;
+                                                            var request = new Ajax.Request(
+                                                                this.saveUrl,
+                                                                {
+                                                                    method    : 'post',
+                                                                    parameters: params,
+                                                                    onComplete: this.onComplete,
+                                                                    onSuccess : this.onSave,
+                                                                    onFailure : checkout.ajaxFailure.bind(checkout)
+                                                                }
+                                                            );
+                                                        };
+                                                        review.save();
+                                                        <?php endif; ?>
+                                                };
+                                            }
+                                        <?php endif;?>
+                                        payment.save();
+                                    }
+                                }
+                            }
+                            catch (e) {
+                                console.log(e);
+                            }
+                        }
+                    });
+                }
+            }
+        };
+        var taxValue = parseInt(<?php echo $this->getTaxValue(); ?>);
+        if (taxValue >= 0) {
+            breadConfig.tax = taxValue;
+        }
+
+        <?php $buttonDesign     = $this->getButtonDesign();
+            if(!empty($buttonDesign)): ?>
+            breadConfig.customCSS = '<?php echo $buttonDesign; ?>';
+        <?php endif; ?>
+
+        <?php if ($this->isCartSizeTargetedFinancing()): ?>
+        var cartSizeFinancingId = '<?php echo $this->getCartSizeFinancingId() ?>';
+        var cartSizeThreshold = '<?php echo $this->getCartSizeThreshold(); ?>';
+        var items = <?php echo $this->getItemsData(); ?>;
+        var itemsPriceSum = items.reduce(function(sum, item) {return sum + item.price * item.quantity}, 0) / 100;
+        breadConfig.financingProgramId = (itemsPriceSum >= cartSizeThreshold) ? cartSizeFinancingId : 'null';
+        <?php endif; ?>
+        bread.showCheckout(breadConfig);
+    };
+</script>

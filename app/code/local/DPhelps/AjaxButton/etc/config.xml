@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<config>
+    <modules>
+        <DPhelps_AjaxButton>
+            <version>0.0.0.1</version>
+        </DPhelps_AjaxButton>
+    </modules>
+    <global>
+        <models>
+            <dphelpsajaxbutton>
+                <class>DPhelps_AjaxButton_Model</class>
+            </dphelpsajaxbutton>
+        </models>
+        <helpers>
+            <dphelpsajaxbutton>
+                <class>DPhelps_AjaxButton_Helper</class>
+            </dphelpsajaxbutton>
+        </helpers>
+        <blocks>
+            <dphelpsajaxbutton>
+                <class>DPhelps_AjaxButton_Block</class>
+            </dphelpsajaxbutton>
+        </blocks>
+    </global>
+    <frontend>
+        <routers>
+            <dphelpsajaxbutton>
+                <use>standard</use>
+                <args>
+                    <module>DPhelps_AjaxButton</module>
+                    <frontName>dphelpsajaxbutton</frontName>
+                </args>
+            </dphelpsajaxbutton>
+        </routers>
+        <layout>
+            <updates>
+                <dphelpsajaxbutton>
+                    <file>dphelps/ajaxbutton.xml</file>
+                </dphelpsajaxbutton>
+            </updates>
+        </layout>
+    </frontend>
+</config>

@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2013 Hawksearch (www.hawksearch.com) - All Rights Reserved
+ *
+ * THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+ * KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+ * PARTICULAR PURPOSE.
+ */
+-->
+<config>
+    <tabs>
+        <hawksearch translate="label" module="hawksearch_proxy">
+            <label>HawkSearch</label>
+            <sort_order>200</sort_order>
+        </hawksearch>
+    </tabs>
+    <sections>
+        <hawksearch_proxy translate="label" module="hawksearch_proxy">
+            <label>HawkProxy Settings</label>
+            <tab>hawksearch</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>103</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="hawksearch_proxy">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <backend_model>hawksearch_proxy/system_config_enable</backend_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <logging_enabled>
+                            <label>Enable logging</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </logging_enabled>
+                        <version translate="label">
+                            <label>Version</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>hawksearch_proxy/system_config_form_field_version</frontend_model>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </version>
+
+                    </fields>
+                </general>
+                <proxy translate="label" module="hawksearch_proxy">
+                    <label>Proxy Module Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <engine_name>
+                            <label>Engine Name</label>
+                            <comment>Contact your Hawksearch sales rep for this value.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </engine_name>
+                        <hawksearch_api_key>
+                            <label>Hawksearch API Key</label>
+                            <comment>Contact your Hawksearch sales rep for this value.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>101</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hawksearch_api_key>
+                        <order_tracking_key>
+                            <label>Order Tracking key</label>
+                            <comment>Contact your Hawksearch sales rep for this value</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>102</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_tracking_key>
+                        <mode>
+                            <label>Run Mode</label>
+                            <sort_order>103</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hawksearch_proxy/system_config_source_mode</source_model>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mode>
+                        <tracking_url_staging>
+                            <label>Hawksearch tracking URL (Development)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>104</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </tracking_url_staging>
+                        <tracking_url_live>
+                            <label>Hawksearch tracking URL (Production)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>105</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </tracking_url_live>
+                        <manage_categories>
+                            <label>Manage Categories</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>106</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </manage_categories>
+                        <manage_all>
+                            <label>Manage all categories</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>All categories in current store, or only those marked as hawk managed</comment>
+                            <sort_order>107</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <manage_categories>1</manage_categories>
+                            </depends>
+                        </manage_all>
+                        <manage_search>
+                            <label>Manage Search</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>108</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </manage_search>
+                        <search_box_ids>
+                            <label>Search Box HTML ID's</label>
+                            <comment>Comma separated list of HTML ID's of search boxes to attach to HawkSearch</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>109</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><manage_search>1</manage_search></depends>
+                        </search_box_ids>
+                        <enable_custom_search_route>
+                            <label>Add custom URL route for search</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><manage_search>1</manage_search></depends>
+                        </enable_custom_search_route>
+                        <custom_search_route>
+                            <label>Custom search route</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>hawksearch_proxy/system_config_route</frontend_model>
+                            <backend_model>hawksearch_proxy/system_config_route</backend_model>
+                            <comment>Route must not be used by another module or contain a directory separator '/'</comment>
+                            <validate>validate-route-ajax</validate>
+                            <sort_order>111</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable_custom_search_route>1</enable_custom_search_route>
+                                <manage_search>1</manage_search>
+                            </depends>
+                        </custom_search_route>
+                        <custom_search_use_suffix>
+                            <label>Use Category URL Suffix</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>112</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable_custom_search_route>1</enable_custom_search_route>
+                                <manage_search>1</manage_search>
+                            </depends>
+                        </custom_search_use_suffix>
+                        <custom_landing_page_layout>
+                            <label>Page Layout for Custom Landing Pages</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hawksearch_proxy/system_config_layout</source_model>
+                            <sort_order>113</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </custom_landing_page_layout>
+                        <autosuggest_params>
+                            <label>Auto Suggest Params</label>
+                            <sort_order>114</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Default value is '/?fn=ajax&f=GetSuggestions']]></comment>
+                        </autosuggest_params>
+                        <hidden_div>
+                            <label>Hidden Div Name</label>
+                            <sort_order>115</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Default value is blank]]></comment>
+                        </hidden_div>
+                        <api_version_number>
+                            <label>API Version Number</label>
+                            <sort_order>116</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter the integer value only</comment>
+                            <valdate>validate-digits</valdate>
+                        </api_version_number>
+                        <landingpage_cache_life>
+                            <label>Cache in seconds</label>
+                            <sort_order>117</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <valdate>validate-digits</valdate>
+                            <comment>Number of seconds to remember the managed landing pages</comment>
+                        </landingpage_cache_life>
+                    </fields>
+                </proxy>
+                <sync translate="label" module="hawksearch_proxy">
+                    <label>Synchronization Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <sync_now translate="label">
+                            <label>Synchronize</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>hawksearch_proxy/system_config_sync</frontend_model>
+                            <comment>Manually Synchronize Categories.</comment>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sync_now>
+                        <enabled translate="label">
+                            <label>Enable cron sync</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <cron_string translate="label">
+                            <label>Cron expression</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>hawksearch_proxy/system_config_backend_cron</backend_model>
+                            <comment>Integer and modular values only, named values and lists not allowed</comment>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends>
+                        </cron_string>
+                        <email translate="label">
+                            <label>Cron email</label>
+                            <comment>When cron runs, email to send notification to.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends>
+                        </email>
+                    </fields>
+                </sync>
+            </groups>
+        </hawksearch_proxy>
+    </sections>
+</config>

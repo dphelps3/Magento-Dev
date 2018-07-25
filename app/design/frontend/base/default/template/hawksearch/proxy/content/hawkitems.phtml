@@ -1,0 +1,32 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: magentouser
+ * Date: 8/4/14
+ * Time: 11:25 AM
+ */
+/** @var $this Mage_Core_Block_Template */
+$hawkBanner = Mage::getSingleton('hawksearch_proxy/banner');
+?>
+<?php
+if($this->getCustomTitle()) {
+    echo sprintf('<div class="page-title category-title">%s</div>', $this->getCustomTitle());
+}
+
+?>
+<div id="hawkbannertop" class="bannerTop">
+    <?php echo $hawkBanner->getFeaturedTop() ?>
+	<?php echo $hawkBanner->getBannerTop() ?></div>
+<div id="hawkitemlist">
+	<?php echo $this->getItemList(); ?></div>
+<div id="hawkbannerbottom" class="bannerBottom">
+    <?php echo $hawkBanner->getFeaturedBottom() ?>
+	<?php echo $hawkBanner->getBannerBottom() ?></div>
+<div id="hawkbannerbottom2" class="bannerBottom">
+	<?php echo $hawkBanner->getBannerBottom2() ?>
+    <?php echo $hawkBanner->getFeaturedBottom2() ?>
+</div>
+<script type="text/javascript">
+    var hawkTrackingData = <?php echo Mage::helper('hawksearch_proxy')->getProductTrackingJson(); ?>;
+
+</script>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <bread_checkout translate="title" module="breadcheckout">
+                        <title>Bread Checkout</title>
+                    </bread_checkout>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

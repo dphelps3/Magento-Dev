@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Hawksearch_Proxy>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Hawksearch_Proxy>
+        <depends>
+            <Mage_Catalog />
+        </depends>
+    </modules>
+</config>

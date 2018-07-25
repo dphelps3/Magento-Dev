@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright (c) 2013 Hawksearch (www.hawksearch.com) - All Rights Reserved
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ * IN THE SOFTWARE.
+ */
+?>
+<script type="text/javascript">
+	//<![CDATA[
+
+	var hawkSearchTimestamp = {
+		isInit : false,
+		buttonId : null,
+		init : function() {
+			this.url = '<?php echo $this->getClearUrl() ?>';
+			this.buttonId = '<?php echo $this->getButtonId()?>';
+			this.displayId = "hawksearch_display_msg";
+			this.isInit = true;
+		},
+		clear : function() {
+			var r = confirm("Clearing the timestamp will cause the next feed generation to produce a full result set. Are you sure you want to continue?");
+			if(r != true) {
+				return;
+			}
+			if (!this.isInit) {
+				this.init();
+			}
+			new Ajax.Request(this.url, {
+				onSuccess: function(transport) {
+					var response = transport.responseText.evalJSON();
+					this.displayResults(response);
+				}.bind(this)
+			});
+		},
+		displayResults : function(response) {
+			if(response.error) {
+				alert(response.error);
+				return;
+			}
+			var lastGen = $('hawksearch_lastgen_time');
+			lastGen.innerHTML = response.lastGen;
+			$(this.buttonId).disabled = true;
+			$(this.buttonId).addClassName("disabled");
+		}
+	}
+
+	//]]>
+</script>

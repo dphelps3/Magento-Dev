@@ -1,0 +1,271 @@
+<?php /* @var $this Bread_BreadCheckout_Block_Payment_Form */ ?>
+
+<?php echo $this->getLayout()->createBlock('breadcheckout/js')->toHtml(); ?>
+
+<ul class="form-list" id="payment_form_<?php echo $this->getMethodCode() ?>" style="display:none;" >
+    <span class="bread-title">
+        <span><strong><?php echo $this->__('Bread Checkout'); ?></strong> - use this if the customer is present.</span>
+    </span>
+    <div class="bread-clearer"></div>
+    <div  id='bread-checkout-btn' title="Bread Checkout" class="button" data-bread-default-size="true" >
+        <span>
+            <span>Bread Checkout | You may need to refresh the page if the button does not appear.</span>
+        </span>
+    </div>
+    <input id="bread_transaction_id" name="bread_transaction_id" type="hidden" value="<?php echo $this->getBreadTransactionId(); ?>" class="validate-bread"/>
+    <div class="bread-clearer" style="height: 15px;"></div>
+    <span class="bread-title">
+        <span><strong><?php echo $this->__('Bread Carts'); ?></strong> - use this to send the customer a link to a pre-filled Bread Cart.</span>
+    </span>
+    <div>
+        <span>
+            <div class="bread-create-cart">
+                <input type="button" class="form-button" value="<?php echo $this->__("Create Cart"); ?>" onclick="document.submitPayOverTime()"/>
+            </div>
+        </span>
+    </div>
+    <div class="bread-clearer"></div>
+    <div class="bread-messages">
+        <ul class="messages">
+            <li class="success-msg" style="display: none;">
+                <ul id="bread-checkout-success-message">
+                </ul>
+            </li>
+            <li class="error-msg" style="display: none;">
+                <ul id="bread-checkout-error-message">
+                </ul>
+            </li>
+        </ul>
+    </div>
+</ul>
+
+<script type="text/javascript">
+
+    Validation.add('validate-bread','<?php echo $this->escapeHtml($this->getIncompleteCheckoutMessage());?>',function(v){
+        return !Validation.get('IsEmpty').test(v);
+    });
+
+    document.submitPayOverTime = function() {
+        $("bread_transaction_id").removeClassName("validate-bread");
+        var validator = new Validation($(editForm.formId));
+        if (!validator.validate()) {
+            alert("<?php echo $this->__("Please fill out all required fields in order to proceed.");?>");
+            return false;
+        }
+        $("bread_transaction_id").addClassName("validate-bread");
+
+        $$(".bread-messages .messages .success-msg")[0].hide();
+        $$(".bread-messages .messages .error-msg")[0].hide();
+
+        $("loading-mask").show();
+
+        new Ajax.Request('<?php echo $this->getContextUrl($this->helper('breadcheckout')->getAdminCartCreatePath()); ?>', {
+            method: 'post',
+            onSuccess: function(response) {
+                link = response.responseJSON.confirmation_link;
+                if (!response.responseJSON.error) {
+                    $("bread-checkout-success-message").update();
+                    $$(".bread-messages .messages .success-msg")[0].show();
+
+                    response.responseJSON.successRows.each(function(message) {
+                        $("bread-checkout-success-message").insert('<li><span>' + message + '</span></li>');
+                    });
+                    $$("#bread-checkout-success-message")[0].insert('<li class="bread-send-mail"><a style="cursor: pointer;">Send link to customer via Magento email</a></li>');
+                    $$(".bread-send-mail")[0].stopObserving("click");
+                    $$(".bread-send-mail")[0].observe("click", function(e) {
+                        $("loading-mask").show();
+                        new Ajax.Request('<?php echo $this->getContextUrl($this->helper('breadcheckout')->getAdminSendEmailPath()); ?>', {
+                            method: 'post',
+                            parameters: {
+                                form_key: window.FORM_KEY,
+                                url: response.responseJSON.cartUrl
+                            },
+                            onSuccess: function(data) {
+                                if (!data.responseJSON.error) {
+                                    $$(".bread-messages .messages .success-msg")[0].show();
+
+                                    data.responseJSON.successRows.each(function(message) {
+                                        $$("#bread-checkout-success-message")[0].insert('<li><span>' + message + '</span></li>');
+                                    });
+                                    $$(".bread-send-mail")[0].remove();
+                                } else {
+                                    $$(".bread-messages .messages .error-msg")[0].show();
+                                    $("bread-checkout-error-message").update();
+
+                                    data.responseJSON.errorRows.each(function(message) {
+                                        $("bread-checkout-error-message").insert('<li><span>' + message + '</span></li>');
+                                    });
+                                }
+                                $("loading-mask").hide();
+                            }
+                        });
+                    });
+                    // Send Bread Email
+                    $$("#bread-checkout-success-message")[0].insert('<li class="bread-send-bread-email"><a style="cursor: pointer;">Email link to customer via Bread email</a></li>');
+                    $$(".bread-send-bread-email")[0].stopObserving("click");
+                    $$(".bread-send-bread-email")[0].observe("click", function(e) {
+                        $("loading-mask").show();
+                        new Ajax.Request('<?php echo $this->getContextUrl($this->helper('breadcheckout')->getAdminSendBreadEmailPath()); ?>', {
+                            method: 'post',
+                            parameters: {
+                                form_key: window.FORM_KEY,
+                                id: response.responseJSON.cartId
+                            },
+                            onSuccess: function(data) {
+                                if (!data.responseJSON.error) {
+                                    $$(".bread-messages .messages .success-msg")[0].show();
+
+                                    data.responseJSON.successRows.each(function(message) {
+                                        $$("#bread-checkout-success-message")[0].insert('<li><span>' + message + '</span></li>');
+                                    });
+                                    $$(".bread-send-bread-email")[0].remove();
+                                } else {
+                                    $$(".bread-messages .messages .error-msg")[0].show();
+                                    $("bread-checkout-error-message").update();
+
+                                    data.responseJSON.errorRows.each(function(message) {
+                                        $("bread-checkout-error-message").insert('<li><span>' + message + '</span></li>');
+                                    });
+                                }
+                                $("loading-mask").hide();
+                            }
+                        });
+                    });
+                    // Send SMS
+                    $$("#bread-checkout-success-message")[0].insert('<li class="bread-send-sms"><a style="cursor: pointer;">Send link via Bread SMS (text)</a></li>');
+                    $$(".bread-send-sms")[0].stopObserving("click");
+                    $$(".bread-send-sms")[0].observe("click", function(e) {
+                        $("loading-mask").show();
+                        new Ajax.Request('<?php echo $this->getContextUrl($this->helper('breadcheckout')->getAdminSendSmsPath()); ?>', {
+                            method: 'post',
+                            parameters: {
+                                form_key: window.FORM_KEY,
+                                id: response.responseJSON.cartId
+                            },
+                            onSuccess: function(data) {
+                                if (!data.responseJSON.error) {
+                                    $$(".bread-messages .messages .success-msg")[0].show();
+
+                                    data.responseJSON.successRows.each(function(message) {
+                                        $$("#bread-checkout-success-message")[0].insert('<li><span>' + message + '</span></li>');
+                                    });
+                                    $$(".bread-send-sms")[0].remove();
+                                } else {
+                                    $$(".bread-messages .messages .error-msg")[0].show();
+                                    $("bread-checkout-error-message").update();
+
+                                    data.responseJSON.errorRows.each(function(message) {
+                                        $("bread-checkout-error-message").insert('<li><span>' + message + '</span></li>');
+                                    });
+                                }
+                                $("loading-mask").hide();
+                            }
+                        });
+                    });
+
+
+
+                    var clicked = false;
+                    $$(".form-buttons .scalable.add")[0].observe("click", function(e) {
+                        if (!clicked) {
+                            clicked = true;
+                            if ($("p_method_<?php echo $this->getMethodCode() ?>").checked) {
+                                alert("<?php echo $this->__("If you update the order you will have to generate a new Bread Cart.");?>");
+                            }
+                        }
+                    });
+                } else {
+                    $("bread-checkout-error-message").update();
+
+                    $$(".bread-messages .messages .error-msg")[0].show();
+
+                    response.responseJSON.errorRows.each(function(message) {
+                        $("bread-checkout-error-message").insert('<li><span>' + message + '</span></li>');
+                    });
+                }
+                $("loading-mask").hide();
+            }
+        });
+    }
+
+    document.configureButton = function() {
+
+        var breadConfig = {
+            buttonId            : 'bread-checkout-btn',
+            <?php if(!$this->helper('breadcheckout')->isHealthcare()) : ?>
+            items               : <?php echo $this->getItemsData(); ?>,
+            <?php endif; ?>
+            discounts           : <?php echo $this->getDiscountDataJson(); ?>,
+            shippingOptions     : <?php echo $this->getShippingOptions(); ?>,
+            customTotal         : <?php echo $this->getGrandTotal(); ?>,
+            actAsLabel          : false,
+            <?php if(!$this->helper('breadcheckout')->isHealthcare()) : ?>
+            shippingContact     : <?php echo $this->getShippingAddressData(); ?>,
+            billingContact      : <?php echo $this->getBillingAddressData(); ?>,
+            <?php endif; ?>
+            buttonLocation      : '<?php echo $this->helper('breadcheckout')->getOtherLocation(); ?>',
+            done                : function (err, tx_token) {
+                console.log(err);
+                if (tx_token !== undefined) {
+                    new Ajax.Request('<?php echo $this->getContextUrl($this->helper('breadcheckout')->getAdminFormUrlPath()); ?>', {
+                        parameters  : {token: tx_token},
+                        method      : 'get',
+                        onSuccess   : function (transport) {
+                            try {
+                                if (transport.responseText.isJSON()) {
+                                    var response = transport.responseText.evalJSON()
+                                    if (response.error) {
+                                        alert(response.message);
+                                    } else {
+                                        $('bread_transaction_id').value = tx_token;
+                                        if ($("bread-success-message")) $("bread-success-message").remove();
+                                        $$("#bread-checkout-btn").first().insert({ after: '<div id="bread-success-message">Financing Application Successful.<br/><span>Please click "Submit Order" to complete.</span></div>' });
+                                        $("bread-checkout-btn").hide();
+                                        $$('.bread-title, .bread-create-cart').each(
+                                            function (e) {
+                                                e.setStyle({display: 'none'});
+                                            }
+                                        );
+                                    }
+                                }
+                            } catch (e) {
+                                console.log(e);
+                            }
+                        }
+                    });
+                }
+            }
+        };
+
+        var taxValue = parseInt(<?php echo $this->getTaxValue(); ?>);
+        if (taxValue >= 0) {
+            breadConfig.tax = taxValue;
+        }
+
+        <?php $buttonDesign = $this->getButtonDesign(); if(!empty($buttonDesign)): ?>
+        breadConfig.customCSS = '<?php echo $this->getButtonDesign(); ?>';
+        <?php endif; ?>
+
+        <?php if ($this->isCartSizeTargetedFinancing()): ?>
+        var cartSizeFinancingId = '<?php echo $this->getCartSizeFinancingId() ?>';
+        var cartSizeThreshold = '<?php echo $this->getCartSizeThreshold(); ?>';
+        var items = <?php echo $this->getItemsData(); ?>;
+        var itemsPriceSum = items.reduce(function(sum, item) {return sum + item.price * item.quantity}, 0) / 100;
+        breadConfig.financingProgramId = (itemsPriceSum >= cartSizeThreshold) ? cartSizeFinancingId : 'null';
+        <?php endif; ?>
+
+        bread.checkout(breadConfig);
+    };
+
+    if (typeof bread != 'undefined'){
+        document.configureButton();
+    }
+    $$("#p_method_breadcheckout")[0].observe("click", function(e) {
+        document.configureButton();
+    });
+
+    Event.observe(window, "load", function(){
+        document.configureButton();
+    });
+
+</script>

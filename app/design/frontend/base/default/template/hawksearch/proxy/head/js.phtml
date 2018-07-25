@@ -1,0 +1,36 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: magentouser
+ * Date: 8/1/14
+ * Time: 10:56 AM
+ */
+/** @var Hawksearch_Proxy_Helper_Data $helper */
+$helper = Mage::helper('hawksearch_proxy/data');
+?>
+<!-- Hawk Search Header Includes -->
+<script type="text/javascript">
+	//<![CDATA[
+	(function (HawkSearch) {
+		HawkSearch.BaseUrl = '<?php echo $helper->getProxyBaseUrl(); ?>';
+		HawkSearch.TrackingUrl = '<?php echo $helper->getTrackingUrl(); ?>';
+		if ('https:' == document.location.protocol) {
+			HawkSearch.BaseUrl = HawkSearch.BaseUrl.replace('http://', 'https://');
+			HawkSearch.TrackingUrl = HawkSearch.TrackingUrl.replace('http://', 'https://');
+		}
+	}(window.HawkSearch = window.HawkSearch || {}));
+	document.write(unescape("%3Clink rel='stylesheet' type='text/css' href='" + HawkSearch.TrackingUrl + "/includes/hawksearch.css'%3E%3C/link%3E"));
+	document.write(unescape("%3Cscript src='" + HawkSearch.TrackingUrl + "/includes/hawksearch.js' type='text/javascript'%3E%3C/script%3E"));
+
+    if('Varien' in window && 'searchForm' in Varien) {
+        Varien.searchForm.prototype = {
+            initialize: function (form, field, emptyText) {
+                return undefined;
+            },
+            initAutocomplete: function (url, dest) {
+                return undefined;
+            }
+        };
+    }
+    //]]>
+</script>

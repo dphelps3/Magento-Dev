@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <block type="core/template" name="hawksearch.proxy.head.js"
+               template="hawksearch/proxy/head/js.phtml"/>
+        <block type="core/template" name="hawksearch.proxy.footer.js"
+               template="hawksearch/proxy/footer.js.phtml"/>
+
+        <reference name="head">
+            <action method="append" ifconfig="hawksearch_proxy/general/enabled">
+                <block>hawksearch.proxy.head.js</block>
+            </action>
+        </reference>
+        <reference name="before_body_end">
+            <action method="append" ifconfig="hawksearch_proxy/general/enabled">
+                <block>hawksearch.proxy.footer.js</block>
+            </action>
+        </reference>
+        <!--<remove name="top.search" />-->
+        <!--<reference name="header">-->
+            <!--<block type="core/template" name="hawksearch.form.mini" as="topSearch"-->
+                   <!--template="hawksearch/proxy/form.mini.phtml"/>-->
+        <!--</reference>-->
+
+    </default>
+    <hawkproxy_index_index>
+        <block type="core/template" name="root" template="hawksearch/proxy/proxy.phtml">
+            <block type="hawksearch_proxy/html" name="hawksearch.proxy.items.html" as="resulthtml" template="hawksearch/proxy/html.phtml"></block>
+        </block>
+    </hawkproxy_index_index>
+
+    <hawksearch_facet_handle>
+        <reference name="left">
+            <remove name="enterprisecatalog.leftnav"/>
+            <remove name="catalogsearch.leftnav" />
+            <remove name="catalog.leftnav" />
+        </reference>
+    </hawksearch_facet_handle>
+    <hawksearch_search_handle>
+        <reference name="left">
+            <remove name="enterprisesearch.leftnav"/>
+            <remove name="search.result" />
+            <remove name="catalogsearch.leftnav" />
+        </reference>
+    </hawksearch_search_handle>
+
+    <hawkproxy_custom_handle>
+        <update handle="catalog_category_default"/>
+        <reference name="top.container">
+            <remove name="catalog_category_event"/>
+        </reference>
+    </hawkproxy_custom_handle>
+    <checkout_onepage_success>
+        <block type="core/template" name="hawk_ordertracking" template="hawksearch/proxy/tracking.phtml"/>
+        <reference name="content">
+            <action method="append" ifconfig="hawksearch_proxy/general/enabled">
+                <block>hawk_ordertracking</block>
+            </action>
+        </reference>
+    </checkout_onepage_success>
+</layout>

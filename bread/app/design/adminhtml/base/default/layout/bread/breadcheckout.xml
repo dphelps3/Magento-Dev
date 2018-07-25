@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+@author Bread   copyright 2016
+@author Joel    @Mediotype
+-->
+<layout version="0.1.0">
+
+    <adminhtml_system_config_edit>
+        <reference name="content">
+            <block type="adminhtml/template" name="breadcheckout.css"  template="breadcheckout/css.phtml"></block>
+        </reference>
+        <reference name="before_body_end">
+            <block type="adminhtml/template" name="breadcheckout.js" template="breadcheckout/conf_js.phtml"></block>
+        </reference>
+    </adminhtml_system_config_edit>
+    <adminhtml_sales_order_create_index>
+        <reference name="before_body_end">
+            <block type="core/template" name="bread_js" template="breadcheckout/bread_js.phtml" />
+            <block type="adminhtml/template" name="breadcheckout.css"  template="breadcheckout/css.phtml"></block>
+        </reference>
+    </adminhtml_sales_order_create_index>
+
+</layout>

@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!--
+ Copyright (c) 2013 Hawksearch (www.hawksearch.com) - All Rights Reserved
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ IN THE SOFTWARE.
+-->
+<config>
+    <modules>
+        <Hawksearch_Datafeed>
+            <version>1.2.1.0</version>
+        </Hawksearch_Datafeed>
+    </modules>
+    <global>
+        <blocks>
+            <hawksearch_datafeed>
+                <class>Hawksearch_Datafeed_Block</class>
+            </hawksearch_datafeed>
+        </blocks>
+        <helpers>
+            <hawksearch_datafeed>
+                <class>Hawksearch_Datafeed_Helper</class>
+            </hawksearch_datafeed>
+        </helpers>
+        <models>
+            <hawksearch_datafeed>
+                <class>Hawksearch_Datafeed_Model</class>
+                <resourceModel>hawksearch_datafeed_resource</resourceModel>
+            </hawksearch_datafeed>
+            <hawksearch_datafeed_resource>
+                <class>Hawksearch_Datafeed_Model_Resource</class>
+            </hawksearch_datafeed_resource>
+        </models>
+        <resources>
+            <hawksearch_datafeed_setup>
+                <setup>
+                    <module>Hawksearch_Datafeed</module>
+                    <class>Mage_Catalog_Model_Resource_Setup</class>
+                </setup>
+            </hawksearch_datafeed_setup>
+        </resources>
+        <template>
+            <email>
+                <hawksearch_datafeed_cronemail module="hawksearch_datafeed">
+                    <label>Hawksearch Datafeed Cron Notification</label>
+                    <file>hawksearch/cron_notification.html</file>
+                    <type>html</type>
+                </hawksearch_datafeed_cronemail>
+            </email>
+        </template>
+    </global>
+    <adminhtml>
+        <events>
+            <adminhtml_catalog_product_attribute_edit_prepare_form>
+                <observers>
+                    <hawksearch_datafeed>
+                        <class>Hawksearch_Datafeed_Model_Observer</class>
+                        <method>adminhtmlCatalogProductAttributeEditPrepareForm</method>
+                    </hawksearch_datafeed>
+                </observers>
+            </adminhtml_catalog_product_attribute_edit_prepare_form>
+        </events>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <hawksearch_datafeed before="Mage_Adminhtml">Hawksearch_Datafeed_Adminhtml</hawksearch_datafeed>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <!--the frontend router is used for the image cache key -->
+    <frontend>
+        <routers>
+            <hawksearch_datafeed>
+                <use>standard</use>
+                <args>
+                    <module>Hawksearch_Datafeed</module>
+                    <frontName>hawksearch</frontName>
+                </args>
+            </hawksearch_datafeed>
+        </routers>
+    </frontend>
+    <default>
+        <hawksearch_datafeed>
+            <general>
+                <enabled>1</enabled>
+                <logging_enabled>1</logging_enabled>
+            </general>
+            <feed>
+                <batch_limit>10000</batch_limit>
+                <stockstatus>0</stockstatus>
+                <itemstatus>0</itemstatus>
+                <delimiter>tab</delimiter>
+                <buffer_size>65536</buffer_size>
+                <output_file_ext>txt</output_file_ext>
+                <feed_path>hawksearch/feeds</feed_path>
+                <lock_filename>hawksearchFeedLock.lock</lock_filename>
+                <summary_filename>hawksearchFeedSummary.json</summary_filename>
+                <cronlog_filename>hawksearchCronLog.log</cronlog_filename>
+            </feed>
+            <imagecache>
+                <image_width>135</image_width>
+            </imagecache>
+        </hawksearch_datafeed>
+        <crontab>
+            <jobs>
+                <hawksearch_datafeed>
+                    <run>
+                        <model>hawksearch_datafeed/datafeed::cronGenerateDatafeed</model>
+                    </run>
+                </hawksearch_datafeed>
+                <hawksearch_datafeed_imagecache>
+                    <run>
+                        <model>hawksearch_datafeed/datafeed::cronGenerateImagecache</model>
+                    </run>
+                </hawksearch_datafeed_imagecache>
+            </jobs>
+        </crontab>
+    </default>
+</config>

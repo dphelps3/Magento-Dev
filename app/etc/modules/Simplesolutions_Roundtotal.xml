@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Simplesolutions_Roundtotal>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Simplesolutions_Roundtotal>
+    </modules>
+</config>

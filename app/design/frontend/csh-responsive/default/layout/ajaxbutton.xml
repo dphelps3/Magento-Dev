@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<layout version="0.0.0.1">
+
+    <catalog_product_view>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/dphelps/ajaxbutton.js</name>
+            </action>
+        </reference>
+        <reference name="product.info.extrahint">
+            <block type="dphelpsajaxbutton/ajax" template="dphelps/ajaxbutton/product.phtml" name="ajaxbutton.product" />
+        </reference>
+    </catalog_product_view>
+
+    <dphelpsajaxbutton_index_index>
+        <block type="dphelpsajaxbutton/ajax" template="dphelps/ajaxbutton/result.phtml" name="root"></block>
+    </dphelpsajaxbutton_index_index>
+
+</layout>

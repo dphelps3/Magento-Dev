@@ -1,0 +1,17 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: magentouser
+ * Date: 3/5/15
+ * Time: 3:46 PM
+ */
+/** @var Mage_Core_Model_Session $sess */
+$sess = Mage::getSingleton('core/session');
+$pData = $sess->getHawkTrackingData();
+if(isset($pData)){
+	$conversionUrl = $pData;
+	$sess->unsetData('hawk_tracking_data');
+	echo '<img src="', $pData, '" style="width:0px; height:0px" />';
+}
+
+

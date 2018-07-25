@@ -1,0 +1,62 @@
+    .assoc_line_total {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .small-only {
+        outline-style: solid;
+        outline-color: #dddddd;
+        outline-width: 1px;
+    }
+
+    .stacktable thead {
+        background:#e8e8e8 url(/skin/frontend/enterprise/cshardware/images/bkg_thead.gif) repeat-x 0 0;
+    }
+
+    .st-key {
+        background:#e8e8e8 url(/skin/frontend/enterprise/cshardware/images/bkg_thead.gif) repeat-x 0 0;
+    }
+
+    .colTitle {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .grouped-items-table {
+        margin-top: 20px;
+        font-family: 'Titillium Web', sans-serif;
+    }
+
+    .grouped-items-table td {
+        vertical-align:middle !important;
+    }
+
+    .groupedQty {
+        text-align:center;
+    }
+
+    .prodSku {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 10px;
+        color: #999;
+    }
+
+    .prodName {
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+.stacktable { width: 100%; }
+.st-head-row { padding-top: 1em; }
+.st-head-row.st-head-row-main { font-size: 1.5em; padding-top: 0; }
+.st-key { width: 29%; text-align: right; padding-right: 1%; }
+.st-val { width: 69%; padding-left: 1%; }
+
+.stacktable.large-only { display: table; }
+.stacktable.small-only { display: none; }
+
+@media (max-width: 768px) {
+  .stacktable.large-only { display: none; }
+  .stacktable.small-only { display: table; }
+}

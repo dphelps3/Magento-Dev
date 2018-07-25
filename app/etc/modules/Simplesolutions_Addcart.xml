@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Simplesolutions_Addcart>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Simplesolutions_Addcart>
+    </modules>
+</config>

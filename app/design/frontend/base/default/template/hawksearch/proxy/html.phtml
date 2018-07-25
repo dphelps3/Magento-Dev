@@ -1,0 +1,30 @@
+<?php
+$hawkBanner = Mage::getSingleton('hawksearch_proxy/banner');
+?>
+<div>
+	<div id="hawkmetarobots"><?php echo $this->getMetaRobots() ?></div>
+	<div id="hawkheadertitle"><?php echo $this->getHeaderTitle() ?></div>
+	<div id="hawkmetadescription"><?php echo $this->getMetaDescription() ?></div>
+	<div id="hawkmetakeywords"><?php echo $this->getMetaKeywords() ?></div>
+	<div id="hawkrelcanonical"><?php echo $this->getRelCanonical() ?></div>
+	<div id="hawktoptext"><?php echo $this->getTopText() ?></div>
+	<div id="hawkitemlist"><?php echo $this->getItemList() ?></div>
+	<div id="hawkexplain"></div>
+	<div id="hawksmartbug"></div>
+	<div id="hawkrelated"><?php echo $this->getRelated() ?></div>
+	<div id="hawkfacets"><?php echo $this->getFacets() ?></div>
+	<div id="hawkbannertop" class="bannerTop">
+        <?php echo $hawkBanner->getFeaturedTop() ?>
+        <?php echo $hawkBanner->getBannerTop() ?></div>
+	<div id="hawkbannerlefttop" class="bannerLeftTop"><?php echo $hawkBanner->getBannerLeftTop() ?></div>
+	<div id="hawkbannerleftbottom" class="bannerLeftBottom"><?php echo $hawkBanner->getBannerLeftBottom() ?></div>
+	<div id="hawkbannerbottom" class="bannerBottom">
+        <?php echo $hawkBanner->getFeaturedBottom() ?>
+        <?php echo $hawkBanner->getBannerBottom() ?></div>
+	<div id="hawkbannerbottom2" class="bannerBottom">
+        <?php echo $hawkBanner->getBannerBottom2() ?>
+        <?php echo $hawkBanner->getFeaturedBottom2() ?></div>
+	<div id="hawkbreadcrumb"><?php echo $this->getBreadCrumb() ?></div>
+	<div id="hawktitle"><?php echo $this->getTitle() ?></div>
+
+</div>

@@ -1,0 +1,93 @@
+<?php echo $this->getChildHtml('child', false) ?>
+
+<!-- Bread Checkout extension version: <?php echo(Mage::getConfig()->getNode()->modules->Bread_BreadCheckout->version); ?> -->
+<?php
+$product = $this->getProduct();
+$productId = $product->getId();
+$helperData = Mage::helper('breadcheckout');
+$helperCustomer = Mage::helper('breadcheckout/Customer');
+?>
+<div id="bread-btn-cntnr-<?php echo $productId;?>">
+    <div id='bread-checkout-btn-<?php echo $productId;?>' title="Bread Checkout" class="button" <?php echo $helperData->useDefaultButtonSizeCategory(); ?>>
+        <span>
+            <span><?php echo $this->helper('breadcheckout')->__('Bread Checkout'); ?></span>
+        </span>
+    </div>
+    <div class='button-prevent'
+         id='button-prevent'>
+        <span class="buy_error_tip override_tip">&nbsp;</span>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    document.configureButton<?php echo $productId;?> = function (items) {
+        var address             = <?php echo $helperCustomer->getShippingAddressData(); ?>;
+        var billingAddress      = <?php echo $helperCustomer->getBillingAddressData(); ?>;
+        var labelOnly           = <?php echo $helperData->isLabelOnlyOnCategories(); ?>;
+        var buttonCss           = '<?php echo $helperData->getCATButtonDesign(); ?>';
+
+        var breadConfig = {
+            buttonId: 'bread-checkout-btn-<?php echo $productId;?>',
+            asLowAs: <?php echo $helperData->isAsLowAsCAT(); ?>,
+            showInWindow: <?php echo $helperData->getShowInWindowCAT()?>,
+            <?php if(!$this->helper('breadcheckout')->isHealthcare()) : ?>
+            items: items,
+            <?php else : ?>
+            customTotal: items[0]['price'],
+            <?php endif; ?>
+            discounts: [],
+            allowCheckout: false,
+            buttonLocation: '<?php echo $this->helper('breadcheckout')->getCategoryPageLocation(); ?>',
+            done: function (err, tx_token) {
+                if (tx_token !== undefined) {
+                    var i = document.createElement('input');
+                    i.type = 'hidden';
+                    i.name = 'token';
+                    i.value = tx_token;
+                    var f = document.createElement('form');
+                    f.action = '<?php echo $helperData->getValidateOrderURL(); ?>';
+                    f.method = 'POST';
+                    f.appendChild(i);
+                    document.body.appendChild(f);
+                    f.submit();
+                }
+
+                return;
+            },
+
+
+
+        };
+
+        if (buttonCss !== null && buttonCss !== '' && buttonCss != false) {
+            breadConfig.customCSS = buttonCss;
+        }
+        <?php if(!$helperData->isHealthcare()) : ?>
+        if (address !== false) {
+            breadConfig.shippingContact = address;
+        }
+
+        if (billingAddress !== false) {
+            breadConfig.billingContact = billingAddress;
+        }
+        <?php endif; ?>
+        if(!labelOnly) {
+            breadConfig.actAsLabel = false;
+        }
+
+        bread.checkout(breadConfig);
+    };
+
+    document.observe("dom:loaded", function () {
+        <?php
+        $data       = array(
+            Mage::helper('breadcheckout/catalog')->getProductDataArray($product, null)
+        );
+        $data = $this->helper('core')->jsonEncode($data);?>
+        var items       = <?php echo $data; ?>;
+
+        document.configureButton<?php echo $productId; ?>(items);
+    });
+
+</script>

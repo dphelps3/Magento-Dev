@@ -1,0 +1,18 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: magentouser
+ * Date: 8/4/14
+ * Time: 11:25 AM
+ */
+/** @var $this Mage_Core_Block_Template */
+$hawkBanner = Mage::getSingleton('hawksearch_proxy/banner');
+?>
+<div id="hawkbannerlefttop" class="bannerLeftTop">
+    <?php echo $hawkBanner->getFeaturedLeftTop() ?>
+	<?php echo $hawkBanner->getBannerLeftTop() ?></div>
+<div id="hawkfacets">
+	<?php echo $this->getChildHtml(); ?></div>
+<div id="hawkbannerleftbottom" class="bannerLeftBottom">
+    <?php echo $hawkBanner->getFeaturedLeftBottom() ?>
+	<?php echo $hawkBanner->getBannerLeftBottom() ?></div>

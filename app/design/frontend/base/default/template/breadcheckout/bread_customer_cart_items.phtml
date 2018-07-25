@@ -1,0 +1,26 @@
+<table style="width: 100%;text-align: left;">
+    <tr><th style="width:110px;"></th><th>Name</th><th style="width:20%;">SKU</th><th style="width:10%;">Quantity</th><th style="width:15%;">Price</th></tr>
+    <?php foreach ($this->getItems() as $item):?>
+        <?php
+        $image = $item->getProduct()->getSmallImage();
+        $total = 0;
+        if(!$image || $image=="no_selection")
+            $image = '/placeholder/' .Mage::getStoreConfig("catalog/placeholder/small_image_placeholder");
+        ?>
+        <tr>
+            <td> <img src="<?php echo Mage::helper('breadcheckout')->getMediaPath($image)?>" width="100"/> </td>
+            <td> <?php echo Mage::helper('core')->escapeHtml($item->getProduct()->getName());?> </td>
+            <td> <?php echo Mage::helper('core')->escapeHtml($item->getProduct()["sku"]);?> </td>
+            <td> <?php echo Mage::helper('core')->escapeHtml($item->getQty());?> </td>
+            <td> <?php echo Mage::helper('core')->escapeHtml(Mage::helper('core')->currency($item->getPrice(), true, false));?> </td>
+        </tr>
+        <?php $total += $item->getQty() * $item->getPrice() ?>
+    <?php endforeach;?>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><strong>Total:</strong></td>
+        <td><strong><?php echo Mage::helper('core')->currency($total, true, false); ?></strong></td>
+    </tr>
+</table>
