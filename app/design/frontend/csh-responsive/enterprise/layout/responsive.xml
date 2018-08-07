@@ -5,13 +5,12 @@
 
 				<!-- Adding jquery and twitter-bootstrap-files -->
 				<action method="addItem"><type>skin_js</type><name>js/jquery.js</name></action>
-				<action method="addItem"><type>skin_js</type><name>js/bootstrap.min.js</name></action>
-                <!--<action method="addItem"><type>skin_js</type><name>js/jasny-bootstrap.min.js</name></action>-->
+				<action method="addItem"><type>skin_js</type><name>js/bootstrap.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/jasny-bootstrap.min.js</name></action>
 				<action method="addItem"><type>skin_js</type><name>js/holder.js</name></action>
-				<!--<action method="addCss"><stylesheet>css/bootstrap.css</stylesheet></action>
+				<action method="addCss"><stylesheet>css/bootstrap.css</stylesheet></action>
 				<action method="addCss"><stylesheet>css/bootstrap-theme.css</stylesheet></action>
-                <action method="addCss"><stylesheet>css/jasny-bootstrap.min.css</stylesheet></action> -->
-                <action method="addCSS"><stylesheet>css/bootstrap.min.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/jasny-bootstrap.min.css</stylesheet></action>
 				<action method="addCss"><stylesheet>css/custom.css</stylesheet></action>
                 <action method="addCss"><stylesheet>css/csh-custom.css</stylesheet></action>
                 <action method="addCss"><stylesheet>css/featherlight.css</stylesheet></action>

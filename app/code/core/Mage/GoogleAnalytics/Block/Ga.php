@@ -99,10 +99,10 @@ class Mage_GoogleAnalytics_Block_Ga extends Mage_Core_Block_Template
      */
     protected function _getPageTrackingCodeUniversal($accountId)
     {
-        return "
-ga('create', '{$this->jsQuoteEscape($accountId)}', 'auto');
-" . $this->_getAnonymizationCode() . "
-ga('send', 'pageview');
+        return "ga('create', '{$this->jsQuoteEscape($accountId)}', 'auto');"
+            . $this->_getAnonymizationCode()
+            . "\n ga('require', 'GTM-WGLXMDS');"
+            . "\n ga('send', 'pageview');
 ";
     }
 

@@ -15,8 +15,7 @@
  *
  * @category   Webshopapps
  * @package    Webshopapps_Productmatrix
- * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
- *              Copyright, 2013, Zowta, LLC - US license
+ * @copyright  Copyright (c) 2010 Zowta Ltd (http://www.webshopapps.com)
  * @license    www.webshopapps.com/license/license.txt
  * @author     Webshopapps <sales@webshopapps.com>
 */
@@ -57,54 +56,53 @@ class Webshopapps_Productmatrix_Model_Mysql4_Carrier_Productmatrix_Collection ex
     public function setCountryFilter($countryId)
     {
     	$this->_select->where("dest_country_id = ?", $countryId);
-
+    	
         return $this;
     }
     public function setRegionFilter($regionId)
     {
     	$this->_select->where("dest_region_id = ?", $regionId);
-
+    	
         return $this;
     }
-
-
+    
+    
    public function setPackageId($packageId)
     {
     	$this->_select->where("package_id = ?", $packageId);
-
+    	
         return $this;
     }
-
+    
 	public function setDistinctDeliveryTypeFilter() {
-
+    	
     	$this->_select->reset(Zend_Db_Select::COLUMNS);
     	$this->_select->reset(Zend_Db_Select::ORDER);
     	$this->_select->distinct(true);
     	$this->_select->columns('delivery_type');
-        $this->_select->columns('algorithm');
-        $this->_select->order('delivery_type');
+    	$this->_select->order('delivery_type');
         return $this;
     }
-
+    
    public function setWeightRange($weight)
     {
     	$this->_select->where('weight_from_value<?', $weight);
 		$this->_select->where('weight_to_value>=?', $weight);
-
+    	
         return $this;
     }
     public function getSkuCosts($sku, $collection) {
     	$product = Mage::getModel('catalog/product')->loadByAttribute('sku',$sku);
 		$collection->setPackageId($product->getAttributeText('package_id'));
-		$collection->setWeightRange(floatval($product->getWeight()));
+		$collection->setWeightRange(floatval($product->getWeight()));			
 		return $collection->load();
-
+		
    }
    public function setZipCodeFilter($zip) {
-
+   		
    		$postcode = $zip;
    	    $postcodeFilter = Mage::getStoreConfig("carriers/productmatrix/postcode_filter");
-   		if ($postcodeFilter == 'numeric') {
+   		if ($postcodeFilter == 'numeric') {			
 			 $this->_select->where("dest_zip<=? ", $postcode);
 			 $this->_select->where("dest_zip_to>=? )", $postcode);
 			 return $this;
@@ -112,12 +110,12 @@ class Webshopapps_Productmatrix_Model_Mysql4_Carrier_Productmatrix_Collection ex
 			$longPostcode=substr_replace($postcode,"",-3);
 			$longPostcode = trim($longPostcode);
 			$shortUKPostcode = preg_replace('/\d/','', $longPostcode);
-			$shortUKPostcode = trim($shortUKPostcode);
-
+			$shortUKPostcode = trim($shortUKPostcode);	
+			
 			$this->_select->where("STRCMP(LOWER(dest_zip),LOWER(?)) = 0",$longPostcode);
 			$this->_select->orWhere("STRCMP(LOWER(dest_zip),LOWER(?)) = 0",$shortUKPostcode);
-
-			return $this;
+			
+			return $this;			
 		}  else if ($postcodeFilter == 'both') {
 			if(ctype_digit(substr($postcode, 0,1))){
 				$this->_select->where("dest_zip<=? ", $postcode);
@@ -126,16 +124,16 @@ class Webshopapps_Productmatrix_Model_Mysql4_Carrier_Productmatrix_Collection ex
 				$longPostcode=substr_replace($postcode,"",-3);
 				$longPostcode = trim($longPostcode);
 				$shortUKPostcode = preg_replace('/\d/','', $longPostcode);
-				$shortUKPostcode = trim($shortUKPostcode);
-
+				$shortUKPostcode = trim($shortUKPostcode);	
+			
 				$this->_select->where("STRCMP(LOWER(dest_zip),LOWER(?)) = 0",$longPostcode);
 				$this->_select->orWhere("STRCMP(LOWER(dest_zip),LOWER(?)) = 0",$shortUKPostcode);
 			}
-			return $this;
+			return $this;		
 		} else {
 			 $this->_select->where("? LIKE dest_zip",$postcode);
-			 return $this;
-		}
+			 return $this;		
+		}  	
    }
 
     public function setDeliveryTypeFilter($deliveryType) {

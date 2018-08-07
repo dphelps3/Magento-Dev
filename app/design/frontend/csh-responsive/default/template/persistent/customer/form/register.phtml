@@ -74,6 +74,10 @@
                 <?php if ($_gender->isEnabled()): ?>
                     <li class="form-group"><?php echo $_gender->setGender($this->getFormData()->getGender())->toHtml() ?></li>
                 <?php endif ?>
+
+                <?php $_customertype = $this->getLayout()->createBlock('customer/widget_customertype') ?>
+                    <li class="form-group"><?php echo $_customertype->setCustomertype($this->getFormData()->getCustomertype())->toHtml() ?></li>
+
 				<?php $_customersource = $this->getLayout()->createBlock('customer/widget_customersource') ?>
                 <?php //if ($_source->isEnabled()): ?>
                     <li class="form-group"><?php echo $_customersource->setCustomersource($this->getFormData()->getCustomersource())->toHtml() ?></li>

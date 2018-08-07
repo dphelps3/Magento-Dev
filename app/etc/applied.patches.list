@@ -814,3 +814,506 @@ patching file skin/adminhtml/default/enterprise/boxes.css
 patching file lib/Zend/Mail/Transport/Sendmail.php
 
 
+2017-06-23 02:43:57 UTC | SUPEE-8167 | EE_1.14.2.0 | v1 | 87bb97f9b0b2871f842b7faabf667a81806f937e | Thu Apr 27 13:31:21 2017 +0300 | 6010eb82..87bb97f9b
+patching file app/code/core/Mage/Paypal/Model/Ipn.php
+
+<<<<<<< PATCH-4234
+2017-06-29 16:58:35 UTC | SUPEE-4234 | EE_1.13.1.0 | v1 | 24e0006f899aaaffc4a64f3d9fb5e2ee44f60daf | Wed Sep 24 20:09:45 2014 +0300 | v1.13.1.0..HEAD
+patching file app/code/core/Mage/Sales/Model/Resource/Quote.php
+=======
+2017-07-14 19:38:48 UTC | SUPEE-4814 | EE_1.14.1.0 | v1 | e1ee901c9786c2068bd5530da0c80e1b28f98be7 | Mon Nov 17 20:53:49 2014 +0200 | v1.14.1.0..HEAD
+patching file app/code/core/Mage/SalesRule/Model/Rule/Condition/Product/Subselect.php
+>>>>>>> master
+
+
+2017-07-16 05:25:10 UTC | PATCH_SUPEE-9767_EE_1.14.2.4_v2 | EE_1.14.2.4 | v2 | 6566db274beaeb9bcdb56a62e02cc2da532e618c | Thu Jun 22 04:30:03 2017 +0300 | v1.14.3.3..HEAD
+patching file app/code/community/OnTap/Merchandiser/Model/Resource/Merchandiser.php
+Hunk #1 succeeded at 154 (offset 14 lines).
+patching file app/code/core/Enterprise/CatalogEvent/controllers/Adminhtml/Catalog/EventController.php
+patching file app/code/core/Enterprise/GiftWrapping/Model/Wrapping.php
+patching file app/code/core/Enterprise/Invitation/Model/Config.php
+patching file app/code/core/Enterprise/Invitation/Model/Invitation.php
+patching file app/code/core/Enterprise/Invitation/controllers/IndexController.php
+patching file app/code/core/Enterprise/Invitation/etc/config.xml
+patching file app/code/core/Enterprise/Invitation/etc/system.xml
+patching file app/code/core/Enterprise/PageCache/Helper/Form/Key.php
+patching file app/code/core/Enterprise/PageCache/Model/Observer.php
+patching file app/code/core/Enterprise/PageCache/Model/Processor.php
+patching file app/code/core/Mage/Admin/Model/Session.php
+patching file app/code/core/Mage/Adminhtml/Block/Checkout/Formkey.php
+patching file app/code/core/Mage/Adminhtml/Block/Notification/Symlink.php
+patching file app/code/core/Mage/Adminhtml/Block/Widget/Grid/Column/Filter/Date.php
+patching file app/code/core/Mage/Adminhtml/Model/Config/Data.php
+patching file app/code/core/Mage/Adminhtml/Model/System/Config/Backend/Symlink.php
+patching file app/code/core/Mage/Adminhtml/controllers/Catalog/Product/GalleryController.php
+patching file app/code/core/Mage/Checkout/controllers/MultishippingController.php
+patching file app/code/core/Mage/Checkout/controllers/OnepageController.php
+Hunk #1 succeeded at 351 (offset 1 line).
+Hunk #2 succeeded at 367 (offset 1 line).
+Hunk #3 succeeded at 414 (offset 1 line).
+Hunk #4 succeeded at 443 (offset 1 line).
+Hunk #5 succeeded at 482 (offset 1 line).
+patching file app/code/core/Mage/Checkout/etc/system.xml
+patching file app/code/core/Mage/Cms/Model/Wysiwyg/Images/Storage.php
+patching file app/code/core/Mage/Core/Controller/Front/Action.php
+patching file app/code/core/Mage/Core/Controller/Request/Http.php
+patching file app/code/core/Mage/Core/Model/File/Validator/Image.php
+Hunk #1 succeeded at 87 (offset -1 lines).
+Hunk #2 succeeded at 146 (offset -1 lines).
+patching file app/code/core/Mage/Core/etc/config.xml
+patching file app/code/core/Mage/Core/etc/system.xml
+patching file app/code/core/Mage/Core/sql/core_setup/upgrade-1.6.0.6.1.1-1.6.0.6.1.2.php
+patching file app/code/core/Mage/Customer/Model/Session.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Adapter/Zend/Cache.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Container/Abstract.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Parser/Csv.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Parser/Xml/Excel.php
+patching file app/code/core/Mage/ImportExport/Model/Import/Uploader.php
+patching file app/code/core/Mage/Sales/Model/Quote/Item.php
+patching file app/code/core/Mage/Widget/Model/Widget/Instance.php
+patching file app/code/core/Mage/XmlConnect/Helper/Image.php
+patching file app/code/core/Mage/XmlConnect/controllers/Adminhtml/MobileController.php
+patching file app/design/adminhtml/default/default/layout/main.xml
+patching file app/design/adminhtml/default/default/layout/merchandiser.xml
+patching file app/design/adminhtml/default/default/template/notification/formkey.phtml
+patching file app/design/adminhtml/default/default/template/notification/symlink.phtml
+patching file app/design/adminhtml/default/default/template/oauth/authorize/head-simple.phtml
+patching file app/design/adminhtml/default/default/template/page/head.phtml
+patching file app/design/frontend/base/default/template/checkout/cart/shipping.phtml
+patching file app/design/frontend/base/default/template/checkout/multishipping/addresses.phtml
+patching file app/design/frontend/base/default/template/checkout/multishipping/billing.phtml
+patching file app/design/frontend/base/default/template/checkout/multishipping/shipping.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/billing.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/payment.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/shipping_method.phtml
+patching file app/design/frontend/base/default/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/cart/shipping.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/multishipping/addresses.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/multishipping/billing.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/multishipping/shipping.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/onepage/billing.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/onepage/payment.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/enterprise/default/template/customerbalance/checkout/onepage/payment/additional.phtml
+patching file app/design/frontend/enterprise/default/template/giftcardaccount/multishipping/payment.phtml
+patching file app/design/frontend/enterprise/default/template/giftcardaccount/onepage/payment/scripts.phtml
+patching file app/design/frontend/enterprise/default/template/invitation/form.phtml
+patching file app/design/frontend/enterprise/default/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/default/layout/page.xml
+patching file app/design/frontend/rwd/default/template/checkout/cart/shipping.phtml
+patching file app/design/frontend/rwd/default/template/checkout/multishipping/addresses.phtml
+patching file app/design/frontend/rwd/default/template/checkout/multishipping/billing.phtml
+patching file app/design/frontend/rwd/default/template/checkout/onepage/payment.phtml
+patching file app/design/frontend/rwd/default/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/rwd/default/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/enterprise/layout/page.xml
+patching file app/design/frontend/rwd/enterprise/template/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/enterprise/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/rwd/enterprise/template/customerbalance/checkout/onepage/payment/additional.phtml
+patching file app/design/frontend/rwd/enterprise/template/giftcardaccount/multishipping/payment.phtml
+patching file app/design/frontend/rwd/enterprise/template/giftcardaccount/onepage/payment/scripts.phtml
+patching file app/design/frontend/rwd/enterprise/template/invitation/form.phtml
+patching file app/design/frontend/rwd/enterprise/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/enterprise/template/reward/checkout/onepage/payment/additional.phtml
+patching file app/etc/config.xml
+patching file app/locale/en_US/Enterprise_Invitation.csv
+patching file app/locale/en_US/Mage_Adminhtml.csv
+Hunk #1 succeeded at 1232 (offset -51 lines).
+patching file app/locale/en_US/Mage_Core.csv
+Hunk #1 succeeded at 401 (offset -5 lines).
+patching file app/locale/en_US/Mage_Dataflow.csv
+Hunk #1 succeeded at 28 (offset -2 lines).
+patching file app/locale/en_US/Mage_XmlConnect.csv
+patching file downloader/Maged/Connect.php
+patching file downloader/Maged/Controller.php
+patching file downloader/Maged/Model/Session.php
+patching file js/lib/jquery/jquery-1.12.0.js
+patching file js/lib/jquery/jquery-1.12.0.min.js
+patching file js/lib/jquery/jquery-1.12.0.min.map
+patching file js/varien/payment.js
+patching file skin/frontend/base/default/js/opcheckout.js
+patching file skin/frontend/enterprise/default/js/opcheckout.js
+
+
+2017-07-16 05:31:42 UTC | PATCH_SUPEE-9767_EE_1.14.2.4_v2 | EE_1.14.2.4 | v2 | 6566db274beaeb9bcdb56a62e02cc2da532e618c | Thu Jun 22 04:30:03 2017 +0300 | v1.14.3.3..HEAD | REVERTED
+patching file app/code/community/OnTap/Merchandiser/Model/Resource/Merchandiser.php
+Hunk #1 succeeded at 154 (offset 14 lines).
+patching file app/code/core/Enterprise/CatalogEvent/controllers/Adminhtml/Catalog/EventController.php
+patching file app/code/core/Enterprise/GiftWrapping/Model/Wrapping.php
+patching file app/code/core/Enterprise/Invitation/Model/Config.php
+patching file app/code/core/Enterprise/Invitation/Model/Invitation.php
+patching file app/code/core/Enterprise/Invitation/controllers/IndexController.php
+patching file app/code/core/Enterprise/Invitation/etc/config.xml
+patching file app/code/core/Enterprise/Invitation/etc/system.xml
+patching file app/code/core/Enterprise/PageCache/Helper/Form/Key.php
+patching file app/code/core/Enterprise/PageCache/Model/Observer.php
+patching file app/code/core/Enterprise/PageCache/Model/Processor.php
+patching file app/code/core/Mage/Admin/Model/Session.php
+patching file app/code/core/Mage/Adminhtml/Block/Checkout/Formkey.php
+patching file app/code/core/Mage/Adminhtml/Block/Notification/Symlink.php
+patching file app/code/core/Mage/Adminhtml/Block/Widget/Grid/Column/Filter/Date.php
+patching file app/code/core/Mage/Adminhtml/Model/Config/Data.php
+patching file app/code/core/Mage/Adminhtml/Model/System/Config/Backend/Symlink.php
+patching file app/code/core/Mage/Adminhtml/controllers/Catalog/Product/GalleryController.php
+patching file app/code/core/Mage/Checkout/controllers/MultishippingController.php
+patching file app/code/core/Mage/Checkout/controllers/OnepageController.php
+Hunk #1 succeeded at 351 (offset 1 line).
+Hunk #2 succeeded at 366 (offset 1 line).
+Hunk #3 succeeded at 408 (offset 1 line).
+Hunk #4 succeeded at 432 (offset 1 line).
+Hunk #5 succeeded at 466 (offset 1 line).
+patching file app/code/core/Mage/Checkout/etc/system.xml
+patching file app/code/core/Mage/Cms/Model/Wysiwyg/Images/Storage.php
+patching file app/code/core/Mage/Core/Controller/Front/Action.php
+patching file app/code/core/Mage/Core/Controller/Request/Http.php
+patching file app/code/core/Mage/Core/Model/File/Validator/Image.php
+Hunk #1 succeeded at 87 (offset -1 lines).
+Hunk #2 succeeded at 105 (offset -1 lines).
+patching file app/code/core/Mage/Core/etc/config.xml
+patching file app/code/core/Mage/Core/etc/system.xml
+patching file app/code/core/Mage/Core/sql/core_setup/upgrade-1.6.0.6.1.1-1.6.0.6.1.2.php
+patching file app/code/core/Mage/Customer/Model/Session.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Adapter/Zend/Cache.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Container/Abstract.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Parser/Csv.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Parser/Xml/Excel.php
+patching file app/code/core/Mage/ImportExport/Model/Import/Uploader.php
+patching file app/code/core/Mage/Sales/Model/Quote/Item.php
+patching file app/code/core/Mage/Widget/Model/Widget/Instance.php
+patching file app/code/core/Mage/XmlConnect/Helper/Image.php
+patching file app/code/core/Mage/XmlConnect/controllers/Adminhtml/MobileController.php
+patching file app/design/adminhtml/default/default/layout/main.xml
+patching file app/design/adminhtml/default/default/layout/merchandiser.xml
+patching file app/design/adminhtml/default/default/template/notification/formkey.phtml
+patching file app/design/adminhtml/default/default/template/notification/symlink.phtml
+patching file app/design/adminhtml/default/default/template/oauth/authorize/head-simple.phtml
+patching file app/design/adminhtml/default/default/template/page/head.phtml
+patching file app/design/frontend/base/default/template/checkout/cart/shipping.phtml
+patching file app/design/frontend/base/default/template/checkout/multishipping/addresses.phtml
+patching file app/design/frontend/base/default/template/checkout/multishipping/billing.phtml
+patching file app/design/frontend/base/default/template/checkout/multishipping/shipping.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/billing.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/payment.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/shipping_method.phtml
+patching file app/design/frontend/base/default/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/cart/shipping.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/multishipping/addresses.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/multishipping/billing.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/multishipping/shipping.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/onepage/billing.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/onepage/payment.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/enterprise/default/template/customerbalance/checkout/onepage/payment/additional.phtml
+patching file app/design/frontend/enterprise/default/template/giftcardaccount/multishipping/payment.phtml
+patching file app/design/frontend/enterprise/default/template/giftcardaccount/onepage/payment/scripts.phtml
+patching file app/design/frontend/enterprise/default/template/invitation/form.phtml
+patching file app/design/frontend/enterprise/default/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/default/layout/page.xml
+patching file app/design/frontend/rwd/default/template/checkout/cart/shipping.phtml
+patching file app/design/frontend/rwd/default/template/checkout/multishipping/addresses.phtml
+patching file app/design/frontend/rwd/default/template/checkout/multishipping/billing.phtml
+patching file app/design/frontend/rwd/default/template/checkout/onepage/payment.phtml
+patching file app/design/frontend/rwd/default/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/rwd/default/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/enterprise/layout/page.xml
+patching file app/design/frontend/rwd/enterprise/template/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/enterprise/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/rwd/enterprise/template/customerbalance/checkout/onepage/payment/additional.phtml
+patching file app/design/frontend/rwd/enterprise/template/giftcardaccount/multishipping/payment.phtml
+patching file app/design/frontend/rwd/enterprise/template/giftcardaccount/onepage/payment/scripts.phtml
+patching file app/design/frontend/rwd/enterprise/template/invitation/form.phtml
+patching file app/design/frontend/rwd/enterprise/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/enterprise/template/reward/checkout/onepage/payment/additional.phtml
+patching file app/etc/config.xml
+patching file app/locale/en_US/Enterprise_Invitation.csv
+patching file app/locale/en_US/Mage_Adminhtml.csv
+Hunk #1 succeeded at 1232 (offset -51 lines).
+patching file app/locale/en_US/Mage_Core.csv
+Hunk #1 succeeded at 401 (offset -5 lines).
+patching file app/locale/en_US/Mage_Dataflow.csv
+Hunk #1 succeeded at 28 (offset -2 lines).
+patching file app/locale/en_US/Mage_XmlConnect.csv
+patching file downloader/Maged/Connect.php
+patching file downloader/Maged/Controller.php
+patching file downloader/Maged/Model/Session.php
+patching file js/lib/jquery/jquery-1.12.0.js
+patching file js/lib/jquery/jquery-1.12.0.min.js
+patching file js/lib/jquery/jquery-1.12.0.min.map
+patching file js/varien/payment.js
+patching file skin/frontend/base/default/js/opcheckout.js
+patching file skin/frontend/enterprise/default/js/opcheckout.js
+
+
+2017-08-07 03:20:41 UTC | PATCH_SUPEE-9767_EE_1.14.2.4_v2 | EE_1.14.2.4 | v2 | 6566db274beaeb9bcdb56a62e02cc2da532e618c | Thu Jun 22 04:30:03 2017 +0300 | v1.14.3.3..HEAD
+patching file app/code/community/OnTap/Merchandiser/Model/Resource/Merchandiser.php
+Hunk #1 succeeded at 154 (offset 14 lines).
+patching file app/code/core/Enterprise/CatalogEvent/controllers/Adminhtml/Catalog/EventController.php
+patching file app/code/core/Enterprise/GiftWrapping/Model/Wrapping.php
+patching file app/code/core/Enterprise/Invitation/Model/Config.php
+patching file app/code/core/Enterprise/Invitation/Model/Invitation.php
+patching file app/code/core/Enterprise/Invitation/controllers/IndexController.php
+patching file app/code/core/Enterprise/Invitation/etc/config.xml
+patching file app/code/core/Enterprise/Invitation/etc/system.xml
+patching file app/code/core/Enterprise/PageCache/Helper/Form/Key.php
+patching file app/code/core/Enterprise/PageCache/Model/Observer.php
+patching file app/code/core/Enterprise/PageCache/Model/Processor.php
+patching file app/code/core/Mage/Admin/Model/Session.php
+patching file app/code/core/Mage/Adminhtml/Block/Checkout/Formkey.php
+patching file app/code/core/Mage/Adminhtml/Block/Notification/Symlink.php
+patching file app/code/core/Mage/Adminhtml/Block/Widget/Grid/Column/Filter/Date.php
+patching file app/code/core/Mage/Adminhtml/Model/Config/Data.php
+patching file app/code/core/Mage/Adminhtml/Model/System/Config/Backend/Symlink.php
+patching file app/code/core/Mage/Adminhtml/controllers/Catalog/Product/GalleryController.php
+patching file app/code/core/Mage/Checkout/controllers/MultishippingController.php
+patching file app/code/core/Mage/Checkout/controllers/OnepageController.php
+Hunk #1 succeeded at 351 (offset 1 line).
+Hunk #2 succeeded at 367 (offset 1 line).
+Hunk #3 succeeded at 414 (offset 1 line).
+Hunk #4 succeeded at 443 (offset 1 line).
+Hunk #5 succeeded at 482 (offset 1 line).
+patching file app/code/core/Mage/Checkout/etc/system.xml
+patching file app/code/core/Mage/Cms/Model/Wysiwyg/Images/Storage.php
+patching file app/code/core/Mage/Core/Controller/Front/Action.php
+patching file app/code/core/Mage/Core/Controller/Request/Http.php
+patching file app/code/core/Mage/Core/Model/File/Validator/Image.php
+Hunk #1 succeeded at 87 (offset -1 lines).
+Hunk #2 succeeded at 146 (offset -1 lines).
+patching file app/code/core/Mage/Core/etc/config.xml
+patching file app/code/core/Mage/Core/etc/system.xml
+patching file app/code/core/Mage/Core/sql/core_setup/upgrade-1.6.0.6.1.1-1.6.0.6.1.2.php
+patching file app/code/core/Mage/Customer/Model/Session.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Adapter/Zend/Cache.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Container/Abstract.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Parser/Csv.php
+patching file app/code/core/Mage/Dataflow/Model/Convert/Parser/Xml/Excel.php
+patching file app/code/core/Mage/ImportExport/Model/Import/Uploader.php
+patching file app/code/core/Mage/Sales/Model/Quote/Item.php
+patching file app/code/core/Mage/Widget/Model/Widget/Instance.php
+patching file app/code/core/Mage/XmlConnect/Helper/Image.php
+patching file app/code/core/Mage/XmlConnect/controllers/Adminhtml/MobileController.php
+patching file app/design/adminhtml/default/default/layout/main.xml
+patching file app/design/adminhtml/default/default/layout/merchandiser.xml
+patching file app/design/adminhtml/default/default/template/notification/formkey.phtml
+patching file app/design/adminhtml/default/default/template/notification/symlink.phtml
+patching file app/design/adminhtml/default/default/template/oauth/authorize/head-simple.phtml
+patching file app/design/adminhtml/default/default/template/page/head.phtml
+patching file app/design/frontend/base/default/template/checkout/cart/shipping.phtml
+patching file app/design/frontend/base/default/template/checkout/multishipping/addresses.phtml
+patching file app/design/frontend/base/default/template/checkout/multishipping/billing.phtml
+patching file app/design/frontend/base/default/template/checkout/multishipping/shipping.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/billing.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/payment.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/base/default/template/checkout/onepage/shipping_method.phtml
+patching file app/design/frontend/base/default/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/cart/shipping.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/multishipping/addresses.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/multishipping/billing.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/multishipping/shipping.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/onepage/billing.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/onepage/payment.phtml
+patching file app/design/frontend/enterprise/default/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/enterprise/default/template/customerbalance/checkout/onepage/payment/additional.phtml
+patching file app/design/frontend/enterprise/default/template/giftcardaccount/multishipping/payment.phtml
+patching file app/design/frontend/enterprise/default/template/giftcardaccount/onepage/payment/scripts.phtml
+patching file app/design/frontend/enterprise/default/template/invitation/form.phtml
+patching file app/design/frontend/enterprise/default/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/default/layout/page.xml
+patching file app/design/frontend/rwd/default/template/checkout/cart/shipping.phtml
+patching file app/design/frontend/rwd/default/template/checkout/multishipping/addresses.phtml
+patching file app/design/frontend/rwd/default/template/checkout/multishipping/billing.phtml
+patching file app/design/frontend/rwd/default/template/checkout/onepage/payment.phtml
+patching file app/design/frontend/rwd/default/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/rwd/default/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/enterprise/layout/page.xml
+patching file app/design/frontend/rwd/enterprise/template/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/enterprise/template/checkout/onepage/shipping.phtml
+patching file app/design/frontend/rwd/enterprise/template/customerbalance/checkout/onepage/payment/additional.phtml
+patching file app/design/frontend/rwd/enterprise/template/giftcardaccount/multishipping/payment.phtml
+patching file app/design/frontend/rwd/enterprise/template/giftcardaccount/onepage/payment/scripts.phtml
+patching file app/design/frontend/rwd/enterprise/template/invitation/form.phtml
+patching file app/design/frontend/rwd/enterprise/template/persistent/checkout/onepage/billing.phtml
+patching file app/design/frontend/rwd/enterprise/template/reward/checkout/onepage/payment/additional.phtml
+patching file app/etc/config.xml
+patching file app/locale/en_US/Enterprise_Invitation.csv
+patching file app/locale/en_US/Mage_Adminhtml.csv
+Hunk #1 succeeded at 1232 (offset -51 lines).
+patching file app/locale/en_US/Mage_Core.csv
+Hunk #1 succeeded at 401 (offset -5 lines).
+patching file app/locale/en_US/Mage_Dataflow.csv
+Hunk #1 succeeded at 28 (offset -2 lines).
+patching file app/locale/en_US/Mage_XmlConnect.csv
+patching file downloader/Maged/Connect.php
+patching file downloader/Maged/Controller.php
+patching file downloader/Maged/Model/Session.php
+patching file js/lib/jquery/jquery-1.12.0.js
+patching file js/lib/jquery/jquery-1.12.0.min.js
+patching file js/lib/jquery/jquery-1.12.0.min.map
+patching file js/varien/payment.js
+patching file skin/frontend/base/default/js/opcheckout.js
+patching file skin/frontend/enterprise/default/js/opcheckout.js
+
+
+2017-10-02 04:18:03 UTC | SUPEE-10266-1.14.2.0 | EE_1.14.2.0 | v1 | 4fc362292b37afda1b5c94cef19c2ae85b21d803 | Tue Sep 5 18:05:37 2017 +0300 | 8a17d46f55189d9f223728aa7e6bbd2d2c329395..HEAD
+patching file app/code/core/Enterprise/CustomerSegment/controllers/Adminhtml/CustomersegmentController.php
+patching file app/code/core/Mage/Admin/Model/Session.php
+patching file app/code/core/Mage/Adminhtml/Block/Notification/Grid/Renderer/Notice.php
+patching file app/code/core/Mage/Adminhtml/Block/Widget/Form/Container.php
+patching file app/code/core/Mage/Adminhtml/Controller/Action.php
+patching file app/code/core/Mage/Adminhtml/Model/LayoutUpdate/Validator.php
+patching file app/code/core/Mage/Adminhtml/controllers/CustomerController.php
+patching file app/code/core/Mage/Adminhtml/controllers/Newsletter/QueueController.php
+patching file app/code/core/Mage/Adminhtml/controllers/Newsletter/TemplateController.php
+patching file app/code/core/Mage/Checkout/controllers/CartController.php
+patching file app/code/core/Mage/Core/Helper/String.php
+patching file app/code/core/Mage/Core/Model/Email/Template/Abstract.php
+patching file app/code/core/Mage/Core/Model/File/Validator/Image.php
+patching file app/code/core/Mage/Core/Model/Session/Abstract/Varien.php
+patching file app/code/core/Mage/Core/etc/config.xml
+patching file app/code/core/Mage/Rss/Helper/Data.php
+patching file app/code/core/Mage/Sales/Model/Resource/Order/Item/Collection.php
+patching file app/code/core/Zend/Serializer/Adapter/PhpCode.php
+patching file app/design/adminhtml/default/default/template/backup/dialogs.phtml
+patching file app/design/adminhtml/default/default/template/catalog/product/edit/options/type/file.phtml
+patching file app/design/adminhtml/default/default/template/customer/tab/view.phtml
+patching file app/design/adminhtml/default/default/template/login.phtml
+patching file app/design/adminhtml/default/default/template/notification/toolbar.phtml
+patching file app/design/adminhtml/default/default/template/oauth/authorize/form/login-simple.phtml
+patching file app/design/adminhtml/default/default/template/oauth/authorize/form/login.phtml
+patching file app/design/adminhtml/default/default/template/resetforgottenpassword.phtml
+patching file app/design/adminhtml/default/default/template/sales/order/view/history.phtml
+patching file app/design/adminhtml/default/default/template/sales/order/view/info.phtml
+patching file app/design/frontend/enterprise/default/template/giftcardaccount/onepage/payment/scripts.phtml
+patching file app/design/frontend/rwd/enterprise/template/giftcardaccount/onepage/payment/scripts.phtml
+patching file app/design/install/default/default/template/install/create_admin.phtml
+patching file app/locale/en_US/Mage_Adminhtml.csv
+patching file downloader/template/login.phtml
+
+
+2018-01-16 03:56:59 UTC | SUPEE-10415-1.14.2.0 | EE_1.14.2.0 | v1 | d22c0260b8f8c539cabaab25db2b9aa21a9c3ed0 | Tue Nov 7 16:40:04 2017 +0200 | 22a88aadd8de7f8871d4903d230e3014f11b6614..HEAD
+patching file app/Mage.php
+patching file app/code/community/OnTap/Merchandiser/Block/Adminhtml/Catalog/Product/List.php
+patching file app/code/core/Mage/Adminhtml/Block/Report/Review/Detail.php
+patching file app/code/core/Mage/Adminhtml/Block/Report/Tag/Product/Detail.php
+patching file app/code/core/Mage/Adminhtml/Block/Review/Add.php
+patching file app/code/core/Mage/Adminhtml/Block/Review/Edit/Form.php
+patching file app/code/core/Mage/Adminhtml/Controller/Action.php
+patching file app/code/core/Mage/Adminhtml/Model/LayoutUpdate/Validator.php
+patching file app/code/core/Mage/Adminhtml/Model/System/Config/Backend/Filename.php
+patching file app/code/core/Mage/Api/Helper/Data.php
+patching file app/code/core/Mage/Api/Model/Server/Adapter/Soap.php
+Hunk #2 succeeded at 229 with fuzz 1.
+patching file app/code/core/Mage/Api/Model/Wsdl/Config.php
+patching file app/code/core/Mage/Api/Model/Wsdl/Config/Base.php
+patching file app/code/core/Mage/Core/Helper/String.php
+patching file app/code/core/Mage/Core/Model/File/Validator/Image.php
+patching file app/code/core/Mage/Core/etc/config.xml
+patching file app/code/core/Mage/Core/etc/system.xml
+patching file app/code/core/Mage/Customer/Model/Customer.php
+patching file app/code/core/Mage/Eav/Model/Entity/Attribute/Backend/Serialized.php
+patching file app/code/core/Mage/Log/Helper/Data.php
+patching file app/code/core/Mage/Rule/Model/Abstract.php
+patching file app/code/core/Mage/Sales/Block/Adminhtml/Billing/Agreement/Grid.php
+patching file app/code/core/Zend/Form/Decorator/Form.php
+patching file app/design/adminhtml/default/default/template/backup/dialogs.phtml
+patching file app/design/adminhtml/default/default/template/merchandiser/smartmerch/tab.phtml
+patching file app/design/adminhtml/default/default/template/sales/billing/agreement/view/tab/info.phtml
+patching file app/design/adminhtml/default/default/template/xmlconnect/edit/tab/content.phtml
+patching file app/design/adminhtml/default/default/template/xmlconnect/edit/tab/design/image_edit.phtml
+patching file app/design/frontend/enterprise/default/template/giftcardaccount/onepage/payment/scripts.phtml
+patching file app/design/frontend/rwd/enterprise/template/giftcardaccount/onepage/payment/scripts.phtml
+patching file app/locale/en_US/Mage_Adminhtml.csv
+patching file app/locale/en_US/Mage_Customer.csv
+patching file js/mage/adminhtml/backup.js
+patching file lib/Varien/Filter/FormElementName.php
+
+
+2018-03-06 07:32:48 UTC | SUPEE-10570_v1.14.2.2 | EE_1.14.2.2 | v1 | 7c5f1c4d3eb76a870d91bd78aa5cb2fb51471696 | Sat Feb 17 04:44:54 2018 +0200 | ee-1.14.2.2-dev
+patching file app/Mage.php
+patching file app/code/core/Enterprise/Cms/Block/Adminhtml/Cms/Hierarchy/Edit/Form.php
+patching file app/code/core/Enterprise/Cms/Block/Adminhtml/Cms/Hierarchy/Widget/Chooser.php
+patching file app/code/core/Enterprise/Cms/Block/Adminhtml/Cms/Page/Edit/Tab/Hierarchy.php
+patching file app/code/core/Enterprise/Cms/Block/Hierarchy/Menu.php
+patching file app/code/core/Enterprise/Customer/Block/Adminhtml/Customer/Attribute/Edit/Tab/Main.php
+patching file app/code/core/Enterprise/GiftRegistry/Model/Observer.php
+patching file app/code/core/Enterprise/Reward/Block/Adminhtml/Customer/Edit/Tab/Reward/Management/Update.php
+patching file app/code/core/Enterprise/Rma/Model/Shipping/Info.php
+patching file app/code/core/Enterprise/Staging/Block/Adminhtml/Backup/Grid.php
+patching file app/code/core/Enterprise/Staging/Block/Adminhtml/Staging/Grid.php
+patching file app/code/core/Mage/Admin/Helper/Data.php
+patching file app/code/core/Mage/Admin/Model/Block.php
+patching file app/code/core/Mage/Admin/Model/Resource/Block.php
+patching file app/code/core/Mage/Admin/Model/User.php
+patching file app/code/core/Mage/Adminhtml/Block/Catalog/Product/Grid.php
+patching file app/code/core/Mage/Adminhtml/Block/Newsletter/Template/Grid/Renderer/Sender.php
+patching file app/code/core/Mage/Adminhtml/Block/Sales/Order/Grid.php
+patching file app/code/core/Mage/Adminhtml/Block/Sales/Order/View/Info.php
+patching file app/code/core/Mage/Adminhtml/Block/System/Store/Edit/Form.php
+patching file app/code/core/Mage/Adminhtml/Block/Tag/Assigned/Grid.php
+patching file app/code/core/Mage/Adminhtml/Block/Widget/Grid/Column/Renderer/Store.php
+patching file app/code/core/Mage/Adminhtml/Block/Widget/Tabs.php
+patching file app/code/core/Mage/Adminhtml/Model/Config/Data.php
+patching file app/code/core/Mage/Adminhtml/Model/System/Store.php
+patching file app/code/core/Mage/Adminhtml/controllers/Catalog/ProductController.php
+patching file app/code/core/Mage/Adminhtml/controllers/CustomerController.php
+patching file app/code/core/Mage/Adminhtml/controllers/System/BackupController.php
+patching file app/code/core/Mage/Core/Model/Session/Abstract/Varien.php
+patching file app/code/core/Mage/Core/Model/Variable.php
+patching file app/code/core/Mage/Customer/Helper/Data.php
+patching file app/code/core/Mage/Customer/Model/Resource/Customer.php
+patching file app/code/core/Mage/Customer/controllers/AccountController.php
+patching file app/code/core/Mage/Customer/etc/config.xml
+patching file app/code/core/Mage/Customer/sql/customer_setup/upgrade-1.6.2.0.4.1.1-1.6.2.0.4.1.2.php
+patching file app/code/core/Mage/Downloadable/etc/config.xml
+patching file app/code/core/Mage/Downloadable/etc/system.xml
+patching file app/code/core/Mage/Downloadable/sql/downloadable_setup/upgrade-1.6.0.0.2.1.1-1.6.0.0.2.1.2.php
+patching file app/code/core/Mage/ImportExport/Model/Import.php
+patching file app/code/core/Mage/ImportExport/Model/Import/Entity/Product.php
+Hunk #3 succeeded at 884 (offset 88 lines).
+Hunk #4 succeeded at 2315 (offset 180 lines).
+patching file app/code/core/Mage/Shipping/Model/Info.php
+patching file app/code/core/Mage/Widget/controllers/Adminhtml/Widget/InstanceController.php
+patching file app/code/core/Mage/XmlConnect/Block/Adminhtml/Connect/Dashboard/StoreSwitcher.php
+patching file app/design/adminhtml/default/default/template/catalog/product/attribute/options.phtml
+patching file app/design/adminhtml/default/default/template/catalog/product/attribute/set/main.phtml
+patching file app/design/adminhtml/default/default/template/customer/tab/view.phtml
+patching file app/design/adminhtml/default/default/template/customer/tab/view/sales.phtml
+patching file app/design/adminhtml/default/default/template/dashboard/store/switcher.phtml
+patching file app/design/adminhtml/default/default/template/downloadable/product/composite/fieldset/downloadable.phtml
+patching file app/design/adminhtml/default/default/template/downloadable/product/edit/downloadable/links.phtml
+patching file app/design/adminhtml/default/default/template/downloadable/sales/items/column/downloadable/creditmemo/name.phtml
+patching file app/design/adminhtml/default/default/template/downloadable/sales/items/column/downloadable/invoice/name.phtml
+patching file app/design/adminhtml/default/default/template/downloadable/sales/items/column/downloadable/name.phtml
+patching file app/design/adminhtml/default/default/template/eav/attribute/options.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/cms/hierarchy/edit.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/cms/hierarchy/manage.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/cms/hierarchy/scope/switcher.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/cms/hierarchy/widget/radio.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/cms/page/preview/store.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/customer/website/switcher.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/invitation/view/tab/general.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/staging/log/information/create.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/staging/staging/edit/tabs/website.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/staging/staging/edit/tabs/website/store.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/staging/staging/merge/settings/website.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/store/switcher.phtml
+patching file app/design/adminhtml/default/default/template/enterprise/store/switcher/enhanced.phtml
+patching file app/design/adminhtml/default/default/template/merchandiser/new/page/html/top-buttons.phtml
+patching file app/design/adminhtml/default/default/template/newsletter/preview/store.phtml
+patching file app/design/adminhtml/default/default/template/report/store/switcher.phtml
+patching file app/design/adminhtml/default/default/template/sales/order/view/info.phtml
+patching file app/design/adminhtml/default/default/template/store/switcher.phtml
+patching file app/design/adminhtml/default/default/template/store/switcher/enhanced.phtml
+patching file app/design/adminhtml/default/default/template/system/convert/profile/wizard.phtml
+patching file app/design/adminhtml/default/default/template/tax/rate/title.phtml
+patching file app/design/adminhtml/default/default/template/widget/form/renderer/fieldset.phtml
+patching file app/design/frontend/enterprise/default/template/cms/hierarchy/pagination.phtml
+patching file app/design/frontend/rwd/enterprise/template/cms/hierarchy/pagination.phtml
+patching file app/locale/en_US/Mage_Catalog.csv
+Hunk #1 succeeded at 713 (offset -3 lines).
+patching file app/locale/en_US/Mage_ImportExport.csv
+patching file lib/Zend/Mail/Transport/Sendmail.php
+
+

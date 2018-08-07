@@ -141,10 +141,15 @@
                 <export>{{var_dir}}/export</export>
             </filesystem>
         </system>
+        <dev>
+            <template>
+                <allow_symlink>0</allow_symlink>
+            </template>
+        </dev>
         <general>
             <locale>
                 <code>en_US</code>
-                <timezone>America/Los_Angeles</timezone>
+                <timezone>America/Chicago</timezone>
             </locale>
         </general>
     </default>

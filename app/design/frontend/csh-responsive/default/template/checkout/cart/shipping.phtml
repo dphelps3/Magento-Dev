@@ -80,17 +80,12 @@
             //]]>
             </script>
 
-            
             <?php if (($_shippingRateGroups = $this->getEstimateRates())): ?>
-                <form id="co-shipping-method-form" action="<?php echo $this->getUrl('checkout/cart/estimateUpdatePost') ?>" role="form">
-                    <fieldset>
-
+            <form id="co-shipping-method-form" action="<?php echo $this->getUrl('checkout/cart/estimateUpdatePost') ?>" role="form">
+                <fieldset>
                     <dl class="sp-methods">
                         <?php foreach ($_shippingRateGroups as $code => $_rates): ?>
-                            <dt><?php 
-                                    echo $this->getCarrierName($code);
-                                ?>
-                            </dt>
+                            <dt><?php echo $this->getCarrierName($code) ?></dt>
                             <dd>
                                 <ul>
                                 <?php foreach ($_rates as $_rate): ?>
@@ -98,25 +93,22 @@
                                        <?php if ($_rate->getErrorMessage()): ?>
                                             <?php echo $_rate->getErrorMessage() ?>
                                        <?php else: ?>
-
-                                            <?php if ($_rate->getCode() == "ups_XPD"): ?>
+                                        
+                                        <?php if ($_rate->getCode() == "ups_XPD"): ?>
                                                 <?php echo "<p style='font-style:italic; font-size:11px;'>(This shipping does NOT include duties and taxes. That will be the customer's responsibility.)</p>"; ?>
                                             <?php endif ?>
-
-                                            <label>                                        
-
+                                        
+                                        
+                                            <label>
                                             <input name="estimate_method" type="radio" value="<?php echo $this->htmlEscape($_rate->getCode()) ?>" id="s_method_<?php echo $_rate->getCode() ?>"<?php if($_rate->getCode()===$this->getAddressShippingMethod()) echo ' checked="checked"' ?> />
                                             <?php echo $_rate->getMethodTitle() ?>
                                             <?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
                                             <?php $_incl = $this->getShippingPrice($_rate->getPrice(), true); ?>
                                             <?php echo $_excl; ?>
-
                                             <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
                                                 (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
                                             <?php endif; ?>
                                             </label>
-                                            
-
                                        <?php endif ?>
                                     </li>
                                 <?php endforeach; ?>
@@ -127,10 +119,9 @@
                     <div class="buttons-set">
                         <button type="submit" class="btn btn-success" name="do" value="<?php echo $this->__('Update Total') ?>"><span><span><?php echo $this->__('Update Total') ?></span></span></button>
                     </div>
-                    </fieldset>
-                </form>
+                </fieldset>
+            </form>
             <?php endif; ?>
-
             <script type="text/javascript">
             //<![CDATA[
                 var coShippingMethodForm = new VarienForm('shipping-zip-form');

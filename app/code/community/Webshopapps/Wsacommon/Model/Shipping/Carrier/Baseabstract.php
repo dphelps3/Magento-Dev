@@ -38,41 +38,34 @@
  * @copyright  Copyright (c) 2011 Zowta Ltd (http://www.webshopapps.com)
  * @license    www.webshopapps.com/license/license.txt
  * @author     Karen Baker <sales@webshopapps.com>
- */
+*/
 
 abstract class Webshopapps_Wsacommon_Model_Shipping_Carrier_Baseabstract extends Mage_Shipping_Model_Carrier_Abstract
 {
     protected $_debug;
-
+    
     protected $_request = null;
 
     protected $_result = null;
 
     protected $_rawRequest = null;
     protected $_modName   = 'none';
-
-    protected $_code;
-
-    /**
-     * Part of carrier xml config path
-     *
-     * @var string
-     */
-    protected $_availabilityConfigField = 'active';
-
-    protected static $_quotesCache = array();
-
-    const XML_PATH_STORE_ADDRESS1     = 'shipping/origin/street_line1';
-    const XML_PATH_STORE_ADDRESS2     = 'shipping/origin/street_line2';
-    const XML_PATH_STORE_CITY         = 'shipping/origin/city';
-    const XML_PATH_STORE_REGION_ID    = 'shipping/origin/region_id';
-    const XML_PATH_STORE_ZIP          = 'shipping/origin/postcode';
-    const XML_PATH_STORE_COUNTRY_ID   = 'shipping/origin/country_id';
-
-
-    abstract protected  function _getQuotes();
-    abstract public function getCode($type, $code='');
-
+    
+   	protected $_code;
+   	
+   	protected static $_quotesCache = array();
+   	
+   	const XML_PATH_STORE_ADDRESS1     = 'shipping/origin/street_line1';
+	const XML_PATH_STORE_ADDRESS2     = 'shipping/origin/street_line2';
+	const XML_PATH_STORE_CITY         = 'shipping/origin/city';
+	const XML_PATH_STORE_REGION_ID    = 'shipping/origin/region_id';
+	const XML_PATH_STORE_ZIP          = 'shipping/origin/postcode';
+	const XML_PATH_STORE_COUNTRY_ID   = 'shipping/origin/country_id';
+   	
+    
+   	abstract protected  function _getQuotes();
+ 	abstract public function getCode($type, $code='');
+    
     public function getTrackingInfo($tracking, $postcode=null, $orderId=null)
     {
         $info = array();
@@ -106,12 +99,12 @@ abstract class Webshopapps_Wsacommon_Model_Shipping_Carrier_Baseabstract extends
         return true;
     }
 
-    public function getResult()
+  	public function getResult()
     {
-        return $this->_result;
+       return $this->_result;
     }
-
-    /**
+    
+ 	/**
      * Enter description here...
      *
      * @param Mage_Shipping_Model_Rate_Request $data
@@ -121,35 +114,35 @@ abstract class Webshopapps_Wsacommon_Model_Shipping_Carrier_Baseabstract extends
     {
         if (!$this->getConfigFlag('active')) {
             return false;
-        }
+        } 
         if ($this->_modName == 'none') {
-            $this->_debug = $this->getConfigData('debug');
+        	$this->_debug = $this->getConfigData('debug');
         } else {
-            $this->_debug = Mage::helper('wsalogger')->isDebug($this->_modName);
+        	$this->_debug = Mage::helper('wsalogger')->isDebug($this->_modName);
         }
-
-
+        
+        
         $this->setRequest($request);
-
+        
         $this->_result = $this->_getQuotes();
-
+        
         $this->_updateFreeMethodQuote($request);
 
-        return $this->getResult();
+        return $this->getResult(); 
     }
-
-
-    protected function _setFreeMethodRequest($freeMethod)
+    
+    
+ 	protected function _setFreeMethodRequest($freeMethod)
     {
-        $this->_rawRequest->setIgnoreFreeItems(true);
+    	$this->_rawRequest->setIgnoreFreeItems(true);
     }
-
+    
     public function getAllowedMethods()
     {
         return array($this->_code=>$this->getConfigData('name'));
-    }
-
-    /**
+    }  
+    
+     /**
      * Returns cache key for some request to carrier quotes service
      *
      * @param string|array $requestParams
@@ -159,15 +152,15 @@ abstract class Webshopapps_Wsacommon_Model_Shipping_Carrier_Baseabstract extends
     {
         if (is_array($requestParams)) {
             $requestParams = implode(',', array_merge(
-                                            array($this->getCarrierCode()),
-                                            array_keys($requestParams),
-                                            $requestParams)
+                array($this->getCarrierCode()),
+                array_keys($requestParams),
+                $requestParams)
             );
         }
         return crc32($requestParams);
     }
-
-    /**
+    
+ /**
      * Checks whether some request to rates have already been done, so we have cache for it
      * Used to reduce number of same requests done to carrier service during one session
      *
@@ -194,162 +187,5 @@ abstract class Webshopapps_Wsacommon_Model_Shipping_Carrier_Baseabstract extends
         $key = $this->_getQuotesCacheKey($requestParams);
         self::$_quotesCache[$key] = $response;
         return $this;
-    }
-
-
-    /**
-     * Get carrier by its code
-     *
-     * @param string $carrierCode
-     * @param null|int $storeId
-     * @return bool|Mage_Core_Model_Abstract
-     */
-    public function getCarrierByCode($carrierCode, $storeId = null)
-    {
-        if (!Mage::getStoreConfigFlag('carriers/'.$carrierCode.'/'.$this->_availabilityConfigField, $storeId)) {
-            return false;
-        }
-        $className = Mage::getStoreConfig('carriers/'.$carrierCode.'/model', $storeId);
-        if (!$className) {
-            return false;
-        }
-        $obj = Mage::getModel($className);
-        if ($storeId) {
-            $obj->setStore($storeId);
-        }
-        return $obj;
-    }
-
-
-    protected function _getCart()
-    {
-        return Mage::getSingleton('checkout/cart');
-    }
-
-    protected function _getQuote()
-    {
-        if (Mage::registry('rule_data')) {
-            return $this->_getAdminQuote();
-
-        }
-        return $this->_getCart()->getQuote();
-
-
-    }
-
-    protected function _getAdminSession()
-    {
-        return Mage::getSingleton('adminhtml/session_quote');
-    }
-
-    protected function _getAdminQuote()
-    {
-        return $this->_getAdminSession()->getQuote();
-    }
-
-
-    /** Note pulled from USA Shipping in Magento - used in Premium Rates to test for max weight */
-    /**
-     * Processing additional validation to check if carrier applicable.
-     *
-     * @param Mage_Shipping_Model_Rate_Request $request
-     * @return Mage_Shipping_Model_Carrier_Abstract|Mage_Shipping_Model_Rate_Result_Error|boolean
-     */
-    public function processAdditionalValidation(Mage_Shipping_Model_Rate_Request $request)
-    {
-        //Skip by item validation if there is no items in request
-        if(!count($this->getAllItems($request))) {
-            return $this;
-        }
-
-        $maxAllowedWeight = 0;
-
-        if ($this->getConfigData('max_package_weight') > 0 && is_numeric($this->getConfigData('max_package_weight'))) {
-            $maxAllowedWeight = (float) $this->getConfigData('max_package_weight');
-        } else if (strpos($this->_code, "freight") !== false) {
-            $maxAllowedWeight = (float) Mage::getStoreConfig('shipping/wsafreightcommon/max_package_weight');
-        }
-
-        if ($maxAllowedWeight==0 || !is_numeric($maxAllowedWeight)) {
-            return $this;
-        }
-
-        $errorMsg           = '';
-        $configErrorMsg     = $this->getConfigData('specificerrmsg');
-        $defaultErrorMsg    = Mage::helper('shipping')->__('The shipping module is not available.');
-        $showMethod         = $this->getConfigData('showmethod');
-
-        foreach ($this->getAllItems($request) as $item) {
-            if ($item->getProduct() && $item->getProduct()->getId()) {
-                $weight         = $item->getProduct()->getWeight();
-                $stockItem      = $item->getProduct()->getStockItem();
-                $doValidation   = true;
-
-                if ($stockItem->getIsQtyDecimal() && $stockItem->getIsDecimalDivided()) {
-                    if ($stockItem->getEnableQtyIncrements() && $stockItem->getQtyIncrements()) {
-                        $weight = $weight * $stockItem->getQtyIncrements();
-                    } else {
-                        $doValidation = false;
-                    }
-                } elseif ($stockItem->getIsQtyDecimal() && !$stockItem->getIsDecimalDivided()) {
-                    $weight = $weight * $item->getQty();
-                }
-
-                if ($doValidation && $weight > $maxAllowedWeight) {
-                    $errorMsg = ($configErrorMsg) ? $configErrorMsg : $defaultErrorMsg;
-                    Mage::helper('wsalogger/log')->postWarning('wsacommon','Weight Exceeds Max Package Weight','No Rates Available');
-                    break;
-                }
-            }
-        }
-
-        if (!$errorMsg && !$request->getDestPostcode() && $this->isZipCodeRequired($request->getDestCountryId())) {
-            $errorMsg = Mage::helper('shipping')->__('This shipping method is not available, please specify ZIP-code');
-        }
-
-        if ($errorMsg && $showMethod) {
-            $error = Mage::getModel('shipping/rate_result_error');
-            $error->setCarrier($this->_code);
-            $error->setCarrierTitle($this->getConfigData('title'));
-            $error->setErrorMessage($errorMsg);
-            return $error;
-        } elseif ($errorMsg) {
-            return false;
-        }
-        return $this;
-    }
-
-    /**
-     * Return items for further shipment rate evaluation. We need to pass children of a bundle instead passing the
-     * bundle itself, otherwise we may not get a rate at all (e.g. when total weight of a bundle exceeds max weight
-     * despite each item by itself is not)
-     *
-     * @param Mage_Shipping_Model_Rate_Request $request
-     * @return array
-     */
-    public function getAllItems(Mage_Shipping_Model_Rate_Request $request)
-    {
-        $items = array();
-        if ($request->getAllItems()) {
-            foreach ($request->getAllItems() as $item) {
-                /* @var $item Mage_Sales_Model_Quote_Item */
-                if ($item->getProduct()->isVirtual() || $item->getParentItem()) {
-                    // Don't process children here - we will process (or already have processed) them below
-                    continue;
-                }
-
-                if ($item->getHasChildren() && $item->isShipSeparately()) {
-                    foreach ($item->getChildren() as $child) {
-                        if (!$child->getFreeShipping() && !$child->getProduct()->isVirtual()) {
-                            $items[] = $child;
-                        }
-                    }
-                } else {
-                    // Ship together - count compound item as one solid
-                    $items[] = $item;
-                }
-            }
-        }
-        return $items;
     }
 }

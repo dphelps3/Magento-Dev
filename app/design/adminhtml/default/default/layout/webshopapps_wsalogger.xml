@@ -27,9 +27,9 @@
 -->
 
 <layout>
-    <adminhtml_wsalogger_index>
+    <wsalogger_adminhtml_log_index>
         <reference name="content">
             <block type="wsalogger_adminhtml/log" name="log" />
         </reference>
-    </adminhtml_wsalogger_index>
+    </wsalogger_adminhtml_log_index>
 </layout>

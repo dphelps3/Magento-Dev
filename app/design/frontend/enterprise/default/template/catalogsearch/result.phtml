@@ -24,6 +24,11 @@
  * @license http://www.magento.com/license/enterprise-edition
  */
 ?>
+<!-- FACEBOOK TRACKING SEARCH -->
+<script>
+fbq('track', 'Search');
+</script>
+<!-- END FACEBOOK TRACKING -->
 <?php if($this->getResultCount()): ?>
 <div class="page-title">
     <?php if ($this->helper('rss/catalog')->getTagFeedUrl()): ?>

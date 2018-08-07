@@ -74,7 +74,6 @@ class Mana_Filters_Model_Solr_Price extends Mana_Filters_Model_Filter_Price
         return $result;
     }
 
-
     /**
      * Applies filter values provided in URL to a given product collection
      *

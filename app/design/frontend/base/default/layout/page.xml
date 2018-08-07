@@ -73,12 +73,6 @@ Default layout, loads most of the pages
                     <label>Navigation Bar</label>
                     <block type="page/html_topmenu" name="catalog.topnav" template="page/html/topmenu.phtml"/>
                 </block>
-
-                <block type="core/text_list" name="salebanner" as="salebanner" translate="label">
-                    <label>Sale Banner</label>
-                    <block type="page/html_salebanner" name="salebanner" template="page/html/salebanner.phtml"/>
-                </block>
-
                 <block type="page/html_wrapper" name="top.container" as="topContainer" translate="label">
                     <label>Page Header</label>
                     <action method="setElementClass"><value>top-container</value></action>

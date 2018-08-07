@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Magestore_Sociallogin>
-            <active>false</active>
+            <active>true</active>
             <codePool>local</codePool>
 			<aliasName>Social Login</aliasName>
         </Magestore_Sociallogin>

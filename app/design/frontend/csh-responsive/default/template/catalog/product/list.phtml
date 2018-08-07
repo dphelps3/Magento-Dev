@@ -41,60 +41,197 @@
 <?php echo $this->getToolbarHtml() ?>
 <?php echo $this->getAdditionalHtml() ?>
 <div class="category-products">
-    <?php // List mode ?>
-    <?php if($this->getMode()!='grid'): ?>
-    <?php $_iterator = 0; ?>
-    <ol class="products-list" id="products-list">
-    <?php foreach ($_productCollection as $_product): ?>
-        <li class="row<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
-            <?php // Product Image ?>
-            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="col-xs-3"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(200); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="img-thumbnail" /></a>
-            <?php // Product description ?>
-            <div class="col-xs-9">
-                    <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
-                    
-                    <?php if($_product->getRatingSummary()): ?>
-                    <?php echo $this->getReviewsSummaryHtml($_product) ?>
-                    <?php endif; ?>
-                    <?php if ( $_product->getTypeId() != Simplesolutions_Cabinetproduct_Model_Product_Type_Cabinet::TYPE_CABINET ) : ?>
-                        <?php echo $this->getPriceHtml($_product, true) ?>
-                    <?php endif; ?>
-                    <div class="desc std">
-                        <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
-                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
+
+<?php // Grid Mode ?>
+
+
+<?php
+
+    $category = "";
+    $category_check = is_null( Mage::registry('current_category') );
+    if($category_check == false){
+        $category = Mage::registry('current_category')->getName();
+    }
+?>
+
+    <?php echo "<h2>" . $category . "</h2>"; ?>
+<?php if( $category == 'Kitchen Cabinets') : ?>
+
+    <style>
+        .view-mode {
+            text-align: left;
+        }
+
+        .alt-products-grid {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .alt-products-grid li {
+            float: none;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+        }
+
+        .alt-products-grid .easyorder {
+            background-color: #c62221 !important;
+            color: #ffffff;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1;
+            padding: 7px !important;
+            max-width: 110px;
+            text-align: center;
+        }
+
+        .alt-products-grid .easyorder:hover {
+            background-color: #b21e1d !important;
+            color: #ffffff;
+        }
+
+        @media (min-width: 992px) {
+            .alt-products-grid .easyorder {
+                margin: 0 0 0 auto;
+            }
+        }
+
+        .alt-product-image{
+            background-repeat: none;
+            background-size: cover;
+            background-position: center center;
+            display: block;
+        }
+
+        .product-panel {
+            background-color: #fdfdfd;
+            border: 1px solid #d6d6d6;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .product-name {
+            font-size: 16px !important;
+            margin-top: 0;
+        }
+
+        @media (min-width: 992px) {
+            .product-name {
+                height: auto !important;
+                font-size: 18px !important;
+            }
+        }
+
+        .product-name,
+        .product-name a,
+        .product-sku {
+            color: #000000;
+        }
+
+        .product-name a:hover {
+            color: #333333;
+        }
+
+        .product-info-row {
+            display: block;
+            padding: 20px 14px;
+        }
+
+        .product-info-row .product-info,
+        .product-info-row .actions {}
+
+        @media (min-width: 992px) {
+            .product-info-row::before,
+            .product-info-row::after {
+                content: '';
+                display: table;
+            }
+
+            .product-info-row::after {
+                clear: both;
+            }
+
+            .product-info-row .product-info {
+                width: 52%;
+                text-align: left;
+                float: left;
+            }
+
+            .product-info-row .actions {
+                width: 48%;
+                text-align: right;
+                float: right;
+            }
+        }
+    </style>
+
+    <ul class="alt-products-grid row">
+
+    <?php $_collectionSize = $_productCollection->count() ?>
+    <?php $_columnCount = 3; ?>
+    <?php $i=0; foreach ($_productCollection as $_product): ?>
+        <?php if ($i++%$_columnCount==0): ?>
+
+        <?php endif ?>
+            <li class="col-xs-6 col-md-4<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                <div class="product-panel">
+                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'image'), null, true) ?>" class="alt-product-image" style="background-image: url('<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->keepFrame(false)->resize(500,500) ?>');">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 305 305" style="enable-background:new 0 0 305 305;" xml:space="preserve"></svg>
+                    </a>
+                    <div class="product-info-row">
+                        <div class="product-info">
+                            <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+                            <p class="product-sku">SKU: <?php echo $_product->getSku() ?></p>
+                            <?php if($_product->getRatingSummary()): ?>
+                            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                            <?php endif; ?>
+                            <?php if ( $_product->getTypeId() != Simplesolutions_Cabinetproduct_Model_Product_Type_Cabinet::TYPE_CABINET ) : ?>
+                                <?php echo $this->getPriceHtml($_product, true) ?>
+                            <?php endif; ?>
+                        </div>
+                        <div class="actions">
+                            <?php if($_product->isSaleable()): ?>
+                                <!-- CABINETS -->
+            					<?php if ( $_product->getTypeId() == Simplesolutions_Cabinetproduct_Model_Product_Type_Cabinet::TYPE_CABINET ) : ?>
+                                    <a class="easyorder" href="<?php echo $_product->getProductUrl() ?>">SHOP NOW</a>
+            					<?php else : ?>
+                                    <a class="add-to-cart-quick" href="<?php echo $_product->getProductUrl() ?>" ><button type="button" title="<?php echo $this->__('View Product') ?>" class="btn btn-primary" ><span><span><?php echo $this->__('View Product') ?></span></span></button></a>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <?php if ($_product->getIsSalable()): ?>
+                                    <p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p>
+                                <?php else: ?>
+                                    <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                                <ul class="add-to-links">
+                                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                        <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist btn btn-link"><span class="glyphicon glyphicon-heart"></span><?php echo $this->__('Add to Wishlist') ?></a></li>
+                                    <?php endif; ?>
+                                    <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                        <li><a href="<?php echo $_compareUrl ?>" class="link-compare btn btn-link"><span class="glyphicon glyphicon-transfer"></span><?php echo $this->__('Add to Compare') ?></a></li>
+                                    <?php endif; ?>
+                                </ul>
+                        </div>
                     </div>
-                    <?php if($_product->isSaleable()): ?>
-                        <!-- CABINETS -->
-					<?php if ( $_product->getTypeId() == Simplesolutions_Cabinetproduct_Model_Product_Type_Cabinet::TYPE_CABINET ) : ?>
-                        <p style="text-align: center; margin: 0;"><a style="padding:8px;background-color:#c0c0c0;color:#fff;" class="easyorder" href="<?php echo $_product->getProductUrl() ?>">Easy Order</a></p>
-					<?php else : ?>
-                        <a class="add-to-cart-quick" href="<?php echo $_product->getProductUrl() ?>" ><button type="button" title="<?php echo $this->__('View Product') ?>" class="btn btn-primary"><span><span><?php echo $this->__('View Product') ?></span></span></button></a>
-                     <?php endif; ?>
-                     <?php else: ?>
-                        <?php if ($_product->getIsSalable()): ?>
-                            <p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p>
-                        <?php else: ?>
-                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                        <ul class="add-to-links">
-                            <?php if ($this->helper('wishlist')->isAllow()) : ?>
-                                <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist btn btn-link"><span class="glyphicon glyphicon-heart"></span><?php echo $this->__('Add to Wishlist') ?></a></li>
-                            <?php endif; ?>
-                            <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
-                                <li><a href="<?php echo $_compareUrl ?>" class="link-compare btn btn-link"><span class="glyphicon glyphicon-transfer"></span><?php echo $this->__('Add to Compare') ?></a></li>
-                            <?php endif; ?>
-                        </ul>
-            </div>
-        </li>
-        <li class="clearfix"><hr></li>
-    <?php endforeach; ?>
-    </ol>
-    <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
+                </div>
+            </li>
+        <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+        <?php endif ?>
+        <?php endforeach ?>
+        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+    <?php //endif; ?>
+    </ul>
 
 <?php else: ?>
 
-<?php // Grid Mode ?>
     <ul class="products-grid row">
 
 <?php $_collectionSize = $_productCollection->count() ?>
@@ -105,7 +242,7 @@
     <?php endif ?>
         <li class="col-xs-6 col-md-15<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
             <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(200); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="img-thumbnail" /></a>
-            <p class="product-sku">SKU: <?php echo strtoupper($_product->getSku()); ?></p>
+            <p class="product-sku">SKU: <?php echo $_product->getSku() ?></p>
             <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
             <?php if($_product->getRatingSummary()): ?>
             <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
@@ -118,11 +255,8 @@
                     <!-- CABINETS -->
 					<?php if ( $_product->getTypeId() == Simplesolutions_Cabinetproduct_Model_Product_Type_Cabinet::TYPE_CABINET ) : ?>
                         <p style="text-align: center; margin: 0;"><a style="padding:8px;background-color:#c0c0c0;color:#fff;" class="easyorder" href="<?php echo $_product->getProductUrl() ?>">Easy Order</a></p>
-					<?php else : ?>  
-                        <a class="add-to-cart-quick" href="<?php echo $_product->getProductUrl() ?>" ><button type="button" title="<?php echo $this->__('View Product') ?>" class="btn btn-primary viewProduct" ><span><span><?php echo $this->__('View Product') ?></span></span></button></a>
-                        <?php if ($_product->getPrice() < 250.00): ?>
-                            <div class="buttonPadding" style="height:40px;"></div>
-                        <?php endif; ?>
+					<?php else : ?>
+                        <a class="add-to-cart-quick" href="<?php echo $_product->getProductUrl() ?>" ><button type="button" title="<?php echo $this->__('View Product') ?>" class="btn btn-primary" ><span><span><?php echo $this->__('View Product') ?></span></span></button></a>
                     <?php endif; ?>
                 <?php else: ?>
                     <?php if ($_product->getIsSalable()): ?>

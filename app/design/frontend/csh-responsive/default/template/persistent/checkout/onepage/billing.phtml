@@ -29,7 +29,10 @@
 <script>
 fbq('track', 'InitiateCheckout');
 </script>
-<!-- END FACEBOOK CHECKOUT CDOE -->
+<!-- END FACEBOOK CHECKOUT CODE -->
+
+<?php $_customertype = $this->getLayout()->createBlock('customer/widget_customertype') ?>
+
 <form id="co-billing-form" action="">
 <fieldset>
     <ul>
@@ -46,8 +49,13 @@ fbq('track', 'InitiateCheckout');
                 <li class="form-group">
                 <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getAddress()->getFirstname() ? $this->getAddress() : $this->getQuote()->getCustomer())->setForceUseCustomerRequiredAttributes(!$this->isCustomerLoggedIn())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
                 </li>
+
+                <li class="form-group required validate-select required-entry" id="register-customer-type">
+                    <?php echo $_customertype->setCustomertype($this->getQuote()->getCustomertype())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+                </li>
+
                 <li class="form-group">
-                    <label for="billing:company"><?php echo $this->__('Company') ?></label>
+                    <label for="billing:company"><?php echo $this->__('Company Name (optional)') ?></label>
                     <input autocomplete="off" type="text" id="billing:company" name="billing[company]" value="<?php echo $this->escapeHtml($this->getAddress()->getCompany()) ?>" title="<?php echo $this->__('Company') ?>" class="form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('company') ?>" />
                 </li>
         <?php if (!$this->isCustomerLoggedIn()): ?>

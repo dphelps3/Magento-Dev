@@ -456,7 +456,6 @@ class Mage_Core_Model_Layout extends Varien_Simplexml_Config
         $block->setLayout($this);
 
         $this->_blocks[$name] = $block;
-		Mage::log($name, null, 'blocks.log', true);
         Mage::dispatchEvent('core_layout_block_create_after', array('block'=>$block));
         return $this->_blocks[$name];
     }

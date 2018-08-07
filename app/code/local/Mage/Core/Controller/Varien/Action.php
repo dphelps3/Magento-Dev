@@ -1054,9 +1054,10 @@ abstract class Mage_Core_Controller_Varien_Action
                 return $this;
             }
             if ($content['type'] == 'filename') {
-                $isFile         = true;
-                $file           = $content['value'];
-                $contentLength  = filesize($file);
+                clearstatcache();
+                $isFile        = true;
+                $file          = $content['value'];
+                $contentLength = filesize($file);
             }
         }
 

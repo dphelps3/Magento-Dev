@@ -11,9 +11,9 @@ class OrganicInternet_SimpleConfigurableProducts_Catalog_Block_Product_Price
             $product = $this->getProduct();
             if (is_object($product) && $product->isConfigurable()) {
                 $extraHtml = '<span class="label" id="configurable-price-from-'
-                . $product->getId()
-                . $this->getIdSuffix()
-                . '"><span class="configurable-price-from-label" style="font-size: 13px; color: #777;">';
+                    . $product->getId()
+                    . $this->getIdSuffix()
+                    . '"><span class="configurable-price-from-label" style="font-size: 13px; color: #777;">';
 
                 if ($product->getMaxPossibleFinalPrice() != $product->getFinalPrice()) {
                     $extraHtml .= $this->__('PRICE FROM:');
@@ -23,7 +23,7 @@ class OrganicInternet_SimpleConfigurableProducts_Catalog_Block_Product_Price
                 #manually insert extra html needed by the extension into the normal price html
                 return substr_replace($priceHtml, $extraHtml, strpos($priceHtml, $htmlToInsertAfter)+strlen($htmlToInsertAfter),0);
             }
-	    }
+        }
         return parent::_toHtml();
     }
 }

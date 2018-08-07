@@ -104,7 +104,7 @@ Easylife.Switcher = Class.create(Product.Config, {
                 var inStock = that.isInStock(attributeId, optVal);
                 var labelClass = that.getLabelClass(elem, attributeId, optVal, inStock);
 
-                $(newId).insert('<label class="switcher-label' + labelClass + '" id="' + $(selectid).id + '_' + optVal + '" value="' + optVal + '" title="' + title + '"' + that.getImageSizeHTML() + '>'+optText+'</label>');
+                $(newId).insert('<label class="switcher-label' + labelClass + '" id="' + $(selectid).id + '_' + optVal + '" value="' + optVal + '" title="' + title + '">'+optText+'</label>');
                 //change the select value on click
                 that.bindClickEvent(selectid, optVal, inStock);
 
@@ -115,13 +115,6 @@ Easylife.Switcher = Class.create(Product.Config, {
             })
         }
         return transformed;
-    },
-    getImageSizeHTML: function() {
-        if (!this.config.image_size) {
-            return '';
-        }
-        var sizes = this.config.image_size;
-        return ' style="width:' + sizes[0] + 'px;height:' + sizes[1] + 'px;line-height:' + sizes[1] + 'px"';
     },
     /**
      * bind click event on labels
@@ -298,9 +291,6 @@ Easylife.Switcher = Class.create(Product.Config, {
             var nextSettingId = $(element.nextSetting).id.replace(/[a-z]*/, '');
             if (this.currentValues[nextSettingId]) {
                 $(element.nextSetting).value = this.currentValues[nextSettingId];
-                if (!$(element.nextSetting).value) {
-                    delete this.currentValues[nextSettingId];
-                }
                 var label = $('attribute' + nextSettingId + '_' + this.currentValues[nextSettingId]);
                 if (label) {
                     $(label).simulate('click');
@@ -308,30 +298,20 @@ Easylife.Switcher = Class.create(Product.Config, {
                 else {
                     $(element.nextSetting).simulate('change');
                 }
-
-            }
-        }
-        //recalculate current values
-        this.currentValues = {};
-        for (var i=0; i<this.settings.length;i++){
-            if ($(this.settings[i]).value) {
-                var id = $(this.settings[i]).id.replace(/[a-z]*/, '');
-                this.currentValues[id] = $(this.settings[i]).value;
             }
         }
     },
     /**
      * change the main image of the product
+     * @param attributeId
      * @param product
      */
-    changeMainImage: function(product) {
-        var productImage = this.getConfigValue(this.config, 'switch_images/'  + product, false);
+    changeMainImage: function(attributeId, product) {
+        var productImage = this.getConfigValue(this.config, 'switch_images/' + attributeId + '/' + product, false);
         var image = eval(this.getConfigValue(this.config, 'main_image_selector', false));
         if (productImage && image) {
             //change the src
-            $(image).src = productImage['src'];
-            $(image).alt = productImage['alt'];
-            $(image).title = productImage['alt'];
+            $(image).src = productImage;
             //hack for default theme zoomer
             //don't call the callback on the first page load
             var callback = this.getConfigValue(this.config, 'switch_image_callback', false);
@@ -345,10 +325,11 @@ Easylife.Switcher = Class.create(Product.Config, {
     },
     /**
      * change the media block for the product
+     * @param attributeId
      * @param product
      */
-    changeMediaBlock: function(product) {
-        var mediaHtml = this.getConfigValue(this.config, 'switch_media/' + product, false);
+    changeMediaBlock: function(attributeId, product) {
+        var mediaHtml = this.getConfigValue(this.config, 'switch_media/' + attributeId + '/' + product, false);
         var mediaEval = this.getConfigValue(this.config, 'switch_media_selector', false);
         var media = mediaEval ? eval(mediaEval) : false;
         if (media && mediaHtml){
@@ -374,7 +355,7 @@ Easylife.Switcher = Class.create(Product.Config, {
     configureElement: function($super, element){
         $super(element);
         var attributeId = $(element).id.replace(/[a-z]*/, '');
-        var reset = false;
+        this.currentValues[attributeId] = $(element).value;
         this.keepSelection(element);
         var value = $(element).value;
         //var options = this.config.attributes[attributeId].options;
@@ -383,38 +364,18 @@ Easylife.Switcher = Class.create(Product.Config, {
         if (switchType == 0) {
             return ;
         }
-        var setAllowed = false;
-        var first = [];
-        var allowed = [];
-        for (var key in this.currentValues)
-        {
-            var options = this.getConfigValue(this.config, 'attributes/' + key + '/options', []);
-
-            for (var id in options){
-                if (options.hasOwnProperty(id) && options[id].id == this.currentValues[key]){
-                    var products =  options[id].allowedProducts;
-                    if (!setAllowed) {
-                        allowed = products;
-                        first = allowed;
-                        setAllowed = true;
-                    } else {
-                        var newProducts = [];
-                        for (var i in products) {
-                            if (allowed.indexOf(products[i]) != -1) {
-                                newProducts.push(products[i]);
-                            }
-                        }
-                        allowed = newProducts;
-                    }
+        var options = this.getConfigValue(this.config, 'attributes/' + attributeId + '/options', []);
+        for (var id in options){
+            if (options.hasOwnProperty(id) && options[id].id == value){
+                var product = options[id].allowedProducts[0];
+                if (switchType == 1) {
+                    this.changeMainImage(attributeId, product);
+                }
+                else if(switchType == 2) {
+                    //var product = this.getConfigValue(this.config, 'switch_media/' + attributeId + '/' + product)
+                    this.changeMediaBlock(attributeId, product);
                 }
             }
-        }
-        var product = allowed[0];
-        if (switchType == 1) {
-            this.changeMainImage(product);
-        }
-        else if(switchType == 2) {
-            this.changeMediaBlock(product);
         }
     },
     /**

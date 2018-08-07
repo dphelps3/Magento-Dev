@@ -44,8 +44,7 @@
  *
  * @category    WebShopApps
  * @package     WebShopApps WsaLogger
- * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
- *              Copyright, 2013, Zowta, LLC - US license
+ * @copyright   Copyright (c) 2011 Zowta Ltd (http://www.webshopapps.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 **/
 
@@ -54,7 +53,7 @@ class Webshopapps_Wsalogger_Adminhtml_Block_System_Config_Form_Fieldset_Modules_
     extends Mage_Adminhtml_Block_System_Config_Form_Fieldset
 {
 
-
+    
     protected $_dummyElement;
     protected $_fieldRenderer;
     protected $_values;
@@ -62,11 +61,10 @@ class Webshopapps_Wsalogger_Adminhtml_Block_System_Config_Form_Fieldset_Modules_
     public function render(Varien_Data_Form_Element_Abstract $element)
     {
         $html = $this->_getHeaderHtml($element);
-
+        
        // $html.= $this->getUrl('*/system_wsalogger');
 
         $modules = array_keys((array)Mage::getConfig()->getNode('modules')->children());
-        $wsaApproved = array('webshopapps','shipperhq');
 
         sort($modules);
 
@@ -75,11 +73,7 @@ class Webshopapps_Wsalogger_Adminhtml_Block_System_Config_Form_Fieldset_Modules_
             	|| stripos($moduleName,'Mage_') !== false) {
                 continue;
             }
-
-            $providerArray = explode('_',$moduleName);
-            $provider = strtolower($providerArray[0]);
-
-            if (!Mage::getStoreConfig('wsalogmenu/wsalog/view_all_extns') && !in_array($provider, $wsaApproved)){
+            if (!Mage::getStoreConfig('wsalogmenu/wsalog/view_all_extns') && stripos($moduleName,'webshopapps_') === false) {
             	continue;
             }
             $html.= $this->_getFieldHtml($element, $moduleName);

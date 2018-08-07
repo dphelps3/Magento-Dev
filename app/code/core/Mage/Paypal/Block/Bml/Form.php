@@ -53,7 +53,7 @@ class Mage_Paypal_Block_Bml_Form extends Mage_Paypal_Block_Express_Form
             ->setRedirectMessage(
                 Mage::helper('paypal')->__('You will be redirected to the PayPal website.')
             )
-            ->setMethodTitle('') // Output PayPal mark, omit title
+            ->setMethodTitle('PayPal') // Put paypal title back in argument
             ->setMethodLabelAfterHtml($mark->toHtml());
     }
 }

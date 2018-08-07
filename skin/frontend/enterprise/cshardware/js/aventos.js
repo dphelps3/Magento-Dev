@@ -506,7 +506,7 @@ function update_parts() {
 				if (cabinet_height < 558) {
 					html_string += get_tr_from_sku("B.20F3200")
 				} else if (cabinet_height < 686) {
-					html_string += get_tr_from_sku("B.20F3500")
+					html_string += get_tr_from_sku("B.20F3500.01")
 				} else if (cabinet_height < 889) {
 					html_string += get_tr_from_sku("B.20F3800.01")
 				} else {

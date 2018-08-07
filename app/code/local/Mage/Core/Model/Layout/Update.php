@@ -447,11 +447,6 @@ class Mage_Core_Model_Layout_Update
             }
             $fileStr = file_get_contents($filename);
             $fileStr = str_replace($this->_subst['from'], $this->_subst['to'], $fileStr);
-
-            // Debugging erroneous XML
-            // Mage::log(print_r($filename, true));
-            // End of debug
-
             $fileXml = simplexml_load_string($fileStr, $elementClass);
             if (!$fileXml instanceof SimpleXMLElement) {
                 continue;

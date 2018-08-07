@@ -643,48 +643,18 @@ Supported layout update handles (special):
                 <template>catalog/product/cabinetview.phtml</template>
             </action>
         </reference>
-        <reference name="head">
+        <reference name="head">					
             <action method="addCss">
                 <stylesheet>css/tablesaw.css</stylesheet>
-            </action>
+            </action>	
             <action method="addItem">
                 <type>skin_js</type>
                 <name>js/tablesaw.js</name>
-            </action>
+            </action>			
             <action method="addItem">
                 <type>skin_js</type>
                 <name>js/tablesaw-init.js</name>
-            </action>
+            </action>						
         </reference>
     </PRODUCT_TYPE_cabinet>
-
-    <PRODUCT_TYPE_hardware>
-        <label>Catalog Product View (Hardware)</label>
-        <reference name="product.info">
-            <block type="hardwareproduct/product_view_type_hardware" name="product.info.hardware" as="product_type_data" template="catalog/product/view/type/hardware.phtml">
-                <block type="core/text_list" name="product.info.hardware.extra" as="product_type_data_extra" translate="label">
-                    <label>Product Extra Info</label>
-                </block>
-            </block>
-        </reference>
-        <reference name="product.info">
-            <action method="setTemplate">
-                <template>catalog/product/hardwareview.phtml</template>
-            </action>
-        </reference>
-        <reference name="head">
-            <action method="addCss">
-                <stylesheet>css/tablesaw.css</stylesheet>
-            </action>
-            <action method="addItem">
-                <type>skin_js</type>
-                <name>js/tablesaw.js</name>
-            </action>
-            <action method="addItem">
-                <type>skin_js</type>
-                <name>js/tablesaw-init.js</name>
-            </action>
-        </reference>
-    </PRODUCT_TYPE_hardware>
-
 </layout>

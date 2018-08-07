@@ -63,10 +63,6 @@ class Mage_Customer_Model_Customer_Api extends Mage_Customer_Model_Api_Resource
      */
     public function create($customerData)
     {
-        echo "<pre>";
-            print_r($customerData);
-        echo "</pre>";
-
         $customerData = $this->_prepareData($customerData);
         try {
             $customer = Mage::getModel('customer/customer')

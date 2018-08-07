@@ -31,29 +31,28 @@
  */
 ?>
 <?php
-    $_helper = $this->helper('catalog/output');
-    $_product = $this->getProduct()
+$_helper = $this->helper('catalog/output');
+$_product = $this->getProduct()
 ?>
 <?php if($_additional = $this->getAdditionalData()): ?>
 
-
-<table class="table table-condensed table-hover table-bordered" id="product-attribute-specs-table">
-    <col width="35%" />
-    <col />
-    <tbody>
-    <?php foreach ($_additional as $_data): ?>
-        <?php if($_data['value'] !== 'No'): ?>
-        <tr>
-            <td>
-                <strong><?php echo $this->escapeHtml($this->__($_data['label'])) ?></strong>
-            </td>
-            <td class="data">
-                <?php echo $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>
-            </td>
-        </tr>
-        <?php endif; ?>
-    <?php endforeach; ?>
-    </tbody>
-</table>
-<script type="text/javascript">decorateTable('product-attribute-specs-table')</script>
+    <table class="table table-condensed table-hover table-bordered" id="product-attribute-specs-table">
+        <col width="35%" />
+        <col />
+        <tbody>
+        <?php foreach ($_additional as $_data): ?>
+            <?php if($_data['value'] !== 'No'): ?>
+                <tr>
+                    <td>
+                        <strong><?php echo $this->escapeHtml($this->__($_data['label'])) ?></strong>
+                    </td>
+                    <td class="data">
+                        <?php echo $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>
+                    </td>
+                </tr>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <script type="text/javascript">decorateTable('product-attribute-specs-table')</script>
 <?php endif;?>

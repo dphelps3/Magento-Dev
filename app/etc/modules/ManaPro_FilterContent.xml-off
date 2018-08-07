@@ -8,7 +8,7 @@
 <config>
     <modules>
         <ManaPro_FilterContent>
-            <active>false</active>
+            <active>true</active>
             <codePool>local</codePool>
             <depends>
                 <ManaPro_FilterAdmin/>

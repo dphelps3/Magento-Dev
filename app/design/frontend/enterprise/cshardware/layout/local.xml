@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout version="0.1.0">
-
 	<rollingdoor_index_index>
 		<reference name="root">
             <action method="setTemplate">
@@ -10,11 +9,9 @@
             <block type="customer/form_register" name="customer_form_register" template="customer/form/register.phtml"/>
         </reference>
 	</rollingdoor_index_index>
-
 	<rollingdoor_index_goodbye>
         <update handle="rollingdoor_index_index" />
-	</rollingdoor_index_goodbye>
-
+    </rollingdoor_index_goodbye>	
 	<default>
 		<reference name="head">
 			<block type="core/text" name="google.cdn.jquery">
@@ -25,13 +22,4 @@
 			</block>
 		</reference>
 	</default>
-
-
-	<!-- let's add a block to our layout that defines where to inject our twitter widget -->
-	<catalog_product_view>
-	     <reference name='product.info'>
-	          <block type='twitter/timeline' name='product.info.twitter.timeline' as='product.view.twitter.timeline' template='catalog/product/view/twitter/timeline.phtml' />
-	     </reference>
-	</catalog_product_view>
-
 </layout>

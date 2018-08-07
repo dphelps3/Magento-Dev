@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <DPhelps_Mymodule>
+            <version>0.1.0</version>    <!-- Version number of your module -->
+        </DPhelps_Mymodule>
+    </modules>
+</config>

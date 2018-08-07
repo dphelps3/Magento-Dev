@@ -121,12 +121,6 @@ class Mage_Checkout_Block_Onepage_Billing extends Mage_Checkout_Block_Onepage_Ab
         return $this->_address;
     }
 
-    public function isNewsletterEnabled()
-    {
-
-      return Mage::helper('core')->isModuleOutputEnabled('Mage_Newsletter');
-    }
-
     /**
      * Return Customer Address First Name
      * If Sales Quote Address First Name is not defined - return Customer First Name

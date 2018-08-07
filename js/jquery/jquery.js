@@ -10344,4 +10344,3 @@ if ( typeof noGlobal === strundefined ) {
 return jQuery;
 
 }));
->>>>>>> devmaster2017

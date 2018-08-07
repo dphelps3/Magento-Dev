@@ -36,7 +36,7 @@
  */
 class Mage_Core_Model_Session extends Mage_Core_Model_Session_Abstract
 {
-    public function __construct($data=array())
+    public function __construct($data = array())
     {
         $name = isset($data['name']) ? $data['name'] : null;
         $this->init('core', $name);
@@ -55,7 +55,7 @@ class Mage_Core_Model_Session extends Mage_Core_Model_Session_Abstract
         return $this->getData('_form_key');
     }
 
-     /**
+    /**
      * Creates new Form key
      */
     public function renewFormKey()

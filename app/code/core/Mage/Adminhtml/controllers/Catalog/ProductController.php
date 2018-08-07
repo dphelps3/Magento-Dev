@@ -723,6 +723,16 @@ class Mage_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Controller
             $this->_filterStockData($data['product']['stock_data']);
 
             $product = $this->_initProductSave();
+            // check sku attribute
+            $productSku = $product->getSku();
+            if ($productSku && $productSku != Mage::helper('core')->stripTags($productSku)) {
+                $this->_getSession()->addError($this->__('HTML tags are not allowed in SKU attribute.'));
+                $this->_redirect('*/*/edit', array(
+                    'id' => $productId,
+                    '_current' => true
+                ));
+                return;
+            }
 
             try {
                 $product->save();
@@ -732,19 +742,7 @@ class Mage_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Controller
                    $this->_copyAttributesBetweenStores($data['copy_to_stores'], $product);
                 }
 
-                /*echo '<pre>';
-                print_r(Mage::getConfig()->getNode()->xpath('//global//rewrite'));
-                echo '</pre>'; */
-
-            $productSku = $this->_getSession();
-
-            echo '<pre>';
-                print_r($productSku);
-            echo '</pre>';
-
-            //<?php if ($grandTotal->getData('grand_total') >= 250.0000)
-
-                $this->_getSession()->addSuccess($this->__('The product has been saved by Jacob Chesky\'s magic powers.'));
+                $this->_getSession()->addSuccess($this->__('The product has been saved.'));
             } catch (Mage_Core_Exception $e) {
                 $this->_getSession()->addError($e->getMessage())
                     ->setProductData($data);
@@ -1090,7 +1088,7 @@ class Mage_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Controller
             $product->validate();
             $product->save();
             $result['product_id'] = $product->getId();
-            $this->_getSession()->addSuccess(Mage::helper('catalog')->__('Timmy T\'s product has been created.'));
+            $this->_getSession()->addSuccess(Mage::helper('catalog')->__('The product has been created.'));
             $this->_initLayoutMessages('adminhtml/session');
             $result['messages']  = $this->getLayout()->getMessagesBlock()->getGroupedHtml();
         } catch (Mage_Core_Exception $e) {

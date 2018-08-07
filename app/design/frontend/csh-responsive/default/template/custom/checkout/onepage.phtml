@@ -6,15 +6,14 @@
 <!-- New Code Added Below  -->
 <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/cshcheckout.js') ?>"></script>
 <script type="text/javascript">countryRegions = <?php echo $this->helper('directory')->getRegionJson() ?></script>
-
 <ol class="opc" id="checkoutSteps">
 <?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo): ?>
-
 <?php if (!$this->getChild($_stepId) || !$this->getChild($_stepId)->isShow()): continue; endif; $i++ ?>
     <li id="opc-<?php echo $_stepId ?>" class="section<?php echo !empty($_stepInfo['allow'])?' allow':'' ?><?php echo !empty($_stepInfo['complete'])?' saved':'' ?>">
         <div class="step-title">
-            <h2 style="display:inline-block;"><?php echo "<b>" . $i . ".</b>&nbsp;" . $_stepInfo['label'] ?></h2>
-            <a href="#" style="display:inline-block;" class="pull-right"><?php echo $this->__('Edit') ?></a>
+            <span class="number"><?php echo $i ?></span>
+            <h2><?php echo $_stepInfo['label'] ?></h2>
+            <a href="#"><?php echo $this->__('Edit') ?></a>
         </div>
         <div id="checkout-step-<?php echo $_stepId ?>" class="step a-item" style="display:none;">
             <?php echo $this->getChildHtml($_stepId) ?>

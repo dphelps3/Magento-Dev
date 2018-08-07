@@ -69,46 +69,10 @@
 5.1  - Added CSV export functionality
 5.2  - Improved serial key checking
 5.3  - Now adds WSA to make files saved in var/export unique. Will help avoid conflicts with other extensions that save to var/export.
-5.4  - Common 21
-5.5  - COMMON-28 - Fixed pricing for bundle child items
-5.6  - Fixed zipped version
+5.4  - Added fixed weight for bundle product support & CSV export now works specific to the extension
+5.5  - CSV export changes
+5.6  - Improved csv export functionality to be unique
 5.7  - SO-6 Added support in hasFreightCarrierEnabled call for fedex
 5.8  - HOC1 Refactor code around how Freight carriers work
 5.9  - Added carrier code to csv export file name so works with multiple WSA extensions installed
-5.10 - Added observer logic to shipping area to enable extensions to work better together
-5.11 - COMMON-29 fixed price bundle issue
-5.12 - HFM-5 Changed HandlingMatrix to use event based logic
-5.13 - COMMON-30 Refactored csv export logic to not read content
-5.14 - AS1-Added compatibility for AdminShipping and Freight Extensions
-5.15 - COMMON-31 Added support for CE1.8
-5.16 - PICKUP-1 Moved methods into baseabstract from abstract in freight common so can be used in StorePickup
-5.17  - SHIPMAN-7 Updated to implement DropCommon
-5.18  - PICKUP-38 added request to predispatch event to limit carriers for storepickup
-5.19  - AS-3 Admin Based shipping now working with Custom Calendar
-5.20  - COMMON-34 Removed rewrite that was causing issues
-5.21  - COMMON-34 Removed rewrite that was causing issues
-5.22  - DIMSHIP-129 Null weight workaround
-5.23  - DIMSHIP-135 - Added compatibility with UPS Date Shipping
-5.24  - COMMON-36 - Added support for Magento 1.9/1.14
-5.25  - COMMON-37 Resolved issue with viewing orders with config items in 1.8
-5.26  - AS-6 - Compatibility with admin shipping
-5.27  - COMMON-38 Resolved issues with save and export CSV function.
-5.28  - PREMIUM-13 Fixed issue with weight of bundle items when set to ship separately.
-5.29  - COMMON-39 Tidied up some inefficiencies in retrieving products
-5.30  - PROD-73 Resolves issue with taxed discounted prices
-5.31  - PREMIUM-15 Fixed link to support documentation
-5.32  - COMMON-39 Rolled back change to getProducts() call for freight as causing problems with earlier magento versions
-5.33  - PREMIUM-17 Added new switch to use base product price.
-5.34  - COMMON-41 Bringing this branch up to date.
-6.0  - COMMON-41 New totals logic
-6.1  - DROP-111 Resolved issue with dropship being disabled in default config scope causing it not to fire in admin orders.
-6.2  - DROP-111 Fixed typo
-6.3 - DIMSHIP-175 - added template function for cart shipping estimate and added check for startrack
-	  COMMON-43 - Fixed directory locations and set greater than check on version for template
-	  PREMIUM-19 Implement max individual weight6.4  - UC-17 Resolved issue of processAdditionalValidation not being called in dimensional shippping
-6.5  - DIMSHIP-193 Resolved issue with freeMethodWeight using bundle items.
-6.6  - COMMON-46 Removed object type from method signature
-6.7  - COMMON-48 Resolved issue with exporting after applying Magento patch SUPEE-6285
-6.8  - DIMSHIP-197 Fixed weight issue with bundles children
-6.9  - COMMON-51 Bundle qty weight issue
-6.10  - WSA16-17 Resolved issue with max package weight being ignored
+

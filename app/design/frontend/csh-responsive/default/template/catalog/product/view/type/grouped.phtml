@@ -29,47 +29,11 @@
  *
  * @see Mage_Catalog_Block_Product_View_Media
  * @see Mage_Catalog_Block_Product_View_Type_Grouped
+ *
  */
 ?>
 <link href="/skin/frontend/csh-responsive/default/css/stacktable.css" rel="stylesheet" />
-<style>
-    .assoc_line_total {
-        font-size: 18px;
-        font-weight: 700;
-    }
 
-    .small-only {
-        outline-style: solid;
-        outline-color: #dddddd;
-        outline-width: 1px;
-    }
-
-    .stacktable thead {
-        background:#e8e8e8 url(/skin/frontend/enterprise/cshardware/images/bkg_thead.gif) repeat-x 0 0;
-    }
-
-    .st-key {
-        background:#e8e8e8 url(/skin/frontend/enterprise/cshardware/images/bkg_thead.gif) repeat-x 0 0;
-    }
-
-    .colTitle {
-        font-weight: bold;
-        font-size: 12px;
-    }
-
-    .grouped-items-table {
-        margin-top: 20px;
-    }
-
-    .grouped-items-table td {
-        vertical-align:middle;
-    }
-
-    .groupedQty {
-        text-align:center;
-    }
-
-</style>
 <?php
 // Declare variables for use with grouped products
 $this->setPreconfiguredValue();
@@ -82,7 +46,9 @@ $_hasHeight = 0;
 $_hasDepth = 0;
 $_hasFinish = 0;
 $_hasColor = 0;
-
+$_hasProjection = 0;
+$_hasCenterToCenter = 0;
+$_hasDiameter = 0;
 ?>
 
 <?php /* Check if product is in stock, is available, and has associated products */ ?>
@@ -111,49 +77,58 @@ $_hasColor = 0;
 
     <?php /* Quickly scan through each associated item to determine which table headers/elements to display */ ?>
     <?php
-        foreach ($_associatedProducts as $_item) {
-            if ($_item->getData('width')){ $_hasWidth = 1; }
-            if ($_item->getData('length')){ $_hasLength = 1; }
-            if ($_item->getData('height')){ $_hasHeight = 1; }
-            if ($_item->getData('depth')){ $_hasDepth = 1; }
-            if ($_item->getData('color')){ $_hasColor = 1; }
-            if ($_item->getData('finish')){ $_hasFinish = 1; }
-        }
+    foreach ($_associatedProducts as $_item) {
+        if ($_item->getData('width')){ $_hasWidth = 1; }
+        if ($_item->getData('length')){ $_hasLength = 1; }
+        if ($_item->getData('height')){ $_hasHeight = 1; }
+        if ($_item->getData('depth')){ $_hasDepth = 1; }
+        if ($_item->getData('color')){ $_hasColor = 1; }
+        if ($_item->getData('finish')){ $_hasFinish = 1; }
+        if ($_item->getData('projection')){ $_hasProjection = 1; }
+        if ($_item->getData('center_to_center')){ $_hasCenterToCenter = 1; }
+        if ($_item->getData('diameter')){ $_hasDiameter = 1; }
+    }
     ?>
 
     <table class="table grouped-items-table" id="card-table">
         <thead>
-            <tr>
-                <th class="a-left"><span class="colTitle"><?php echo $this->__('Image') ?></span></th>
-                <th class="a-left"><span class="colTitle"><?php echo $this->__('Product Name') ?></span></th>
+        <tr>
+            <th class="a-left"><span class="colTitle"><?php echo $this->__('Image') ?></span></th>
+            <th class="a-left"><span class="colTitle"><?php echo $this->__('Product Name') ?></span></th>
 
-                <!-- product dimensions -->
-                <?php if($_hasWidth || $_hasLength || $_hasHeight || $_hasDepth): ?>
-                    <th class="a-left"><span class="colTitle"><?php echo $this->__('Dimensions') ?></span></th>
-                <?php endif; ?>
+            <!-- product dimensions -->
+            <?php if($_hasWidth || $_hasLength || $_hasHeight || $_hasDepth || $_hasProjection || $_hasDiameter): ?>
+                <th class="a-left"><span class="colTitle"><?php echo $this->__('Dimensions') ?></span></th>
+            <?php endif; ?>
 
-                <!-- product color or finish -->
-                <?php if ($_hasColor == 1): ?>
-                    <th class="a-left"><span class="colTitle"><?php echo $this->__('Color') ?></span></th>
-                <?php endif; ?>
-                <?php if ($_hasFinish == 1): ?>
-                    <th class="a-left"><span class="colTitle"><?php echo $this->__('Finish') ?></span></th>
-                <?php endif; ?>
+            <!-- product center-to-center -->
+            <?php if($_hasCenterToCenter): ?>
+                <th class="a-center"><span class="colTitle"><?php echo $this->__('Center-to-Center') ?></span></th>
+            <?php endif; ?>
 
-                <?php if ($this->getCanShowProductPrice($_product)): ?>
-                    <th class="a-right"><span class="colTitle"><?php echo $this->__('Price') ?></span></th>
-                <?php endif; ?>
+            <!-- product color or finish -->
+            <?php if ($_hasColor == 1): ?>
+                <th class="a-left"><span class="colTitle"><?php echo $this->__('Color') ?></span></th>
+            <?php endif; ?>
+            <?php if ($_hasFinish == 1): ?>
+                <th class="a-left"><span class="colTitle"><?php echo $this->__('Finish') ?></span></th>
+            <?php endif; ?>
 
-                <?php if ($_product->isSaleable()): ?>
-                    <th class="a-center"><span class="colTitle"><?php echo $this->__('Qty') ?></span></th>
-                    <th class="a-right"><span class="colTitle"><?php echo $this->__('Total') ?></span></th>
-                <?php endif; ?>
+            <!-- product price -->
+            <?php if ($this->getCanShowProductPrice($_product)): ?>
+                <th class="a-right"><span class="colTitle"><?php echo $this->__('Price') ?></span></th>
+            <?php endif; ?>
 
-                <th class="a-right"><span class="colTitle"><?php echo $this->__('Purchase') ?></span></th>
-            </tr>
+            <?php if ($_product->isSaleable()): ?>
+                <th class="a-center"><span class="colTitle"><?php echo $this->__('Qty') ?></span></th>
+                <th class="a-right"><span class="colTitle"><?php echo $this->__('Total') ?></span></th>
+            <?php endif; ?>
+
+            <th class="a-right"><span class="colTitle"><?php echo $this->__('Purchase') ?></span></th>
+        </tr>
         </thead>
         <tbody>
-            <?php foreach ($_associatedProducts as $_item): ?>
+        <?php foreach ($_associatedProducts as $_item): ?>
             <tr>
                 <?php /* pushing each product id to the js array */ ?>
                 <script type="text/javascript">
@@ -166,104 +141,139 @@ $_hasColor = 0;
                 <?php if ($_product->isSaleable()): ?>
                     <?php if ($_item->isSaleable()): ?>
 
-                    <!-- product image -->
-                    <td class="a-left">
-                        <img src="/media/catalog/product/<?php echo $this->escapeHtml($_item->getData('small_image')); ?>" />
-                    </td>
-
-                    <!-- product name -->
-                    <td class="a-left">
-                        <b><?php echo $this->escapeHtml($_item->getName()); ?></b>
-                    </td>
-
-                    <!-- product dimensions -->
-                    <?php if($_hasWidth == 1 || $_hasLength == 1 || $_hasHeight == 1 || $_hasDepth == 1): ?>
-                        <td>
-                            <table>
-                                <?php if ($_item->getData('width')){ echo "<tr><td>Width: <b>" . $_item->getData('width') . "</b></td></tr>"; }
-                                if ($_item->getData('length')){ echo "<tr><td>Length: <b>" . $_item->getData('length') . "</b></td></tr>"; }
-                                if ($_item->getData('height')){ echo "<tr><td>Height: <b>" . $_item->getData('height') . "</b></td></tr>"; }
-                                if ($_item->getData('depth')){ echo "<tr><td>Depth: <b>" . $_item->getData('depth') . "</b></td></tr>"; }
-                                if (!($_item->getData('width')) && !($_item->getData('width')) && !($_item->getData('width'))) { echo "<td></td>"; }
-                                ?>
-                            </table>
+                        <!-- product image -->
+                        <td class="a-left">
+                            <img src="/media/catalog/product/<?php echo $this->escapeHtml($_item->getData('small_image')); ?>" style="width:100px;" alt="<?php echo $this->escapeHtml($_item->getName()); ?>" />
                         </td>
-                    <?php endif; ?>
 
-                    <!-- product color -->
-                    <?php if($_hasColor == 1): ?>
-                        <?php if ($_item->getData('color')): ?>
+                        <!-- product name -->
+                        <td class="a-left" style="padding-right:26px;">
+                            <span class="prodSku">SKU# <?php echo $this->escapeHtml($_item->getSku()); ?></span><br />
+                            <span class="prodName"><?php echo $this->escapeHtml($_item->getName()); ?></span>
+                        </td>
+
+                        <!-- product dimensions -->
+                        <?php if($_hasWidth == 1 || $_hasLength == 1 || $_hasHeight == 1 || $_hasDepth == 1): ?>
                             <td>
-                                <?php echo $_item->getData('color_value') ?>
+                                <table>
+                                    <?php if ($_item->getData('width')){ echo "<tr><td>Width: <b>" . $_item->getData('width') . "</b></td></tr>"; }
+                                    if ($_item->getData('length')){ echo "<tr><td>Length: <b>" . $_item->getData('length') . "</b></td></tr>"; }
+                                    if ($_item->getData('height')){ echo "<tr><td>Height: <b>" . $_item->getData('height') . "</b></td></tr>"; }
+                                    if ($_item->getData('depth')){ echo "<tr><td>Depth: <b>" . $_item->getData('depth') . "</b></td></tr>"; }
+                                    if ($_item->getData('diameter')){ echo "<tr><td>Diameter: <b>" . $_item->getData('diameter') . "</b></td></tr>"; }
+                                    if ($_item->getData('projection')){ echo "<tr><td>Projection: <b>" . $_item->getData('projection') . "</b></td></tr>"; }
+                                    ?>
+                                </table>
                             </td>
-                        <?php else: ?>
-                            <td></td>
                         <?php endif; ?>
-                    <?php endif; ?>
 
-                    <!-- product finish -->
-                    <?php if($_hasFinish == 1): ?>
-                        <?php if ($_item->getData('finish')): ?>
-                            <td>
-                                <?php echo $_item->getData('finish_value') ?>
-                            </td>
-                        <?php else: ?>
-                            <td></td>
-                        <?php endif; ?>
-                    <?php endif; ?>
-
-                    <!-- product price -->
-                    <?php if ($this->getCanShowProductPrice($_product)): ?>
-                    <td class="a-right">
-                        <?php if ($this->getCanShowProductPrice($_item)): ?>
-                            <?php echo $this->getPriceHtml($_item, true) ?>
-                            <?php echo $this->getTierPriceHtml($_item) ?>
-                        <?php endif; ?>
-                    </td>
-                    <?php endif; ?>
-
-                    <!-- quantity -->
-                    <td class="a-center">
-                        <input type="text" id="<?php echo $_item->getId() ?>" name="super_group[<?php echo $_item->getId() ?>]"
-                               maxlength="12" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Qty')) ?>"
-                               class="input-text qty groupedQty" placeholder="0" />
-                    </td>
-
-                    <!-- line total -->
-                    <td class="a-right">
-                        <span id="line_total_<?php echo $_item->getId();?>" name="assoc_line_total[<?php echo $_item->getId() ?>]" class="assoc_line_total">$0.00</span>
-                    </td>
-
-                    <!-- add to cart button -->
-                    <td class="a-right">
-                        <?php $buttonTitle = $this->__('Add to Cart'); ?>
-                        <div class="add-to-cart">
-                            <?php if((!$_product->isGrouped()) and ($_product->getTypeId() != Simplesolutions_Cabinetproduct_Model_Product_Type_Cabinet::TYPE_CABINET )): ?>
-                                <label for="qty"><?php echo $this->__('Quantity') ?></label>
-                                <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty" />
+                        <!-- product center-to-center -->
+                        <?php if($_hasCenterToCenter == 1): ?>
+                            <?php if ($_item->getData('center_to_center')): ?>
+                                <td style="text-align:center;">
+                                    <?php echo $_item->getData('center_to_center') ?>
+                                </td>
+                            <?php else: ?>
+                                <td></td>
                             <?php endif; ?>
-                            <button type="button" title="<?php echo $buttonTitle ?>"
-                                    class="btn btn-primary" onclick="productAddToCartForm.submit(this)">
+                        <?php endif; ?>
+
+                        <!-- product color -->
+                        <?php if($_hasColor == 1): ?>
+                            <?php if ($_item->getData('color')): ?>
+                                <td>
+                                    <?php echo $_item->getData('color_value') ?>
+                                </td>
+                            <?php else: ?>
+                                <td></td>
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+                        <!-- product finish -->
+                        <?php if($_hasFinish == 1): ?>
+                            <?php if ($_item->getData('finish')): ?>
+                                <td>
+                                    <?php echo $_item->getData('finish_value') ?>
+                                </td>
+                            <?php else: ?>
+                                <td></td>
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+                        <!-- product price -->
+                        <?php if ($this->getCanShowProductPrice($_product)): ?>
+                            <td class="a-right">
+                                <?php if ($this->getCanShowProductPrice($_item)): ?>
+                                    <?php echo $this->getPriceHtml($_item, true) ?>
+                                    <?php echo $this->getTierPriceHtml($_item) ?>
+                                <?php endif; ?>
+                            </td>
+                        <?php endif; ?>
+
+                        <!-- quantity -->
+                        <td class="a-center">
+                            <input type="text" id="<?php echo $_item->getId() ?>" name="super_group[<?php echo $_item->getId() ?>]"
+                                   maxlength="12" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Qty')) ?>"
+                                   class="input-text qty groupedQty" placeholder="0" />
+                        </td>
+
+                        <!-- line total -->
+                        <td class="a-right">
+                            <span id="line_total_<?php echo $_item->getId();?>" name="assoc_line_total[<?php echo $_item->getId() ?>]" class="assoc_line_total">$0.00</span>
+                        </td>
+
+                        <!-- add to cart button -->
+                        <td class="a-right">
+                            <?php $buttonTitle = $this->__('Add to Cart'); ?>
+                            <div class="add-to-cart">
+                                <?php if((!$_product->isGrouped()) and ($_product->getTypeId() != Simplesolutions_Cabinetproduct_Model_Product_Type_Cabinet::TYPE_CABINET )): ?>
+                                    <label for="qty"><?php echo $this->__('Quantity') ?></label>
+                                    <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty" />
+                                <?php endif; ?>
+                                <button type="button" title="<?php echo $buttonTitle ?>"
+                                        class="btn btn-primary" onclick="productAddToCartForm.submit(this)">
                                 <span><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                     <span><?php echo $buttonTitle ?></span>
                                 </span>
-                            </button>
-                            <?php echo $this->getChildHtml('', true, true) ?>
-                        </div>
-                    </td>
+                                </button>
+                                <?php echo $this->getChildHtml('', true, true) ?>
+                            </div>
+                        </td>
 
                     <?php endif; ?>
                 <?php else: ?>
-                <td><i>Sorry, associated items are not available for this product.</i></td>
+                    <td><i>Sorry, associated items are not available for this product.</i></td>
                 <?php endif; ?>
             </tr>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
         </tbody>
     </table>
+
+<!-- Test -->
+<button type="button" id="dpTesting">Press Me</button>
 
 <?php endif; ?>
 <script type="text/javascript">
     decorateTable('super-product-table');
+
+
+    // function for adding commas to numbers exceeding 1000.00
+    function addComma(nbr)
+    {
+        nbr += '';
+
+        // splits dollars and cents into separate array elements
+        x = nbr.split('.');
+        dollars = x[0];
+        cents = x[1]
+        nbrFormula = /(\d+)(\d{3})/;
+
+        while(nbrFormula.test(dollars)) {
+            dollars = dollars.replace(nbrFormula, '$1' + ',' + '$2');
+        }
+
+        return dollars + '.' + cents;
+    }
 
     // function for stripping white spaces and dollar signs then parsing the string to decimals
     function priceStripper(oldPrice) {
@@ -274,6 +284,9 @@ $_hasColor = 0;
         // remove the dollar value
         newPrice = newPrice.replace('$', '');
 
+        // remove the comma
+        newPrice = newPrice.replace(',', '');
+
         // parse from string to double, with two decimal places
         newPrice = parseFloat(newPrice).toFixed(2);
 
@@ -282,6 +295,10 @@ $_hasColor = 0;
 
     jQuery(document).ready(function() {
 
+        jQuery("#dpTesting").click(function() {
+            jQuery(".a-center .groupedQty").val(23);
+        });
+
         // running total
         var runningTotal = parseFloat("0.00");
 
@@ -289,21 +306,18 @@ $_hasColor = 0;
         jQuery(".qty").keyup(function(){
 
             var thisQty = this.value;
-            console.log(thisQty);
 
             jQuery('[name="super_group['+this.id+']"]').each(function(){
-               jQuery(this).val(thisQty);
+                jQuery(this).val(thisQty);
             });
 
             var spanId = ("#product-price-" + this.id + "");
 
             var price = jQuery(spanId).text();
+
             var optimizedPrice = priceStripper(price);
 
             var lineTotal = (optimizedPrice * this.value).toFixed(2);
-
-            //var lineTotalTag = ("#line_total_" + this.id + "").toString();
-            // console.log(lineTotalTag);
 
             if(lineTotal == 0.00 || lineTotal.length == 0) {
                 jQuery('[name="assoc_line_total['+this.id+']"]').each(function(){
@@ -311,7 +325,16 @@ $_hasColor = 0;
                 });
             } else {
                 jQuery('[name="assoc_line_total['+this.id+']"]').each(function(){
-                    jQuery(this).html("$" + lineTotal);
+
+                    // if number is greater than or equal to 1000.00, add a comma separator
+                    if (lineTotal >= 1000.00)
+                    {
+                        newLineTotal = addComma(lineTotal);
+                        jQuery(this).html("$" + newLineTotal);
+
+                    } else {
+                        jQuery(this).html("$" + lineTotal);
+                    }
                 });
             }
 
@@ -322,7 +345,8 @@ $_hasColor = 0;
 </script>
 
 <!-- StackTable Scripts -->
-<script>window.jQuery || document.write('<script src="/skin/frontend/csh-responsive/default/js/jquery-1.7.min.js"><\/script>')</script>
+<!--<script>window.jQuery || document.write('<script src="/skin/frontend/csh-responsive/default/js/jquery.js"><\/script>')</script>-->
+<script>window.jQuery</script>
 
 <script src="/skin/frontend/csh-responsive/default/js/stacktable.js" type="text/javascript"></script>
 

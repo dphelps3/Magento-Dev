@@ -60,7 +60,6 @@
     </thead>
     <tbody>
     <?php if ($_hasAssociatedProducts): ?>
-    <h1>YES FOR ASSOCIATED PRODUCTS</h1>
     <?php foreach ($_associatedProducts as $_item): ?>
         <?php $_finalPriceInclTax = $this->helper('tax')->getPrice($_item, $_item->getFinalPrice(), true) ?>
         <tr>

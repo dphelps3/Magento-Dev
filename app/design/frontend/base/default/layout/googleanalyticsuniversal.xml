@@ -35,7 +35,7 @@
         <reference name="head">
             <action method="addJs" ifconfig="google/analytics/active"><script>google/ga.js</script></action>
         </reference>
-        <reference name="after_body_start">
+        <reference name="head">
             <block type="enterprise_googleanalyticsuniversal/ga" name="google_analyticsuniversal" as="google_analyticsuniversal"
                    template="googleanalyticsuniversal/ga.phtml" />
         </reference>

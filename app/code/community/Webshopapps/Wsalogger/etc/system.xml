@@ -20,8 +20,7 @@
  *
  * @category    WebShopApps
  * @package     WebShopApps WsaLogger
- * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
- *              Copyright, 2013, Zowta, LLC - US license
+ * @copyright   Copyright (c) 2011 Zowta Ltd (http://www.webshopapps.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  -->
 <config>
@@ -47,6 +46,7 @@
 							<div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">
 								<h3>Please ensure that you disable this logger after use</h3>
 								<br/>With this logger you can see diagnostic information on WebShopApps extensions.
+								<br/><br/>Further info on the <a href="http://wiki.webshopapps.com/webshopapps-logger">WebShopApps Wiki</a>.
 							</div>
 						]]>
 					</comment>
@@ -142,18 +142,7 @@
 							<show_in_website>0</show_in_website>
 							<show_in_store>0</show_in_store>
 							<comment>Use Logger in non-WebShopApps extensions (if supported)</comment>
-						</view_all_extns>
-                        <debug_error_messages translate="label">
-                            <label>Show Debug Messages on Front End</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>300</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                            <comment>Display debug messages in errors for shipping (if supported) and package breakdown in cart (if applicable)</comment>
-                        </debug_error_messages>
-                        show debug messages in errors
+						</view_all_extns> 
 					</fields>
 				</wsalog>
 				<wsamodulelog>

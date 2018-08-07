@@ -2451,14 +2451,177 @@ a.add-to-cart-quick:hover {
     font-size: 12px;
 }
 
+#tokencards-payment-sagepaymentspro .tokensage .tokencard-radio input[type="radio"]{
+float: left;
+margin-right: 20px;
+}
+
+a.oncheckout {
+color: #777;
+font-weight: normal;
+font-size: 12px;
+margin-left: 20px;
+}
+
+.csh-bread-header {
+	height: 60px;
+	background-color: #ebebeb;
+	font-family: 'Titillium Web', sans-serif;
+	text-align: center;
+}
+
+#bread-header-logo {
+	display: inline-block;
+}
+
+#bread-header-logo img {
+
+	height: 30px;
+	margin-top: -8px;
+	opacity: 0.69;
+	filter: alpha(opacity=69);
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+#bread-header-text {
+	font-size: 18px;
+	color: #c52221;
+	font-weight: 700;
+	padding-left: 22px;
+	padding-right: 22px;
+	display: inline-block;
+	padding-top:19px;
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+#bread-header-text-sm {
+	font-size: 14px;
+	color: #c52221;
+	font-weight: 700;
+	padding-left: 12px;
+	padding-right: 12px;
+	display: none;
+	padding-top:19px;
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+#bread-header-button {
+	display: inline-block;
+}
+
+@media screen and (max-width: 767px) {
+	#bread-header-text {
+		display:none;
+	}
+
+	#bread-header-text-sm {
+		display: inline-block;
+	}
+}
+
+@media screen and (max-width: 579px) {
+	#bread-first {
+		display:none;
+	}
+
+	#bread-second {
+		display:inline-block;
+	}
+
+	#bread-header-text {
+		display:none;
+	}
+
+	#bread-header-text-sm {
+		display: inline-block;
+	}
+}
+
+@media screen and (max-width: 385px) {
+	#bread-first {
+		display:none;
+	}
+
+	#bread-second {
+		display:inline-block;
+	}
+
+	#bread-header-text {
+		display:none;
+	}
+
+	#bread-header-text-sm {
+		display: inline-block;
+	}
+
+	#financing {
+		display:none;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	#bread-first {
+		display:none;
+	}
+
+	#bread-second {
+		display:inline-block;
+	}
+
+	#bread-header-text {
+		display:inline-block;
+	}
+
+	#bread-header-text-sm {
+		display: inline-block;
+	}
+
+	.csh-bread-header {
+		padding-top: 4px;
+	}
+
+	#bread-header-logo {
+		display:none;
+	}
+}
+
+
 .monthly-specials-btn {
 	margin-top:28px;
 	padding-left:90px;
 }
 
 .monthly-specials-tme {
-	background-color:#a0522d; 
+	background-color:#000; 
 	color: #fff;
+   -webkit-transition: background-color 0.4s ease-out;
+   -moz-transition: background-color 0.4s ease-out;
+   -o-transition: background-color 0.4s ease-out;
+   transition: background-color 0.4s ease-out;
+}
+
+.monthly-specials-tme:hover {
+   color: #fff;
+   background-color: #434343;
+   -webkit-transition: background-color 0.25s ease-in;
+   -moz-transition: background-color 0.25s ease-in;
+   -o-transition: background-color 0.25s ease-in;
+   transition: background-color 0.25s ease-in;
 }
 
 .monthly-specials-sm {
@@ -2474,7 +2637,3 @@ a.add-to-cart-quick:hover {
 	text-decoration:none; 
 	margin-top:-10px;
 }
-
-/*==========================
-BOOTSTRAP STYLE OVERRIDES
-========================= */

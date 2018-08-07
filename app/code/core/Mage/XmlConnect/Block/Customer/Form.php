@@ -95,7 +95,7 @@ class Mage_XmlConnect_Block_Customer_Form extends Mage_Core_Block_Abstract
     {
         $customer = $this->getCustomer();
         if ($this->getIsEditPage() && $customer && $customer->getId()) {
-            $this->setFirstname(ucfirst(strtolower($customer->getFirstname()));
+            $this->setFirstname($customer->getFirstname());
             $this->setLastname($customer->getLastname());
             $this->setEmail($customer->getEmail());
         }

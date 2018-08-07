@@ -10,6 +10,12 @@
 		<remove name="right.reports.product.viewed" /> <!--recently viewed prod-->
 		<remove name="right.reports.product.compared" /> <!--
 		recently compared prod-->
+
+		<reference name="head">
+			<!-- Remove unneeded CSS files -->
+			<action method="removeItem"><type>skin_js</type><name>js/jquery.js</name></action>
+		</reference>
+
 		<reference name="top.links">
 			<remove name="checkout_cart_link"/>
    		</reference>

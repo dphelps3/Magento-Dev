@@ -31,7 +31,6 @@ class Easylife_Switcher_Helper_Data extends Mage_Core_Helper_Abstract
      */
     const DEFAULT_CONFIGURATION_ATTRIBUTE_CODE  = 'default_configuration_id';
 
-
     /**
      * check if the module is enabled
      * @access public
@@ -51,4 +50,5 @@ class Easylife_Switcher_Helper_Data extends Mage_Core_Helper_Abstract
         $store = Mage::app()->getRequest()->getParam('store', 0);
         return Mage::getStoreConfigFlag(self::XML_ENABLED_PATH, $store);
     }
+
 }

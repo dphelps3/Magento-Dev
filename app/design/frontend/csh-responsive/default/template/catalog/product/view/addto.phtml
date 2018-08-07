@@ -30,7 +30,7 @@
 
 <ul class="add-to-links">
 <?php if ($this->helper('wishlist')->isAllow()) : ?>
-    <li><a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submit(this, this.href); return false;" class="link-wishlist btn btn-link"><span class="glyphicon glyphicon-heart"></span><?php echo $this->__('Add to Wishlist') ?></a></li>
+    <li><a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist btn btn-link"><span class="glyphicon glyphicon-heart"></span><?php echo $this->__('Wishlist') ?></a></li>
 <?php endif; ?>
 
 </ul>

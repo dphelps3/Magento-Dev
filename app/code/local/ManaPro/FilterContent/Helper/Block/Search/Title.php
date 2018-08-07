@@ -9,7 +9,6 @@
  * @author Mana Team
  *
  */
-
 class ManaPro_FilterContent_Helper_Block_Search_Title extends ManaPro_FilterContent_Helper_Block {
     /**
      * @param Mage_CatalogSearch_Block_Result $block

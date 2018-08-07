@@ -104,7 +104,7 @@ class ManaPro_FilterContent_Adminhtml_Mana_FilterContentController extends Mana_
             $html = '';
         }
         $this->getResponse()->setBody($html);
-    } 
+    }
 
     protected function _isAllowed() {
         return true;

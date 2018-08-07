@@ -1,0 +1,10 @@
+<config>
+
+    <modules>
+        <Training_Practice>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Training_Practice>
+    </modules>
+
+</config>

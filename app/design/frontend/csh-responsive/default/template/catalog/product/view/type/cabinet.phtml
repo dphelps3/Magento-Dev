@@ -71,15 +71,15 @@
                             <col width="1" />
                             <thead>
                                 <tr>
-                                    <th><?php echo $this->__('Image') ?></th>
+                                    <th><?php echo $this->__('SKU') ?></th>
                                     <th><?php echo $this->__('Product Name') ?></th>
-                                    <!--?php
+                                    <?php
                                     foreach ($_catChildren['attributes'] as $attribute => $label) {
                                         if(strtolower($label) == 'sku'){ continue; }
                                         echo '<th>' . $label . '</th>';
                                     }
-                                    ? -->
-
+                                    ?>				
+                                    <th><?php echo $this->__('Image') ?></th>
                                     <?php if ($this->getCanShowProductPrice($_product)): ?>
                                         <th class="a-right"><?php echo $this->__('Price') ?></th>
                                     <?php endif; ?>
@@ -92,15 +92,15 @@
                                 <?php foreach ($_catChildren['products'] as $_item): ?>
                                     <?php $_finalPriceInclTax = $this->helper('tax')->getPrice($_item, $_item->getFinalPrice(), true) ?>
                                     <tr>
-                                        <td><?php echo '<a href="' . $this->helper('catalog/image')->init($_item, 'image') . '" title="' . $this->htmlEscape($_item->getName()) . '" rel="lightbox"><img src="' . $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(180, 180) . '" width="180"><a>'; ?></td>
-                                        <td><?php echo $this->htmlEscape($_item->getName()) ?></td>
-                                        <!-- ?php
+                                        <td><?php echo $this->htmlEscape($_item->getSku()) ?></td>
+                                        <td><?php echo $this->htmlEscape($_item->getName()) ?></td>						
+                                        <?php
                                         foreach ($_catChildren['attributes'] as $attribute => $label) {
                                             if(strtolower($label) == 'sku'){ continue; }
                                             echo '<td>' . $this->htmlEscape($_item->getResource()->getAttribute($attribute)->getFrontend()->getValue($_item)) . '</td>';
                                         }
-                                        ? -->
-
+                                        ?>
+                                        <td><?php echo '<a href="' . $this->helper('catalog/image')->init($_item, 'image') . '" title="' . $this->htmlEscape($_item->getName()) . '" rel="lightbox"><img src="' . $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(77, 77) . '" width="77"><a>'; ?></td>
                                         <?php if ($this->getCanShowProductPrice($_product)): ?>
                                             <td class="a-right">
                                                 <?php if ($this->getCanShowProductPrice($_item)): ?>

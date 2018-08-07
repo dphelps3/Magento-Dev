@@ -42,11 +42,6 @@
     </dt>
 <?php else:
     foreach ($methods as $_method):
-
-        echo "<pre>";
-            print_r($_method->getCode());
-        echo "</pre>";
-
         $_code = $_method->getCode();
 ?>
     <dt id="dt_method_<?php echo $_code ?>">
